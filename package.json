@@ -1,7 +1,7 @@
 {
-  "name": "squad",
+  "name": "rabble",
   "version": "1.0.0",
-  "description": "All inclusive festival app",
+  "description": "All-inclusive festival app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
