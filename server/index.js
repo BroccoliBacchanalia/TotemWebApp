@@ -1,7 +1,13 @@
-var express = require('express');
-var app = express();
+'use strict'
+const express = require('express');
+const api = require('./api/api');
+const app = express();
+const port = process.env.PORT || 8000;
 
-app.use(express.static(__dirname + '/../client/dist'));
-app.listen(3000, function() {
-  console.log('listening on port 3000');
+require('./middleware')(app, express);
+
+app.use('/api', api);
+
+app.listen(port, function() {
+  console.log('listening on port ' + port);
 });
