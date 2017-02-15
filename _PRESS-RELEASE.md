@@ -9,15 +9,15 @@
   Shows you the location of your groups or the music festival du jour and coordinate metopes
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-  **PRODUCT NAME**allows your to efficiently organize and take advantage of all the music festival you are at has to offer
+  Rabble allows your to efficiently organize and take advantage of all the music festival you are at has to offer
 
 ## Problem ##
   > Describe the problem your product solves.
-  Music festivals can often be and overwhelming experience with the sheer number of people in attendance.**PRODUCT NAME** allows you quickly assemble your crew at any music festival.
+  Music festivals can often be and overwhelming experience with the sheer number of people in attendance. Rabble allows you quickly assemble your crew at any music festival.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
-  **PRODUCT NAME** gives you the ability to set up base camps and communicate with the people in your group, maximizing the time that you can spend together enjoying the music
+  Rabble gives you the ability to set up base camps and communicate with the people in your group, maximizing the time that you can spend together enjoying the music
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
@@ -25,7 +25,7 @@
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
-  **PRODUCT NAME** is easy to get started with, simply log in with your Facebook account and select the friends who you are expecting to be at the festival with you.
+  Rabble is easy to get started with, simply log in with your Facebook account and select the friends who you are expecting to be at the festival with you.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.

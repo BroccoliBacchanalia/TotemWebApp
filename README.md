@@ -1,12 +1,6 @@
-#PalFinder
+#Rabble
 
 App that allows you to see where your friends are at a current music festival
-
-##Getting started:
-
-**To get started, visit the documentation page at: https://palfinder.github.io**
-
-**Project source code can be downloaded from https://github.com/PalFinder/Production**
 
 ##Authors
 
