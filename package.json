@@ -1,0 +1,19 @@
+{
+  "name": "squad",
+  "version": "1.0.0",
+  "description": "All inclusive festival app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psheehan89/Thesis.git"
+  },
+  "author": "Patrick Sheehan, John Currie, Derek Young, Smriti Goel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/psheehan89/Thesis/issues"
+  },
+  "homepage": "https://github.com/psheehan89/Thesis#readme"
+}
