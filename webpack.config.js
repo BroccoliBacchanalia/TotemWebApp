@@ -3,7 +3,7 @@ var path = require('path');
 var BUILD_DIR = path.resolve(__dirname, 'client/dist');
 var APP_DIR = path.resolve(__dirname, 'client/src');
 var config = {
-  entry: APP_DIR + '/index.js',
+  entry: APP_DIR + '/index.jsx',
   module: {
     loaders: [
       {
