@@ -1,5 +1,5 @@
 'use strict'
-const User = require('./usersModel');
+const Friends = require('./friendsModel');
 
 const controller = {
 

@@ -1,5 +1,6 @@
+'use strict'
 const Sequelize = require('sequelize');
-const dbconfig = require('./dbconfig.js');
+const dbconfig = require('./dbconfig');
 
 const sequelize = new Sequelize(dbconfig.DB_NAME, dbconfig.ROLE, dbconfig.PW, {
   host: 'localhost',
