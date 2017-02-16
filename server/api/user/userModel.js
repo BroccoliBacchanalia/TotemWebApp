@@ -9,6 +9,7 @@ const User = db.define('user', {
   },
   group_id: {
     type: Sequelize.INTEGER,
+    allowNull: false,
     model: 'group',
     key: 'id'
   }
