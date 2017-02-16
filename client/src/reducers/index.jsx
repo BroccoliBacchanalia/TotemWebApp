@@ -1,8 +1,8 @@
-import { combineReducers } from "redux"
+import { combineReducers } from "redux";
+import users from './userReducer.jsx';
+import map from './mapReducer.jsx';
 
 export default combineReducers({
-  list,
-  ofAll,
-  your,
-  reducers,
-})
+  users,
+  map
+});
