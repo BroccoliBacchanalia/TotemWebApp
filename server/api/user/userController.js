@@ -2,7 +2,6 @@
 const User = require('./userModel');
 
 const controller = {
-
   signin: function(req, res, next) {
     //TODO
   },
