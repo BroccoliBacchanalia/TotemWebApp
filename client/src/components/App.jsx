@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
+import Map from './Map.jsx';
 
 
 class App extends React.Component {  

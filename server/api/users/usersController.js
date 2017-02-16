@@ -3,7 +3,15 @@ const User = require('./usersModel');
 
 const controller = {
 
-  getUsers: function(req, res, next) {
+  sigin: function(req, res, next) {
+    //TODO
+  },
+
+  create: function(req, res, next) {
+    //TODO
+  },
+
+  authenticate: function(req, res, next) {
     //TODO
   }
 
