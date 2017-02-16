@@ -1,6 +1,6 @@
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyBYzcVnUFZiLsR-XDhCKWMNVVw4sEN3syc",
+    apiKey: "API_KEY_HERE",
     authDomain: "rabble-984ed.firebaseapp.com",
     databaseURL: "https://rabble-984ed.firebaseio.com",
     storageBucket: "rabble-984ed.appspot.com",

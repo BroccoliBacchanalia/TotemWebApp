@@ -1,11 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import store from '../store';
 
-export default class App extends React.Component {
+
+class App extends React.Component {  
   render() {
     return (
       <div>
-        Hello Bacchanalian
+        <h1>Hello Bacchanalian</h1>
       </div>
-    )
+    );
   }
 }
+
+export default connect((store => {
+  return {
+    someprop: store.someprop
+  }
+}))(App)
