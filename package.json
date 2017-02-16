@@ -1,7 +1,7 @@
 {
-  "name": "squad",
+  "name": "rabble",
   "version": "1.0.0",
-  "description": "All inclusive festival app",
+  "description": "All-inclusive festival app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,11 +16,23 @@
   "author": "",
   "license": "",
   "dependencies": {
+
+    "axios": "^0.15.3",
+    "babel-preset-stage-2": "^6.22.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.1",
     "morgan": "^1.8.1",
+
     "pg": "^6.1.2",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "redux-logger": "^2.8.1",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
     "sequelize": "^3.30.2"
+
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
