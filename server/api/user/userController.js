@@ -23,8 +23,8 @@ const controller = {
       }
       return res.sendStatus(500);
     }).catch(function(err) {
-      console.log('error in create user', err);
-      return res.sendStatus(500);
+      console.log('error in create user:', err.errors[0].message);
+      return res.status(500).send(err.errors[0].message);
     });
   },
 
