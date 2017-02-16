@@ -19,6 +19,7 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.1",
     "morgan": "^1.8.1",
+    "pg": "^6.1.2",
     "sequelize": "^3.30.2"
   },
   "devDependencies": {
