@@ -1,10 +1,10 @@
 import React from 'react';
 import GroupRow from './GroupRow.jsx';
 import GroupSort from './GroupSort.jsx';
-import store from '../../store.jsx';
+import store from '../../redux/store.jsx';
 
 const GroupView = ({ dispatch, users, userID }) => (
-  <View style={{ flex: 1 }}>
+  <div>
     <GroupSort dispatch={dispatch}/>
     {Object.keys(users).map((userKey, index) => {
       //Anchor current user info at top of view
@@ -15,21 +15,20 @@ const GroupView = ({ dispatch, users, userID }) => (
         );
       }
     })}
-    <ScrollView>
-      {Object.keys(users).map((userKey, index) => {
-        const friend = users[userKey];
-        if (userKey !== userID) {
-          return (
-            <GroupRow key={index} friend={friend} />
-          );
-        }
-      })}
-    </ScrollView>
-    <ButtonFull
-      onPress={function(){console.log('add a friend')}}
-      title='Add a Friend'
-    />
-  </View>
+    {Object.keys(users).map((userKey, index) => {
+      const friend = users[userKey];
+      if (userKey !== userID) {
+        return (
+          <GroupRow key={index} friend={friend} />
+        );
+      }
+    })}
+    <div onClick={function(){console.log('add a friend')}>
+      <div>
+        <p>Add a Friend</p>
+      </div>
+    </div>
+  </div>
 );
 
 export default GroupView;
