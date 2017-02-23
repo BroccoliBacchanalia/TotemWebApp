@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import { Text, View, Picker, ScrollView, Button, TouchableHighlight, Image, TouchableOpacity  } from 'react-native';
+//import { Text, View, Picker, ScrollView, Button, TouchableHighlight, Image, TouchableOpacity  } from 'react-native';
+// var scheduleDummyData = require('./scheduleDummyData.json');
 import scheduleDummyData from './scheduleDummyData.json'
-import ScheduleRow from './ScheduleRow';
-import VenueStyles from './VenueStyles';
+import ScheduleRow from './ScheduleRow.jsx';
+//import VenueStyles from './VenueStyles';
 import { Route, MemoryRouter as Router } from 'react-router';
-import styles from '../../styles';
+//import styles from '../../styles';
 
 function allStages (scheduleDummyData) {
 
     let obj={};
+
     scheduleDummyData.forEach(function(item){
       if(!(item.geofence in obj)) {
         obj[item.geofence] = item.geofence;
@@ -20,6 +22,7 @@ function allStages (scheduleDummyData) {
 function allDays(scheduleDummyData) {   
     
     let datesDay={};
+    console.log("outside: ", scheduleDummyData)
     scheduleDummyData.forEach(function(item){
       if(!(item.day in datesDay)) {
         datesDay[generateDay(item.day)] = item.day;
@@ -40,6 +43,7 @@ function generateDay(dateString) {
   var d = new Date(dateString)
   return weekday[d.getDay()];
 }
+
 const daysAndDates = allDays(scheduleDummyData);
 const days = Object.keys(daysAndDates);
 const stages = allStages(scheduleDummyData);
@@ -81,63 +85,65 @@ export default class VenueSchedule extends Component{
   }
   renderDays () {
     return (
-      <View style={VenueStyles.dayBar}>
+      <div>
         {this.renderButton()}
         {days.map((item, key) =>
-          <Button 
+          <button 
               key={key}
               title={item} 
-              onPress = {this.onChangeDay.bind(this, item)}
-              value={item}>
-          </Button>
+              onClick = {this.onChangeDay.bind(this, item)}
+              value={item}>{item}
+          </button>
         )}
-      </View>
+      </div>
     );
   }
+
   renderStages () {
     return (
-      <View style={VenueStyles.center}>
+      <div>
         {stages.map((item, key) => 
-          <TouchableOpacity
-            style={VenueStyles.selection}
-            onPress={this.onChangeStage.bind(this, item)}>
-            <Text style={styles.textMed}>{item}</Text>
-            <Text style={VenueStyles.textSm}>
-              {getArtist(item, this.state.selectedDay)}
-            </Text>
-          </TouchableOpacity>
+        <button
+          onClick={this.onChangeStage.bind(this, item)}>
+          <div>{item}</div>
+          <div>
+            {getArtist(item, this.state.selectedDay)}
+          </div>
+        </button>
         )}
-      </View>
+      </div>
     );
   }
+
   renderButton() {
     return (
-      <Button
+      <button
         title="<"
-        onPress={this.setStageToDefault.bind(this)}
-        value="<">
-      </Button>
+        onClick={this.setStageToDefault.bind(this)}
+        value="<"> back
+      </button>
     );
   }
+
   render () {
       console.log(this.state.chooseStage, 'selected stage');
       if(this.state.chooseStage === "") { 
         return (
-          <View>
+          <div>
             {this.renderDays()}
             {this.renderStages()}
-          </View>
+          </div>
         );
       } 
       return (
-        <View>
+        <div>
           {this.renderDays()}
-          <View style={styles.thinLine} />
-          <ScrollView>
+          <ul>
             {
               scheduleDummyData.map((item, key) => {
                 if(item.geofence === this.state.chooseStage && item.day === daysAndDates[this.state.selectedDay]) {
                   return (
+                    <li>
                     <ScheduleRow 
                       key={key}
                       name={item.name} 
@@ -146,13 +152,14 @@ export default class VenueSchedule extends Component{
                       geofence={item.geofence}
                       day={item.day}>
                     </ScheduleRow>
+                    </li>
                   );
                  
                 } 
               })
             }
-          </ScrollView>
-        </View>
+          </ul>
+        </div>
       );
     } 
 

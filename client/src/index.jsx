@@ -11,7 +11,7 @@ import App from './components/App.jsx';
 // import NavMenu from './components/Nav/NavMenu';
 // import MapViewer from './components/MapView/MapView';
 // import Group from './components/Group/Group';
-// import VenueSchedule from './components/VenueSchedule/VenueSchedule';
+import VenueSchedule from './components/VenueSchedule/VenueSchedule.jsx';
 // import ChooseVenue from './components/InitConfig/ChooseVenue';
 // import InviteFriends from './components/InitConfig/InviteFriends';
 // import CreateGroup from './components/InitConfig/CreateGroup';
@@ -20,7 +20,7 @@ ReactDOM.render(
 		<Route path="/" component={App}>
 			<Route path="/group" component={() => <div>Group Holder</div>}/>
 			<Route path="/agenda" component={() => <div>Agenda Holder</div>}/>
-			<Route path="/schedule" component={() => <div>Schedule Holder</div>}/>
+			<Route path="/schedule" component={VenueSchedule}/>
 			<Route path="/emergency" component={() => <div>Emergency Emergency Info Holder</div>}/>
 			<Route path="/choosevenue" component={() => <div>Venue Holder</div>}/>
 			<Route path="/create" component={() => <div>Create Holder</div>}/>
