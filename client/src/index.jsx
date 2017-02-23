@@ -4,10 +4,9 @@ import { connect, Provider } from 'react-redux';
 // import { Route, hashHistory, Router } from 'react-router';
 import store from './redux/store';
 //import styles from './styles';
-//import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import App from './components/App.jsx';
-
-/*  Components  */
+import MapViewer from './components/MapViewer/MapViewer.jsx'
 // import NavMenu from './components/Nav/NavMenu.jsx';
 // import MapViewer from './components/MapView/MapView.jsx';
 import Group from './components/Group/Group.jsx';
