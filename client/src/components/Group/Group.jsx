@@ -1,7 +1,7 @@
 import React from 'react';
 // import GroupRow from './GroupRow.jsx';
 import GroupSort from './GroupSort.jsx';
-import store from '../../redux/store.jsx';
+import store from '../../redux/store.js';
 
 const GroupView = ({ dispatch, users, userID }) => (
   <div>

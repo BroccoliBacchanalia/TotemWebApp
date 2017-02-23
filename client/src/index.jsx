@@ -25,7 +25,7 @@ class Totem extends React.Component {
 						<Group
 							dispatch={this.props.dispatch}
 							users={this.props.location.users}
-							userID={this.props.app.}
+							userID={this.props.app.userFbId}
 						/>
 					)}/>
 					<Route path="/agenda" component={() => <div>Agenda Holder</div>}/>

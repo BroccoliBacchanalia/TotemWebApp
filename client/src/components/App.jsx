@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-//import store from '../store.jsx';
+//import store from '../store.js';
 //import Map from './Map.jsx';
 import NavigationBar from './Nav/Nav.jsx';
 //import { createUser, deleteUser } from '../actions/userActions.jsx';
