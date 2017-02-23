@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, NavItem, MenuItem } from 'react-bootstrap';
-import { Link } from 'react-router'
 
 export default class NavigationBar extends React.Component {
   render() {
@@ -8,19 +7,19 @@ export default class NavigationBar extends React.Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/">Totem</a>
+            <a href="#/">Totem</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="/group">Group</NavItem>
-            <NavItem eventKey={2} href="/agenda">Agenda</NavItem>
-            <NavItem eventKey={3} href="/schedule">Schedule</NavItem>
-            <NavItem eventKey={4} href="/emergency">Emergency</NavItem>
-            <NavItem eventKey={5} href="/choosevenue">ChooseVenue</NavItem>
-            <NavItem eventKey={6} href="/create">Create</NavItem>
-            <NavItem eventKey={7} href="/invite">Invite</NavItem>
+            <NavItem eventKey={1} href="#/group">Group</NavItem>
+            <NavItem eventKey={2} href="#/agenda">Agenda</NavItem>
+            <NavItem eventKey={3} href="#/schedule">Schedule</NavItem>
+            <NavItem eventKey={4} href="#/emergency">Emergency</NavItem>
+            <NavItem eventKey={5} href="#/choosevenue">ChooseVenue</NavItem>
+            <NavItem eventKey={6} href="#/create">Create</NavItem>
+            <NavItem eventKey={7} href="#/invite">Invite</NavItem>
           </Nav>
           <Nav pullRight>
             <NavItem eventKey={1} href="/">Logout</NavItem>
