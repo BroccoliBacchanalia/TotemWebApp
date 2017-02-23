@@ -16,23 +16,16 @@ import App from './components/App.jsx';
 // import InviteFriends from './components/InitConfig/InviteFriends';
 // import CreateGroup from './components/InitConfig/CreateGroup';
 ReactDOM.render(
-<Router history={ hashHistory} >
-	          <Route path="/" component={App}/>
-	          <Route path="/group" component={() => (
-	            // <Group
-	              // dispatch={this.props.dispatch}
-	              // users={this.props.location.users}
-	              // userID={this.props.app.userFbId}
-	              <div>User Schedule Holder</div>
-	            // />
-	          )}/>
-	          <Route path="/agenda" component={() => <div>User Schedule Holder</div>}/>
-	          <Route path="/schedule" component={() => <div>User Schedule Holder</div>}/>
-	          <Route path="/emergency" component={() => <div>Emergency Info Holder</div>}/>
-	          <Route path="/choosevenue" component={() => <div>User Schedule Holder</div>}/>
-	          <Route path="/create" component={() => <div>User Schedule Holder</div>}/>
-	          <Route path="/invite" component={() => <div>User Schedule Holder</div>}/>
-</Router>
+	<Router history={ hashHistory } >
+		<Route path="/" component={App}/>
+		<Route path="/group" component={() => <div>Group Holder</div>}/>
+		<Route path="/agenda" component={() => <div>Agenda Holder</div>}/>
+		<Route path="/schedule" component={() => <div>Schedule Holder</div>}/>
+		<Route path="/emergency" component={() => <div>Emergency Emergency Info Holder</div>}/>
+		<Route path="/choosevenue" component={() => <div>Venue Holder</div>}/>
+		<Route path="/create" component={() => <div>Create Holder</div>}/>
+		<Route path="/invite" component={() => <div>Invite Holder</div>}/>
+	</Router>
   , document.getElementById('app')
 )
 
