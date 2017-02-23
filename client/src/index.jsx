@@ -17,14 +17,15 @@ import App from './components/App.jsx';
 // import CreateGroup from './components/InitConfig/CreateGroup';
 ReactDOM.render(
 	<Router history={ hashHistory } >
-		<Route path="/" component={App}/>
-		<Route path="/group" component={() => <div>Group Holder</div>}/>
-		<Route path="/agenda" component={() => <div>Agenda Holder</div>}/>
-		<Route path="/schedule" component={() => <div>Schedule Holder</div>}/>
-		<Route path="/emergency" component={() => <div>Emergency Emergency Info Holder</div>}/>
-		<Route path="/choosevenue" component={() => <div>Venue Holder</div>}/>
-		<Route path="/create" component={() => <div>Create Holder</div>}/>
-		<Route path="/invite" component={() => <div>Invite Holder</div>}/>
+		<Route path="/" component={App}>
+			<Route path="/group" component={() => <div>Group Holder</div>}/>
+			<Route path="/agenda" component={() => <div>Agenda Holder</div>}/>
+			<Route path="/schedule" component={() => <div>Schedule Holder</div>}/>
+			<Route path="/emergency" component={() => <div>Emergency Emergency Info Holder</div>}/>
+			<Route path="/choosevenue" component={() => <div>Venue Holder</div>}/>
+			<Route path="/create" component={() => <div>Create Holder</div>}/>
+			<Route path="/invite" component={() => <div>Invite Holder</div>}/>
+		</Route>
 	</Router>
   , document.getElementById('app')
 )
