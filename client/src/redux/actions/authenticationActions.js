@@ -1,28 +1,56 @@
 import firebase from 'firebase';
-import { geolocate, getGroupLoc, updatedUsers } from '../actions/index.jsx';
-import store from '../store.js';
-export const emailChanged = (text) => {
+
+const authConfig = {
+  facebookPermissions: ['public_profile', 'email']
+};
+
+
+function signInSuccess(uid) {
   return {
-    type: 'email_changed',
-    payload: text
-  };
-};
+    type: 'SIGNIN_SUCCESS',
+    uid: uid
+  }
+}
 
-export const passwordChanged = (text) => {
+function signInInProgress() {
   return {
-    type: 'password_changed',
-    payload: text
-  };
-};
+    type: 'SIGNIN'
+  }
+}
 
-const loginUserFail = (dispatch) => {
-  dispatch({ type: 'login_user_fail' });
-};
+function signInError(errorMessage) {
+  return {
+    type: 'SIGNIN_ERROR',
+    errorMessage: errorMessage
+  }
+}
 
-const loginUserSuccess = (dispatch, user) => {
-  dispatch({
-    type: 'login_user_success',
-    payload: user
-  });
 
-};
+export function signIn() {
+  return (dispatch) => {
+    dispatch(signInInProgress());
+    console.log('signing in')
+
+    const provider = new firebase.auth.FacebookAuthProvider();
+    authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
+
+    firebase.auth().signInWithPopup(provider)
+      .then((result) => {
+        const { user: { uid, displayName, photoURL, email } } = result;
+
+        firebase.database().ref(`users/${ uid }`).set({
+          displayName: displayName,
+          photoURL: photoURL,
+          email: email,
+          lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
+        });
+
+        dispatch(
+          signInSuccess(uid)
+        );
+      })
+      .catch((error) => {
+        dispatch(signInError(error.message))
+      });
+  }
+}
