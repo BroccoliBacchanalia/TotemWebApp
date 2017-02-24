@@ -39,7 +39,7 @@ var controlledPropTypes = {
   // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
   //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#GroundOverlay
   clickable: _react.PropTypes.bool,
   opacity: _react.PropTypes.number,
 };
@@ -47,7 +47,7 @@ var controlledPropTypes = {
 var defaultUncontrolledPropTypes = (0, _enhanceElement.addDefaultPrefixToPropTypes)(controlledPropTypes);
 
 var eventMap = {
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#GroundOverlay
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   onClick: `click`,
   onDblClick: `dblclick`,
@@ -56,7 +56,7 @@ var eventMap = {
 var publicMethodMap = {
   // Public APIs
   //
-  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#GroundOverlay
   //
   // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
   //    .filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
@@ -100,8 +100,7 @@ module.exports = (0, _flowRight3.default)(_react2.default.createClass, (0, _enha
   contextTypes: (0, _defineProperty3.default)({}, _constants.MAP, _react.PropTypes.object),
 
   getInitialState: function getInitialState() {
-    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
-    console.log(this.props);
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#GroundOverlay
     var groundOverlay = new google.maps.GroundOverlay(this.props.image, this.props.imageBounds);
 
     // You must call setMap() with a valid Map object to trigger the call to

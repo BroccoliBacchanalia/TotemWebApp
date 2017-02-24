@@ -5,13 +5,6 @@ import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import GroundOverlay from '../../../../GroundOverlay';
 import Helmet from "react-helmet";
 
-/*
- * This is the modify version of:
- * https://developers.google.com/maps/documentation/javascript/examples/event-arguments/d
- *
- * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
- */
-
 class MapViewer extends Component {
   state = {
     markers: [{
@@ -34,19 +27,14 @@ class MapViewer extends Component {
     }],
   };
 
-
   handleMapLoad = this.handleMapLoad.bind(this);
   // handleMapClick = this.handleMapClick.bind(this);
   // handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
 
   handleMapLoad(map) {
-
     this._mapComponent = map;
-    if (map) {
-      console.log(map.getZoom());
-    }
+    if (map) map.getZoom();
   }
-
 
   render() {
     const users = this.props.users;
@@ -63,6 +51,7 @@ class MapViewer extends Component {
         ref={props.onMapLoad}
         defaultZoom={16}
         defaultCenter={{ lat: 37.769403, lng: -122.49}}
+        mapTypeId= 'terrain'
         >
         { userKeys.map((userKey, index) => {
           const user = users[userKey];
