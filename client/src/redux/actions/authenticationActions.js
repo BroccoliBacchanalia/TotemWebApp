@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { geolocate, groupInfoListener, updateUsers } from './';
 
 const authConfig = {
   facebookPermissions: ['public_profile', 'email']
@@ -29,12 +30,14 @@ function signInError(errorMessage) {
 export function signIn() {
   return (dispatch) => {
     dispatch(signInInProgress());
-    console.log('signing in')
 
     const provider = new firebase.auth.FacebookAuthProvider();
+
     authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
 
     firebase.auth().signInWithPopup(provider)
+    // firebase.auth().signInWithRedirect(provider);
+    // firebase.auth().getRedirectResult()
       .then((result) => {
         const { user: { uid, displayName, photoURL, email } } = result;
 
@@ -45,10 +48,11 @@ export function signIn() {
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
         });
 
-        dispatch(
-          signInSuccess(uid)
-        );
+        dispatch(signInSuccess(uid));
       })
+      .then(() => geolocate())
+      .then(() => groupInfoListener())
+      .then((users) => dispatch(updateUsers(users)))
       .catch((error) => {
         dispatch(signInError(error.message))
       });

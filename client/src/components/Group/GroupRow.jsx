@@ -9,7 +9,7 @@ const GroupRow = ({ friend }) => (
       <p>
         <span className="h4">{friend.label}</span>
         <br/>
-        {getGeofence(friend.position)}
+        {/*getGeofence(friend.position)*/}
       </p>
     </div>
   </div>

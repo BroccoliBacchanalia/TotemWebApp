@@ -6,6 +6,7 @@ import GroundOverlay from '../../../../GroundOverlay';
 import localStyles from './MapStyles.css';
 
 class MapViewer extends Component {
+
   render() {
     const users = this.props.users;
     const userKeys = Object.keys(users);
