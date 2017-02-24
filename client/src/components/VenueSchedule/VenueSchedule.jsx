@@ -5,8 +5,8 @@ import { Route, MemoryRouter as Router } from 'react-router';
 import RenderDays from './RenderDays.jsx';
 import RenderStages from './RenderStages.jsx';
 import { connect } from 'react-redux';
-import store from '../../redux/store.jsx'
-import { daysAndDates } from '../../redux/actions/venueScheduleActions.js'
+import store from '../../redux/store.js';
+import { daysAndDates } from '../../redux/actions/venueScheduleActions.js';
 
 
 class VenueSchedule extends Component {

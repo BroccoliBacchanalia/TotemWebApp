@@ -1,5 +1,5 @@
 import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData';
-import store from '../store.jsx';
+import store from '../store.js';
 
 export function updateDay(day) {
   // return {
