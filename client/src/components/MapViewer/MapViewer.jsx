@@ -1,50 +1,14 @@
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, OverlayView } from 'react-google-maps';
+import Helmet from 'react-helmet';
 import GroundOverlay from '../../../../GroundOverlay';
-import Helmet from "react-helmet";
+import localStyles from './MapStyles.css';
 
 class MapViewer extends Component {
-  state = {
-    markers: [{
-      position: {
-        lat: 37.76757,
-        lng: -122.49427,
-      },
-      key: 'San Francisco',
-      defaultAnimation: 2,
-      label: 'Pat',
-    },
-    {
-      position: {
-        lat: 37.76747,
-        lng: -122.48427,
-      },
-      key: 'Something else',
-      defaultAnimation: 2,
-      label: 'Derek',
-    }],
-  };
-
-  handleMapLoad = this.handleMapLoad.bind(this);
-  // handleMapClick = this.handleMapClick.bind(this);
-  // handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
-
-  handleMapLoad(map) {
-    this._mapComponent = map;
-    if (map) map.getZoom();
-  }
-
   render() {
     const users = this.props.users;
-    const userID = this.props.userID;
     const userKeys = Object.keys(users);
-    const STYLES = {
-      mapContainer: {
-        height: `100%`,
-      }
-    };
 
     const LoadMap = withGoogleMap(props => (
       <GoogleMap
@@ -53,15 +17,23 @@ class MapViewer extends Component {
         defaultCenter={{ lat: 37.769403, lng: -122.49}}
         mapTypeId= 'terrain'
         >
-        { userKeys.map((userKey, index) => {
+        {userKeys.map((userKey, index) => {
           const user = users[userKey];
+          const icon = {
+            url: user.img,
+            scaledSize: new google.maps.Size(30, 30),
+            origin: new google.maps.Point(0,0),
+            anchor: new google.maps.Point(0, 0),
+            labelOrigin: new google.maps.Point(15, 35)
+          };
           return (
             <Marker
               key={index}
               {...user}
-            />
+              icon={icon}>
+            </Marker>
           )
-        }) }
+        })}
 
         <GroundOverlay
           image='https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-307385678134/outside_lands.png'
@@ -73,32 +45,29 @@ class MapViewer extends Component {
             west: -122.496346
           }
         }/>
-
       </GoogleMap>
     ));
 
     return (
-      <div style={{height: `100%`}}>
-        <Helmet
-          title="Totem"
-        />
+      <div className={localStyles.googleMap}>
+        <Helmet title="Totem"/>
         <LoadMap
-          containerElement={ <div style={{ height: `100%` }} /> }
-          mapElement={ <div style={{ height: 600 }} /> }
-          onMapLoad={this.handleMapLoad}
-          markers={userKeys}
-          // onMapClick={this.handleMapClick}
-          // onMarkerRightClick={this.handleMarkerRightClick}
+          containerElement={ <div/> }
+          mapElement={ <div style={{ height: window.innerHeight - 50 }} /> }
+          onMapLoad={this.handleMapLoad.bind(this)}
         />
       </div>
     );
+  }
+
+  handleMapLoad(map) {
+    this._mapComponent = map;
+    if (map) map.getZoom();
   }
 }
 
 export default connect((store) => {
   return {
-    userID: store.app.userFbId,
     users: store.location.users,
-    geoFences: store.location.geoFences,
   };
 })(MapViewer);
