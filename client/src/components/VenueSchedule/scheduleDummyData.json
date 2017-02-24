@@ -1,0 +1,170 @@
+[
+    {
+        "name": "Lany",
+        "starttime": "12:45:00 PM",
+        "endtime": "1:35:00 PM",
+        "geofence": "Lands End",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Ra Ra Riot",
+        "starttime": "2:05:00 PM",
+        "endtime": "2:55:00 PM",
+        "geofence": "Lands End",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "St. Lucia",
+        "starttime": "3:25:00 PM",
+        "endtime": "4:15:00 PM",
+        "geofence": "Lands End",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Miike Snow",
+        "starttime": "4:45:00 PM",
+        "endtime": "5:45:00 PM",
+        "geofence": "Lands End",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Whitney",
+        "starttime": "1:15:00 PM",
+        "endtime": "2:00:00 PM",
+        "geofence": "Sutro",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Caveman",
+        "starttime": "2:30:00 PM",
+        "endtime": "3:20:00 PM",
+        "geofence": "Sutro",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Wet",
+        "starttime": "2:30:00 PM",
+        "endtime": "3:20:00 PM",
+        "geofence": "Sutro",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Foals",
+        "starttime": "3:50:00 PM",
+        "endtime": "4:40:00 PM",
+        "geofence": "Sutro",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Marian Hill",
+        "starttime": "12:45:00 PM",
+        "endtime": "1:30:00 PM",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Jidenna",
+        "starttime": "2:10:00 PM",
+        "endtime": "2:55:00 PM",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Polica",
+        "starttime": "3:40:00 PM",
+        "endtime": "4:30:00 PM",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Thomas Jack",
+        "starttime": "5:15:00 PM",
+        "endtime": "6:05:00 PM",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Lewis Del Mar",
+        "starttime": "12:45:00 PM",
+        "endtime": "1:30:00 PM",
+        "geofence": "Lands End",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "The Wombats",
+        "starttime": "2:00:00 PM",
+        "endtime": "2:50:00 PM",
+        "geofence": "Lands End",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Years & Years",
+        "starttime": "3:20:00 PM",
+        "endtime": "4:10:00 PM",
+        "geofence": "Lands End",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Big Grams",
+        "starttime": "4:40:00 PM",
+        "endtime": "5:50:00 PM",
+        "geofence": "Lands End",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Julien Baker",
+        "starttime": "12:00:00 PM",
+        "endtime": "12:45:00 PM",
+        "geofence": "Sutro",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Rogue Wave",
+        "starttime": "1:15:00 PM",
+        "endtime": "2:05:00 PM",
+        "geofence": "Sutro",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Ibeyi",
+        "starttime": "2:35:00 PM",
+        "endtime": "3:25:00 PM",
+        "geofence": "Sutro",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Lord Huron",
+        "starttime": "3:55:00 PM",
+        "endtime": "4:45:00 PM",
+        "geofence": "Sutro",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Fantastic Negrito",
+        "starttime": "12:40:00 PM",
+        "endtime": "12:25:00 PM",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "The Knocks",
+        "starttime": "2:05:00 PM",
+        "endtime": "2:55:00 PM",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Vince Staples",
+        "starttime": "3:40:00 PM",
+        "endtime": "4:30:00 PM",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Jaus",
+        "starttime": "5:15:00 PM",
+        "endtime": "6:05:00 PM",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-06T07:00:00.000Z"
+    }
+]
