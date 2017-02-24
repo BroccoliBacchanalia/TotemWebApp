@@ -63,7 +63,8 @@ class MapViewer extends Component {
       overlayView: {
         background: `white`,
         border: `1px solid #ccc`,
-        padding: 15,
+        height: `100%`,
+        width: `100%`
       },
     };
 
@@ -101,7 +102,7 @@ class MapViewer extends Component {
         >
 
           <div style={STYLES.overlayView}>
-            <h1>OverlayView</h1>
+            <img src="https://facebook.github.io/react/img/logo_og.png" alt="Smiley face"/>
             
           </div>
         </OverlayView>
