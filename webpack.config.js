@@ -30,9 +30,9 @@ var config = {
       }
     ]
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin()
-  ],
+  // plugins: [
+  //   new webpack.optimize.UglifyJsPlugin()
+  // ],
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'

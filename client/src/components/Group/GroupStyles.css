@@ -1,7 +1,10 @@
-
 .main {
+  border-bottom: 1px solid black;
+  margin: 5px;
+}
+
+.main > * {
   height: 70px;
   padding: 5px;
   display: inline-block;
-  color: snow;
 }
