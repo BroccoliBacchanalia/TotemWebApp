@@ -1,22 +1,29 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
-import { getGeofence } from '../../actions/locationActions'
-import styles from '../../styles';
-import localStyles from './GroupStyles';
+import localStyles from './GroupStyles.css';
+import { getGeofence } from '../../redux/actions/locationActions.js'
 
 const GroupRow = ({ friend }) => (
-  <View>
-    <View style={localStyles.main}>
-      <Image style={localStyles.profile_img} source={{ uri: friend.img }}/>
-      <View>
-        <Text style={localStyles.text}>{friend.name}</Text>
-        <Text style={localStyles.subtext}>
-          {getGeofence(friend.coordinates)}
-        </Text>
-      </View>
-    </View>
-    <View style={styles.thinLine} />
-  </View>
+  <div className={localStyles.main}>
+    <img src={friend.img} width="70px"/>
+    <p>{friend.name}</p>
+    <p>
+      {getGeofence(friend.coordinates)}
+    </p>
+  </div> //Thin line
 );
 
 export default GroupRow;
+
+/*
+
+<div>
+  { <Image style={localStyles.profile_img} source={{ uri: friend.img }}/>}
+  <div>
+    <p>{friend.name}</p>
+    <p>
+      {'Coordinates' {getGeofence(friend.coordinates)}}
+    </p>
+  </div>
+</div>
+
+*/
