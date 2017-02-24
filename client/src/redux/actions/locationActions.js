@@ -1,11 +1,5 @@
 import firebase from '../../firebase';
-
-export function sortUsers(method) {
-  return {
-    type: 'users_sort',
-    payload: { method }
-  }
-}
+import store from '../store';
 
 export function updateUsers(users) {
   console.log('users updated', users);
@@ -45,7 +39,8 @@ export function geolocate() {
   navigator.geolocation.watchPosition(success, error, options);
 }
 
-export function getGeofence(coordinates, geoFences) {
+export function getGeofence(coordinates) {
+  const geoFences = store.getState().location.geoFences;
   for (let fence of geoFences) {
     const degrees = getDegrees(fence.radius);
     const latDiff = Math.abs(fence.latitude - coordinates.latitude);
