@@ -6,26 +6,6 @@ import GroundOverlay from '../../../../GroundOverlay';
 import Helmet from "react-helmet";
 
 class MapViewer extends Component {
-  state = {
-    markers: [{
-      position: {
-        lat: 37.76757,
-        lng: -122.49427,
-      },
-      key: 'San Francisco',
-      defaultAnimation: 2,
-      label: 'Pat',
-    },
-    {
-      position: {
-        lat: 37.76747,
-        lng: -122.48427,
-      },
-      key: 'Something else',
-      defaultAnimation: 2,
-      label: 'Derek',
-    }],
-  };
 
   handleMapLoad = this.handleMapLoad.bind(this);
   // handleMapClick = this.handleMapClick.bind(this);
