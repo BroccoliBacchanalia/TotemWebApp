@@ -5,6 +5,9 @@ const db = require('../../db/database.js');
 const Group = db.define('group', {
   name: {
     type: Sequelize.STRING
+  },
+  venue_id: {
+    type: Sequelize.INTEGER
   }
 });
 

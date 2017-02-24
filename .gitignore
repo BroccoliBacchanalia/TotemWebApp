@@ -5,3 +5,5 @@ bower_components/
 build/
 client/dist/bundle.js
 server/db/dbconfig.js
+
+**/.DS_Store
