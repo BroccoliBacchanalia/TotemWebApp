@@ -1,16 +1,17 @@
 import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData';
+import store from '../store.jsx';
+
 export function updateDay(day) {
-  return {
-    type: 'update_day',
-    payload: { day }
-  }
+  // return {
+  //   type: 'update_day',
+  //   payload: { day }
+  // }
+  console.log('DISPATCH', day)
+  store.dispatch({type:'update_day', payload: {day}})
 }
 
 export function updateStage(stage) {
-  return {
-    type: 'update_stage',
-    payload: { stage }
-  }
+  store.dispatch({type: 'update_stage', payload: { stage }})
 }
 
 export function updateFestival(festival) {
@@ -21,9 +22,10 @@ export function updateFestival(festival) {
 }
 
 export function def() {
-/*  return {
-    type: 'def'
-  }*/
+  // return {
+  //   type: 'def'
+  // }
+  store.dispatch({type: 'def'})
   console.log('DEF works');
 }
 
@@ -63,7 +65,9 @@ export function generateDay(dateString) {
   var d = new Date(dateString)
   return weekday[d.getDay()];
 }
+
 export const daysAndDates = allDays(scheduleDummyData);
+console.log("daysAndDates: ", daysAndDates);
 export const days = Object.keys(daysAndDates);
 export const stages = allStages(scheduleDummyData);
 

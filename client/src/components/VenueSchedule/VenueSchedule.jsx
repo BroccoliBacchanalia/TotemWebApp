@@ -6,43 +6,49 @@ import RenderDays from './RenderDays.jsx';
 import RenderStages from './RenderStages.jsx';
 import { connect } from 'react-redux';
 import store from '../../redux/store.jsx'
+import { daysAndDates } from '../../redux/actions/venueScheduleActions.js'
+
 
 class VenueSchedule extends Component {
   render() {
       if(this.props.chooseStage === "") { 
         return (
           <div>
-            <RenderDays />
+            <RenderDays selectedDay={this.props.selectedDay}/>
             <RenderStages />
           </div>
         );
+    } else {
+        return (
+        <div>
+          <RenderDays />
+            <ul>
+              {
+                this.props.scheduleDummyData.map((item, key) => {
+                  console.log("item: ",item);
+                  console.log("day ",this.props.selectedDay)
+                  if(item.geofence === this.props.chooseStage && item.day === daysAndDates[this.props.selectedDay]) {
+                    return (
+                      <li>
+                      <ScheduleRow 
+                        key={key}
+                        name={item.name} 
+                        startTime = {item.starttime}
+                        endTime = {item.endtime}
+                        geofence={item.geofence}
+                        day={item.day}>
+                      </ScheduleRow>
+                      </li>
+                    );
+                   
+                  } 
+                })
+              }
+            </ul>
+        </div>
+      )
     } 
-    return (
-      <div>
-        <RenderDays />
-          <ul>
-            {
-              this.props.scheduleDummyData.map((item, key) => {
-                if(item.geofence === this.props.chooseStage && item.day === daysAndDates[this.props.selectedDate]) {
-                  return (
-                    <li>
-                    <ScheduleRow 
-                      key={key}
-                      name={item.name} 
-                      startTime = {item.starttime}
-                      endTime = {item.endtime}
-                      geofence={item.geofence}
-                      day={item.day}>
-                    </ScheduleRow>
-                    </li>
-                  );
-                 
-                } 
-              })
-            }
-          </ul>
-      </div>
-    )
+    
   } 
 };
 

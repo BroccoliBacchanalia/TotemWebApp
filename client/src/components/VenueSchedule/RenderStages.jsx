@@ -1,16 +1,16 @@
 import React from 'react';
 // import VenueStyles from './VenueStyles';
 // import { View, Button } from 'react-native';
-import { def, days, getArtist } from '../../redux/actions/venueScheduleActions'
+import { def, days, getArtist, updateStage, stages } from '../../redux/actions/venueScheduleActions.js'
 
-const RenderStages = () => (
+const RenderStages = (selectedDay) => (
  	<div>
     {stages.map((item, key) => 
     <button
-      onClick={alert("chnage stage")}/*this.onChangeStage.bind(this, item)*/>
+      onClick={updateStage.bind(this, item)}>
       <div>{item}</div>
       <div>
-        hello
+        {getArtist(item, selectedDay)}
       </div>
     </button>
     )}
@@ -18,4 +18,3 @@ const RenderStages = () => (
 );
 
 export default RenderStages;
-//getArtist(item, this.state.selectedDay)}
