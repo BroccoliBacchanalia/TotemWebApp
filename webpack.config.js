@@ -6,18 +6,33 @@ var APP_DIR = path.resolve(__dirname, 'client/src');
 var config = {
   entry: APP_DIR + '/index.jsx',
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?/,
         include: APP_DIR,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react', 'stage-2']
+        }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]'
         }
       }
     ]
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin()
+  ],
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
