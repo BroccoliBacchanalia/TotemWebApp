@@ -1,11 +1,14 @@
 import React from 'react';
 import localStyles from './GroupStyles.css';
-// import { getGeofence } from '../../actions/locationActions.jsx'
+import { getGeofence } from '../../redux/actions/locationActions.js'
 
 const GroupRow = ({ friend }) => (
   <div className={localStyles.main}>
-    <img src={friend.img} width="50px"/>
-    {console.log(friend)}
+    <img src={friend.img} width="70px"/>
+    <p>{friend.name}</p>
+    <p>
+      {getGeofence(friend.coordinates)}
+    </p>
   </div> //Thin line
 );
 
