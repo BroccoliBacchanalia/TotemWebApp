@@ -16,6 +16,7 @@ var config = {
           presets: ['es2015', 'react', 'stage-2']
         }
       },
+      {test: /\.json$/, loader: 'json-loader'},
       {
         test: /\.css$/,
         loader: 'style-loader'
@@ -30,9 +31,9 @@ var config = {
       }
     ]
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin()
-  ],
+  // plugins: [
+  //   new webpack.optimize.UglifyJsPlugin()
+  // ],
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'

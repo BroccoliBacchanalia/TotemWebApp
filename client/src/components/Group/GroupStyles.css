@@ -25,8 +25,25 @@ button {
   flexDirection: 'row';
   backgroundColor: '#222222';
 }
-
 .sort_item {
   alignItems: 'center';
   justifyContent: 'center';
+}
+
+/* Group Row Styles */
+.gRow {
+  border-bottom: 1px solid black;
+  margin: 5px;
+  height: 70px;
+}
+
+.gRow img {
+  padding: 5px;
+  width: 70px;
+}
+
+.gRow > * {
+  padding-top: 5px;
+  float: left;
+  display: inline-block;
 }
