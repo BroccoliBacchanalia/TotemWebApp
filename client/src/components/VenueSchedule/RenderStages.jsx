@@ -10,7 +10,7 @@ const RenderStages = (selectedDay) => (
       onClick={updateStage.bind(this, item)}>
       <div>{item}</div>
       <div>
-        {getArtist(item, selectedDay)}
+        {getArtist(item, selectedDay.selectedDay)}
       </div>
     </button>
     )}

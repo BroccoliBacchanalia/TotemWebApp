@@ -15,13 +15,13 @@ class VenueSchedule extends Component {
         return (
           <div>
             <RenderDays selectedDay={this.props.selectedDay}/>
-            <RenderStages />
+            <RenderStages selectedDay={this.props.selectedDay}/>
           </div>
         );
     } else {
         return (
         <div>
-          <RenderDays />
+          <RenderDays selectedDay={this.props.selectedDay}/>
             <ul>
               {
                 this.props.scheduleDummyData.map((item, key) => {

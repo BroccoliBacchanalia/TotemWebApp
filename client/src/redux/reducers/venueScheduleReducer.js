@@ -1,6 +1,6 @@
 import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData.json';
 const defaults = {
-  selectedDay: 'friday',
+  selectedDay: 'Friday',
   chooseStage: '',
   scheduleDummyData: scheduleDummyData,
 };
@@ -17,7 +17,7 @@ export default function venueScheduleReducer(state = defaults, action) {
       return { ...state, scheduleDummyData: action.payload.festival };
     }
     case 'def': {
-      return { ...state, selectedDay: "" };
+      return { ...state, selectedDay: "Friday", chooseStage: "" };
     }
   }
   return state;
