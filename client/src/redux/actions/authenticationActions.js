@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import { geolocate, groupInfoListener, updateUsers } from './';
+import store from '../../redux/store';
 
 const authConfig = {
   facebookPermissions: ['public_profile', 'email', 'user_friends']
@@ -28,18 +29,19 @@ function signInError(errorMessage) {
 
 
 export function signIn() {
-  return (dispatch) => {
-    dispatch(signInInProgress());
+  const dispatch = store.dispatch;
+  const provider = new firebase.auth.FacebookAuthProvider();
 
-    const provider = new firebase.auth.FacebookAuthProvider();
+  dispatch(signInInProgress());
 
-    authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
+  authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
 
-    firebase.auth().signInWithPopup(provider)
-    // firebase.auth().signInWithRedirect(provider);
-    // firebase.auth().getRedirectResult()
-      .then((result) => {
-        const { user: { uid, displayName, photoURL, email } } = result;
+  firebase.auth().signInWithPopup(provider)
+  // firebase.auth().signInWithRedirect(provider);
+  // firebase.auth().getRedirectResult()
+  .then((result) => {
+    const { user: { uid, displayName, photoURL, email } } = result;
+
 
         firebase.database().ref(`users/${ uid }`).set({
           label: displayName,
@@ -49,17 +51,17 @@ export function signIn() {
           agenda: {null: "null"}
         });
 
-        dispatch(signInSuccess(uid));
-      })
-      .then(geolocate)
-      .then(groupInfoListener)
-      // .then(users => {
-      //   console.log('check',users)
-      //   dispatch(updateUsers(users)
-      // })
-      
-      .catch(error => {
-        dispatch(signInError(error.message))
-      });
-  }
+
+    dispatch(signInSuccess(uid));
+  })
+  .then(geolocate)
+  .then(groupInfoListener)
+  // .then(users => {
+  //   console.log('check',users)
+  //   dispatch(updateUsers(users)
+  // })
+
+  .catch(error => {
+    dispatch(signInError(error.message))
+  });
 }

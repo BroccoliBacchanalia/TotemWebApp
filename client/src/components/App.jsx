@@ -5,7 +5,6 @@ import store from '../redux/store.js';
 
 /*  Components  */
 import NavigationBar from './Nav/Nav.jsx';
-// import NavMenu from './Nav/NavMenu.jsx';
 import MapViewer from './MapViewer/MapViewer.jsx';
 import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
@@ -13,12 +12,12 @@ import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
 // import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
 // import CreateGroup from './InitConfig/CreateGroup.jsx';
-import * as authenticationActions from '../redux/actions/authenticationActions';
+import { signIn } from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
 
 class App extends React.Component {
   render() {
-    const { auth, dispatch, location, app } = this.props;
+    const { auth, dispatch, location, user } = this.props;
     if (auth.isUserSignedIn) {
       return (
         <Router>
@@ -28,14 +27,14 @@ class App extends React.Component {
               <Group
                 dispatch={dispatch}
                 users={location.users}
-                userID={app.userFbId}
+                userID={user.userId}
               />
             )}/>
   					<Route path="/group" component={() => (
   						<Group
   							dispatch={dispatch}
   							users={location.users}
-  							userID={app.userFbId}
+  							userID={user.userId}
   						/>
   					)}/>
             <Route path="/map" component={MapViewer}/>
@@ -50,7 +49,7 @@ class App extends React.Component {
     } else {
       return (
         <SignInButton
-          onSignInClick={ () => dispatch(authenticationActions.signIn()) }
+          onSignInClick={signIn}
           auth={ auth }/>
       )
     }
@@ -59,7 +58,7 @@ class App extends React.Component {
 
 export default connect((store) => {
   return {
-    app: store.app,
+    user: store.user,
     nav: store.nav,
     location: store.location,
     auth: store.auth
