@@ -1,32 +1,20 @@
-import axios from "axios"
-
-// export function fetchUser() {
-//   return (dispatch) => {
-//     axios.get('/users')
-//       .then(response) => {
-//         dispatch({type: "SOME_CASE", payload: response.data})
-//       })
-//       .catch(err) => {
-//         dispatch({type: "SOME_OTHER_CASE", payload: err})
-//       });
-//   };
-// }
-
-export function createUser(id, name) {
+export function updateUserId(id) {
   return {
-    type: 'create_user',
-    payload: {
-      id: id,
-      name: name
-    }
-  };
+    type: 'update_userId',
+    payload: { id }
+  }
 }
 
-export function deleteUser(id) {
+export function updateVenueId(id) {
   return {
-    type: 'delete_user',
-    payload: {
-      id: id
-    }
-  };
+    type: 'update_venueId',
+    payload: { id }
+  }
+}
+
+export function updateGroupId(id) {
+  return {
+    type: 'update_groupId',
+    payload: { id }
+  }
 }

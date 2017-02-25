@@ -1,4 +1,4 @@
-export * from './appActions.js';
+export * from './userActions.js';
 export * from './authenticationActions.js';
 export * from './navActions.js';
 export * from './locationActions.js';
