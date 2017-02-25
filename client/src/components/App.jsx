@@ -10,6 +10,7 @@ import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
 import CheckForInvites from './InitConfig/CheckForInvites.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
+import CreateGroup from './InitConfig/CreateGroup.jsx';
 import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
 import * as authenticationActions from '../redux/actions/authenticationActions';

@@ -3,7 +3,6 @@ const defaults = {
   venueSelected: '',
   groupJoined: '',
   createGroup: '',
-  friendsList: '',
   group:{
     pendingInvites: {
     	'asdfdsaffds' : 'chuck'
