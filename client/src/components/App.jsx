@@ -12,7 +12,7 @@ import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
 // import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
 // import CreateGroup from './InitConfig/CreateGroup.jsx';
-import * as authenticationActions from '../redux/actions/authenticationActions';
+import { signIn } from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
 
 class App extends React.Component {
@@ -49,10 +49,7 @@ class App extends React.Component {
     } else {
       return (
         <SignInButton
-          onSignInClick={() => {
-            console.log('sigin in')
-            authenticationActions.signIn();
-          }}
+          onSignInClick={signIn}
           auth={ auth }/>
       )
     }
