@@ -2,6 +2,7 @@ const defaults = {
   text: '',
   venueSelected: '',
   groupJoined: '',
+  createGroup: '',
   group:{
     pendingInvites: {
     	'asdfdsaffds' : 'chuck'
@@ -61,6 +62,9 @@ export default function configReducer(state = defaults, action) {
     }
     case 'skip_venue': {
       return { ...state, venueSelected: 'skipped' };
+    }
+    case 'skip_create_group': {
+      return { ...state, createGroup: 'skipped' };
     }
     case 'skip_group': {
       return { ...state, groupJoined: 'skipped' };

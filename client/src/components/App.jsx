@@ -18,7 +18,7 @@ import SignInButton from './Auth/SignInButton';
 
 class App extends React.Component {
   render() {
-    if (this.props.config.venueSelected === 'skipped' && this.props.config.groupJoined === 'skipped') {
+    if (this.props.config.venueSelected === 'skipped' && this.props.config.groupJoined === 'skipped' && this.props.config.createGroup === '') {
       return (
         <CreateGroup />
       )
@@ -30,13 +30,13 @@ class App extends React.Component {
       )
     }
 
-    if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected !== '') {
+    if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected !== '' && this.props.config.createGroup === '') {
       return (
         <CreateGroup />
       )
     }                   
 
-    if (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== '' && this.props.config.groupJoined !== '')) {
+    if (this.props.config.createGroup === 'skipped' || (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== '' && this.props.config.groupJoined !== ''))) {
       return (
         <Router>
           <div>

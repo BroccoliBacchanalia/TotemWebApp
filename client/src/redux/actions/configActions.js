@@ -18,6 +18,10 @@ export function skipVenue(){
 	store.dispatch({type: 'skip_venue'})
 }
 
+export function skipCreateGroup(){
+	store.dispatch({type: 'skip_create_group'})
+}
+
 export function skipGroup(){
 	store.dispatch({type: 'skip_group'})
 }
