@@ -2,7 +2,6 @@ import firebase from 'firebase';
 import store from '../store';
 
 export function updateUsers(users) {
-  console.log('users updated', users);
   return {
     type: 'updating_location',
     payload: { users } 
@@ -23,8 +22,8 @@ export function geolocate() {
     console.log(pos);
     const user = firebase.auth().currentUser
       firebase.database().ref(`users/${user.uid}/position`).set({
-        lat: pos.coords.latitude,
-        lng: pos.coords.longitude
+        lat: pos.coords.latitude - 0.0161225,
+        lng: pos.coords.longitude - 0.0857576
       });
   }
 
@@ -41,19 +40,20 @@ export function geolocate() {
   navigator.geolocation.watchPosition(success, error, options);
 }
 
-// export function getGeofence(coordinates) {
-//   const geoFences = store.getState().location.geoFences;
-//   for (let fence of geoFences) {
-//     const degrees = getDegrees(fence.radius);
-//     const latDiff = Math.abs(fence.latitude - coordinates.lat);
-//     const longDiff = Math.abs(fence.longitude - coordinates.lng);
+export function getGeofence(position) {
+  console.log('position',position)
+  const geoFences = store.getState().location.geoFences;
+  for (let fence of geoFences) {
+    const degrees = getDegrees(fence.radius);
+    const latDiff = Math.abs(fence.latitude - position.lat);
+    const longDiff = Math.abs(fence.longitude - position.lng);
 
-//     if (latDiff < degrees && longDiff < degrees) {
-//       return fence.name;
-//     }
-//   }
-//   return '';
-// }
+    if (latDiff < degrees && longDiff < degrees) {
+      return fence.name;
+    }
+  }
+  return '';
+}
 
 function getDegrees(meters) {
   return meters / 100000;

@@ -18,6 +18,7 @@ import SignInButton from './Auth/SignInButton';
 
 class App extends React.Component {
   render() {
+
     if (this.props.config.venueSelected === 'skipped' && this.props.config.groupJoined === 'skipped' && this.props.config.createGroup === '') {
       return (
         <CreateGroup />
@@ -43,16 +44,16 @@ class App extends React.Component {
             <NavigationBar />
     				<Route exact path="/" component={() => (
               <Group
-                dispatch={this.props.dispatch}
-                users={this.props.location.users}
-                userID={this.props.app.userFbId}
+                dispatch={dispatch}
+                users={location.users}
+                userID={app.userFbId}
               />
             )}/>
   					<Route path="/group" component={() => (
   						<Group
-  							dispatch={this.props.dispatch}
-  							users={this.props.location.users}
-  							userID={this.props.app.userFbId}
+  							dispatch={dispatch}
+  							users={location.users}
+  							userID={app.userFbId}
   						/>
   					)}/>
             <Route path="/map" component={MapViewer}/>
@@ -75,8 +76,8 @@ class App extends React.Component {
     else {
       return (
         <SignInButton
-          onSignInClick={() => this.props.dispatch(authenticationActions.signIn())}
-          auth={ this.props.auth }/>
+          onSignInClick={ () => dispatch(authenticationActions.signIn()) }
+          auth={ auth }/>
       )
     }
   }
