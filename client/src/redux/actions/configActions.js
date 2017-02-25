@@ -1,3 +1,4 @@
+import store from '../store.js';
 export function updateText(text) {
   return {
     type: 'update_text',
@@ -5,9 +6,6 @@ export function updateText(text) {
   }
 }
 
-export function selectVenue(id) {
-  return {
-    type: 'choose_venue',
-    payload: { id }
-  }
+export function selectGroup(group) {
+	store.dispatch({type: 'choose_group', payload: { group }})
 }

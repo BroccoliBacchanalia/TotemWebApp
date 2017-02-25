@@ -53,9 +53,9 @@ export default function configReducer(state = defaults, action) {
     case 'update_text': {
       return { ...state, text: action.payload.text };
     }
-    case 'choose_venue': {
+    case 'choose_group': {
       console.log(action.payload.id);
-      return { ...state, selectedId: action.payload.id };
+      return { ...state, groupJoined: action.payload.group };
     }
   }
   return state;
