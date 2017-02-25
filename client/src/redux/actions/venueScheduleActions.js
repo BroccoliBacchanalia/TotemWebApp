@@ -1,12 +1,12 @@
-import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData';
+import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData.js';
 import store from '../store.js';
-
+//console.log("scheduleDummyData: ------------------------------------------",scheduleDummyData);
 export function updateDay(day) {
   // return {
   //   type: 'update_day',
   //   payload: { day }
   // }
-  console.log('DISPATCH', day)
+ // console.log('DISPATCH', day)
   store.dispatch({type:'update_day', payload: {day}})
 }
 
@@ -26,7 +26,7 @@ export function def() {
   //   type: 'def'
   // }
   store.dispatch({type: 'def'})
-  console.log('DEF works');
+  //console.log('DEF works');
 }
 
 
@@ -34,22 +34,27 @@ export function def() {
 export function allStages (scheduleDummyData) {
 
     let obj={};
-    scheduleDummyData.forEach(function(item){
-      if(!(item.geofence in obj)) {
+    for(var key in scheduleDummyData) {
+      //console.log("ITEM: ",item);
+        var item = scheduleDummyData[key];
+        if(!(item.geofence in obj)) {
         obj[item.geofence] = item.geofence;
       }
-    });
+    }
+    //console.log("ALL STAGES:____",obj);
     return Object.keys(obj);
 }
 
 export function allDays(scheduleDummyData) {   
     
     let datesDay={};
-    scheduleDummyData.forEach(function(item){
+    for(var key in scheduleDummyData) {
+      var item = scheduleDummyData[key];
       if(!(item.day in datesDay)) {
         datesDay[generateDay(item.day)] = item.day;
       }
-    });
+    }
+    //console.log("ALL DAYS: ", datesDay);
     return datesDay;
 }
 
@@ -67,19 +72,18 @@ export function generateDay(dateString) {
 }
 
 export const daysAndDates = allDays(scheduleDummyData);
-console.log("daysAndDates: ", daysAndDates);
 export const days = Object.keys(daysAndDates);
 export const stages = allStages(scheduleDummyData);
 
 export function getArtist(stage, day){
-   return scheduleDummyData.filter(function(item){
+ var arr=[]
+  for(var key in scheduleDummyData) {
+    var item = scheduleDummyData[key];
     if(item.geofence === stage && item.day === daysAndDates[day]) {
-      return true
+      arr.push(item.name);
     }
-    return false;
-  }).map(function(item){
-    return item.name;
-  }).join(" - ");
+  }
+  return arr;
 
 }
 
