@@ -1,4 +1,4 @@
-import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData.json';
+import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData.js';
 const defaults = {
   selectedDay: 'Friday',
   chooseStage: '',

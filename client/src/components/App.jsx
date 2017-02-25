@@ -8,12 +8,14 @@ import NavigationBar from './Nav/Nav.jsx';
 import MapViewer from './MapViewer/MapViewer.jsx';
 import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
-import CheckForInvites from './InitConfig/CheckForInvites.jsx';
+//import CheckForInvites from './InitConfig/CheckForInvites.jsx';
+import ChooseVenue from './InitConfig/ChooseVenue.jsx';
+import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
 import { CreateGroup } from './InitConfig/CreateGroup.jsx';
 import * as authenticationActions from '../redux/actions/authenticationActions';
-// import CreateGroup from './InitConfig/CreateGroup.jsx';
+import CreateGroup from './InitConfig/CreateGroup.jsx';
 import { signIn } from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
 
@@ -60,7 +62,7 @@ class App extends React.Component {
   						/>
   					)}/>
             <Route path="/map" component={MapViewer}/>
-  					<Route path="/agenda" component={() => <div>Agenda Holder</div>}/>
+  					<Route path="/agenda" component={PersonalAgenda}/>
   					<Route path="/schedule" component={VenueSchedule}/>
   					<Route path="/choosevenue" component={() => <div>Venue Holder</div>}/>
   					<Route path="/create" component={() => <div>Create Holder</div>}/>

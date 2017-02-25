@@ -55,12 +55,15 @@ export function signIn() {
         accessToken =result.credential.accessToken;
         const { user: { uid, displayName, photoURL, email } } = result;
 
-    firebase.database().ref(`users/${ uid }`).set({
-      label: displayName,
-      img: photoURL,
-      email: email,
-      lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
-    });
+
+        firebase.database().ref(`users/${ uid }`).set({
+          label: displayName,
+          img: photoURL,
+          email: email,
+          lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
+          agenda: {null: "null"}
+        });
+
 
         dispatch(signInSuccess(uid, accessToken));
       })
