@@ -1,6 +1,6 @@
+const mockVenueData = require('./mock_venue_data');
 const defaults = {
   text: '',
-  venueSelected: '',
   groupJoined: '',
   createGroup: '',
   group:{
@@ -46,19 +46,15 @@ const defaults = {
         country: 'USA'
       }
     }
-  ]
+  ],
+  friendsList: '',
+  venues: mockVenueData
 };
 
 export default function configReducer(state = defaults, action) {
   switch(action.type) {
     case 'update_text': {
       return { ...state, text: action.payload.text };
-    }
-    case 'choose_group': {
-      return { ...state, groupJoined: action.payload.group, venueSelected: 'groupVenue' };
-    }
-    case 'choose_venue': {
-      return { ...state, venueSelected: action.payload.venue };
     }
     case 'skip_venue': {
       return { ...state, venueSelected: 'skipped' };
