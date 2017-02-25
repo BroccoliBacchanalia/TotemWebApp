@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import { geolocate, groupInfoListener, updateUsers } from './';
+import axios from 'axios';
 
 const authConfig = {
   facebookPermissions: ['public_profile', 'email', 'user_friends']
@@ -25,6 +26,16 @@ function signInError(errorMessage) {
     type: 'SIGNIN_ERROR',
     errorMessage: errorMessage
   }
+}
+
+function getFriends(token) {
+  var endpoint = "https://graph.facebook.com/me/friends?" + token + "=";
+
+  axios.get(endpoint).then((data) =>{
+    console.log('!!!!!!!', data)
+  }).catch((error) => {
+    console.log('Error getting friends from facebook');
+  })
 }
 
 
@@ -54,6 +65,7 @@ export function signIn() {
       })
       .then(geolocate)
       .then(groupInfoListener)
+      .then(getFriends)
       // .then(users => {
       //   console.log('check',users)
       //   dispatch(updateUsers(users)
