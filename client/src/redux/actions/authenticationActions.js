@@ -64,19 +64,19 @@ export function signIn() {
           agenda: {null: "null"}
         });
         
-        // let ref = firebase.database().ref('query-data');
-        // let usersRef = ref.child('users')
-        // let databaseGroup;
-        // usersRef.on('value', snap => {
-        //   console.log('user!!', snap.val())
-        // })
+        let ref = firebase.database().ref();
+        let usersRef = ref.child('/users')
+        let databaseGroup;
+        usersRef.on('value', snap => {
+          databaseGroup=snap.val()
+        })
+        console.log('DATATA!', databaseGroup)
         // groupsRef.on('value', function(snapshot) {
         //   snapshot.forEach(function(childSnapshot) {
         //     console.log('child', childSnapshot)
         //     databaseGroup = childSnapshot.val();
         //   })
         // })
-       // console.log('DATATATATATATATATA', databaseGroup)
 
         dispatch(signInSuccess(uid, accessToken));
       })
