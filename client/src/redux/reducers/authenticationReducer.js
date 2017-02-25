@@ -3,18 +3,20 @@ const defaults = {
   isInProgress: false,
   hasError: false,
   errorMessage: '',
-  uid: null
+  uid: null,
+  accessToken: null
 };
 
 export default function auth(state = defaults, action) {
   switch(action.type) {
     case 'SIGNIN_SUCCESS':
-      const { uid } = action;
+      const { uid } = action.uid;
       return {
         ...state,
         isUserSignedIn: true,
         isInProgress: false,
-        uid: uid
+        uid: uid,
+        accessToken: action.token 
       };
     case 'SIGNIN':
       return {

@@ -1,16 +1,19 @@
 import firebase from 'firebase';
 import { geolocate, groupInfoListener, updateUsers } from './';
+import axios from 'axios';
 import store from '../../redux/store';
 
 const authConfig = {
   facebookPermissions: ['public_profile', 'email', 'user_friends']
 };
 
+let accessToken;
 
-function signInSuccess(uid) {
+function signInSuccess(uid, token) {
   return {
     type: 'SIGNIN_SUCCESS',
-    uid: uid
+    uid: uid,
+    token: token
   }
 }
 
@@ -27,21 +30,30 @@ function signInError(errorMessage) {
   }
 }
 
+function getFriends() {
+  var endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
+
+  axios.get(endpoint).then((data) =>{
+    console.log('!!!!!!!', data)
+  }).catch((error) => {
+    console.log('Error getting friends from facebook');
+  })
+}
+
 
 export function signIn() {
   const dispatch = store.dispatch;
   const provider = new firebase.auth.FacebookAuthProvider();
-
   dispatch(signInInProgress());
 
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
 
-
-  firebase.auth().signInWithPopup(provider)
-  // firebase.auth().signInWithRedirect(provider);
-  // firebase.auth().getRedirectResult()
-  .then((result) => {
-    const { user: { uid, displayName, photoURL, email } } = result;
+    firebase.auth().signInWithPopup(provider)
+    // firebase.auth().signInWithRedirect(provider);
+    // firebase.auth().getRedirectResult()
+      .then((result) => {
+        accessToken =result.credential.accessToken;
+        const { user: { uid, displayName, photoURL, email } } = result;
 
 
         firebase.database().ref(`users/${ uid }`).set({
@@ -53,16 +65,18 @@ export function signIn() {
         });
 
 
-    dispatch(signInSuccess(uid));
-  })
-  .then(geolocate)
-  .then(groupInfoListener)
-  // .then(users => {
-  //   console.log('check',users)
-  //   dispatch(updateUsers(users)
-  // })
+        dispatch(signInSuccess(uid, accessToken));
+      })
+      .then(getFriends)
+      .then(geolocate)
+      .then(groupInfoListener)
+      // .then(users => {
+      //   console.log('check',users)
+      //   dispatch(updateUsers(users)
+      // })
+      
+      .catch(error => {
+        dispatch(signInError(error.message))
+      });
 
-  .catch(error => {
-    dispatch(signInError(error.message))
-  });
 }
