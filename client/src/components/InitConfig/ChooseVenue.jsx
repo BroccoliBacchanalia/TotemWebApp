@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import store from '../../redux/store.js';
 import { selectVenue, skipVenue } from '../../redux/actions/venueActions.js';
 
-export class ChooseVenue extends React.Component {
+class ChooseVenue extends React.Component {
   render() {
 
   	return (

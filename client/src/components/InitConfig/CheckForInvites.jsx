@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ChooseGroup from './ChooseGroup.jsx';
 import ChooseVenue from './ChooseVenue.jsx';
 
-export class CheckForInvites extends React.Component {
+class CheckForInvites extends React.Component {
 	render() {
 		//if groups.pending invites does not have any pending invites route to choose venue
 		///////Talk to patrick about what he wants defaults to be!////////////

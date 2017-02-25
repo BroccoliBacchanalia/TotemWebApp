@@ -4,7 +4,7 @@ import React from 'react';
 import mockUserData from '../../redux/reducers/mock_user_data.js';
 import  { skipCreateGroup } from '../../redux/actions/venueActions.js';
 
-export class CreateGroup extends React.Component {
+export default class CreateGroup extends React.Component {
 
   render() {
   	var userKeys = Object.keys(mockUserData);
@@ -30,6 +30,6 @@ export class CreateGroup extends React.Component {
 
 // export default connect((store) => {
 // 	return {
-//     friends: 
+//     friends:
 // 	}
 // })(CreateGroup)
