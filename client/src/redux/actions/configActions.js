@@ -1,11 +1,5 @@
 import store from '../store.js';
-export function updateText(text) {
-  return {
-    type: 'update_text',
-    payload: { text }
-  }
-}
-
+import firebase from 'firebase';
 export function selectGroup(group) {
 	store.dispatch({type: 'choose_group', payload: { group }})
 }
@@ -25,3 +19,6 @@ export function skipCreateGroup(){
 export function skipGroup(){
 	store.dispatch({type: 'skip_group'})
 }
+
+//create a function to add friends to the database when clicked
+// export function

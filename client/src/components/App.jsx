@@ -12,7 +12,7 @@ import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
 import CheckForInvites from './InitConfig/CheckForInvites.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
-import {CreateGroup} from './InitConfig/CreateGroup.jsx';
+import { CreateGroup } from './InitConfig/CreateGroup.jsx';
 import * as authenticationActions from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
 
@@ -23,18 +23,18 @@ class App extends React.Component {
         <CreateGroup />
       )
     }
+    
+    if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected !== '' && this.props.config.createGroup === '') {
+      return (
+        <CreateGroup />
+      )
+    }  
 
     if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected === '') {
       return (
         <ChooseVenue />
       )
-    }
-
-    if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected !== '' && this.props.config.createGroup === '') {
-      return (
-        <CreateGroup />
-      )
-    }                   
+    }                 
 
     if (this.props.config.createGroup === 'skipped' || (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== '' && this.props.config.groupJoined !== ''))) {
       return (
@@ -66,6 +66,7 @@ class App extends React.Component {
   			</Router>
       )
     } 
+
    if (this.props.auth.isUserSignedIn) {
       return (
         <CheckForInvites />
