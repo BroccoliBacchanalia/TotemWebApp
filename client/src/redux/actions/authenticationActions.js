@@ -30,8 +30,8 @@ function signInError(errorMessage) {
   }
 }
 
-function getFriends(token) {
-  var endpoint = "https://graph.facebook.com/me/friends?" + accessToken + "=";
+function getFriends() {
+  var endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
 
   axios.get(endpoint).then((data) =>{
     console.log('!!!!!!!', data)

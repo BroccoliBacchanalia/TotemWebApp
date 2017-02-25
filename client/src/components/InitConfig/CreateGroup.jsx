@@ -2,7 +2,7 @@ import React from 'react';
 //import { controller } from 'react-redux';
 //import store from '../../redux/store.js';
 import mockUserData from '../../redux/reducers/mock_user_data.js';
-import  { skipCreateGroup } from '../../redux/actions/configActions.js';
+import  { skipCreateGroup } from '../../redux/actions/venueActions.js';
 
 export class CreateGroup extends React.Component {
 

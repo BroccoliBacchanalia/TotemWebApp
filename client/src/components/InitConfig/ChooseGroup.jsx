@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../redux/store.js';
 import { NavLink } from 'react-router-dom';
-import { selectGroup, skipGroup } from '../../redux/actions/configActions.js'
+import { selectGroup, skipGroup } from '../../redux/actions/venueActions.js'
 ////Operating under the assumption that groupList is an array
 export class ChooseGroup extends React.Component {
   render(){

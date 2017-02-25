@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import user from './userReducer';
 import nav from './navReducer';
 import auth from './authenticationReducer';
-import config from './configReducer';
+import config from './venueReducer';
 import location from './locationReducer';
 import venueSchedule from './venueScheduleReducer';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../redux/store.js';
-import { selectVenue, skipVenue } from '../../redux/actions/configActions.js';
+import { selectVenue, skipVenue } from '../../redux/actions/venueActions.js';
 
 export class ChooseVenue extends React.Component {
   render() {
