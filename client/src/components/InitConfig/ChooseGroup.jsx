@@ -1,32 +1,48 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../redux/store.js';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { selectGroup, skipGroup } from '../../redux/actions/venueActions.js'
+import { updateGroupId } from '../../redux/actions/userActions';
+
 ////Operating under the assumption that groupList is an array
 class ChooseGroup extends React.Component {
+  constructor(props, context) {
+    super(props);
+  }
+
   render(){
-    var keys = Object.keys(this.props.groupList)
+    var groupKeys = Object.keys(this.props.groupList);
+    const router = this.context.router;
+
   	return (
   		<div>
   		  <div>Choose Your Group</div>
         <ul>
-          {keys.map((item, key) =>{
-            return(
-            <li key={key} onClick={selectGroup.bind(this, this.props.groupList[item])}>
-              { this.props.groupList[item] }
+          {groupKeys.map((key, index) => (
+            <li key={index} onClick={() => {
+              updateGroupId.call(this, key);
+              router.push('/map');
+            }}>
+              {this.props.groupList[key] }
             </li>
-            )
-          })}
+          ))}
         </ul>
-        <div onClick={skipGroup}>Skip this step</div>
+        <Link to="/choosevenue">
+          <div>Skip this step</div>
+        </Link>
   		</div>
   	)
   }
+
+}
+
+ChooseGroup.contextTypes = {
+  router: React.PropTypes.func.isRequired
 }
 
 export default connect((store) => {
 	return {
-		groupList: store.config.group.pendingInvites
+		groupList: store.user.pendingInvites
 	}
 })(ChooseGroup)
