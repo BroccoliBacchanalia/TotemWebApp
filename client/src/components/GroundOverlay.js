@@ -20,9 +20,9 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _constants = require("./node_modules/react-google-maps/lib/constants");
+var _constants = require("../../../node_modules/react-google-maps/lib/constants");
 
-var _enhanceElement = require("./node_modules/react-google-maps/lib/enhanceElement");
+var _enhanceElement = require("../../../node_modules/react-google-maps/lib/enhanceElement");
 
 var _enhanceElement2 = _interopRequireDefault(_enhanceElement);
 

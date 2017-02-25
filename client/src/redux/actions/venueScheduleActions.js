@@ -79,7 +79,7 @@ export function getArtist(stage, day){
     return false;
   }).map(function(item){
     return item.name;
-  }).join("*");
+  }).join(" - ");
 
 }
 

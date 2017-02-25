@@ -1,6 +1,7 @@
 import React from 'react';
 import localStyles from './GroupStyles.css';
 import { sortUsers } from '../../redux/actions/sortActions';
+import { Button } from 'react-onsenui';
 
 const SortGroup = ({ dispatch }) => {
   const icons = [
@@ -12,12 +13,12 @@ const SortGroup = ({ dispatch }) => {
   return (
     <div className={localStyles.icon}>
       {icons.map((icon, index) => (
-        <button
+        <Button
           key={index}
           style={{ width: iconWidth}}
           onClick={() => dispatch(sortUsers(icon.method))}>
           <img src={'./img/' + icon.path}/>
-        </button>
+        </Button>
       ))}
     </div>
   );
