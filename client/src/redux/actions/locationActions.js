@@ -5,7 +5,7 @@ export function updateUsers(users) {
   console.log('users updated', users);
   return {
     type: 'updating_location',
-    payload: { users }
+    payload: { users } 
   }
 }
 
@@ -13,8 +13,7 @@ export function updateUsers(users) {
 export function groupInfoListener() {
   return firebase.database().ref().child('users')
   .on('value', snapshot => {
-    console.log('snap', snapshot.val())
-    return snapshot.val();
+    store.dispatch(updateUsers(snapshot.val()));
   });
 };
 
