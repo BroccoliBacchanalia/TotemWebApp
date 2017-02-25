@@ -12,7 +12,7 @@ class ChooseGroup extends React.Component {
   }
 
   render(){
-    var groupKeys = Object.keys(this.props.groupList);
+    const groupKeys = Object.keys(this.props.groupList);
     const router = this.context.router;
 
   	return (
@@ -32,13 +32,12 @@ class ChooseGroup extends React.Component {
           <div>Skip this step</div>
         </Link>
   		</div>
-  	)
+  	);
   }
-
 }
 
 ChooseGroup.contextTypes = {
-  router: React.PropTypes.func.isRequired
+  router: React.PropTypes.object.isRequired
 }
 
 export default connect((store) => {

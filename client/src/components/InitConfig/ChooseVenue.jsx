@@ -6,7 +6,6 @@ import { updateVenueId } from '../../redux/actions/userActions';
 
 class ChooseVenue extends React.Component {
   render() {
-    console.log(this.props);
     const venues = this.props.venues;
     const venueKeys = Object.keys(venues);
 
