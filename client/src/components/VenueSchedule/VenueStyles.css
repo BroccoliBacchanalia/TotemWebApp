@@ -19,3 +19,10 @@
 .gRow p {
   margin-bottom: 0;
 }
+
+.navB {
+	display: inline-block;
+	margin: 10px;
+	font-size: 15px;
+	color: #d4d8dd;
+}

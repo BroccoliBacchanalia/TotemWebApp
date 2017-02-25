@@ -27,9 +27,9 @@ function here(name,startTime,endTime,geofence,day) {
 const ScheduleRow = ({ name, startTime, endTime, geofence, day }) => (
   // <button onClick={here.bind(null,name,startTime,endTime,geofence,day)}>
   <div className={localStyles.gRow + " clearfix"}>
-      <img src='./img/totem.png'/>
+      <img src='./img/totem1.png'/>
        <p>
-        <span className="h4">{name}</span>
+        <span className="h3">{name}</span>
         <br/>
           {
             startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
