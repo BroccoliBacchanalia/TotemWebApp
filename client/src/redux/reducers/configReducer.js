@@ -1,5 +1,12 @@
 const defaults = {
   text: '',
+  venueSelected: null,
+  groupJoined: null,
+  group:{
+    pendingInvites: {
+  	  '-KdSF7i59sk07XoRgcYo': 'ballers'
+    }
+  },
   selectedId: '',
   venues: [
     { id: 'osl123',
@@ -25,11 +32,23 @@ const defaults = {
         zip: '92201',
         country: 'USA'
       }
+    },
+    { id: 'burn123',
+      name: 'Burning Man',
+      address: {
+        line1: 'Black Rock Desert',
+        line2: '',
+        line3: '',
+        city: 'Black Rock Desert',
+        state: 'NV',
+        zip: '',
+        country: 'USA'
+      }
     }
   ]
 };
 
-export default function venueReducer(state = defaults, action) {
+export default function configReducer(state = defaults, action) {
   switch(action.type) {
     case 'update_text': {
       return { ...state, text: action.payload.text };

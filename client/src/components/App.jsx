@@ -9,6 +9,7 @@ import NavigationBar from './Nav/Nav.jsx';
 import MapViewer from './MapViewer/MapViewer.jsx';
 import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
+import CheckForInvites from './InitConfig/CheckForInvites.jsx';
 // import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
 // import CreateGroup from './InitConfig/CreateGroup.jsx';
@@ -19,8 +20,7 @@ import SignInButton from './Auth/SignInButton';
 
 class App extends React.Component {
   render() {
-
-    if (true) {
+    if (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== null || this.props.config.groupJoined !== null)) {
       return (
         <Router>
           <div>
@@ -49,7 +49,13 @@ class App extends React.Component {
           </div>
   			</Router>
       )
-    } else {
+    } 
+    if (this.props.auth.isUserSignedIn) {
+      return (
+      <CheckForInvites />
+      )
+    }
+    else {
       return (
         <SignInButton onSignInClick={ () => this.props.dispatch(authenticationActions.signIn()) } auth={ this.props.auth }/>
       )
@@ -62,6 +68,7 @@ export default connect((store) => {
     app: store.app,
     nav: store.nav,
     location: store.location,
-    auth: store.auth
+    auth: store.auth,
+    config: store.config
   };
 })(App);

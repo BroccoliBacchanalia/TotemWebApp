@@ -1,8 +1,8 @@
 import React from 'react';
-import store from '../redux/store.js';
-import { connect } from 'redux';
-import ChooseGroup from './ChooseGroup';
-import ChooseVenue from './ChooseVenue';
+import store from '../../redux/store.js';
+import { connect } from 'react-redux';
+import ChooseGroup from './ChooseGroup.jsx';
+//import ChooseVenue from './ChooseVenue';
 
 export class CheckForInvites extends React.Component {
 	render() {
@@ -10,13 +10,16 @@ export class CheckForInvites extends React.Component {
 		///////Talk to patrick about what he wants defaults to be!////////////
 		if(this.props.pendingInvite === '') {
 			return (
-        <ChooseGroup />
+				<div>
+				no pending invites
+				</div>
+       //<ChooseVenue />
 			)
 		}
 		//if groups.pending invites is true route to join group
 		if(this.props.pendingInvite !== '') {
 		  return(
-        <ChooseVenue />
+      <ChooseGroup />
 		  )
 	  }
   }
@@ -25,6 +28,6 @@ export class CheckForInvites extends React.Component {
 //will need to change routes for variable name from store when patrick gets db hooked up
 export default connect((store) => {
 	return {
-  group: store.user
+  group: store.config.group
 	}
-})(user)
+})(CheckForInvites)
