@@ -8,57 +8,19 @@ import NavigationBar from './Nav/Nav.jsx';
 import MapViewer from './MapViewer/MapViewer.jsx';
 import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
-import CheckForInvites from './InitConfig/CheckForInvites.jsx';
-import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
+// import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
 // import CreateGroup from './InitConfig/CreateGroup.jsx';
-import { signIn, signInSuccess } from '../redux/actions/authenticationActions';
-import * as authenticationActions from '../redux/actions/authenticationActions';
-import CreateGroup from './InitConfig/CreateGroup.jsx';
+import { signIn } from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
-import firebase from 'firebase'
-import firebaseConfig from '../firebase'
+
 
 
 class App extends React.Component {
-
-componentWillMount() {
-  const { auth, dispatch, location, user } = this.props;
-  firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    auth.isUserSignedIn = true;
-    console.log('CWM', auth)
-  } else {
-    console.log('no user signed in')
-    signIn()
-  }
-});
-}
   render() {
-
-
-    const { auth, dispatch, location, app } = this.props;
-
-    if (this.props.config.venueSelected === 'skipped' && this.props.config.groupJoined === 'skipped' && this.props.config.createGroup === '') {
-      return (
-        <CreateGroup />
-      )
-    }
-
-    if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected !== '' && this.props.config.createGroup === '') {
-      return (
-        <CreateGroup />
-      )
-    }
-
-    if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected === '') {
-      return (
-        <ChooseVenue />
-      )
-    }
-
-    if (this.props.config.createGroup === 'skipped' || (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== '' && this.props.config.groupJoined !== ''))) {
+    const { auth, dispatch, location, user } = this.props;
+    if (auth.isUserSignedIn) {
       return (
         <Router>
           <div>
@@ -87,15 +49,7 @@ componentWillMount() {
           </div>
   			</Router>
       )
-    }
-
-   if (this.props.auth.isUserSignedIn) {
-      return (
-        <CheckForInvites />
-      )
-    }
-
-    else {
+    } else {
       return (
         <SignInButton
           onSignInClick={signIn}
@@ -110,7 +64,6 @@ export default connect((store) => {
     user: store.user,
     nav: store.nav,
     location: store.location,
-    auth: store.auth,
-    config: store.config
+    auth: store.auth
   };
 })(App);

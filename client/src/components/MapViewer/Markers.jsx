@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Marker } from 'react-google-maps';
+import { Marker, InfoWindow } from 'react-google-maps';
+import { toggleName } from '../../redux/actions/authenticationActions'
+import store from '../../redux/store.js';
 
 class MapViewer extends Component {
   render() {
@@ -22,7 +24,14 @@ class MapViewer extends Component {
             <Marker
               key={index}
               {...user}
-              icon={icon}>
+              icon={icon}
+              onClick={() => store.dispatch({type: 'show_name', payload: {showInfo: true}})}
+            >
+              {user.showInfo && (
+                <InfoWindow>
+                  <div>{user.label}</div>
+                </InfoWindow>
+              )}
             </Marker>
           );
         })}

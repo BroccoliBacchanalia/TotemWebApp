@@ -1,6 +1,13 @@
 import firebase from 'firebase';
 import store from '../store';
 
+export function toggleName() {
+  return {
+    type: 'show_name',
+    payload: { showInfo: true}
+  }
+}
+
 export function updateUsers(users) {
   return {
     type: 'updating_location',
@@ -22,8 +29,8 @@ export function geolocate() {
     console.log(pos);
     const user = firebase.auth().currentUser
       firebase.database().ref(`users/${user.uid}/position`).set({
-        lat: pos.coords.latitude - 0.0161225,
-        lng: pos.coords.longitude - 0.0857576
+        lat: pos.coords.latitude,// - 0.0161225,
+        lng: pos.coords.longitude// - 0.0857576
       });
   }
 
@@ -34,9 +41,8 @@ export function geolocate() {
   const options = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 60000
+    maximumAge: 0
   };
-
   navigator.geolocation.watchPosition(success, error, options);
 }
 

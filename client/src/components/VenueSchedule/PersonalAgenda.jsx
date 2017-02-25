@@ -32,6 +32,7 @@ class VenueSchedule extends Component {
       </div>
     );
   }
+}
 
 export default connect((store) => {
   return {
