@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import { geolocate, groupInfoListener, updateUsers } from './';
 
 const authConfig = {
-  facebookPermissions: ['public_profile', 'email']
+  facebookPermissions: ['public_profile', 'email', 'user_friends']
 };
 
 
@@ -42,18 +42,22 @@ export function signIn() {
         const { user: { uid, displayName, photoURL, email } } = result;
 
         firebase.database().ref(`users/${ uid }`).set({
-          displayName: displayName,
-          photoURL: photoURL,
+          label: displayName,
+          img: photoURL,
           email: email,
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
         });
 
         dispatch(signInSuccess(uid));
       })
-      .then(() => geolocate())
-      .then(() => groupInfoListener())
-      .then((users) => dispatch(updateUsers(users)))
-      .catch((error) => {
+      .then(geolocate)
+      .then(groupInfoListener)
+      // .then(users => {
+      //   console.log('check',users)
+      //   dispatch(updateUsers(users)
+      // })
+      
+      .catch(error => {
         dispatch(signInError(error.message))
       });
   }

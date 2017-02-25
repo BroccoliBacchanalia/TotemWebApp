@@ -18,7 +18,7 @@ import SignInButton from './Auth/SignInButton';
 class App extends React.Component {
   render() {
 
-    if (true) {
+    if (this.props.auth.isUserSignedIn) {
       return (
         <Router>
           <div>
