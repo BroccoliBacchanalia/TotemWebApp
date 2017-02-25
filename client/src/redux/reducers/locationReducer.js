@@ -1,7 +1,5 @@
-const users = require('./mock_user_data');
-
 const defaults = {
-  users,
+  users: {},
   geoFences: [
     { name: 'Lands End Stage', type: 'venue', latitude: 37.76766, longitude: -122.49479, radius: 50 },
     { name: 'Sutro Stage', type: 'venue', latitude: 37.76992, longitude: -122.49341, radius: 50 },
