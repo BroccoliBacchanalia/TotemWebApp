@@ -14,7 +14,7 @@ const defaults = {
 export default function locationReducer(state = defaults, action) {
   switch(action.type) {
     case 'updating_location': {
-      return {...state, users: action.payload};
+      return {...state, users: action.payload.users};
     }
     case 'users_sort': {
       const users = objToArray(state.users);

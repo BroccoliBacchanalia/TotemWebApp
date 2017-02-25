@@ -1,26 +1,26 @@
 import React from 'react';
-// import { sortUsers } from '../../actions/sortActions'
+import localStyles from './GroupStyles.css';
+import { sortUsers } from '../../redux/actions/sortActions';
 
-const SortGroup = ({ dispatch }) => (
-  <div>Group Sort</div>
-);
+const SortGroup = ({ dispatch }) => {
+  const icons = [
+    { path:'a-z-icon.png', method: 'sortAZ' },
+    { path: 'fence-icon.png', method: 'geofence' },
+    { path: 'radar-icon.png', method: 'proximity' }
+  ];
+  const iconWidth = (window.innerWidth / icons.length) - (10 / icons.length);
+  return (
+    <div className={localStyles.icon}>
+      {icons.map((icon, index) => (
+        <button
+          key={index}
+          style={{ width: iconWidth}}
+          onClick={() => dispatch(sortUsers(icon.method))}>
+          <img src={'./img/' + icon.path}/>
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export default SortGroup;
-
-/* <View style={localStyles.sort_row}>
-  <TouchableHighlight
-    style={localStyles.sort_item}
-    onPress={() => dispatch(sortUsers('sortAZ'))}>
-    <Image source={require('../../img/a-z-icon.png')}/>
-  </TouchableHighlight>
-  <TouchableHighlight
-    style={localStyles.sort_item}
-    onPress={() => dispatch(sortUsers('geofence'))}>
-    <Image source={require('../../img/fence-icon.png')}/>
-  </TouchableHighlight>
-  <TouchableHighlight
-    style={localStyles.sort_item}
-    onPress={() => dispatch(sortUsers('proximity'))}>
-    <Image source={require('../../img/radar-icon.png')}/>
-  </TouchableHighlight>
-</View> */

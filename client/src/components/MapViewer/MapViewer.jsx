@@ -6,8 +6,10 @@ import GroundOverlay from '../../../../GroundOverlay';
 import localStyles from './MapStyles.css';
 
 class MapViewer extends Component {
+
   render() {
     const users = this.props.users;
+    console.log('users', users);
     const userKeys = Object.keys(users);
 
     const LoadMap = withGoogleMap(props => (

@@ -1,3 +1,26 @@
+html, body, #app, .custom-container {
+  height: 100%;
+  width: 100%;
+}
+
 .navbar {
   margin-bottom: 0;
+}
+
+.footerBtn {
+  position: fixed;
+  bottom: 0;
+  height: 70px;
+  width: 100%;
+}
+
+.footerBtn button {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+button {
+  border-radius: 0;
 }

@@ -3,7 +3,7 @@ const defaults = {
   isInProgress: false,
   hasError: false,
   errorMessage: '',
-  uid: 0
+  uid: null
 };
 
 export default function auth(state = defaults, action) {

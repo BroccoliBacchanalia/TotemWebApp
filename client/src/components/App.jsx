@@ -16,10 +16,9 @@ import CheckForInvites from './InitConfig/CheckForInvites.jsx';
 import * as authenticationActions from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
 
-
-
 class App extends React.Component {
   render() {
+
     if (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== null || this.props.config.groupJoined !== null)) {
       return (
         <Router>
@@ -57,7 +56,9 @@ class App extends React.Component {
     }
     else {
       return (
-        <SignInButton onSignInClick={ () => this.props.dispatch(authenticationActions.signIn()) } auth={ this.props.auth }/>
+        <SignInButton
+          onSignInClick={() => this.props.dispatch(authenticationActions.signIn())}
+          auth={ this.props.auth }/>
       )
     }
   }
