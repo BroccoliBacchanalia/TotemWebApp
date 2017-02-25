@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../redux/store.js';
 import { NavLink } from 'react-router-dom';
-import { selectGroup } from '../../redux/actions/configActions.js'
+import { selectGroup, skipLogin } from '../../redux/actions/configActions.js'
 ////Operating under the assumption that groupList is an array
 export class ChooseGroup extends React.Component {
   render(){
@@ -19,6 +19,7 @@ export class ChooseGroup extends React.Component {
             )
           })}
         </ul>
+        <div onClick={skipLogin}>Skip this step</div>
   		</div>
   	)
   }
@@ -26,10 +27,6 @@ export class ChooseGroup extends React.Component {
 
 export default connect((store) => {
 	return {
-		//////////////Ask patrick about state name that he wants to use/////////////////
 		groupList: store.config.group.pendingInvites
 	}
 })(ChooseGroup)
-
-
-                //<NavLink to="/map">Skip this step</NavLink>

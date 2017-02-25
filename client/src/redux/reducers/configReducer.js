@@ -57,6 +57,9 @@ export default function configReducer(state = defaults, action) {
       console.log(action.payload.id);
       return { ...state, groupJoined: action.payload.group };
     }
+     case 'skip_login': {
+      return { ...state, groupJoined: 'skipped' };
+    }
   }
   return state;
 };
