@@ -4,66 +4,44 @@ import { connect } from 'react-redux';
 import store from '../redux/store.js';
 
 /*  Components  */
+import HomeView from './HomeView.jsx'
 import NavigationBar from './Nav/Nav.jsx';
 import MapViewer from './MapViewer/MapViewer.jsx';
 import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
+import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
 // import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
-// import CreateGroup from './InitConfig/CreateGroup.jsx';
-import { signIn } from '../redux/actions/authenticationActions';
-import SignInButton from './Auth/SignInButton';
 
-
+import CreateGroup from './InitConfig/CreateGroup.jsx';
 
 class App extends React.Component {
   render() {
-    const { auth, dispatch, location, user } = this.props;
-    if (auth.isUserSignedIn) {
-      return (
-        <Router>
-          <div>
-            <NavigationBar />
-    				<Route exact path="/" component={() => (
-              <Group
-                dispatch={dispatch}
-                users={location.users}
-                userID={user.userId}
-              />
-            )}/>
-  					<Route path="/group" component={() => (
-  						<Group
-  							dispatch={dispatch}
-  							users={location.users}
-  							userID={user.userId}
-  						/>
-  					)}/>
-            <Route path="/map" component={MapViewer}/>
-  					<Route path="/agenda" component={PersonalAgenda}/>
-  					<Route path="/schedule" component={VenueSchedule}/>
-  					<Route path="/emergency" component={() => <div>Emergency Emergency Info Holder</div>}/>
-  					<Route path="/choosevenue" component={() => <div>Venue Holder</div>}/>
-  					<Route path="/create" component={() => <div>Create Holder</div>}/>
-  					<Route path="/invite" component={() => <div>Invite Holder</div>}/>
-          </div>
-  			</Router>
-      )
-    } else {
-      return (
-        <SignInButton
-          onSignInClick={signIn}
-          auth={ auth }/>
-      )
-    }
+    const { auth, user } = this.props;
+    const hasGroup = user.groupId !== null;
+
+    return (
+      <Router>
+        <div>
+          {auth.isUserSignedIn && hasGroup ? <NavigationBar /> : ''}
+          <Route exact path="/" component={HomeView}/>
+          <Route path="/group" component={Group}/>
+          <Route path="/map" component={MapViewer}/>
+          <Route path="/agenda" component={PersonalAgenda}/>
+          <Route path="/schedule" component={VenueSchedule}/>
+          <Route path="/choosevenue" component={ChooseVenue}/>
+          <Route path="/creategroup" component={CreateGroup}/>
+          <Route path="/invite" component={() => <div>Invite Holder</div>}/>
+        </div>
+      </Router>
+    );
   }
 }
 
 export default connect((store) => {
   return {
     user: store.user,
-    nav: store.nav,
-    location: store.location,
     auth: store.auth
   };
 })(App);

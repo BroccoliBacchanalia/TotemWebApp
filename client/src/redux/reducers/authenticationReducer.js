@@ -10,13 +10,13 @@ const defaults = {
 export default function auth(state = defaults, action) {
   switch(action.type) {
     case 'SIGNIN_SUCCESS':
-      const { uid } = action.uid;
+      const { uid } = action.payload.uid;
       return {
         ...state,
         isUserSignedIn: true,
         isInProgress: false,
         uid: uid,
-        accessToken: action.token 
+        accessToken: action.payload.token
       };
     case 'SIGNIN':
       return {
