@@ -14,3 +14,5 @@ const GroupRow = ({ friend }) => (
     </div>
   </div>
 );
+
+export default GroupRow;

@@ -49,7 +49,10 @@ class App extends React.Component {
     } else {
       return (
         <SignInButton
-          onSignInClick={ () => dispatch(authenticationActions.signIn()) }
+          onSignInClick={() => {
+            console.log('sigin in')
+            authenticationActions.signIn();
+          }}
           auth={ auth }/>
       )
     }

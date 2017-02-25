@@ -40,22 +40,12 @@ export function geolocate() {
   navigator.geolocation.watchPosition(success, error, options);
 }
 
-<<<<<<< HEAD
-export function getGeofence(position) {
-  console.log('position',position)
-  const geoFences = store.getState().location.geoFences;
-  for (let fence of geoFences) {
-    const degrees = getDegrees(fence.radius);
-    const latDiff = Math.abs(fence.latitude - position.lat);
-    const longDiff = Math.abs(fence.longitude - position.lng);
-=======
 export function getGeofence(coordinates) {
   const geoFences = store.getState().location.geoFences;
   for (let fence of geoFences) {
     const degrees = getDegrees(fence.radius);
     const latDiff = Math.abs(fence.latitude - coordinates.lat);
     const longDiff = Math.abs(fence.longitude - coordinates.lng);
->>>>>>> Calculate geofences if user is defined
 
     if (latDiff < degrees && longDiff < degrees) {
       return fence.name;
