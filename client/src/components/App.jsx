@@ -12,12 +12,29 @@ import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
 // import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
 // import CreateGroup from './InitConfig/CreateGroup.jsx';
-import { signIn } from '../redux/actions/authenticationActions';
+import { signIn, signInSuccess } from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
+import firebase from 'firebase'
+import firebaseConfig from '../firebase'
+
 
 class App extends React.Component {
+
+componentWillMount() {
+  const { auth, dispatch, location, user } = this.props;
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    auth.isUserSignedIn = true;
+    console.log('CWM', auth)
+  } else {
+    console.log('no user signed in')
+    signIn()
+  }
+});
+}
   render() {
     const { auth, dispatch, location, user } = this.props;
+    console.log('RENDER', auth)
     if (auth.isUserSignedIn) {
       return (
         <Router>

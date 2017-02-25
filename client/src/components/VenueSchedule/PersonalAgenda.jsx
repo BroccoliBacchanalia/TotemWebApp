@@ -40,7 +40,7 @@ class VenueSchedule extends Component {
       );
     }
   }
-};
+
 
 export default connect((store) => {
   return {

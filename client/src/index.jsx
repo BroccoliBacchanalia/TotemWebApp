@@ -6,10 +6,13 @@ import store from './redux/store';
 import firebase from 'firebase';
 import { firebaseConfig } from './firebase'
 
-firebase.initializeApp(firebaseConfig);
 
-ReactDOM.render(
-	<Provider store={store}>
-		<App/>
-	</Provider>
-, document.getElementById('app'));
+firebase.initializeApp(firebaseConfig)
+
+const Root = props => (
+  <Provider store={store}>
+    <App/>
+  </Provider>
+);
+
+ReactDOM.render(<Root />, document.getElementById('app'));
