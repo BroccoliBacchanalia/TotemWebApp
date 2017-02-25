@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, OverlayView } from 'react-google-maps';
 import Helmet from 'react-helmet';
-import GroundOverlay from '../../../../GroundOverlay';
+import GroundOverlay from '../GroundOverlay';
 import localStyles from './MapStyles.css';
 
 class MapViewer extends Component {
