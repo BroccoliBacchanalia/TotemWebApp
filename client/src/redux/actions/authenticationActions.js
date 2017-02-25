@@ -36,8 +36,8 @@ export function signIn() {
     authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
 
     firebase.auth().signInWithPopup(provider)
-    // firebase.auth().signInWithRedirect(provider);
-    // firebase.auth().getRedirectResult()
+    //firebase.auth().signInWithRedirect(provider)
+    //firebase.auth().getRedirectResult()
       .then((result) => {
         const { user: { uid, displayName, photoURL, email } } = result;
 

@@ -40,6 +40,7 @@ class App extends React.Component {
             <Route path="/map" component={MapViewer}/>
   					<Route path="/agenda" component={() => <div>Agenda Holder</div>}/>
   					<Route path="/schedule" component={VenueSchedule}/>
+  					<Route path="/emergency" component={() => <div>Emergency Emergency Info Holder</div>}/>
   					<Route path="/choosevenue" component={() => <div>Venue Holder</div>}/>
   					<Route path="/create" component={() => <div>Create Holder</div>}/>
   					<Route path="/invite" component={() => <div>Invite Holder</div>}/>

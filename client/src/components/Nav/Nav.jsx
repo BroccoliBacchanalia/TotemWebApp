@@ -23,7 +23,7 @@ export default class NavigationBar extends React.Component {
             <NavItem eventKey={7}><NavLink to="/invite">Invite</NavLink></NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1} href="/">Logout</NavItem>
+            <NavItem eventKey={1} href="/signout">Logout</NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
