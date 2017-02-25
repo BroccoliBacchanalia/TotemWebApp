@@ -7,6 +7,7 @@ const authConfig = {
   facebookPermissions: ['public_profile', 'email', 'user_friends']
 };
 
+let accessToken;
 
 function signInSuccess(uid, token) {
   return {
@@ -30,7 +31,7 @@ function signInError(errorMessage) {
 }
 
 function getFriends(token) {
-  var endpoint = "https://graph.facebook.com/me/friends?" + token + "=";
+  var endpoint = "https://graph.facebook.com/me/friends?" + accessToken + "=";
 
   axios.get(endpoint).then((data) =>{
     console.log('!!!!!!!', data)
@@ -43,7 +44,6 @@ function getFriends(token) {
 export function signIn() {
   const dispatch = store.dispatch;
   const provider = new firebase.auth.FacebookAuthProvider();
-
   dispatch(signInInProgress());
 
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
@@ -52,7 +52,7 @@ export function signIn() {
     // firebase.auth().signInWithRedirect(provider);
     // firebase.auth().getRedirectResult()
       .then((result) => {
-        //console.log('QQQ', result.credential.accessToken)
+        accessToken =result.credential.accessToken;
         const { user: { uid, displayName, photoURL, email } } = result;
 
     firebase.database().ref(`users/${ uid }`).set({
@@ -62,11 +62,11 @@ export function signIn() {
       lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
     });
 
-        dispatch(signInSuccess(uid, result.credential.accessToken));
+        dispatch(signInSuccess(uid, accessToken));
       })
+      .then(getFriends)
       .then(geolocate)
       .then(groupInfoListener)
-      .then(getFriends)
       // .then(users => {
       //   console.log('check',users)
       //   dispatch(updateUsers(users)

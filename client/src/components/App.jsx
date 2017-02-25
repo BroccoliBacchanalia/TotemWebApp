@@ -21,6 +21,7 @@ import SignInButton from './Auth/SignInButton';
 class App extends React.Component {
   render() {
     const { auth, dispatch, location, app } = this.props;
+    
     if (this.props.config.venueSelected === 'skipped' && this.props.config.groupJoined === 'skipped' && this.props.config.createGroup === '') {
       return (
         <CreateGroup />
