@@ -8,9 +8,9 @@ import localStyles from './MapStyles.css';
 
 class MapViewer extends Component {
 
-  // shouldComponentUpdate() {
-  //    return false;
-  // }
+  shouldComponentUpdate() {
+     return false;
+  }
 
   render() {
     const LoadMap = withGoogleMap(props => (
