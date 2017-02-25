@@ -1,3 +1,34 @@
+.text {
+  color: '#1cafff';
+  fontSize: 20;
+}
+
+.subtext {
+  color: 'grey';
+}
+
+.profile_img {
+  width: 50;
+  height: 50;
+  marginRight: 5;
+}
+
+button {
+  background-color: '#222222';
+  height: 70;
+  alignItems: 'center';
+  justifyContent: 'center';
+}
+
+.sort_row {
+  height: 60;
+  flexDirection: 'row';
+  backgroundColor: '#222222';
+}
+.sort_item {
+  alignItems: 'center';
+  justifyContent: 'center';
+}
 .fixed {
   /*position:fixed;
   top:200px;*/
@@ -47,3 +78,4 @@
   margin: 0 auto;
   display: block;
 }
+
