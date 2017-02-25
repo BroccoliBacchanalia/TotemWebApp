@@ -10,19 +10,15 @@ import firebase from 'firebase';
  import localStyles from './VenueStyles.css';
 function test(key) {
 
-  // let uid = firebase.auth().currentUser.uid;
-  // const db = firebase.database();
-  // const agendaId = db.ref().child(`users/${ uid }/agenda`).push().key;
-  // const updates = {};
+   let uid = firebase.auth().currentUser.uid;
+  const db = firebase.database();
+  const agendaId = db.ref().child(`users/${ uid }/agenda/${ key }`).push();
+
+  const updates = {};
   // console.log("agendaId: ",agendaId);
-  // updates[`users/${ uid }/agenda/${agendaId}`] = {
-  //   name: name,
-  //   startTime: startTime,
-  //   endTime: endTime,
-  //   geoFences: geofence,
-  //   day: day
-  // };
-  // db.ref().update(updates);
+  updates[`users/${ uid }/agenda/${key}`] = key;
+  db.ref().update(updates);
+
    console.log("WE PRESSED THIS AGENDA: " , key);
 
 

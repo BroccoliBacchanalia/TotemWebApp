@@ -45,7 +45,8 @@ export function signIn() {
           label: displayName,
           img: photoURL,
           email: email,
-          lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
+          lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
+          agenda: {null: "null"}
         });
 
         dispatch(signInSuccess(uid));
