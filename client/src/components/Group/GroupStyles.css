@@ -1,6 +1,13 @@
+.fixed {
+  /*position:fixed;
+  top:200px;*/
+}
 
+.friendView {
+  height: 70%;
+  overflow-y: auto;
+}
 
-/* Group Row Styles */
 .gRow {
   border-bottom: 1px solid black;
   margin: 5px;
@@ -13,11 +20,30 @@
 }
 
 .gRow > * {
-  padding-top: 5px;
   float: left;
   display: inline-block;
 }
 
 .gRow p {
+  padding-top: 5px;
   margin-bottom: 0;
+}
+
+/* Icon Row */
+
+.icon {
+  margin: 5px 5px 15px 5px;
+  height: 70px;
+}
+
+.icon > * {
+  float: left;
+  display: inline-block;
+}
+
+.icon img {
+  padding: 10px;
+  height: 70px;
+  margin: 0 auto;
+  display: block;
 }

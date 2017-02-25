@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import scheduleDummyData from './scheduleDummyData.json'
+import React, {Component} from 'react';
+//import scheduleDummyData from './scheduleDummyData.json'
+import VenueStyles from './VenueStyles.css';
 import ScheduleRow from './ScheduleRow.jsx';
 import RenderDays from './RenderDays.jsx';
 import RenderStages from './RenderStages.jsx';
@@ -20,26 +21,27 @@ class VenueSchedule extends Component {
         return (
         <div>
           <RenderDays selectedDay={this.props.selectedDay}/>
-            <ul>
-              {this.props.scheduleDummyData.map((item, key) => {
-                console.log("item: ",item);
-                console.log("day ",this.props.selectedDay)
-                if(item.geofence === this.props.chooseStage && item.day === daysAndDates[this.props.selectedDay]) {
-                  return (
-                    <li>
-                    <ScheduleRow
-                      key={key}
-                      name={item.name}
-                      startTime = {item.starttime}
-                      endTime = {item.endtime}
-                      geofence={item.geofence}
-                      day={item.day}>
-                    </ScheduleRow>
-                    </li>
-                  );
-                }
-              })}
-            </ul>
+              {
+                this.props.scheduleDummyData.map((item, key) => {
+                  console.log("item: ",item);
+                  console.log("day ",this.props.selectedDay)
+                  if(item.geofence === this.props.chooseStage && item.day === daysAndDates[this.props.selectedDay]) {
+                    return (
+                  
+                      <ScheduleRow 
+                        key={key}
+                        name={item.name} 
+                        startTime = {item.starttime}
+                        endTime = {item.endtime}
+                        geofence={item.geofence}
+                        day={item.day}>
+                      </ScheduleRow>
+                   
+                    );
+                   
+                  } 
+                })
+              }
         </div>
       );
     }
