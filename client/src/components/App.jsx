@@ -23,7 +23,7 @@ class App extends React.Component {
         <CreateGroup />
       )
     }
-    
+   
     if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected !== '' && this.props.config.createGroup === '') {
       return (
         <CreateGroup />

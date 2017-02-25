@@ -6,10 +6,11 @@ const authConfig = {
 };
 
 
-function signInSuccess(uid) {
+function signInSuccess(uid, token) {
   return {
     type: 'SIGNIN_SUCCESS',
-    uid: uid
+    uid: uid,
+    token: token
   }
 }
 
@@ -39,6 +40,7 @@ export function signIn() {
     // firebase.auth().signInWithRedirect(provider);
     // firebase.auth().getRedirectResult()
       .then((result) => {
+        //console.log('QQQ', result.credential.accessToken)
         const { user: { uid, displayName, photoURL, email } } = result;
 
         firebase.database().ref(`users/${ uid }`).set({
@@ -48,7 +50,7 @@ export function signIn() {
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
         });
 
-        dispatch(signInSuccess(uid));
+        dispatch(signInSuccess(uid, result.credential.accessToken));
       })
       .then(geolocate)
       .then(groupInfoListener)
