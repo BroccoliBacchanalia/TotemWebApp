@@ -7,7 +7,7 @@ const GroupRow = ({ friend }) => (
     <img src={friend.img}/>
     <div>
       <p>
-        <span className="h4">{friend.label}</span>
+        <span className="h3">{friend.label}</span>
         <br/>
         {getGeofence(friend.position)}
       </p>
