@@ -31,10 +31,10 @@ function signInError(errorMessage) {
 }
 
 function getFriends() {
-  var endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
+  var endpoint = "https://graph.facebook.com/me/taggable_friends?access_token=" + accessToken;
 
   axios.get(endpoint).then((data) =>{
-    console.log('!!!!!!!', data)
+    store.dispatch({type: 'UPDATE_FRIENDS', friends: data.data})
   }).catch((error) => {
     console.log('Error getting friends from facebook');
   })
