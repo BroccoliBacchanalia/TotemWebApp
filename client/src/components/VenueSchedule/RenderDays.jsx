@@ -1,23 +1,28 @@
 import React from 'react';
 // import { View, Button } from 'react-native';
+import localStyles from './VenueStyles.css';
 import { def, days, updateDay } from '../../redux/actions/venueScheduleActions.js'
 console.log("----------:",days);
 const RenderDays = () => (
- 	<div>
-      <button
+
+  <nav className="navbar navbar-inverse">
+      <div className={localStyles.navB}
         title="<"
         onClick={def}/*this.setStageToDefault.bind(this)*/
-        value="<"> back
-      </button>
+        value="<"> &lt;
+      </div>
         {days.map((item, key) =>
-          <button 
+          <div className={localStyles.navB}
               key={key}
               title={item} 
               onClick = {updateDay.bind(null,item)}/*this.onChangeDay.bind(this, item)*/
               value={item}>{item}
-          </button>
+          </div>
         )}
-    </div>
+  </nav>
+
+
 );
 
 export default RenderDays;
+
