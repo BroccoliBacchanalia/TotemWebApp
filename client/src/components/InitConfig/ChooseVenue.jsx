@@ -2,19 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../redux/store.js';
 import { selectVenue, skipVenue } from '../../redux/actions/venueActions.js';
+import { updateVenueId } from '../../redux/actions/userActions';
 
 class ChooseVenue extends React.Component {
   render() {
+    const venues = this.props.venues;
+    const venueKeys = Object.keys(venues);
 
   	return (
       <div>
       <div>Choose Your Venue</div>
       <ul>
-        {this.props.venues.map((item, key) => {
+        {venueKeys.map((key, index) => {
+          const venue = venues[key];
           return (
-            <li key={key}>
-              <div onClick={ selectVenue.bind(this, item.address.line1) }>
-              {item.address.line1}
+            <li key={index}>
+              <div onClick={updateVenueId.bind(this, key)}>
+              {venue.name}
               </div>
             </li>
           )
@@ -28,6 +32,6 @@ class ChooseVenue extends React.Component {
 
 export default connect((store) => {
 	return {
-		venues: store.config.venues
+		venues: store.venues.venues
 	}
 })(ChooseVenue)

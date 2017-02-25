@@ -12,8 +12,10 @@ let accessToken;
 function signInSuccess(uid, token) {
   return {
     type: 'SIGNIN_SUCCESS',
-    uid: uid,
-    token: token
+    payload: {
+      uid: uid,
+      token: token
+    }
   }
 }
 
@@ -74,7 +76,7 @@ export function signIn() {
       //   console.log('check',users)
       //   dispatch(updateUsers(users)
       // })
-      
+
       .catch(error => {
         dispatch(signInError(error.message))
       });
