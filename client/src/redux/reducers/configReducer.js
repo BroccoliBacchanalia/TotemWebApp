@@ -4,7 +4,7 @@ const defaults = {
   groupJoined: null,
   group:{
     pendingInvites: {
-  	  '-KdSF7i59sk07XoRgcYo': 'ballers'
+    	'asdfdsaffds' : 'chuck'
     }
   },
   selectedId: '',
@@ -54,10 +54,15 @@ export default function configReducer(state = defaults, action) {
       return { ...state, text: action.payload.text };
     }
     case 'choose_group': {
-      console.log(action.payload.id);
       return { ...state, groupJoined: action.payload.group };
     }
-     case 'skip_login': {
+    case 'choose_venue': {
+      return { ...state, venueSelected: action.payload.venue };
+    }
+    case 'skip_venue': {
+      return { ...state, venueSelected: 'skipped' };
+    }
+    case 'skip_group': {
       return { ...state, groupJoined: 'skipped' };
     }
   }

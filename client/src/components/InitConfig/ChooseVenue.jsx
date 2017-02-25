@@ -1,27 +1,33 @@
 import React from 'react';
-import { connect } from 'redux';
-import store from '../redux/store.js';
-import { selectGroup } from '../actions/configActions.js';
+import { connect } from 'react-redux';
+import store from '../../redux/store.js';
+import { selectVenue, skipVenue } from '../../redux/actions/configActions.js';
 
 export class ChooseVenue extends React.Component {
-  render(){
+  render() {
+
   	return (
-    <div>
+      <div>
+      <div>Choose Your Venue</div>
       <ul>
-  	    {this.props.venues.map((item) => {
-  	    	<li>
-  	    	<div>{item.name}</div>
-  	    	{item.address.line1}
-  	    	</li>
-  	    })}
-  	  </ul>
-    </div>  
+        {this.props.venues.map((item, key) => {
+          return (
+            <li key={key}>
+              <div onClick={ selectVenue.bind(this, item.address.line1)}>
+              {item.address.line1}
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+      <div onClick={skipVenue}>Skip this step</div>
+      </div>
   	)
   }
 }
 
 export default connect((store) => {
 	return {
-		venues: store.config.defaults.venues
+		venues: store.config.venues
 	}
 })(ChooseVenue)

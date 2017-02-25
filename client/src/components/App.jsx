@@ -10,16 +10,27 @@ import MapViewer from './MapViewer/MapViewer.jsx';
 import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
 import CheckForInvites from './InitConfig/CheckForInvites.jsx';
-// import ChooseVenue from './InitConfig/ChooseVenue.jsx';
+import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
-// import CreateGroup from './InitConfig/CreateGroup.jsx';
+import CreateGroup from './InitConfig/CreateGroup.jsx';
 import * as authenticationActions from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
 
 class App extends React.Component {
   render() {
+    if (this.props.config.venueSelected === 'skipped' && this.props.config.groupJoined === 'skipped') {
+      return (
+        <CreateGroup />
+      )
+    }
 
-    if (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== null || this.props.config.groupJoined !== null)) {
+    if (this.props.config.groupJoined === 'skipped') {
+      return (
+        <ChooseVenue />
+      )
+    }
+
+    if (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== null && this.props.config.groupJoined !== null)) {
       return (
         <Router>
           <div>
@@ -49,11 +60,12 @@ class App extends React.Component {
   			</Router>
       )
     } 
-    if (this.props.auth.isUserSignedIn) {
+   if (this.props.auth.isUserSignedIn) {
       return (
-      <CheckForInvites />
+        <CheckForInvites />
       )
     }
+
     else {
       return (
         <SignInButton

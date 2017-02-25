@@ -10,6 +10,14 @@ export function selectGroup(group) {
 	store.dispatch({type: 'choose_group', payload: { group }})
 }
 
-export function skipLogin(){
-	store.dispatch({type: 'skip_login'})
+export function selectVenue(venue){
+	store.dispatch({type: 'choose_venue', payload: { venue }})
+}
+
+export function skipVenue(){
+	store.dispatch({type: 'skip_venue'})
+}
+
+export function skipGroup(){
+	store.dispatch({type: 'skip_group'})
 }

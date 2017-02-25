@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../redux/store.js';
 import { NavLink } from 'react-router-dom';
-import { selectGroup, skipLogin } from '../../redux/actions/configActions.js'
+import { selectGroup, skipGroup } from '../../redux/actions/configActions.js'
 ////Operating under the assumption that groupList is an array
 export class ChooseGroup extends React.Component {
   render(){
@@ -19,7 +19,7 @@ export class ChooseGroup extends React.Component {
             )
           })}
         </ul>
-        <div onClick={skipLogin}>Skip this step</div>
+        <div onClick={skipGroup}>Skip this step</div>
   		</div>
   	)
   }
