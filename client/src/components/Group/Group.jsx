@@ -4,14 +4,14 @@ import GroupSort from './GroupSort.jsx';
 import store from '../../redux/store.js';
 import localStyles from './GroupStyles.css'
 
-const GroupView = ({ dispatch, users, userID }) => (
+const GroupView = ({ dispatch, users, userId }) => (
   <div className="custom-container">
     <div className={localStyles.fixed}>
       <GroupSort dispatch={dispatch}/>
       {Object.keys(users).map((userKey, index) => {
         //Anchor current user info at top of view
         const friend = users[userKey];
-        if (userKey === userID) {
+        if (userKey === userId) {
           return (
             <GroupRow key={index} friend={friend} />
           );
@@ -21,7 +21,7 @@ const GroupView = ({ dispatch, users, userID }) => (
     <div className={localStyles.friendView}>
       {Object.keys(users).map((userKey, index) => {
         const friend = users[userKey];
-        if (userKey !== userID) {
+        if (userKey !== userId) {
           return (
             <GroupRow key={index} friend={friend} />
           );
