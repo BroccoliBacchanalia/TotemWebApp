@@ -1,12 +1,17 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker, OverlayView } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, OverlayView, InfoWindow } from 'react-google-maps';
 import Helmet from 'react-helmet';
 import Markers from './Markers.jsx'
 import GroundOverlay from '../GroundOverlay';
 import localStyles from './MapStyles.css';
 
-export default class MapViewer extends Component {
+class MapViewer extends Component {
+
+  shouldComponentUpdate() {
+     return false;
+  }
+
   render() {
     const LoadMap = withGoogleMap(props => (
       <GoogleMap
@@ -16,6 +21,7 @@ export default class MapViewer extends Component {
         mapTypeId= 'terrain'
         onClick={()=>{console.log('map clicked')}}
         >
+
         <Markers />
         <GroundOverlay
           image='https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-307385678134/outside_lands.png'
@@ -42,8 +48,19 @@ export default class MapViewer extends Component {
     );
   }
 
+  onClick(user) {
+    user.showInfo = true;
+  }
+
   handleMapLoad(map) {
     this._mapComponent = map;
     if (map) map.getZoom();
   }
 }
+
+
+export default connect((store) => {
+  return {
+    users: store.location.users,
+  };
+})(MapViewer);
