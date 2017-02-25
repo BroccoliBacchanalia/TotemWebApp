@@ -8,6 +8,7 @@ const authConfig = {
 };
 
 let accessToken;
+let databaseGroup;
 
 function signInSuccess(uid, token) {
   return {
@@ -66,17 +67,9 @@ export function signIn() {
         
         let ref = firebase.database().ref();
         let usersRef = ref.child('/users')
-        let databaseGroup;
         usersRef.on('value', snap => {
           databaseGroup=snap.val()
         })
-        console.log('DATATA!', databaseGroup)
-        // groupsRef.on('value', function(snapshot) {
-        //   snapshot.forEach(function(childSnapshot) {
-        //     console.log('child', childSnapshot)
-        //     databaseGroup = childSnapshot.val();
-        //   })
-        // })
 
         dispatch(signInSuccess(uid, accessToken));
       })
