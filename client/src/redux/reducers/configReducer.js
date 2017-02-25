@@ -1,7 +1,7 @@
 const defaults = {
   text: '',
-  venueSelected: null,
-  groupJoined: null,
+  venueSelected: '',
+  groupJoined: '',
   group:{
     pendingInvites: {
     	'asdfdsaffds' : 'chuck'
@@ -54,7 +54,7 @@ export default function configReducer(state = defaults, action) {
       return { ...state, text: action.payload.text };
     }
     case 'choose_group': {
-      return { ...state, groupJoined: action.payload.group };
+      return { ...state, groupJoined: action.payload.group, venueSelected: 'groupVenue' };
     }
     case 'choose_venue': {
       return { ...state, venueSelected: action.payload.venue };

@@ -13,7 +13,7 @@ export class ChooseVenue extends React.Component {
         {this.props.venues.map((item, key) => {
           return (
             <li key={key}>
-              <div onClick={ selectVenue.bind(this, item.address.line1)}>
+              <div onClick={ selectVenue.bind(this, item.address.line1) }>
               {item.address.line1}
               </div>
             </li>

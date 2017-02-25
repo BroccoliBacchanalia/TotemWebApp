@@ -10,13 +10,13 @@ export class CheckForInvites extends React.Component {
 		///////Talk to patrick about what he wants defaults to be!////////////
 		if(this.props.group.pendingInvites === "") {
 			return (
-       <ChooseVenue />
+        <ChooseVenue />
 			)
 		}
 		//if groups.pending invites is true route to join group
 		if(this.props.group.pendingInvites !== '') {
 		  return(
-      <ChooseGroup />
+        <ChooseGroup />
 		  )
 	  }
   }

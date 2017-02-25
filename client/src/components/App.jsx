@@ -12,7 +12,7 @@ import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
 import CheckForInvites from './InitConfig/CheckForInvites.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
-import CreateGroup from './InitConfig/CreateGroup.jsx';
+import {CreateGroup} from './InitConfig/CreateGroup.jsx';
 import * as authenticationActions from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
 
@@ -24,13 +24,19 @@ class App extends React.Component {
       )
     }
 
-    if (this.props.config.groupJoined === 'skipped') {
+    if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected === '') {
       return (
         <ChooseVenue />
       )
     }
 
-    if (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== null && this.props.config.groupJoined !== null)) {
+    if (this.props.config.groupJoined === 'skipped' && this.props.config.venueSelected !== '') {
+      return (
+        <CreateGroup />
+      )
+    }                   
+
+    if (this.props.auth.isUserSignedIn && (this.props.config.venueSelected !== '' && this.props.config.groupJoined !== '')) {
       return (
         <Router>
           <div>
