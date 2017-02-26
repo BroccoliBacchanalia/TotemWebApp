@@ -8,7 +8,6 @@ class MapViewer extends Component {
   render() {
     const users = this.props.users;
     const userKeys = Object.keys(users);
-
     return (
       <div>
         {userKeys.map((userKey, index) => {
@@ -25,7 +24,7 @@ class MapViewer extends Component {
               key={index}
               {...user}
               icon={icon}
-              onClick={() => store.dispatch({type: 'show_name', payload: {showInfo: true}})}
+              onClick={() => store.dispatch({type: 'show_name', payload: {showInfo: true, uid: userKey} })}
             >
               {user.showInfo && (
                 <InfoWindow>

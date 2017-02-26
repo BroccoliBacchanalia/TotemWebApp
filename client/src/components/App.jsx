@@ -17,6 +17,7 @@ import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
 import CreateGroup from './InitConfig/CreateGroup.jsx';
 
 class App extends React.Component {
+
   render() {
     const { auth, user } = this.props;
     const hasGroup = user.groupId !== null;

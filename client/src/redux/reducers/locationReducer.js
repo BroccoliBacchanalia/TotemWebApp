@@ -20,8 +20,10 @@ export default function locationReducer(state = defaults, action) {
       return {...state, users: arrToObj(sortedUsers)};
     }
     case 'show_name': {
-      console.log(state.users)
-      return {...state, users: action.payload}
+      const uid = action.payload.uid
+      console.log('users',state.users.uid)
+      console.log('uid',uid)
+      return {...state.users.uid, showInfo: action.payload.showInfo}
     }
   }
   return state;
