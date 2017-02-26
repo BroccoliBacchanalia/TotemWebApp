@@ -1,26 +1,32 @@
 const mockVenueData = require('./mock_venue_data');
 const defaults = {
-  text: '',
-  groupJoined: '',
-  createGroup: '',
-  friendsList: '',
-  venues: mockVenueData
+  venues: mockVenueData,
+  geofences: mockVenueData["-KdmcqUff2U8vDv-qfC1"].geofences,
 };
 
 export default function configReducer(state = defaults, action) {
   switch(action.type) {
-    case 'update_text': {
-      return { ...state, text: action.payload.text };
+    case 'update_venues': {
+      return { ...state, venues: action.payload.venues };
     }
-    case 'skip_venue': {
-      return { ...state, venueSelected: 'skipped' };
-    }
-    case 'skip_create_group': {
-      return { ...state, createGroup: 'skipped' };
-    }
-    case 'skip_group': {
-      return { ...state, groupJoined: 'skipped' };
-    }
+    case 'update_geofences':
   }
   return state;
 };
+
+function objToArray(obj) {
+  const result = [];
+  for (let key in obj) {
+    const newObj = { ...obj[key], key: key };
+    result.push(newObj);
+  }
+  return result;
+}
+
+function arrToObj(arr) {
+  const result = {};
+  for (let item of arr) {
+    result[item.key] = item;
+  }
+  return result;
+}

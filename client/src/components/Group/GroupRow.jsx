@@ -1,6 +1,6 @@
 import React from 'react';
 import localStyles from './GroupStyles.css';
-import { getGeofence } from '../../redux/actions/locationActions.js'
+import { getGeofence } from '../../redux/actions/locationActions';
 
 const GroupRow = ({ friend }) => (
   <div className={localStyles.gRow + " clearfix"}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import localStyles from './VenueStyles.css';
 // import { View, Button } from 'react-native';
-import { def, days, getArtist, updateStage, stages } from '../../redux/actions/venueScheduleActions.js'
+import { days, getArtist, updateStage, stages } from '../../redux/actions/venueScheduleActions.js'
 
 const RenderStages = (selectedDay) => (
  	<div>

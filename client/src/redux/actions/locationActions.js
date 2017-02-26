@@ -1,16 +1,9 @@
 import firebase from 'firebase';
 import store from '../store';
 
-export function toggleName() {
-  return {
-    type: 'show_name',
-    payload: { showInfo: true}
-  }
-}
-
 export function updateUsers(users) {
   return {
-    type: 'updating_location',
+    type: 'updating_user_loc',
     payload: { users }
   }
 }
@@ -47,8 +40,10 @@ export function geolocate() {
 }
 
 export function getGeofence(coordinates) {
-  const geoFences = store.getState().location.geoFences;
-  for (let fence of geoFences) {
+  const geofences = store.getState().venues.geofences;
+
+  for (let key in geofences) {
+    const fence = geofences[key];
     const degrees = getDegrees(fence.radius);
     const latDiff = Math.abs(fence.latitude - coordinates.lat);
     const longDiff = Math.abs(fence.longitude - coordinates.lng);

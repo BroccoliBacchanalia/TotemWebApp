@@ -29,10 +29,7 @@ export function def() {
   //console.log('DEF works');
 }
 
-
-
 export function allStages (scheduleDummyData) {
-
     let obj={};
     for(var key in scheduleDummyData) {
       //console.log("ITEM: ",item);
@@ -45,8 +42,8 @@ export function allStages (scheduleDummyData) {
     return Object.keys(obj);
 }
 
-export function allDays(scheduleDummyData) {   
-    
+export function allDays(scheduleDummyData) {
+
     let datesDay={};
     for(var key in scheduleDummyData) {
       var item = scheduleDummyData[key];
@@ -56,19 +53,6 @@ export function allDays(scheduleDummyData) {
     }
     //console.log("ALL DAYS: ", datesDay);
     return datesDay;
-}
-
-export function generateDay(dateString) {
-  let weekday = new Array(7);
-  weekday[0] =  "Sunday";
-  weekday[1] = "Monday";
-  weekday[2] = "Tuesday";
-  weekday[3] = "Wednesday";
-  weekday[4] = "Thursday";
-  weekday[5] = "Friday";
-  weekday[6] = "Saturday";
-  var d = new Date(dateString)
-  return weekday[d.getDay()];
 }
 
 export const daysAndDates = allDays(scheduleDummyData);
@@ -87,4 +71,15 @@ export function getArtist(stage, day){
 
 }
 
-
+function generateDay(dateString) {
+  let weekday = new Array(7);
+  weekday[0] =  "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+  var d = new Date(dateString)
+  return weekday[d.getDay()];
+}

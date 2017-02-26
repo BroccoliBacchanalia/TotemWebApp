@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-import { geolocate, groupInfoListener, updateUsers } from './';
 import axios from 'axios';
 import store from '../../redux/store';
 
@@ -9,7 +8,6 @@ const authConfig = {
 
 let accessToken;
 let databaseGroup =[];
-
 
 export function signInSuccess(uid, displayName) {
   return {
@@ -96,17 +94,10 @@ export function signIn() {
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
           agenda: {null: "null"}
         });
-  
+
         dispatch(signInSuccess(uid, accessToken));
       })
       .then(getUsers)
-      //.then(geolocate)
-      //.then(groupInfoListener)
-      // .then(users => {
-      //   console.log('check',users)
-      //   dispatch(updateUsers(users)
-      // })
-
       .catch(error => {
         dispatch(signInError(error.message))
       });

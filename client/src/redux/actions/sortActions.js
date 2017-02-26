@@ -2,10 +2,10 @@ import { getGeofence } from './locationActions';
 import store from '../../redux/store';
 
 export function sortUsers(method) {
-  return {
+  return store.dispatch({
     type: 'users_sort',
     payload: { method: sortMethods[method] }
-  }
+  });
 }
 
 const sortMethods = {
@@ -25,7 +25,7 @@ const sortMethods = {
   },
 
   proximity: function sortProximity(a, b) {
-    const users = store.getState().location.users;
+    const users = store.getState().group.users;
     const uid = store.getState().user.uid;
     const userCoords = users[uid].position;
     const aDiff = getDistance(userCoords, a.position);

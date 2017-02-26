@@ -30,22 +30,3 @@ export default class NavigationBar extends React.Component {
     );
   }
 }
-
-// <NavMenu dispatch={this.props.dispatch}/>
-//             <Route exact path="/" component={() => <div>User Schedule Holder</div>}/>
-//             <Route path="/group" component={() => (
-//               // <Group
-//                 // dispatch={this.props.dispatch}
-//                 // users={this.props.location.users}
-//                 // userID={this.props.app.userFbId}
-//                 <div>User Schedule Holder</div>
-//               // />
-//             )}/>
-//             <Route path="/agenda" component={() => <div>User Schedule Holder</div>}/>
-//             <Route path="/schedule" component={() => <div>User Schedule Holder</div>}/>
-//             <Route path="/emergency" component={() => <div>Emergency Info Holder</div>}/>
-//             <Route path="/choosevenue" component={() => <div>User Schedule Holder</div>}/>
-//             <Route path="/create" component={() => <div>User Schedule Holder</div>}/>
-//             <Route path="/invite" component={() => <div>User Schedule Holder</div>}/>
-//           </div>
-//         </Router>

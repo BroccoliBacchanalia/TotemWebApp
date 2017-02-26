@@ -1,9 +1,9 @@
 import React from 'react';
+import { Button } from 'react-onsenui';
 import localStyles from './GroupStyles.css';
 import { sortUsers } from '../../redux/actions/sortActions';
-import { Button } from 'react-onsenui';
 
-const SortGroup = ({ dispatch }) => {
+const SortGroup = () => {
   const icons = [
     { path:'a-z-icon.png', method: 'sortAZ' },
     { path: 'fence-icon.png', method: 'geofence' },
@@ -16,7 +16,7 @@ const SortGroup = ({ dispatch }) => {
         <Button
           key={index}
           style={{ width: iconWidth}}
-          onClick={() => dispatch(sortUsers(icon.method))}>
+          onClick={() => sortUsers(icon.method)}>
           <img src={'./img/' + icon.path}/>
         </Button>
       ))}
