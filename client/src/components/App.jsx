@@ -10,14 +10,16 @@ import MapViewer from './MapViewer/MapViewer.jsx';
 import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
-import CreateGroup from './InitConfig/CreateGroup.jsx';
 import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
 // import InviteFriends from './InitConfig/InviteFriends.jsx';
 import * as authenticationActions from '../redux/actions/authenticationActions';
 import { signIn } from '../redux/actions/authenticationActions';
 import SignInButton from './Auth/SignInButton';
+import InviteFriends from './InitConfig/InviteFriends.jsx';
+import CreateGroup from './InitConfig/CreateGroup.jsx';
 
 class App extends React.Component {
+
   render() {
     const { auth, user } = this.props;
     const hasGroup = user.groupId !== null;
@@ -33,7 +35,7 @@ class App extends React.Component {
           <Route path="/schedule" component={VenueSchedule}/>
           <Route path="/choosevenue" component={ChooseVenue}/>
           <Route path="/creategroup" component={CreateGroup}/>
-          <Route path="/invite" component={() => <div>Invite Holder</div>}/>
+          <Route path="/invite" component={InviteFriends}/>
         </div>
       </Router>
     );
