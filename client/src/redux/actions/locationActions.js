@@ -1,18 +1,18 @@
 import firebase from 'firebase';
 import store from '../store';
 
-export function updateUsers(users) {
-  return {
+export function updateUser(user, uid) {
+  return store.dispatch({
     type: 'updating_user_loc',
-    payload: { users }
-  }
+    payload: { user, uid }
+  });
 }
 
 //Listens to firebase for any changes in your group and returns the entire group
-export function groupInfoListener() {
-  return firebase.database().ref().child('users')
+export function addUserListener(userId) {
+  return firebase.database().ref().child('/users/' + userId)
   .on('value', snapshot => {
-    store.dispatch(updateUsers(snapshot.val()));
+    updateUser(snapshot.val(), userId);
   });
 };
 

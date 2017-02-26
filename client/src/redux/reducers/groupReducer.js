@@ -9,7 +9,15 @@ const defaults = {
 export default function groupReducer(state = defaults, action) {
   switch(action.type) {
     case 'updating_user_loc': {
-      return {...state, users: action.payload.users};
+      const user = action.payload.user;
+      const uid = action.payload.uid;
+      const newState = {
+        name: state.name,
+        memberKeys: { ...state.memberKeys },
+        users: { ...state.users }
+      };
+      newState.users[uid] = user;
+      return newState;
     }
     case 'update_group_name': {
       return { ...state, name: action.payload.name };
@@ -23,7 +31,7 @@ export default function groupReducer(state = defaults, action) {
       return { ...state, memberKeys: action.payload.keys };
     }
     case 'show_name': {
-      const uid = action.payload.uid
+      const uid = action.payload.uid;
       console.log('users',state.users.uid)
       console.log('uid',uid)
       // return {...state.users.uid, showInfo: action.payload.showInfo}

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../redux/store.js';
 import firebase from 'firebase'
-import { geolocate, groupInfoListener, updateGroupKeys } from '../redux/actions';
+import { geolocate, addUserListener, updateGroupKeys } from '../redux/actions';
 /*  Components  */
 import Group from './Group/Group.jsx';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
@@ -17,10 +17,14 @@ class HomeView extends React.Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         geolocate();
-        groupInfoListener();
         store.dispatch(signInSuccess(user.uid, user.displayName));
-        firebase.database().ref('/groups/' + props.user.groupId).on('value', (snapshot) => {
-          updateGroupKeys(snapshot.val());
+        firebase.database().ref('/groups/' + props.user.groupId)
+        .on('value', (snapshot) => {
+          const userKeys = snapshot.val().members;
+          updateGroupKeys(userKeys);
+          for (let userId in userKeys) {
+            addUserListener(userId);
+          }
         });
       }
     });
