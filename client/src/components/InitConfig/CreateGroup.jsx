@@ -1,35 +1,44 @@
 import React from 'react';
-//import { controller } from 'react-redux';
-//import store from '../../redux/store.js';
-import mockUserData from '../../redux/reducers/mock_user_data.js';
-import  { skipCreateGroup } from '../../redux/actions/venueActions.js';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import firebase from 'firebase';
+import { updateGroupName } from '../../redux/actions/groupActions';
+import { updateGroupId } from '../../redux/actions/userActions';
 
-export default class CreateGroup extends React.Component {
+const CreateGroup = (props) => (
+	<div>
+	  <div>Create a Group</div>
+    <input
+      type="text"
+      placeholder="Group Name"
+      onChange={(e) => updateGroupName(e.target.value)}
+    />
+    <button onClick={submit.bind(this, props)}>
+      Create
+    </button>
+	</div>
+);
 
-  render() {
-  	var userKeys = Object.keys(mockUserData);
-  	return (
-      <div>
-       CreateGroup
-        <ul>
-      {userKeys.map((item, key) => {
-      	return (
-          <li key={key}>
-            <div>
-              {mockUserData[item].label}
-            </div>
-          </li>
-      	)
-      })}
-        </ul>
-        <div onClick={skipCreateGroup}>Skip this step</div>
-      </div>
-  	)
-  }
+function submit({ user, group, push }) {
+	const updates = {};
+  const db = firebase.database();
+	const groupKey = db.ref().child('/groups/').push().key;
+  const groupData = {
+    name: group.name,
+    members: {},
+		venueId: user.venueId
+  };
+  groupData.members[user.uid] = user.name;
+	updates['/groups/' + groupKey] = groupData;
+
+  updateGroupId(groupKey);
+	db.ref().update(updates);
+  push('/invite');
 }
 
-// export default connect((store) => {
-// 	return {
-//     friends:
-// 	}
-// })(CreateGroup)
+export default connect((store) => {
+  return {
+    user: store.user,
+    group: store.group
+  };
+})(CreateGroup);

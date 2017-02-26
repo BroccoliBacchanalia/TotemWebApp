@@ -17,7 +17,7 @@ class HomeView extends React.Component {
       if (user) {
         geolocate()
         groupInfoListener()
-        store.dispatch(signInSuccess(user.uid));
+        store.dispatch(signInSuccess(user.uid, user.displayName));
         // signIn()
       }
     });
@@ -42,6 +42,7 @@ class HomeView extends React.Component {
     );
   }
 }
+
 
 export default connect((store) => {
   return {

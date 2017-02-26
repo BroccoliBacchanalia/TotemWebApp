@@ -9,11 +9,13 @@ const authConfig = {
 
 let accessToken;
 
-export function signInSuccess(uid) {
+
+function signInSuccess(uid, displayName) {
   return {
     type: 'SIGNIN_SUCCESS',
     payload: {
-      uid: uid
+      uid: uid,
+      name: displayName
     }
   }
 }
@@ -58,7 +60,6 @@ export function signIn() {
       .then((result) => {
         accessToken = result.credential.accessToken;
         const { user: { uid, displayName, photoURL, email } } = result;
-
 
         firebase.database().ref(`users/${ uid }`).set({
           label: displayName,
