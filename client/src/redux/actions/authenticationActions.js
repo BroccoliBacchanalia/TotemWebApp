@@ -10,7 +10,7 @@ const authConfig = {
 let accessToken;
 
 
-function signInSuccess(uid, displayName) {
+export function signInSuccess(uid, displayName) {
   return {
     type: 'SIGNIN_SUCCESS',
     payload: {
