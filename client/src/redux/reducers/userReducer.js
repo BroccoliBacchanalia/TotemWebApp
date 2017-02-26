@@ -2,11 +2,6 @@ const mockFBFriends = require('./mock_fb_friend_list');
 
 const defaults = {
   api_url: 'http://localhost:8000',
-  userId: 'aiRJiwP8s6USzeNQXKNp21Q8Hjc2',
-  venueId: '',
-  groupId: '',
-  friendList: '',
-  listOfUserAccounts: '',
   uid: null,
   name: null,
   venueId: null, //'-KdmcqUff2U8vDv-qfC1', //Outside lands
@@ -15,7 +10,7 @@ const defaults = {
     'asdfdsaffds' : 'chuck',
     'ldkjjkflie' : 'awesomes',
   },
-  fbFriends: mockFBFriends,
+  friendList: mockFBFriends,
   dataRetrieved: false
 };
 
