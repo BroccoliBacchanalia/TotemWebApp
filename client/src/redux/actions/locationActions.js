@@ -1,25 +1,18 @@
 import firebase from 'firebase';
 import store from '../store';
 
-export function toggleName() {
-  return {
-    type: 'show_name',
-    payload: { showInfo: true}
-  }
-}
-
-export function updateUsers(users) {
-  return {
-    type: 'updating_location',
-    payload: { users }
-  }
+export function updateUser(user, uid) {
+  return store.dispatch({
+    type: 'updating_user_loc',
+    payload: { user, uid }
+  });
 }
 
 //Listens to firebase for any changes in your group and returns the entire group
-export function groupInfoListener() {
-  return firebase.database().ref().child('users')
+export function addUserListener(userId) {
+  return firebase.database().ref().child('/users/' + userId)
   .on('value', snapshot => {
-    store.dispatch(updateUsers(snapshot.val()));
+    updateUser(snapshot.val(), userId);
   });
 };
 
@@ -47,8 +40,10 @@ export function geolocate() {
 }
 
 export function getGeofence(coordinates) {
-  const geoFences = store.getState().location.geoFences;
-  for (let fence of geoFences) {
+  const geofences = store.getState().venues.geofences;
+
+  for (let key in geofences) {
+    const fence = geofences[key];
     const degrees = getDegrees(fence.radius);
     const latDiff = Math.abs(fence.latitude - coordinates.lat);
     const longDiff = Math.abs(fence.longitude - coordinates.lng);

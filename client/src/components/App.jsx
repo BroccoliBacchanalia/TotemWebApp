@@ -4,19 +4,15 @@ import { connect } from 'react-redux';
 import store from '../redux/store.js';
 
 /*  Components  */
-import HomeView from './HomeView.jsx'
 import NavigationBar from './Nav/Nav.jsx';
+import HomeView from './HomeView.jsx'
 import MapViewer from './MapViewer/MapViewer.jsx';
 import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
-import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
-// import InviteFriends from './InitConfig/InviteFriends.jsx';
-import * as authenticationActions from '../redux/actions/authenticationActions';
-import { signIn } from '../redux/actions/authenticationActions';
-import SignInButton from './Auth/SignInButton';
-import InviteFriends from './InitConfig/InviteFriends.jsx';
+import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import CreateGroup from './InitConfig/CreateGroup.jsx';
+import InviteFriends from './InitConfig/InviteFriends.jsx';
 
 class App extends React.Component {
 
@@ -27,7 +23,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          {auth.isUserSignedIn && hasGroup ? <NavigationBar /> : ''}
+          {auth.isUserSignedIn && hasGroup ? <NavigationBar venueId={user.venueId} /> : ''}
           <Route exact path="/" component={HomeView}/>
           <Route path="/group" component={Group}/>
           <Route path="/map" component={MapViewer}/>

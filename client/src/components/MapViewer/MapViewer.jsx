@@ -61,6 +61,6 @@ class MapViewer extends Component {
 
 export default connect((store) => {
   return {
-    users: store.location.users,
+    users: store.group.users,
   };
 })(MapViewer);

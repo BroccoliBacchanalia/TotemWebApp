@@ -4,7 +4,6 @@ import group from './groupReducer';
 import nav from './navReducer';
 import auth from './authenticationReducer';
 import venues from './venueReducer';
-import location from './locationReducer';
 import venueSchedule from './venueScheduleReducer';
 
 export default combineReducers({
@@ -13,6 +12,5 @@ export default combineReducers({
   nav,
   auth,
   venues,
-  venueSchedule,
-  location
+  venueSchedule
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../redux/store.js';
 import firebase from 'firebase'
-import { geolocate, groupInfoListener, updateUsers } from '../redux/Actions';
+import { geolocate, addUserListener, updateGroupKeys } from '../redux/actions';
 /*  Components  */
 import Group from './Group/Group.jsx';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
@@ -13,32 +13,32 @@ import SignInButton from './Auth/SignInButton';
 class HomeView extends React.Component {
 
   componentWillMount() {
+    const props = this.props;
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        geolocate()
-        groupInfoListener()
+        geolocate();
         store.dispatch(signInSuccess(user.uid, user.displayName));
-        // signIn()
+        firebase.database().ref('/groups/' + props.user.groupId)
+        .on('value', (snapshot) => {
+          const userKeys = snapshot.val().members;
+          updateGroupKeys(userKeys);
+          for (let userId in userKeys) {
+            addUserListener(userId);
+          }
+        });
       }
     });
   }
 
   render() {
-    const { auth, dispatch, location, user } = this.props;
+    const { auth, dispatch, group, user } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
     const hasGroup = user.groupId !== null;
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} auth={ auth }/> :
       // !user.dataRetrieved ? <div>loading...</div> :
       !hasGroup && hasPendingInvites ? <ChooseGroup /> :
-      !hasGroup ? <ChooseVenue /> :
-      <div>
-        <Group
-          dispatch={dispatch}
-          users={location.users}
-          userID={user.userId}
-        />
-      </div>
+      !hasGroup ? <ChooseVenue /> : <Group/>
     );
   }
 }
@@ -48,7 +48,7 @@ export default connect((store) => {
   return {
     user: store.user,
     nav: store.nav,
-    location: store.location,
+    group: store.group,
     auth: store.auth,
   };
 })(HomeView);

@@ -4,8 +4,8 @@ const defaults = {
   api_url: 'http://localhost:8000',
   uid: null,
   name: null,
-  venueId: null, //'-KdmcqUff2U8vDv-qfC1', //Outside lands
-  groupId: null, //'-KdSF7i59sk07XoRgcYo', //group 'Ballers'
+  venueId: '-KdmcqUff2U8vDv-qfC1', //Outside lands //null
+  groupId: '-KdSF7i59sk07XoRgcYo', //group 'Ballers' //null
   pendingInvites: {
     'asdfdsaffds' : 'chuck',
     'ldkjjkflie' : 'awesomes',

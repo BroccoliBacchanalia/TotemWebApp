@@ -6,8 +6,7 @@ import store from './redux/store';
 import firebase from 'firebase';
 import { firebaseConfig } from './firebase'
 
-
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
 
 const Root = props => (
   <Provider store={store}>
