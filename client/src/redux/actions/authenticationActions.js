@@ -8,7 +8,7 @@ const authConfig = {
 };
 
 let accessToken;
-let databaseGroup;
+let databaseGroup =[];
 
 function signInSuccess(uid, token) {
   return {
@@ -33,16 +33,42 @@ function signInError(errorMessage) {
   }
 }
 
+function getUsers() {
+  let ref = firebase.database().ref();
+  let usersRef = ref.child('/users')
+    usersRef.once('value', snap => {
+      databaseGroup.push(snap.val())
+    }).then(getFriends)
+}
+
 function getFriends() {
   var endpoint = "https://graph.facebook.com/me/taggable_friends?access_token=" + accessToken;
 
   axios.get(endpoint).then((data) =>{
-    store.dispatch({type: 'UPDATE_FRIENDS', friends: data.data})
+    let faceBookFriends = data.data;
+    let firebaseArray = [];
+    let firebaseData = {};
+    for(let key in databaseGroup[0]) {
+      firebaseArray.push(databaseGroup[0][key])
+    }
+    firebaseData['data'] = firebaseArray;
+    let friendsWithAccounts = {
+      data: []
+    }
+    console.log('FIRE', firebaseData)
+    for (let i = 0; i < firebaseData.data.length-1; i++) {
+      for (let x = 0; x < faceBookFriends.data.length-1; x++) {
+        if (firebaseData.data[i].label === faceBookFriends.data[x].name) {
+          friendsWithAccounts.data.push(faceBookFriends.data[i]);
+        }
+      }
+    }
+
+    store.dispatch({type: 'UPDATE_FRIENDS', friends: friendsWithAccounts})
   }).catch((error) => {
     console.log('Error getting friends from facebook');
   })
 }
-
 
 export function signIn() {
   const dispatch = store.dispatch;
@@ -66,16 +92,10 @@ export function signIn() {
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
           agenda: {null: "null"}
         });
-        
-        let ref = firebase.database().ref();
-        let usersRef = ref.child('/users')
-        usersRef.on('value', snap => {
-          databaseGroup=snap.val()
-        })
-
+  
         dispatch(signInSuccess(uid, accessToken));
       })
-      .then(getFriends)
+      .then(getUsers)
       .then(geolocate)
       .then(groupInfoListener)
       // .then(users => {
