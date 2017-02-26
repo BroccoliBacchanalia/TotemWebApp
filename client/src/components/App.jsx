@@ -11,7 +11,7 @@ import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
-// import InviteFriends from './InitConfig/InviteFriends.jsx';
+import InviteFriends from './InitConfig/InviteFriends.jsx';
 import CreateGroup from './InitConfig/CreateGroup.jsx';
 
 class App extends React.Component {
@@ -30,7 +30,7 @@ class App extends React.Component {
           <Route path="/schedule" component={VenueSchedule}/>
           <Route path="/choosevenue" component={ChooseVenue}/>
           <Route path="/creategroup" component={CreateGroup}/>
-          <Route path="/invite" component={() => <div>Invite Holder</div>}/>
+          <Route path="/invite" component={InviteFriends}/>
         </div>
       </Router>
     );

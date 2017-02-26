@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import store from '../../redux/store.js';
 import { Link } from 'react-router-dom';
+import store from '../../redux/store.js';
 import { selectGroup, skipGroup } from '../../redux/actions/venueActions.js'
 import { updateGroupId } from '../../redux/actions/userActions';
 
@@ -22,14 +22,14 @@ class ChooseGroup extends React.Component {
           {groupKeys.map((key, index) => (
             <li key={index} onClick={() => {
               updateGroupId.call(this, key);
-              router.push('/map');
+              router.push('/');
             }}>
-              {this.props.groupList[key] }
+              {this.props.groupList[key]}
             </li>
           ))}
         </ul>
         <Link to="/choosevenue">
-          <div>Skip this step</div>
+          Skip
         </Link>
   		</div>
   	);
