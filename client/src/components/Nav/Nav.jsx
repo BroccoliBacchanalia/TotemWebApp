@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 export default class NavigationBar extends React.Component {
   render() {
+    console.log()
     return (
       <Navbar>
         <Navbar.Header>
@@ -14,13 +15,13 @@ export default class NavigationBar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1}><NavLink to="/group">Group</NavLink></NavItem>
-            <NavItem eventKey={2}><NavLink to="/agenda">Agenda</NavLink></NavItem>
-            <NavItem eventKey={2}><NavLink to="/map">Map</NavLink></NavItem>
-            <NavItem eventKey={3}><NavLink to="/schedule">Schedule</NavLink></NavItem>
-            <NavItem eventKey={5}><NavLink to="/choosevenue">ChooseVenue</NavLink></NavItem>
-            <NavItem eventKey={6}><NavLink to="/create">Create</NavLink></NavItem>
-            <NavItem eventKey={7}><NavLink to="/invite">Invite</NavLink></NavItem>
+            <NavLink to="/group">Group</NavLink>
+            <NavLink to="/map">Map</NavLink>
+            {this.props.venueId ? <NavLink to="/agenda">Agenda</NavLink> : ''}
+            {this.props.venueId ? <NavLink to="/schedule">Schedule</NavLink> : ''}
+            <NavLink to="/choosevenue">ChooseVenue</NavLink>
+            <NavLink to="/create">Create</NavLink>
+            <NavLink to="/invite">Invite</NavLink>
           </Nav>
           <Nav pullRight>
             <NavItem eventKey={1} href="/signout">Logout</NavItem>

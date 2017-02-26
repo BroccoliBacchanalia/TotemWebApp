@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          {auth.isUserSignedIn && hasGroup ? <NavigationBar /> : ''}
+          {auth.isUserSignedIn && hasGroup ? <NavigationBar venueId={user.venueId} /> : ''}
           <Route exact path="/" component={HomeView}/>
           <Route path="/group" component={Group}/>
           <Route path="/map" component={MapViewer}/>
