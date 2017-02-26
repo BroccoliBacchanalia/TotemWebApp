@@ -11,6 +11,10 @@ import Group from './Group/Group.jsx';
 import VenueSchedule from './VenueSchedule/VenueSchedule.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import PersonalAgenda from './VenueSchedule/PersonalAgenda.jsx';
+// import InviteFriends from './InitConfig/InviteFriends.jsx';
+import * as authenticationActions from '../redux/actions/authenticationActions';
+import { signIn } from '../redux/actions/authenticationActions';
+import SignInButton from './Auth/SignInButton';
 import InviteFriends from './InitConfig/InviteFriends.jsx';
 import CreateGroup from './InitConfig/CreateGroup.jsx';
 

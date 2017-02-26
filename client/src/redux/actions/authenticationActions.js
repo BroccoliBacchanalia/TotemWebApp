@@ -8,6 +8,7 @@ const authConfig = {
 };
 
 let accessToken;
+let databaseGroup =[];
 
 
 export function signInSuccess(uid, displayName) {
@@ -33,16 +34,43 @@ function signInError(errorMessage) {
   }
 }
 
+function getUsers() {
+  let ref = firebase.database().ref();
+  let usersRef = ref.child('/users')
+    usersRef.once('value', snap => {
+      databaseGroup.push(snap.val())
+    }).then(getFriends)
+}
+
 function getFriends() {
-  var endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
+  var endpoint = "https://graph.facebook.com/me/taggable_friends?access_token=" + accessToken;
 
   axios.get(endpoint).then((data) =>{
-    console.log('!!!!!!!', data)
+    let faceBookFriends = data.data;
+    let firebaseArray = [];
+    let firebaseData = {};
+    for(let key in databaseGroup[0]) {
+      firebaseArray.push(databaseGroup[0][key])
+    }
+    firebaseData['data'] = firebaseArray;
+    let friendsWithAccounts = {
+      data: []
+    }
+    console.log('FIRE', firebaseData)
+    for (let i = 0; i < firebaseData.data.length-1; i++) {
+      for (let x = 0; x < faceBookFriends.data.length-1; x++) {
+        if (firebaseData.data[i].label === faceBookFriends.data[x].name) {
+          friendsWithAccounts.data.push(faceBookFriends.data[x]);
+        }
+      }
+    }
+    console.log(friendsWithAccounts)
+
+    store.dispatch({type: 'UPDATE_FRIENDS', friends: friendsWithAccounts})
   }).catch((error) => {
     console.log('Error getting friends from facebook');
   })
 }
-
 
 export function signIn() {
   const dispatch = store.dispatch;
@@ -68,10 +96,12 @@ export function signIn() {
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
           agenda: {null: "null"}
         });
+  
+        dispatch(signInSuccess(uid, accessToken));
       })
-      .then(getFriends)
-      // .then(geolocate)
-      // .then(groupInfoListener)
+      .then(getUsers)
+      //.then(geolocate)
+      //.then(groupInfoListener)
       // .then(users => {
       //   console.log('check',users)
       //   dispatch(updateUsers(users)

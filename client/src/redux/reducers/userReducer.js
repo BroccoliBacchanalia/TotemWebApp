@@ -10,7 +10,7 @@ const defaults = {
     'asdfdsaffds' : 'chuck',
     'ldkjjkflie' : 'awesomes',
   },
-  fbFriends: mockFBFriends,
+  friendList: mockFBFriends,
   dataRetrieved: false
 };
 
@@ -31,6 +31,9 @@ export default function appReducer(state = defaults, action) {
     case 'update_groupId': {
       return { ...state, groupId: action.payload.id };
     }
+    case 'UPDATE_FRIENDS': {
+      return {...state, friendList: action.friends };
+      }
   }
   return state;
 };
