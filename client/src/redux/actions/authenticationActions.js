@@ -9,13 +9,13 @@ const authConfig = {
 
 let accessToken;
 
-function signInSuccess(uid, token, displayName) {
+
+export function signInSuccess(uid, displayName) {
   return {
     type: 'SIGNIN_SUCCESS',
     payload: {
       uid: uid,
-      name: displayName,
-      token: token
+      name: displayName
     }
   }
 }
@@ -49,13 +49,16 @@ export function signIn() {
   const provider = new firebase.auth.FacebookAuthProvider();
   dispatch(signInInProgress());
 
-  authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
+  // authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
+  provider.addScope('public_profile');
+  provider.addScope('email');
+  provider.addScope('user_friends');
 
     firebase.auth().signInWithPopup(provider)
-    // firebase.auth().signInWithRedirect(provider);
+    // firebase.auth().signInWithRedirect(provider)
     // firebase.auth().getRedirectResult()
       .then((result) => {
-        accessToken =result.credential.accessToken;
+        accessToken = result.credential.accessToken;
         const { user: { uid, displayName, photoURL, email } } = result;
 
         firebase.database().ref(`users/${ uid }`).set({
@@ -65,12 +68,10 @@ export function signIn() {
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
           agenda: {null: "null"}
         });
-
-        dispatch(signInSuccess(uid, accessToken, displayName));
       })
       .then(getFriends)
-      .then(geolocate)
-      .then(groupInfoListener)
+      // .then(geolocate)
+      // .then(groupInfoListener)
       // .then(users => {
       //   console.log('check',users)
       //   dispatch(updateUsers(users)
