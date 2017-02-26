@@ -9,11 +9,12 @@ const authConfig = {
 
 let accessToken;
 
-function signInSuccess(uid, token) {
+function signInSuccess(uid, token, displayName) {
   return {
     type: 'SIGNIN_SUCCESS',
     payload: {
       uid: uid,
+      name: displayName,
       token: token
     }
   }
@@ -57,7 +58,6 @@ export function signIn() {
         accessToken =result.credential.accessToken;
         const { user: { uid, displayName, photoURL, email } } = result;
 
-
         firebase.database().ref(`users/${ uid }`).set({
           label: displayName,
           img: photoURL,
@@ -66,8 +66,7 @@ export function signIn() {
           agenda: {null: "null"}
         });
 
-
-        dispatch(signInSuccess(uid, accessToken));
+        dispatch(signInSuccess(uid, accessToken, displayName));
       })
       .then(getFriends)
       .then(geolocate)

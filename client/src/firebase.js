@@ -5,4 +5,3 @@ export const firebaseConfig = {
   storageBucket: "rabble-984ed.appspot.com",
   messagingSenderId: "869569787907"
 };
-

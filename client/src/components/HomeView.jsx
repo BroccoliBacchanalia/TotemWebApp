@@ -23,7 +23,7 @@ const HomeView = (props) => {
       <Group
         dispatch={dispatch}
         users={location.users}
-        userID={user.userId}
+        uid={user.uid}
       />
     </div>
   );
