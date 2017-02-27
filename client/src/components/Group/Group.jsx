@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import GroupRow from './GroupRow.jsx';
 import GroupSort from './GroupSort.jsx';
 import store from '../../redux/store.js';
-import localStyles from './GroupStyles.css'
+import localStyles from './GroupStyles.css';
+import styles from '../Styles.css'
 
 const GroupView = ({ user, users }) => (
   <div className="custom-container">
-    <div className={localStyles.fixed}>
+    <div>
       <GroupSort/>
       {Object.keys(users).map((userKey, index) => {
         //Anchor current user info at top of view
@@ -19,7 +20,7 @@ const GroupView = ({ user, users }) => (
         }
       })}
     </div>
-    <div className={localStyles.friendView}>
+    <div className={styles.scrollView}>
       {Object.keys(users).map((userKey, index) => {
         const friend = users[userKey];
         if (userKey !== user.uid) {

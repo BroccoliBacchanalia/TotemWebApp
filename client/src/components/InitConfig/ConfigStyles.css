@@ -1,0 +1,91 @@
+.header {
+  background-color: #222;
+  height: 90px;
+  color: lightgrey;
+}
+
+.header h3 {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px;
+}
+
+
+/*  Choose Venue  */
+.cRow {
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 70px;
+}
+
+.cRow > div:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
+.cFooter div {
+  width: 40px;
+  margin: 0 auto;
+}
+
+.cFooter a:hover {
+  text-decoration: none;
+}
+
+
+/*  Create Group  */
+.cgBody {
+  margin-top: 50px !important;
+  padding: 10px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.cgBody > * {
+  display: inline-block;
+}
+
+
+/*  Invite Friends  */
+.iFriend {
+  padding: 10px;
+}
+
+.iFriend input {
+  margin-right: 10px;
+}
+
+.iFriend > * {
+  display: inline-block;
+}
+
+.iFooter {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  height: 110px;
+  width: 100%;
+}
+
+.iFooter > div {
+  width: 30px;
+  margin: 10px auto;
+}
+
+.iFooter button {
+  width: 100%;
+  height: 70px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.skip {
+  height: 50px;
+}
+
+.skip div {
+  width: 40px;
+  margin: 0 auto;
+}
