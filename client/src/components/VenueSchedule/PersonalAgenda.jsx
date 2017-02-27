@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
-//import scheduleDummyData from './scheduleDummyData.json'
-import VenueStyles from './VenueStyles.css';
-// import ScheduleRow from './ScheduleRow.jsx';
-// import RenderDays from './RenderDays.jsx';
-// import RenderStages from './RenderStages.jsx';
 import { connect } from 'react-redux';
-import store from '../../redux/store.js';
-// import { daysAndDates } from '../../redux/actions/venueScheduleActions.js';
+import RenderDays from './RenderDays.jsx';
 
 class VenueSchedule extends Component {
   render() {

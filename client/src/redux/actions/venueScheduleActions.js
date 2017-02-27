@@ -1,12 +1,10 @@
 import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData.js';
 import store from '../store.js';
 export function updateDay(day) {
-  // return {
-  //   type: 'update_day',
-  //   payload: { day }
-  // }
- // console.log('DISPATCH', day)
-  store.dispatch({type:'update_day', payload: {day}})
+  store.dispatch({
+    type:'update_day',
+    payload: { day }
+  });
 }
 
 export function updateStage(stage) {

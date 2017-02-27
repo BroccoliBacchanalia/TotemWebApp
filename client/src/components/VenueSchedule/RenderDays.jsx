@@ -1,5 +1,4 @@
 import React from 'react';
-// import { View, Button } from 'react-native';
 import localStyles from './VenueStyles.css';
 import { def, days, updateDay } from '../../redux/actions/venueScheduleActions.js'
 console.log("----------:",days);
@@ -14,7 +13,7 @@ const RenderDays = () => (
         {days.map((item, key) =>
           <div className={localStyles.navB}
               key={key}
-              title={item} 
+              title={item}
               onClick = {updateDay.bind(null,item)}/*this.onChangeDay.bind(this, item)*/
               value={item}>{item}
           </div>
@@ -25,4 +24,3 @@ const RenderDays = () => (
 );
 
 export default RenderDays;
-
