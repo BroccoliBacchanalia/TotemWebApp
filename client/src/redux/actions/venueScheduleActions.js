@@ -51,8 +51,9 @@ export function allDays(scheduleDummyData) {
     return datesDay;
 }
 
-export const daysAndDates = allDays(scheduleDummyData);
-export const days = Object.keys(daysAndDates);
+// export const daysAndDates = allDays(scheduleDummyData);
+// export const days = Object.keys(daysAndDates);
+
 
 export function getArtist(stage, day){
  var arr=[]
