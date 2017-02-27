@@ -52,7 +52,7 @@ module.exports = {
       },
       "-KdnpQ8wFzhNWcbj-Yak" : {
         "latitude" : 37.76974,
-        "longitude" : -122.48303,
+        "longitude" : -122.48383,
         "name" : "Twin Peaks Stage",
         "radius" : 50,
         "type" : "venue"
