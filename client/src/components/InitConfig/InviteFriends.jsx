@@ -2,18 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import store from '../../redux/store.js';
-<<<<<<< HEAD
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
+import $ from 'jquery';
 
-////Operating under the assumption that groupList is an array
 const InviteFriends = ( { friendList }) => (
   <div className="custom-container">
     <div className={localStyles.header}>
 			<h3>Invite Your Friends</h3>
 		</div>
     <div className={styles.scrollView}>
-      <form>
+      <form id="check_table">
         {friendList.map((friend, index) => (
           <div
             key={index}
@@ -25,9 +24,8 @@ const InviteFriends = ( { friendList }) => (
       </form>
     </div>
     <div className={localStyles.iFooter}>
-      {/* Call to firebase to record pending invites */}
       <Link to="/">
-        <button>Invite</button>
+        <button id='invite_button'>Invite</button>
       </Link>
       <div>
         <Link to="/">
@@ -37,6 +35,15 @@ const InviteFriends = ( { friendList }) => (
     </div>
   </div>
 );
+
+$('#invite_button').click(e=>{
+  e.preventDefault();
+
+})
+
+const sendPendingInvite = () => {
+  
+}
 
 export default connect((store) => {
 	return {
