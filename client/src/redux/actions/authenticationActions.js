@@ -75,10 +75,10 @@ export function signIn() {
   const provider = new firebase.auth.FacebookAuthProvider();
   dispatch(signInInProgress());
 
-  // authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
-  provider.addScope('public_profile');
-  provider.addScope('email');
-  provider.addScope('user_friends');
+  authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
+  // provider.addScope('public_profile');
+  // provider.addScope('email');
+  // provider.addScope('user_friends');
 
     firebase.auth().signInWithPopup(provider)
     // firebase.auth().signInWithRedirect(provider)
