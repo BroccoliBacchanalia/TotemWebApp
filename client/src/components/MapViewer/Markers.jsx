@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Marker, InfoWindow } from 'react-google-maps';
 import store from '../../redux/store.js';
+import { getGeofence } from '../../redux/actions'
 
 class MapViewer extends Component {
   render() {
@@ -22,12 +23,16 @@ class MapViewer extends Component {
             <Marker
               key={index}
               {...user}
+              label=''
               icon={icon}
-              onClick={() => store.dispatch({type: 'show_name', payload: {showInfo: true, uid: userKey} })}
+              onClick={() => store.dispatch({type: 'show_name', payload: userKey})}
             >
               {user.showInfo && (
                 <InfoWindow>
-                  <div>{user.label}</div>
+                  <div>
+                    <div>{user.label}</div>
+                    <div>{getGeofence(user.position)}</div>
+                  </div>
                 </InfoWindow>
               )}
             </Marker>
