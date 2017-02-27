@@ -7,7 +7,6 @@ import ChooseVenue from './ChooseVenue.jsx';
 class CheckForInvites extends React.Component {
 	render() {
 		//if groups.pending invites does not have any pending invites route to choose venue
-		///////Talk to patrick about what he wants defaults to be!////////////
 		if(this.props.group.pendingInvites === "") {
 			return (
         <ChooseVenue />
@@ -21,8 +20,6 @@ class CheckForInvites extends React.Component {
 	  }
   }
 }
-////////IMPORTANTE!!!!!!!!!!!!!!///////////////
-//will need to change routes for variable name from store when patrick gets db hooked up
 export default connect((store) => {
 	return {
   group: store.config.group

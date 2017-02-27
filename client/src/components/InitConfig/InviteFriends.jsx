@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import store from '../../redux/store.js';
+<<<<<<< HEAD
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
 
@@ -42,3 +43,4 @@ export default connect((store) => {
 		friendList: store.user.friendList
 	}
 })(InviteFriends)
+

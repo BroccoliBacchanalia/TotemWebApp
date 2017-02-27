@@ -91,6 +91,7 @@ function getFriends() {
 }
 
 export function signIn() {
+  console.log('SIGIN!!')
   const dispatch = store.dispatch;
   const provider = new firebase.auth.FacebookAuthProvider();
   dispatch(signInInProgress());
@@ -113,7 +114,7 @@ export function signIn() {
           showInfo: true
         });
 
-        dispatch(signInSuccess(uid, accessToken));
+
       })
       .then(getUsers)
       .catch(error => {
