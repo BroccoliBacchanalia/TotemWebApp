@@ -3,7 +3,7 @@ import firebase from 'firebase';
 const defaults = {
   name: null,
   memberKeys: {},
-  users: {}
+  users: {},
 };
 
 export default function groupReducer(state = defaults, action) {
@@ -31,11 +31,14 @@ export default function groupReducer(state = defaults, action) {
       return { ...state, memberKeys: action.payload.keys };
     }
     case 'show_name': {
-      const uid = action.payload.uid;
-      console.log('users',state.users.uid)
-      console.log('uid',uid)
-      // return {...state.users.uid, showInfo: action.payload.showInfo}
-      return state;
+      const uid = action.payload;
+      const newState = {
+        name: state.name,
+        memberKeys: { ...state.memberKeys },
+        users: { ...state.users }
+      };
+      newState.users[uid].showInfo ? newState.users[uid].showInfo = !newState.users[uid].showInfo : newState.users[uid].showInfo = true;
+      return newState;
     }
   }
   return state;

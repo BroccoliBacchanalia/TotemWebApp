@@ -96,9 +96,6 @@ export function signIn() {
   dispatch(signInInProgress());
 
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
-  // provider.addScope('public_profile');
-  // provider.addScope('email');
-  // provider.addScope('user_friends');
 
     firebase.auth().signInWithPopup(provider)
     // firebase.auth().signInWithRedirect(provider)
@@ -112,7 +109,8 @@ export function signIn() {
           img: photoURL,
           email: email,
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
-          agenda: {null: "null"}
+          agenda: {null: "null"},
+          showInfo: true
         });
 
         dispatch(signInSuccess(uid, accessToken));

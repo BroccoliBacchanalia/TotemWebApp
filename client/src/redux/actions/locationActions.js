@@ -21,7 +21,7 @@ export function geolocate() {
   function success(pos) {
     console.log(pos);
     const user = firebase.auth().currentUser
-    if (user.uid === 'guLTmuSUVjYZWEXm9rtF2cAvePa2') {
+    if (user.uid === '6LKIWFKvhVa7JmgpuM635VGwfZH2') {
       firebase.database().ref(`users/${user.uid}/position`).set({
         lat: pos.coords.latitude - 0.0161225 + .0022278,
         lng: pos.coords.longitude - 0.0857576 + .010937

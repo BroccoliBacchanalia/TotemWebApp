@@ -11,12 +11,5 @@ export function updateGroupKeys(keys) {
   return store.dispatch({
     type: 'update_keys',
     payload: { keys }
-  });
-}
-
-export function toggleName() {
-  return {
-    type: 'show_name',
-    payload: { showInfo: true}
-  }
+  }); 
 }
