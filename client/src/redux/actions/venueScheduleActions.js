@@ -1,6 +1,5 @@
 import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData.js';
 import store from '../store.js';
-//console.log("scheduleDummyData: ------------------------------------------",scheduleDummyData);
 export function updateDay(day) {
   // return {
   //   type: 'update_day',
@@ -29,17 +28,16 @@ export function def() {
   //console.log('DEF works');
 }
 
-export function allStages (scheduleDummyData) {
-    let obj={};
-    for(var key in scheduleDummyData) {
-      //console.log("ITEM: ",item);
-        var item = scheduleDummyData[key];
-        if(!(item.geofence in obj)) {
-        obj[item.geofence] = item.geofence;
-      }
+export function allStages (scheduleItems) {
+  const stages = {};
+
+  for(let key in scheduleItems) {
+    const item = scheduleItems[key];
+    if(!(item.geofence in stages)) {
+      stages[item.geofence] = item.geofence;
     }
-    //console.log("ALL STAGES:____",obj);
-    return Object.keys(obj);
+  }
+  return Object.keys(stages);
 }
 
 export function allDays(scheduleDummyData) {
@@ -51,13 +49,12 @@ export function allDays(scheduleDummyData) {
         datesDay[generateDay(item.day)] = item.day;
       }
     }
-    //console.log("ALL DAYS: ", datesDay);
+
     return datesDay;
 }
 
 export const daysAndDates = allDays(scheduleDummyData);
 export const days = Object.keys(daysAndDates);
-export const stages = allStages(scheduleDummyData);
 
 export function getArtist(stage, day){
  var arr=[]
@@ -67,7 +64,7 @@ export function getArtist(stage, day){
       arr.push(item.name);
     }
   }
-  return arr;
+  return arr.join(' | ');
 
 }
 

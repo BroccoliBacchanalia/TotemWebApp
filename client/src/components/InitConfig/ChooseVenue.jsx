@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import store from '../../redux/store.js';
 import { selectVenue, skipVenue } from '../../redux/actions/venueActions.js';
 import { updateVenueId } from '../../redux/actions/userActions';
+import styles from '../Styles.css';
+import localStyles from './ConfigStyles.css';
 
 class ChooseVenue extends React.Component {
   render() {
@@ -12,23 +14,30 @@ class ChooseVenue extends React.Component {
     const router = this.context.router;
 
   	return (
-      <div>
-        <div>Choose Your Venue</div>
-        <ul>
+      <div className="custom-container">
+        <div className={localStyles.header}>
+          <h3>Select a Venue</h3>
+        </div>
+        <div className={styles.scrollView + ' ' + localStyles.cRow}>
           {venueKeys.map((key, index) => (
-            <li key={index}>
-              <div onClick={() => {
+            <div
+              key={index}
+              className={styles.row}
+              onClick={() => {
                 updateVenueId.call(this, key);
                 router.push('/creategroup');
               }}>
               {venues[key].name}
-              </div>
-            </li>
+            </div>
           ))}
-        </ul>
-        <Link to="/creategroup">
-          Skip
-        </Link>
+        </div>
+        <div className={localStyles.cFooter}>
+          <div>
+            <Link to="/creategroup">
+              Skip
+            </Link>
+          </div>
+        </div>
       </div>
   	);
   }
