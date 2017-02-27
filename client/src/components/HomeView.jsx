@@ -7,7 +7,9 @@ import { geolocate, addUserListener, updateGroupKeys } from '../redux/actions';
 import Group from './Group/Group.jsx';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
-import { signIn, signInSuccess } from '../redux/actions/authenticationActions';
+import { signIn, signInSuccess, updateScheduleData, afterUpdatingData } from '../redux/actions/authenticationActions';
+import { allStages, allDays } from '../redux/actions/venueScheduleActions';
+import { Promise } from 'promise';
 import SignInButton from './Auth/SignInButton';
 
 class HomeView extends React.Component {
@@ -28,10 +30,41 @@ class HomeView extends React.Component {
         });
       }
     });
+
+    var all_stages;
+    var all_days;
+    var daysAndDates;
+
+    var db = firebase.database();
+    var scheduleData;
+    var ref = db.ref('/venues/-KdmcqUff2U8vDv-qfC1/scheduleitems/');
+    ref.on("value", function(snapshot) {
+      scheduleData  =  snapshot.val();
+      console.log("schedule data is here: ", scheduleData)
+      updateScheduleData(scheduleData);
+      
+       var daysAndDates = allDays(scheduleData);
+      //console.log("äll Days:", daysAndDates); //object of days and dares
+
+      var all_stages = allStages(scheduleData);
+     // console.log("all stages: ", all_stages);
+
+      var all_days = Object.keys(daysAndDates)
+      //console.log("days and dates: ", all_days);
+
+      afterUpdatingData(all_days, all_stages, daysAndDates)
+
+    
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    })
+
+     
+   
   }
 
   render() {
-    const { auth, dispatch, group, user } = this.props;
+    const { auth, dispatch, group, user, venueSchedule } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
     const hasGroup = user.groupId !== null;
     return (
@@ -50,5 +83,6 @@ export default connect((store) => {
     nav: store.nav,
     group: store.group,
     auth: store.auth,
+    venueSchedule: store.venueSchedule
   };
 })(HomeView);
