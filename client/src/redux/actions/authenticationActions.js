@@ -67,26 +67,27 @@ function getFriends() {
     let faceBookFriends = data.data;
     let firebaseArray = [];
     let firebaseData = {};
+    let temp = {};
+
     for(let key in databaseGroup[0]) {
+      databaseGroup[0][key]['firebaseId'] = key
       firebaseArray.push(databaseGroup[0][key])
     }
     firebaseData['data'] = firebaseArray;
     let friendsWithAccounts = {
       data: []
     }
-    console.log('FIRE', firebaseData)
     for (let i = 0; i < firebaseData.data.length-1; i++) {
       for (let x = 0; x < faceBookFriends.data.length-1; x++) {
         if (firebaseData.data[i].label === faceBookFriends.data[x].name) {
-          friendsWithAccounts.data.push(faceBookFriends.data[x]);
+          friendsWithAccounts.data.push(faceBookFriends.data[i]);
         }
       }
     }
-    console.log(friendsWithAccounts)
 
     store.dispatch({type: 'UPDATE_FRIENDS', friends: friendsWithAccounts})
   }).catch((error) => {
-    console.log('Error getting friends from facebook');
+    console.log('Error getting friends from facebook', error);
   })
 }
 
@@ -111,7 +112,8 @@ export function signIn() {
           email: email,
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
           agenda: {null: "null"},
-          showInfo: true
+          showInfo: true,
+          pendingInvites: '',
         });
 
 
