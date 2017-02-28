@@ -150,7 +150,7 @@ export function signIn() {
           venueId: "null",
           groupId: "null",
         });
-
+  console.log('DATA UPDATED')
 
       })
       .then(getUsers)

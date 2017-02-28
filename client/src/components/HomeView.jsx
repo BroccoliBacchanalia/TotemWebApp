@@ -59,7 +59,7 @@ class HomeView extends React.Component {
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} auth={ auth }/> :
       !user.dataRetrieved ? <Loading /> :
-      !hasGroup && hasPendingInvites ? <ChooseGroup /> :
+      hasPendingInvites ? <ChooseGroup /> :
       !hasGroup ? <ChooseVenue /> : <Group/>
     );
   }
