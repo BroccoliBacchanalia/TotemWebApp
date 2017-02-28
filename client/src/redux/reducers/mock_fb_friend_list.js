@@ -1,7 +1,9 @@
-module.exports = [
+module.exports = {
+  data: [
   {
     id: 'adkdjfkjlejw',
-    name: 'Patrick',
+    label: 'Patrick',
+    firebaseId: 'sdfasdfsddfs',
     picture: {
       data: {
         url: 'https://facebook.github.io/react/img/logo_og.png'
@@ -10,7 +12,8 @@ module.exports = [
   },
   {
     id: 'fojejflkwaj',
-    name: 'John',
+    label: 'John',
+    firebaseId: 'sdafasdfasdfadsf',
     picture: {
       data: {
         url: 'https://facebook.github.io/react/img/logo_og.png'
@@ -19,7 +22,8 @@ module.exports = [
   },
   {
     id: 'dlajflkand',
-    name: 'Smriti',
+    firebaseId: 'sdafasdfasdfadsf',
+    label: 'Smriti',
     picture: {
       data: {
         url: 'https://facebook.github.io/react/img/logo_og.png'
@@ -28,11 +32,13 @@ module.exports = [
   },
   {
     id: 'dldlekejdd',
-    name: 'Derek',
+    firebaseId: 'sdafasdfasdfadsf',
+    label: 'Derek',
     picture: {
       data: {
         url: 'https://facebook.github.io/react/img/logo_og.png'
       }
     }
-  },
-];
+  }
+  ]
+};

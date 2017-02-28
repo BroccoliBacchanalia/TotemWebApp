@@ -26,6 +26,7 @@ const VenueSchedule = ({ venueSchedule, venues, venueId }) => {
         if(item.geofence === venueSchedule.chooseStage && item.day === venueSchedule.daysAndDates[venueSchedule.selectedDay]) {
           return (
             <ScheduleRow
+              key={key}
               itemKey={ite}
               name={item.name}
               startTime = {item.starttime}

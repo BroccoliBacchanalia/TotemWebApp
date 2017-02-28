@@ -6,6 +6,7 @@ const defaults = {
   name: null,
   venueId: '-KdmcqUff2U8vDv-qfC1', //Outside lands //null
   groupId: '-KdSF7i59sk07XoRgcYo', //group 'Ballers' //null
+  groupName: 'Ballers',
   pendingInvites: {
     'asdfdsaffds' : 'chuck',
     'ldkjjkflie' : 'awesomes',
@@ -24,6 +25,9 @@ export default function appReducer(state = defaults, action) {
       };
     case 'update_userId': {
       return { ...state, uid: action.payload.id };
+    }
+    case 'update_user_data': {
+      return { ...state, groupName: action.payload.groupName, pendingInvites: action.payload.pendingInvites };
     }
     case 'update_venueId': {
       return { ...state, venueId: action.payload.id };

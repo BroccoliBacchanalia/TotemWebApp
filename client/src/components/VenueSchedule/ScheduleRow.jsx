@@ -1,15 +1,29 @@
 import React from 'react';
 import firebase from 'firebase';
 import localStyles from './VenueStyles.css';
-import { updateAgenda } from '../../redux/actions/venueScheduleActions.js';
+import { addAgenda } from '../../redux/actions/venueScheduleActions.js';
 
-function addAgendaItem(key) {
+function addAgendaItem(key, name, startTime, endTime, geofence, day) {
   let uid = firebase.auth().currentUser.uid;
   const db = firebase.database();
   const updates = {};
   updates[`users/${ uid }/agenda/${key}`] = true;
   db.ref().update(updates);
-  updateAgenda();
+
+  //fetch new agenda
+  var updateRef = db.ref('users/'+ uid +'/agenda/');
+  updateRef.on("value", function(snapshot) {
+   
+    let agenda  =  snapshot.val();
+    agenda = Object.keys(agenda);
+    agenda = agenda.slice(0,agenda.length-1);
+    console.log("ADDED AGENDA: ", agenda); 
+    addAgenda(agenda)
+    //store.dispatch({type: 'add_agenda', payload: { agenda } });  
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+  console.log("INSIDE ADDED AGENDA");
 
 }
 
@@ -17,7 +31,7 @@ const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day }) => (
   <div
     type="button"
     className={localStyles.gRow + " clearfix"}
-    onClick={addAgendaItem.bind(null, itemKey)}>
+    onClick={addAgendaItem.bind(null, itemKey, name, startTime, endTime, geofence, day)}>
     <img src='./img/totem1.png'/>
       <p>
         <span className="h3">{name}</span>

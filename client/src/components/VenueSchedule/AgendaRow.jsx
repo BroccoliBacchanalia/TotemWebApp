@@ -1,20 +1,32 @@
 import React from 'react';
 import firebase from 'firebase';
 import localStyles from './VenueStyles.css';
-import { updateAgenda } from '../../redux/actions/venueScheduleActions.js';
+import { removeAgenda } from '../../redux/actions/venueScheduleActions.js';
 
 function removeAgendaItem(key) {
 
   let uid = firebase.auth().currentUser.uid;
-  const db = firebase.database();
+  var db = firebase.database();
 
-  // const updates = {};
-  // updates[`users/${ uid }/agenda/${key}`] = true;
-  // db.ref().update(updates);
+  db.ref('users/'+uid+'/agenda/'+key).remove()
+  .then(function(){
+    
+   // fetch data after removing agenda
 
-  updateAgenda();
-  console.log("remove agenda item");
+    var updateRef = db.ref('users/'+ uid +'/agenda/');
+    updateRef.on("value", function(snapshot) {
+     
+      let agenda  =  snapshot.val();
+      agenda = Object.keys(agenda);
+      agenda = agenda.slice(0,agenda.length-1);
+      console.log("REMOVED AGENDA: ", agenda); 
+      removeAgenda(agenda)  
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+    console.log("INSIDE REMOVED AGENDA");
 
+  }); 
 }
 
 const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day }) => (
