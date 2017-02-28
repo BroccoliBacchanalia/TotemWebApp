@@ -23,7 +23,6 @@ const VenueSchedule = ({ venueSchedule, venues, venueId }) => {
       <RenderDays selectedDay={venueSchedule.selectedDay}/>
       {Object.keys(venueSchedule.scheduleData).map((ite, key) => {
         var item = venueSchedule.scheduleData[ite];
-        console.log("--------------------------",venueSchedule);
         if(item.geofence === venueSchedule.chooseStage && item.day === venueSchedule.daysAndDates[venueSchedule.selectedDay]) {
           return (
             <ScheduleRow

@@ -1,10 +1,12 @@
+import firebase from 'firebase';
 const defaults = {
   selectedDay: 'Friday',
   chooseStage: '',
   scheduleData: "",
   stages: [],
   days: [],
-  daysAndDates: {}
+  daysAndDates: {},
+  agenda: ""
 };
 
 export default function venueScheduleReducer(state = defaults, action) {
@@ -31,6 +33,9 @@ export default function venueScheduleReducer(state = defaults, action) {
         days: action.payload.allDays,
         daysAndDates: action.payload.daysAndDates
       }
+    }
+    case 'update_agenda': {
+      return {...state, agenda: action.payload.agenda}
     }
   }
   return state;

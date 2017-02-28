@@ -1,4 +1,21 @@
 import store from '../store.js';
+import firebase from 'firebase';
+
+export function updateAgenda() {
+  var agenda;
+  var db = firebase.database();
+  let uid = firebase.auth().currentUser.uid;
+  var ref = db.ref('users/'+ uid +'/agenda/');
+  ref.on("value", function(snapshot) {
+    agenda  =  snapshot.val();
+    agenda = Object.keys(agenda);
+    agenda = agenda.slice(0,agenda.length-1);
+    console.log("HERE IS AGENDA: ",agenda);
+    store.dispatch({type: 'update_agenda', payload: {agenda}})
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  })
+}
 
 export function updateDay(day) {
   store.dispatch({
@@ -42,7 +59,6 @@ export function allDays(scheduleData) {
         datesDay[generateDay(item.day)] = item.day;
       }
     }
-
     return datesDay;
 }
 
