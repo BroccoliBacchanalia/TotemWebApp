@@ -123,6 +123,7 @@ export function signIn() {
       .then((result) => {
         accessToken = result.credential.accessToken;
         const { user: { uid, displayName, photoURL, email } } = result;
+        console.log('uid', uid)
 
         firebase.database().ref(`users/${ uid }`).set({
           label: displayName,
@@ -130,7 +131,8 @@ export function signIn() {
           email: email,
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
           agenda: {null: "null"},
-          showInfo: true,
+          venueId: "null",
+          groupId: "null",
           pendingInvites: '',
         });
 

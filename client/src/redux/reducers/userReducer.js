@@ -8,7 +8,7 @@ const defaults = {
   groupId: '-KdSF7i59sk07XoRgcYo', //group 'Ballers' //null
   groupName: 'Ballers',
   pendingInvites: {
-    'asdfdsaffds' : 'chuck',
+    '-Ke1KPMGhecHUQQFV-ko' : 'ballers',
     'ldkjjkflie' : 'awesomes',
   },
   friendList: mockFBFriends,
