@@ -10,6 +10,7 @@ import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import { signIn, signInSuccess, updateScheduleData, afterUpdatingData, defaultAgenda } from '../redux/actions/authenticationActions';
 import { allStages, allDays } from '../redux/actions/venueScheduleActions';
 import SignInButton from './Auth/SignInButton';
+import Loading from './Auth/Loading';
 
 class HomeView extends React.Component {
 
@@ -51,12 +52,13 @@ class HomeView extends React.Component {
   render() {
     const { auth, dispatch, group, user, venueSchedule } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
-    //const hasGroup = null;
     const hasGroup = user.groupId !== null;
+     console.log('HAS PENDING INVITES', !hasGroup && hasPendingInvites)
+     console.log('HAS GROUP', !hasGroup)
 
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} auth={ auth }/> :
-      // !user.dataRetrieved ? <div>loading...</div> :
+      !user.dataRetrieved ? <Loading /> :
       !hasGroup && hasPendingInvites ? <ChooseGroup /> :
       !hasGroup ? <ChooseVenue /> : <Group/>
     );
