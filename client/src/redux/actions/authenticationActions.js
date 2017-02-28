@@ -84,7 +84,6 @@ function getFriends() {
         }
       }
     }
-    console.log(friendsWithAccounts)
 
     store.dispatch({type: 'UPDATE_FRIENDS', friends: friendsWithAccounts})
   }).catch((error) => {

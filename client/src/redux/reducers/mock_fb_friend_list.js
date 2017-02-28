@@ -2,7 +2,7 @@ module.exports = {
   data: [
   {
     id: 'adkdjfkjlejw',
-    name: 'Patrick',
+    label: 'Patrick',
     firebaseId: 'sdfasdfsddfs',
     picture: {
       data: {
@@ -12,7 +12,7 @@ module.exports = {
   },
   {
     id: 'fojejflkwaj',
-    name: 'John',
+    label: 'John',
     firebaseId: 'sdafasdfasdfadsf',
     picture: {
       data: {
@@ -23,7 +23,7 @@ module.exports = {
   {
     id: 'dlajflkand',
     firebaseId: 'sdafasdfasdfadsf',
-    name: 'Smriti',
+    label: 'Smriti',
     picture: {
       data: {
         url: 'https://facebook.github.io/react/img/logo_og.png'
@@ -33,7 +33,7 @@ module.exports = {
   {
     id: 'dldlekejdd',
     firebaseId: 'sdafasdfasdfadsf',
-    name: 'Derek',
+    label: 'Derek',
     picture: {
       data: {
         url: 'https://facebook.github.io/react/img/logo_og.png'

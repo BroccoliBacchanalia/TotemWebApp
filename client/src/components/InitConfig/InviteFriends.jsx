@@ -5,6 +5,7 @@ import store from '../../redux/store.js';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
 import $ from 'jquery';
+import firebase from 'firebase';
 
 class InviteFriends extends React.Component {
  constructor(props){
@@ -12,11 +13,18 @@ class InviteFriends extends React.Component {
  }
 
 sendPendingInvite (){
-   console.log('CLICKED', $('input:checkbox:checked'))
-
   let checkedUsers = $('input:checkbox:checked').map((item)=>{
     return $('input:checkbox:checked')[item].value
   }).get();
+  let id = this.props.groupId;
+  let name = this.props.groupName;
+  let pendingInvites = {}
+  pendingInvites[id] = name;
+  let db = firebase.database();
+
+  for (var i = 0; i < checkedUsers.length; i++) {
+    db.ref(`users/${ checkedUsers[i] }/pendingInvites`).update(pendingInvites);
+  }
 }
 
   render(){
@@ -40,9 +48,9 @@ sendPendingInvite (){
       </form>
     </div>
     <div className={localStyles.iFooter}>
-     
+      <Link to="/">
         <button onClick={this.sendPendingInvite.bind(this)}>Invite</button>
- 
+      </Link>
       <div>
         <Link to="/">
           Skip
@@ -56,9 +64,9 @@ sendPendingInvite (){
 
 export default connect((store) => {
 	return {
-		friendList: store.user.friendList.data
+		friendList: store.user.friendList.data,
+    groupId: store.user.groupId,
+    groupName: store.user.groupName
 	}
 })(InviteFriends)
-// sendPendingInvite.bind(this)
- // <Link to="/">
- //      </Link>
+
