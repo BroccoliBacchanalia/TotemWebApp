@@ -110,8 +110,7 @@ export function signIn() {
           img: photoURL,
           email: email,
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
-          agenda: {null: "null"},
-          showInfo: true
+          agenda: {null: "null"}
         });
 
         dispatch(signInSuccess(uid, accessToken));
