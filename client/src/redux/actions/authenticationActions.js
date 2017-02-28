@@ -119,6 +119,8 @@ function updateUserData(){
     userDataFromFirebase = snap.val()
   }).then(
       store.dispatch({type: 'update_user_data', pendingInvites: userDataFromFirebase.pendingInvites})
+  ).then(
+      store.dispatch({type: 'data_retreived'})
   )
 
 }
