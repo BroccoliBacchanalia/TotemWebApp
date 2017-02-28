@@ -8,6 +8,7 @@ const authConfig = {
 
 let accessToken;
 let databaseGroup =[];
+let currentUserId;
 
 export function defaultAgenda() {
   let uid = firebase.auth().currentUser.uid;
@@ -72,6 +73,7 @@ function signInError(errorMessage) {
 }
 
 function getUsers() {
+  
   let ref = firebase.database().ref();
   let usersRef = ref.child('/users')
     usersRef.once('value', snap => {
@@ -103,11 +105,25 @@ function getFriends() {
         }
       }
     }
-
     store.dispatch({type: 'UPDATE_FRIENDS', friends: friendsWithAccounts})
   }).catch((error) => {
     console.log('Error getting friends from facebook', error);
   })
+}
+
+function updateUserData(){
+  let userDataFromFirebase;
+  let db = firebase.database();
+  let ref = db.ref();
+  let usersRef = ref.child(`users/${ currentUserId }`)
+  usersRef.once('value', snap =>{
+    userDataFromFirebase = snap.val()
+  }).then(
+      store.dispatch({type: 'update_user_data', pendingInvites: userDataFromFirebase.pendingInvites})
+  ).then(
+      store.dispatch({type: 'data_retreived'})
+  )
+
 }
 
 export function signIn() {
@@ -123,19 +139,22 @@ export function signIn() {
       .then((result) => {
         accessToken = result.credential.accessToken;
         const { user: { uid, displayName, photoURL, email } } = result;
+        currentUserId = uid;
 
-        firebase.database().ref(`users/${ uid }`).set({
+        firebase.database().ref(`users/${ uid }`).update({
           label: displayName,
           img: photoURL,
           email: email,
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
           agenda: {null: "null"},
-          pendingInvites: '',
+          venueId: "null",
+          groupId: "null",
         });
 
 
       })
       .then(getUsers)
+      .then(updateUserData)
       .catch(error => {
         dispatch(signInError(error.message))
       });

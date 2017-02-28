@@ -12,13 +12,13 @@ export default function auth(state = defaults, action) {
       const { uid } = action.payload.uid;
       return {
         ...state,
-        isUserSignedIn: true,
         isInProgress: false,
         accessToken: action.payload.token
       };
     case 'SIGNIN':
       return {
         ...state,
+        isUserSignedIn: true,
         isInProgress: true
       };
     case 'SIGNIN_ERROR':
