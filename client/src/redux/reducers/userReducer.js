@@ -27,7 +27,7 @@ export default function appReducer(state = defaults, action) {
       return { ...state, uid: action.payload.id };
     }
     case 'update_user_data': {
-      return { ...state, groupName: action.payload.groupName, pendingInvites: action.payload.pendingInvites };
+      return { ...state, pendingInvites: action.pendingInvites };
     }
     case 'update_venueId': {
       return { ...state, venueId: action.payload.id };

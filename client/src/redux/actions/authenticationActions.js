@@ -138,7 +138,7 @@ export function signIn() {
         const { user: { uid, displayName, photoURL, email } } = result;
         currentUserId = uid;
 
-        firebase.database().ref(`users/${ uid }`).set({
+        firebase.database().ref(`users/${ uid }`).update({
           label: displayName,
           img: photoURL,
           email: email,
@@ -146,7 +146,6 @@ export function signIn() {
           agenda: {null: "null"},
           venueId: "null",
           groupId: "null",
-          pendingInvites: '',
         });
 
 
