@@ -10,6 +10,7 @@ import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import { signIn, signInSuccess, updateScheduleData, afterUpdatingData, defaultAgenda } from '../redux/actions/authenticationActions';
 import { allStages, allDays } from '../redux/actions/venueScheduleActions';
 import SignInButton from './Auth/SignInButton';
+import Loading from './Auth/Loading';
 
 class HomeView extends React.Component {
 
@@ -56,7 +57,7 @@ class HomeView extends React.Component {
 
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} auth={ auth }/> :
-      // !user.dataRetrieved ? <div>loading...</div> :
+      !user.dataRetrieved ? <Loading /> :
       !hasGroup && hasPendingInvites ? <ChooseGroup /> :
       !hasGroup ? <ChooseVenue /> : <Group/>
     );
