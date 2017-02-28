@@ -1,5 +1,22 @@
-import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData.js';
 import store from '../store.js';
+import firebase from 'firebase';
+
+export function updateAgenda() {
+  var agenda;
+  var db = firebase.database();
+  let uid = firebase.auth().currentUser.uid;
+  var ref = db.ref('users/'+ uid +'/agenda/');
+  ref.on("value", function(snapshot) {
+    agenda  =  snapshot.val();
+    agenda = Object.keys(agenda);
+    agenda = agenda.slice(0,agenda.length-1);
+    console.log("HERE IS AGENDA: ",agenda);
+    store.dispatch({type: 'update_agenda', payload: {agenda}})
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  })
+}
+
 export function updateDay(day) {
   store.dispatch({
     type:'update_day',
@@ -19,16 +36,11 @@ export function updateFestival(festival) {
 }
 
 export function def() {
-  // return {
-  //   type: 'def'
-  // }
   store.dispatch({type: 'def'})
-  //console.log('DEF works');
 }
 
 export function allStages (scheduleItems) {
   const stages = {};
-
   for(let key in scheduleItems) {
     const item = scheduleItems[key];
     if(!(item.geofence in stages)) {
@@ -38,33 +50,27 @@ export function allStages (scheduleItems) {
   return Object.keys(stages);
 }
 
-export function allDays(scheduleDummyData) {
+export function allDays(scheduleData) {
 
     let datesDay={};
-    for(var key in scheduleDummyData) {
-      var item = scheduleDummyData[key];
+    for(let key in scheduleData) {
+      let item = scheduleData[key];
       if(!(item.day in datesDay)) {
         datesDay[generateDay(item.day)] = item.day;
       }
     }
-
     return datesDay;
 }
 
-// export const daysAndDates = allDays(scheduleDummyData);
-// export const days = Object.keys(daysAndDates);
-
-
 export function getArtist(stage, day){
- var arr=[]
-  for(var key in scheduleDummyData) {
-    var item = scheduleDummyData[key];
+ let arr=[]
+  for(let key in scheduleData) {
+    let item = scheduleData[key];
     if(item.geofence === stage && item.day === daysAndDates[day]) {
       arr.push(item.name);
     }
   }
   return arr.join(' | ');
-
 }
 
 function generateDay(dateString) {
@@ -76,6 +82,6 @@ function generateDay(dateString) {
   weekday[4] = "Thursday";
   weekday[5] = "Friday";
   weekday[6] = "Saturday";
-  var d = new Date(dateString)
+  let d = new Date(dateString)
   return weekday[d.getDay()];
 }

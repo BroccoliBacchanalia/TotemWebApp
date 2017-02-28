@@ -20,6 +20,11 @@
   margin-bottom: 0;
 }
 
+.gRow > div:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
 .navB {
 	display: inline-block;
 	margin: 10px;

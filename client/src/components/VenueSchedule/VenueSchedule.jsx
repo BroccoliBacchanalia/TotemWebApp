@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import ScheduleRow from './ScheduleRow.jsx';
 import RenderDays from './RenderDays.jsx';
 import RenderStages from './RenderStages.jsx';
-//import { daysAndDates, allStages } from '../../redux/actions/venueScheduleActions.js';
 
 const VenueSchedule = ({ venueSchedule, venues, venueId }) => {
-  // const venueScheduleItems = venues[venueId].scheduleitems;
   const stages =  venueSchedule.stages;
   console.log("here are the stages", stages);
   if(venueSchedule.chooseStage === '') {
@@ -23,9 +21,8 @@ const VenueSchedule = ({ venueSchedule, venues, venueId }) => {
   return (
     <div>
       <RenderDays selectedDay={venueSchedule.selectedDay}/>
-      {Object.keys(venueSchedule.scheduleDummyData).map((ite, key) => {
-        var item = venueSchedule.scheduleDummyData[ite];
-        console.log("--------------------------",venueSchedule);
+      {Object.keys(venueSchedule.scheduleData).map((ite, key) => {
+        var item = venueSchedule.scheduleData[ite];
         if(item.geofence === venueSchedule.chooseStage && item.day === venueSchedule.daysAndDates[venueSchedule.selectedDay]) {
           return (
             <ScheduleRow
