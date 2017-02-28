@@ -1,7 +1,10 @@
 import store from '../../redux/store';
 
-export function sendGroupInvite (group) {
-  
+export function updateUserData(data) {
+  return store.dispatch({
+    type: 'update_user_data',
+    payload: { data }
+  })
 }
 
 export function updateUserId(id) {

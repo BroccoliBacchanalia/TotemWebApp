@@ -20,6 +20,7 @@ sendPendingInvite (){
   let name = this.props.groupName;
   let pendingInvites = {}
   pendingInvites[id] = name;
+  
   let db = firebase.database();
 
   for (var i = 0; i < checkedUsers.length; i++) {
@@ -29,7 +30,6 @@ sendPendingInvite (){
 
   render(){
 
-    console.log('FRIEND', this.props.friendList)
   return(
   <div className="custom-container">
     <div className={localStyles.header}>
