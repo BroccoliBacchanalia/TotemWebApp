@@ -29,3 +29,20 @@ html, body, #app, .custom-container {
 button {
   border-radius: 0;
 }
+
+.menu-button {
+  float: right;
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+.main-view {
+  margin: 0px !important;
+}
+
+.nav-header {
+  margin: 0px !important;
+}
+
+.remove-borders {
+  padding: 0px !important;
+}

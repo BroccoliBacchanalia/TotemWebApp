@@ -130,7 +130,6 @@ export function signIn() {
           email: email,
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
           agenda: {null: "null"},
-          showInfo: true,
           pendingInvites: '',
         });
 
