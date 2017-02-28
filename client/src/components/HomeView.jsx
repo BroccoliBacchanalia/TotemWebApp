@@ -30,37 +30,22 @@ class HomeView extends React.Component {
         });
       }
     });
-
-    var all_stages;
-    var all_days;
-    var daysAndDates;
-
+    //populate state with schedule data
     var db = firebase.database();
     var scheduleData;
     var ref = db.ref('/venues/-KdmcqUff2U8vDv-qfC1/scheduleitems/');
     ref.on("value", function(snapshot) {
       scheduleData  =  snapshot.val();
-      console.log("schedule data is here: ", scheduleData)
       updateScheduleData(scheduleData);
-      
-       var daysAndDates = allDays(scheduleData);
-      //console.log("äll Days:", daysAndDates); //object of days and dares
 
+      var daysAndDates = allDays(scheduleData);
       var all_stages = allStages(scheduleData);
-     // console.log("all stages: ", all_stages);
-
       var all_days = Object.keys(daysAndDates)
-      //console.log("days and dates: ", all_days);
 
       afterUpdatingData(all_days, all_stages, daysAndDates)
-
-    
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     })
-
-     
-   
   }
 
   render() {

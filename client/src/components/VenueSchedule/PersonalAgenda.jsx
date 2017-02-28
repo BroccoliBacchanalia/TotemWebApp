@@ -7,8 +7,8 @@ class VenueSchedule extends Component {
     return (
       <div>
         <RenderDays selectedDay={this.props.selectedDay}/>
-        {Object.keys(this.props.scheduleDummyData).map((ite, key) => {
-          var item = this.props.scheduleDummyData[ite];
+        {Object.keys(this.props.scheduleData).map((ite, key) => {
+          var item = this.props.scheduleData[ite];
           console.log("item: ",ite);
           if(item.geofence === this.props.chooseStage && item.day === daysAndDates[this.props.selectedDay]) {
             return (
@@ -32,7 +32,7 @@ export default connect((store) => {
   return {
     selectedDay: store.venueSchedule.selectedDay,
     chooseStage: store.venueSchedule.chooseStage,
-    scheduleDummyData: store.venueSchedule.scheduleDummyData
+    scheduleData: store.venueSchedule.scheduleData
 
   };
 })(VenueSchedule);

@@ -9,14 +9,15 @@ const authConfig = {
 let accessToken;
 let databaseGroup =[];
 
-export function updateScheduleData (scheduleDummyData) {
+export function updateScheduleData (scheduleData) {
   store.dispatch({
     type: 'update_scheduleData',
      payload: { 
-      scheduleDummyData: scheduleDummyData
+      scheduleData: scheduleData
       }
     })
 }
+
 export function afterUpdatingData(allDays, allStages, daysAndDates) {
   console.log("im actions stages: ", allStages);
   store.dispatch({

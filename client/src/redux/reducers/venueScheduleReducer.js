@@ -1,11 +1,10 @@
-//import scheduleDummyData from '../../components/VenueSchedule/scheduleDummyData.js';
 const defaults = {
   selectedDay: 'Friday',
   chooseStage: '',
-  scheduleDummyData: "",
-  stages: [],//['Lands End', 'Sutro', 'Twin Peaks'],
-  days: [],//['Friday', 'Saturday'],
-  daysAndDates: {}//{'Friday': "2016-08-05T07:00:00.000Z" , "Saturday": "2016-08-06T07:00:00.000Z" }
+  scheduleData: "",
+  stages: [],
+  days: [],
+  daysAndDates: {}
 };
 
 export default function venueScheduleReducer(state = defaults, action) {
@@ -17,24 +16,21 @@ export default function venueScheduleReducer(state = defaults, action) {
       return { ...state, chooseStage: action.payload.stage };
     }
     case 'update_festival': {
-      return { ...state, scheduleDummyData: action.payload.festival };
+      return { ...state, scheduleData: action.payload.festival };
     }
     case 'def': {
       return { ...state, selectedDay: "Friday", chooseStage: "" };
     }
     case 'update_scheduleData': {
-      return {
-        ...state, 
-        scheduleDummyData: action.payload.scheduleDummyData
-        }
+      return {...state, scheduleData: action.payload.scheduleData };
     }
     case 'after_updatingData': {
-       return {
+      return {
         ...state,
         stages: action.payload.allStages,
         days: action.payload.allDays,
         daysAndDates: action.payload.daysAndDates
-        }
+      }
     }
   }
   return state;
