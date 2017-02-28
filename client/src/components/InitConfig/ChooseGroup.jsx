@@ -14,16 +14,15 @@ class ChooseGroup extends React.Component {
 
   removeGroupFromPendingInvites(key) {
     let userId = this.props.userId;
-    let db = firebase.database();
     let invites;
-    let pendingInvites = {};
+    let db = firebase.database();
     let ref = db.ref();
     let usersRef = ref.child(`users/${ userId }/pendingInvites`)
     usersRef.once('value', snap => {
       invites = snap.val();
     }).then(
     delete invites[key],
-    db.ref(`users/${ userId }/pendingInvites`).set(pendingInvites) 
+    db.ref(`users/${ userId }/pendingInvites`).set(invites) 
    )
     
   }
