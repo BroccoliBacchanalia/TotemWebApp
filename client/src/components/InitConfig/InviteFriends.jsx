@@ -24,7 +24,7 @@ sendPendingInvite (){
   let db = firebase.database();
 
   for (var i = 0; i < checkedUsers.length; i++) {
-    db.ref(`users/${ checkedUsers[i] }/pendingInvites`).update(pendingInvites);
+    db.ref(`users/${ checkedUsers[i] }/pendingInvites`).update(pendingInvites)
   }
 }
 

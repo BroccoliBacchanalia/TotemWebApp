@@ -8,7 +8,7 @@ const defaults = {
   groupId: '-KdSF7i59sk07XoRgcYo', //group 'Ballers' //null
   groupName: 'Ballers',
   pendingInvites: {
-    'asdfdsaffds' : 'chuck',
+    '-Ke1KPMGhecHUQQFV-ko' : 'ballers',
     'ldkjjkflie' : 'awesomes',
   },
   friendList: mockFBFriends,
@@ -26,8 +26,12 @@ export default function appReducer(state = defaults, action) {
     case 'update_userId': {
       return { ...state, uid: action.payload.id };
     }
+    case 'data_retreived': {
+      console.log('SENTSENT')
+      return { ...state, dataRetrieved: true};
+    }
     case 'update_user_data': {
-      return { ...state, groupName: action.payload.groupName, pendingInvites: action.payload.pendingInvites };
+      return { ...state, pendingInvites: action.pendingInvites };
     }
     case 'update_venueId': {
       return { ...state, venueId: action.payload.id };
