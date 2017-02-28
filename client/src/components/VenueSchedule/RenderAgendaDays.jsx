@@ -3,14 +3,8 @@ import localStyles from './VenueStyles.css';
 import { def, updateDay } from '../../redux/actions/venueScheduleActions.js'
 import { connect } from 'react-redux';
 
-const RenderDays = ({ venueSchedule}) => (
-
+const RenderAgendaDays = ({ venueSchedule}) => (
   <nav className="navbar navbar-inverse">
-      <div className={localStyles.navB}
-        title="<"
-        onClick={def}
-        value="<"> &lt;
-      </div>
         {venueSchedule.days.map((item, key) =>
           <div className={localStyles.navB}
               key={key}
@@ -26,4 +20,4 @@ export default connect((store) => {
   return {
     venueSchedule: store.venueSchedule
   };
-})(RenderDays);
+})(RenderAgendaDays);

@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import localStyles from './VenueStyles.css';
-import { getArtist, updateStage } from '../../redux/actions/venueScheduleActions.js';
-
+import { updateStage } from '../../redux/actions/venueScheduleActions.js';
 
 const RenderStages = ({ selectedDay, stages }) => {
   return (
@@ -15,7 +14,7 @@ const RenderStages = ({ selectedDay, stages }) => {
         <p onClick={updateStage.bind(this, item)}>
           <span className="h3">{item}</span>
           <br/>
-          {getArtist(item, selectedDay)}
+         
         </p>
       </div>
     )}

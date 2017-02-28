@@ -26,6 +26,7 @@
     "morgan": "^1.8.1",
     "onsenui": "^2.1.0",
     "pg": "^6.1.2",
+    "promise": "^7.1.1",
     "react-bootstrap": "^0.30.7",
     "react-google-maps": "^6.0.1",
     "react-helmet": "^4.0.0",

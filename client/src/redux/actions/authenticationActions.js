@@ -9,6 +9,27 @@ const authConfig = {
 let accessToken;
 let databaseGroup =[];
 
+export function updateScheduleData (scheduleData) {
+  store.dispatch({
+    type: 'update_scheduleData',
+     payload: { 
+      scheduleData: scheduleData
+      }
+    })
+}
+
+export function afterUpdatingData(allDays, allStages, daysAndDates) {
+  console.log("im actions stages: ", allStages);
+  store.dispatch({
+    type: 'after_updatingData',
+     payload: { 
+      allStages: allStages,
+      allDays: allDays,
+      daysAndDates: daysAndDates
+      }
+    })
+}
+
 export function signInSuccess(uid, displayName) {
   return {
     type: 'SIGNIN_SUCCESS',

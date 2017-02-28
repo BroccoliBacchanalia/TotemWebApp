@@ -7,7 +7,9 @@ import { geolocate, addUserListener, updateGroupKeys } from '../redux/actions';
 import Group from './Group/Group.jsx';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
-import { signIn, signInSuccess } from '../redux/actions/authenticationActions';
+import { signIn, signInSuccess, updateScheduleData, afterUpdatingData } from '../redux/actions/authenticationActions';
+import { allStages, allDays, updateAgenda } from '../redux/actions/venueScheduleActions';
+import { Promise } from 'promise';
 import SignInButton from './Auth/SignInButton';
 
 class HomeView extends React.Component {
@@ -28,10 +30,27 @@ class HomeView extends React.Component {
         });
       }
     });
+    //populate state with schedule data
+    var db = firebase.database();
+    var scheduleData;
+    var ref = db.ref('/venues/-KdmcqUff2U8vDv-qfC1/scheduleitems/');
+    ref.on("value", function(snapshot) {
+      scheduleData  =  snapshot.val();
+      updateScheduleData(scheduleData);
+
+      var daysAndDates = allDays(scheduleData);
+      var all_stages = allStages(scheduleData);
+      var all_days = Object.keys(daysAndDates)
+
+      afterUpdatingData(all_days, all_stages, daysAndDates)
+      updateAgenda();
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    })
   }
 
   render() {
-    const { auth, dispatch, group, user } = this.props;
+    const { auth, dispatch, group, user, venueSchedule } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
     const hasGroup = user.groupId !== null;
     return (
@@ -50,5 +69,6 @@ export default connect((store) => {
     nav: store.nav,
     group: store.group,
     auth: store.auth,
+    venueSchedule: store.venueSchedule
   };
 })(HomeView);
