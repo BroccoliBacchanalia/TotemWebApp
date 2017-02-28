@@ -6,7 +6,8 @@ const defaults = {
   stages: [],
   days: [],
   daysAndDates: {},
-  agenda: ""
+  agenda: []
+
 };
 
 export default function venueScheduleReducer(state = defaults, action) {
@@ -34,8 +35,14 @@ export default function venueScheduleReducer(state = defaults, action) {
         daysAndDates: action.payload.daysAndDates
       }
     }
-    case 'update_agenda': {
-      return {...state, agenda: action.payload.agenda}
+    case 'remove_agenda': {
+      return { ...state, agenda: action.payload.agenda };
+    }
+    case 'default_agenda': {
+      return { ...state, agenda: action.payload.agenda };
+    }
+    case 'add_agenda': {
+      return { ...state, agenda: action.payload.agenda };
     }
   }
   return state;
