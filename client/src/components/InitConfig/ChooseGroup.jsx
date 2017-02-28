@@ -13,11 +13,12 @@ class ChooseGroup extends React.Component {
   }
 
   removeGroupFromPendingInvites() {
+    console.log('changing')
     let userId = this.props.userId;
+    console.log('userId', userId)
     let db = firebase.database();
-    db.ref(`users/${ userId }/pendingInvites`).set({
-      pendingInvites: ''
-    });
+    let pendingInvites = {};
+    db.ref(`users/${ userId }/pendingInvites`).set(pendingInvites);
   }
 
   render(){
@@ -31,7 +32,7 @@ class ChooseGroup extends React.Component {
           {groupKeys.map((key, index) => (
             <li key={index} onClick={() => {
               updateGroupId.call(this, key);
-              this.removeGroupFromPendingInvites();
+                this.removeGroupFromPendingInvites()
               router.push('/');
             }}>
               {this.props.groupList[key]}
@@ -53,8 +54,6 @@ ChooseGroup.contextTypes = {
 export default connect((store) => {
 	return {
 		groupList: store.user.pendingInvites,
-    userId : store.user.uid,
-    groupId: store.user.groupId,
-    groupName: store.user.groupName
+    userId : store.user.uid
 	}
 })(ChooseGroup)
