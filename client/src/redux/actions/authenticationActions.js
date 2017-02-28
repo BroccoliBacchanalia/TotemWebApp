@@ -80,10 +80,11 @@ function getFriends() {
     for (let i = 0; i < firebaseData.data.length-1; i++) {
       for (let x = 0; x < faceBookFriends.data.length-1; x++) {
         if (firebaseData.data[i].label === faceBookFriends.data[x].name) {
-          friendsWithAccounts.data.push(faceBookFriends.data[i]);
+          friendsWithAccounts.data.push(firebaseData.data[i]);
         }
       }
     }
+    console.log(friendsWithAccounts)
 
     store.dispatch({type: 'UPDATE_FRIENDS', friends: friendsWithAccounts})
   }).catch((error) => {
@@ -92,7 +93,6 @@ function getFriends() {
 }
 
 export function signIn() {
-  console.log('SIGIN!!')
   const dispatch = store.dispatch;
   const provider = new firebase.auth.FacebookAuthProvider();
   dispatch(signInInProgress());
