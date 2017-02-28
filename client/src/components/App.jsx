@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import store from '../redux/store.js';
 
 /*  Components  */
-import NavigationBar from './Nav/Nav.jsx';
+import { NavigationBar } from './Nav/Nav.jsx';
 import HomeView from './HomeView.jsx'
 import MapViewer from './MapViewer/MapViewer.jsx';
 import Group from './Group/Group.jsx';
