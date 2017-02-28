@@ -27,7 +27,6 @@ export default function appReducer(state = defaults, action) {
       return { ...state, uid: action.payload.id };
     }
     case 'data_retreived': {
-
       return { ...state, dataRetrieved: true};
     }
     case 'update_user_data': {
