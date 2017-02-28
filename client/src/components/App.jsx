@@ -22,6 +22,7 @@ class App extends React.Component {
 
     const { auth, user, nav, dispatch } = this.props;
     const hasGroup = user.groupId !== null;
+      //{auth.isUserSignedIn && hasGroup ? <NavigationBar venueId={user.venueId} /> : ''}
     
     return (
     <Router>

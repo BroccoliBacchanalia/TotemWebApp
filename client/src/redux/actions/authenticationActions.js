@@ -129,7 +129,7 @@ export function signIn() {
           img: photoURL,
           email: email,
           lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
-          agenda: {null: "null"}
+          agenda: {null: "null"},
           pendingInvites: '',
         });
 
