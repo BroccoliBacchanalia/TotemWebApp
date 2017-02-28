@@ -73,6 +73,7 @@ function signInError(errorMessage) {
 }
 
 function getUsers() {
+  
   let ref = firebase.database().ref();
   let usersRef = ref.child('/users')
     usersRef.once('value', snap => {

@@ -5,7 +5,7 @@ const defaults = {
   uid: null,
   name: null,
   venueId: '-KdmcqUff2U8vDv-qfC1', //Outside lands //null
-  groupId: '-KdSF7i59sk07XoRgcYo', //group 'Ballers' //null
+  groupId: '', //group 'Ballers' //null
   groupName: 'Ballers',
   pendingInvites: {
     '-Ke1KPMGhecHUQQFV-ko' : 'ballers',
