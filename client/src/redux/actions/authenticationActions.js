@@ -9,6 +9,24 @@ const authConfig = {
 let accessToken;
 let databaseGroup =[];
 
+export function defaultAgenda() {
+  let uid = firebase.auth().currentUser.uid;
+  var db = firebase.database();
+  
+  var updateRef = db.ref('users/'+ uid +'/agenda/');
+  updateRef.on("value", function(snapshot) {
+   
+    let agenda  =  snapshot.val();
+    agenda = Object.keys(agenda);
+    agenda = agenda.slice(0,agenda.length-1);
+    console.log("DEFAULT AGENDA: ", agenda);  
+    store.dispatch({type: 'default_agenda', payload: { agenda } });  
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+  console.log("INSIDE DEFAULT AGENDA");
+}
+
 export function updateScheduleData (scheduleData) {
   store.dispatch({
     type: 'update_scheduleData',

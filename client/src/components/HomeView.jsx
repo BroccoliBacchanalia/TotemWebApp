@@ -7,9 +7,8 @@ import { geolocate, addUserListener, updateGroupKeys } from '../redux/actions';
 import Group from './Group/Group.jsx';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
-import { signIn, signInSuccess, updateScheduleData, afterUpdatingData } from '../redux/actions/authenticationActions';
-import { allStages, allDays, updateAgenda } from '../redux/actions/venueScheduleActions';
-import { Promise } from 'promise';
+import { signIn, signInSuccess, updateScheduleData, afterUpdatingData, defaultAgenda } from '../redux/actions/authenticationActions';
+import { allStages, allDays } from '../redux/actions/venueScheduleActions';
 import SignInButton from './Auth/SignInButton';
 
 class HomeView extends React.Component {
@@ -43,7 +42,7 @@ class HomeView extends React.Component {
       var all_days = Object.keys(daysAndDates)
 
       afterUpdatingData(all_days, all_stages, daysAndDates)
-      updateAgenda();
+      defaultAgenda();
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     })
