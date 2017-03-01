@@ -27,6 +27,10 @@ const CreateGroup = (props) => (
 );
 
 function submit({ user, group, push }) {
+	console.log('LENGTH', user.groupName.length);
+	if(user.groupName.length < 1){
+		return
+	}
 	const updates = {};
   const db = firebase.database();
 	const groupKey = db.ref().child('/groups/').push().key;

@@ -30,7 +30,7 @@ export function defaultAgenda() {
 
 export function updateScheduleData (scheduleData) {
   store.dispatch({
-    type: 'UPDATE_SCHEDULEDATA',
+    type: 'UPDATE_SCHEDULE_DATA',
      payload: { 
       scheduleData: scheduleData
       }
