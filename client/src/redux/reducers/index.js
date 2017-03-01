@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 import user from './userReducer';
 import group from './groupReducer';
 import app from './appReducer';
