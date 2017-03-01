@@ -7,13 +7,6 @@ export function updateUserData(data) {
   })
 }
 
-export function updateUserId(id) {
-  return store.dispatch({
-    type: 'UPDATE_USER_ID',
-    payload: { id }
-  });
-}
-
 export function updateVenueId(id) {
   return store.dispatch({
     type: 'UPDATE_VENUE_ID',

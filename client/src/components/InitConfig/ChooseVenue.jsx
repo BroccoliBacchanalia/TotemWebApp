@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import store from '../../redux/store.js';
-import { selectVenue, skipVenue } from '../../redux/actions/venueActions.js';
+import store from '../../redux/store';
 import { updateVenueId } from '../../redux/actions/userActions';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';

@@ -27,7 +27,7 @@ const list = {
 };
 
 
-const SpeedDialButton = () => {
+const SpeedDialButton = (props) => {
   return (
     <MuiThemeProvider>
       <SpeedDial positionH='left' positionV='bottom'>
