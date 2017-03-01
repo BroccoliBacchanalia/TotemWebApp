@@ -15,11 +15,12 @@ class MapViewer extends Component {
   render() {
     const LoadMap = withGoogleMap(props => (
       <GoogleMap
-        ref={props.onMapLoad}
-        defaultZoom={16}
-        defaultCenter={{ lat: 37.769403, lng: -122.49}}
+        ref={ props.onMapLoad }
+        defaultZoom={ 16 }
+        defaultCenter={{ lat: 37.769403, lng: -122.49 }}
         mapTypeId= 'terrain'
-        onClick={()=>{console.log('map clicked')}}
+        options={{ streetViewControl: false, mapTypeControl: false }}
+        onClick={()=>{ console.log('map clicked') }}
         >
 
         <Markers />
