@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import { Header, Button } from 'semantic-ui-react'
-import { connect } from 'react-redux';
+import { toggleMenu } from '../../redux/actions'
 
-class HeaderBlock extends Component {
+export default class HeaderBlock extends Component {
   render() {
-    const { nav, dispatch } = this.props;
     return (
       <Header as='h3' block className='nav-header' textAlign='center'> T O T E M
 {/*       <img src="img/totem_logo.png" alt="logo" />*/}
         <Button 
           className='menu-button'
-          onClick={() => dispatch({type: 'TOGGLE_MENU'})}
+          onClick={ toggleMenu }
           icon='content' />
       </Header>
     )
   }
 }
 
-export default connect((store) => {
-  return {
-    app: store.app
-  };
-})(HeaderBlock);

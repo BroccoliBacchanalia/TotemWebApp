@@ -63,3 +63,12 @@ button {
 .ui.block.header {
   border-radius: 0px !important;
 }
+
+.no-events {
+}
+
+/*.ui.inverted.menu {
+  border: 0 solid transparent !important;
+  background: linear-gradient(#F44336, #3F51B5) !important;
+  opacity: .95 !important;
+}*/

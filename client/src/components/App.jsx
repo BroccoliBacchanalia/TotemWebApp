@@ -58,7 +58,7 @@ class App extends React.Component {
                   key={ index } 
                   as={ Link } 
                   to={ item.endPoint } 
-                  onClick={ () => toggleMenu() }>
+                  onClick={ toggleMenu }>
                   <Icon name={ item.iconName } /> { item.displayName }
                 </Menu.Item>
                 )

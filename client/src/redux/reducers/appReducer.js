@@ -3,6 +3,7 @@ const defaults = {
   active: true,
   friendsModal: false,
   emergencyModal: false,
+  speedDial: false,
   menuItems: [
     { path: '/', label: 'Map' },
     { path: '/group', label: 'Rabble'},
@@ -32,6 +33,10 @@ export default function appReducer(state = defaults, action) {
     case 'TOGGLE_EMERGENCY_SERVICES' : {
       if (!state.emergencyModal) return { ...state, emergencyModal: true };
       return { ...state, emergencyModal: false };
+    }  
+    case 'TOGGLE_SPEED_DIAL' : {
+      if (!state.speedDial) return { ...state, speedDial: true };
+      return { ...state, speedDial: false };
     }
   }
   return state;

@@ -23,3 +23,9 @@ export function toggleEmergencyServices() {
     type: 'TOGGLE_EMERGENCY_SERVICES',
   });
 }
+
+export function toggleSpeedDial() {
+  store.dispatch({
+    type: 'TOGGLE_SPEED_DIAL',
+  });
+}
