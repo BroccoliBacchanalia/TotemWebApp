@@ -1,6 +1,6 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import ContactFriends from './ContactFriends.jsx'
 import Avatar from 'material-ui/Avatar';
 import { SpeedDial, BubbleList, BubbleListItem } from 'react-speed-dial';
 
@@ -9,15 +9,15 @@ const list = {
   items: [
     {
       primaryText: 'Highlight Emergency Tents',
-      leftAvatar: <Avatar src={`${avatarImgUrl}/9`} />,
+      leftAvatar: <Avatar src='/img/emergency-tent.png' />,
     },
     {
       primaryText: 'Alert Your Friends',
-      leftAvatar: <Avatar src={`${avatarImgUrl}/10`} />,
+      leftAvatar: <Avatar src='/img/friend-alert.png' />,
     },
     {
       primaryText: 'Contact Emergency Services',
-      leftAvatar: <Avatar src={`${avatarImgUrl}/11`} />,
+      leftAvatar: <Avatar src='/img/ambulance.png' />,
     },
   ],
 };

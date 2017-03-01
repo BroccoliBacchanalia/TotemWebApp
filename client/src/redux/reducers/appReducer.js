@@ -12,7 +12,7 @@ const defaults = {
   ]
 };
 
-export default function navReducer(state = defaults, action) {
+export default function appReducer(state = defaults, action) {
   switch(action.type) {
     case 'toggle_menu': {
       if (!state.visible) return { ...state, visible: true };

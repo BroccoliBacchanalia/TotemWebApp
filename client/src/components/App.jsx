@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import store from '../redux/store.js';
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Dimmable } from 'semantic-ui-react'
 
 /*  Components  */
 import HomeView from './HomeView.jsx'
@@ -15,11 +15,18 @@ import CreateGroup from './InitConfig/CreateGroup.jsx';
 import InviteFriends from './InitConfig/InviteFriends.jsx';
 import HeaderBlock from './Nav/Nav.jsx'
 import SpeedDialButton from './Nav/SpeedDial.jsx'
+import ContactFriends from './Nav/ContactFriends.jsx'
 
 class App extends React.Component {
 
   render() {
-
+    const navList = {
+      items: [
+      { displayName: 'Map', endPoint: '/map', iconName: 'map' },
+      { displayName: 'Group', endPoint: '/group', iconName: 'users' },
+      { displayName: 'Agenda', endPoint: '/agenda', iconName: 'signup' },
+      { displayName: 'Schedule', endPoint: '/schedule', iconName: 'clock' },
+    ]}
 
     const { auth, user, nav, dispatch } = this.props;
     const hasGroup = user.groupId !== null;
@@ -41,22 +48,17 @@ class App extends React.Component {
             vertical
             inverted
           >
-            <Menu.Item as={Link} to='/map' onClick={() => dispatch({type: 'toggle_menu'})}>
-              <Icon name='map' />
-              Map
-            </Menu.Item>
-            <Menu.Item as={Link} to='/group' onClick={() => dispatch({type: 'toggle_menu'})}>
-              <Icon name='users' />
-              Group
-            </Menu.Item>
-            <Menu.Item as={Link} to='/agenda' onClick={() => dispatch({type: 'toggle_menu'})}>
-              <Icon name='signup' />
-              Agenda
-            </Menu.Item>
-            <Menu.Item as={Link} to='/schedule' onClick={() => dispatch({type: 'toggle_menu'})}>
-              <Icon name='clock' />
-              Schedule
-            </Menu.Item>
+          {navList.items.map((item, index) => {
+            return (
+              <Menu.Item 
+                key={ index } 
+                as={ Link } 
+                to={ item.endPoint } 
+                onClick={ () => dispatch({type: 'toggle_menu'}) }>
+                <Icon name={ item.iconName } /> { item.displayName }
+              </Menu.Item>
+              )
+          })}
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic className='remove-borders'>
