@@ -12,7 +12,7 @@ const defaults = {
 
 export default function venueScheduleReducer(state = defaults, action) {
   switch(action.type) {
-    case 'UPDATE_DATE': {
+    case 'UPDATE_DAY': {
       return { ...state, selectedDay: action.payload.day };
     }
     case 'UPDATE_STAGE': {

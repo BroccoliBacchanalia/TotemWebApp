@@ -34,7 +34,7 @@ export function updateFestival(festival) {
 }
 
 export function def() {
-  store.dispatch({type: 'def'})
+  store.dispatch({type: 'DEF'})
 }
 
 export function allStages (scheduleItems) {
