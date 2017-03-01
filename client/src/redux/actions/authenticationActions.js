@@ -30,7 +30,7 @@ export function defaultAgenda() {
 
 export function updateScheduleData (scheduleData) {
   store.dispatch({
-    type: 'update_scheduleData',
+    type: 'UPDATE_SCHEDULEDATA',
      payload: { 
       scheduleData: scheduleData
       }
@@ -40,7 +40,7 @@ export function updateScheduleData (scheduleData) {
 export function afterUpdatingData(allDays, allStages, daysAndDates) {
   console.log("im actions stages: ", allStages);
   store.dispatch({
-    type: 'after_updatingData',
+    type: 'AFTER_UPDATING_DATA',
      payload: { 
       allStages: allStages,
       allDays: allDays,
@@ -89,6 +89,7 @@ function getFriends() {
     let firebaseArray = [];
     let firebaseData = {};
     let temp = {};
+    let db = firebase.database();
 
     for(let key in databaseGroup[0]) {
       databaseGroup[0][key]['firebaseId'] = key
@@ -98,6 +99,7 @@ function getFriends() {
     let friendsWithAccounts = {
       data: []
     }
+    //fills out friendsWithAccounts to have facebook friends that are also totem users
     for (let i = 0; i < firebaseData.data.length-1; i++) {
       for (let x = 0; x < faceBookFriends.data.length-1; x++) {
         if (firebaseData.data[i].label === faceBookFriends.data[x].name) {
@@ -105,10 +107,28 @@ function getFriends() {
         }
       }
     }
+    //saves user friends in the database
+    db.ref(`users/${ currentUserId }/friends`).set(friendsWithAccounts)
     store.dispatch({type: 'UPDATE_FRIENDS', friends: friendsWithAccounts})
   }).catch((error) => {
     console.log('Error getting friends from facebook', error);
   })
+}
+
+export function stillSignedIn(uid) {
+  let firebaseData;
+  let db = firebase.database();
+  let ref = db.ref();
+  let userRef = ref.child(`users/${ uid }`)
+  userRef.once('value', snap => {
+    return firebaseData = snap.val()
+  }).then(data => {
+      store.dispatch({type: 'DATA_ON_RESIGN', userData: data.val()})
+    }
+  ).then(() =>{
+      store.dispatch({type: 'DATA_RETRIEVED'})
+    }
+  )
 }
 
 function updateUserData(){
@@ -119,9 +139,9 @@ function updateUserData(){
   usersRef.once('value', snap =>{
     userDataFromFirebase = snap.val()
   }).then(
-      store.dispatch({type: 'update_user_data', pendingInvites: userDataFromFirebase.pendingInvites})
+      store.dispatch({type: 'UPDATE_USER_DATA', pendingInvites: userDataFromFirebase.pendingInvites})
   ).then(
-      store.dispatch({type: 'data_retreived'})
+      store.dispatch({type: 'DATA_RECEIVED'})
   )
 
 }
@@ -149,8 +169,8 @@ export function signIn() {
           agenda: {null: "null"},
           venueId: "null",
           groupId: "null",
+          pendingInvites: "null",
         });
-
 
       })
       .then(getUsers)

@@ -25,7 +25,7 @@ class MapViewer extends Component {
               {...user}
               label=''
               icon={icon}
-              onClick={() => store.dispatch({type: 'show_name', payload: userKey})}
+              onClick={() => store.dispatch({type: 'SHOW_NAME', payload: userKey})}
             >
               {user.showInfo && (
                 <InfoWindow>
