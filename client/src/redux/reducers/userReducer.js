@@ -28,7 +28,6 @@ export default function appReducer(state = defaults, action) {
       return { ...state, uid: action.payload.id };
     }
     case 'data_retreived': {
-      console.log('HIT')
       return { ...state, dataRetrieved: true};
     }
     case 'update_user_data': {
@@ -41,7 +40,10 @@ export default function appReducer(state = defaults, action) {
       return { ...state, groupId: action.payload.id };
     }
     case 'UPDATE_FRIENDS': {
-      return { ...state, friendList: action.friends };
+      return { ...state, friendList: action.friendList };
+    }
+    case 'DATA_ON_RESIGN': {
+      return { ...state, friendList: action.userData.friends, pendingInvites: action.userData.pendingInvites };
     }
     case 'update_group_name': {
       return { ...state, groupName: action.payload.name }

@@ -7,7 +7,7 @@ import { geolocate, addUserListener, updateGroupKeys } from '../redux/actions';
 import Group from './Group/Group.jsx';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
-import { signIn, signInSuccess, updateScheduleData, afterUpdatingData, defaultAgenda } from '../redux/actions/authenticationActions';
+import { signIn, signInSuccess, updateScheduleData, afterUpdatingData, defaultAgenda, stillSignedIn } from '../redux/actions/authenticationActions';
 import { allStages, allDays } from '../redux/actions/venueScheduleActions';
 import SignInButton from './Auth/SignInButton';
 import Loading from './Auth/Loading';
@@ -19,8 +19,8 @@ class HomeView extends React.Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         geolocate();
-        ////////////////////
         store.dispatch(signInSuccess(user.uid, user.displayName));
+        stillSignedIn(user.uid)
         firebase.database().ref('/groups/' + props.user.groupId)
         .on('value', (snapshot) => {
           const userKeys = snapshot.val().members;
