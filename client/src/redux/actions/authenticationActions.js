@@ -9,44 +9,6 @@ const authConfig = {
   facebookPermissions: ['public_profile', 'email', 'user_friends']
 };
 
-export function defaultAgenda() {
-  let uid = firebase.auth().currentUser.uid;
-  var db = firebase.database();
-  
-  var updateRef = db.ref('users/'+ uid +'/agenda/');
-  updateRef.on("value", function(snapshot) {
-   
-    let agenda  =  snapshot.val();
-    agenda = Object.keys(agenda);
-    agenda = agenda.slice(0,agenda.length-1);
-    console.log("DEFAULT AGENDA: ", agenda);  
-    store.dispatch({type: 'default_agenda', payload: { agenda } });  
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-}
-
-export function updateScheduleData (scheduleData) {
-  store.dispatch({
-    type: 'UPDATE_SCHEDULE_DATA',
-     payload: { 
-      scheduleData: scheduleData
-      }
-    })
-}
-
-export function afterUpdatingData(allDays, allStages, daysAndDates) {
-  console.log("im actions stages: ", allStages);
-  store.dispatch({
-    type: 'AFTER_UPDATING_DATA',
-     payload: { 
-      allStages: allStages,
-      allDays: allDays,
-      daysAndDates: daysAndDates
-      }
-    })
-}
-
 export function signInSuccess(uid, displayName) {
   return {
     type: 'SIGNIN_SUCCESS',
@@ -71,7 +33,6 @@ function signInError(errorMessage) {
 }
 
 function getUsers() {
-  
   let ref = firebase.database().ref();
   let usersRef = ref.child('/users')
     usersRef.once('value', snap => {
@@ -114,34 +75,40 @@ function getFriends() {
 }
 
 export function stillSignedIn(uid) {
-  let firebaseData;
-  let db = firebase.database();
-  let ref = db.ref();
-  let userRef = ref.child(`users/${ uid }`)
+  const db = firebase.database();
+  const ref = db.ref();
+  const userRef = ref.child(`users/${ uid }`);
+
   userRef.once('value', snap => {
-    return firebaseData = snap.val()
-  }).then(data => {
-      store.dispatch({type: 'DATA_ON_RESIGN', userData: data.val()})
-    }
-  ).then(() =>{
-      store.dispatch({type: 'DATA_RETRIEVED'})
-    }
-  )
+    const user = Object.assign(snap.val());
+
+    store.dispatch({ type: 'DATA_ON_RESIGN', userData: user });
+
+    // if (user.groupId) updateGroupData(user.groupId);
+  })
+  .then(() => {
+    store.dispatch({ type: 'DATA_RETRIEVED' })
+  });
 }
 
-function updateUserData(){
+function updateUserData() {
   let userDataFromFirebase;
   let db = firebase.database();
   let ref = db.ref();
-  let usersRef = ref.child(`users/${ currentUserId }`)
+  let usersRef = ref.child(`users/${ currentUserId }`);
+
   usersRef.once('value', snap =>{
     userDataFromFirebase = snap.val()
-  }).then(
-      store.dispatch({type: 'UPDATE_USER_DATA', pendingInvites: userDataFromFirebase.pendingInvites})
-  ).then(
-      store.dispatch({type: 'DATA_RECEIVED'})
-  )
-
+  })
+  .then(() => {
+    store.dispatch({
+      type: 'UPDATE_USER_DATA',
+      pendingInvites: userDataFromFirebase.pendingInvites
+    });
+  })
+  .then(() => {
+    store.dispatch({ type: 'DATA_RECEIVED' });
+  });
 }
 
 export function signIn() {
@@ -150,31 +117,27 @@ export function signIn() {
   dispatch(signInInProgress());
 
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
+  firebase.auth().signInWithPopup(provider)
+  .then((result) => {
+    accessToken = result.credential.accessToken;
+    const { user: { uid, displayName, photoURL, email } } = result;
+    currentUserId = uid;
 
-    firebase.auth().signInWithPopup(provider)
-    // firebase.auth().signInWithRedirect(provider)
-    // firebase.auth().getRedirectResult()
-      .then((result) => {
-        accessToken = result.credential.accessToken;
-        const { user: { uid, displayName, photoURL, email } } = result;
-        currentUserId = uid;
+    firebase.database().ref(`users/${ uid }`).update({
+      label: displayName,
+      img: photoURL,
+      email: email,
+      lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
+      agenda: {null: "null"},
+      venueId: "null",
+      groupId: "null",
+      pendingInvites: "null",
+    });
 
-        firebase.database().ref(`users/${ uid }`).update({
-          label: displayName,
-          img: photoURL,
-          email: email,
-          lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
-          agenda: {null: "null"},
-          venueId: "null",
-          groupId: "null",
-          pendingInvites: "null",
-        });
-
-      })
-      .then(getUsers)
-      .then(updateUserData)
-      .catch(error => {
-        dispatch(signInError(error.message))
-      });
-
+  })
+  .then(getUsers)
+  .then(updateUserData)
+  .catch(error => {
+    dispatch(signInError(error.message))
+  });
 }
