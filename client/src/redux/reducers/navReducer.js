@@ -1,5 +1,5 @@
 const defaults = {
-  fullMenu: false,
+  visible: false,
   menuItems: [
     { path: '/', label: 'Map' },
     { path: '/group', label: 'Rabble'},
@@ -15,8 +15,8 @@ const defaults = {
 export default function navReducer(state = defaults, action) {
   switch(action.type) {
     case 'toggle_menu': {
-      const hide = action.payload.hide || !state.fullMenu;
-      return { ...state, fullMenu: hide };
+      if (!state.visible) return { ...state, visible: true };
+      return { ...state, visible: false };
     }
   }
   return state;

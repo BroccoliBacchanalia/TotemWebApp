@@ -1,26 +1,29 @@
 import React from 'react';
-import { Button } from 'react-onsenui';
+import { Button, Grid } from 'semantic-ui-react'
 import localStyles from './GroupStyles.css';
 import { sortUsers } from '../../redux/actions/sortActions';
 
 const SortGroup = () => {
   const icons = [
-    { path:'a-z-icon.png', method: 'sortAZ' },
-    { path: 'fence-icon.png', method: 'geofence' },
-    { path: 'radar-icon.png', method: 'proximity' }
+    { path:'sort alphabet ascending', method: 'sortAZ' },
+    { path: 'map signs', method: 'geofence' },
+    { path: 'street view', method: 'proximity' }
   ];
-  const iconWidth = (window.innerWidth / icons.length) - (10 / icons.length);
   return (
-    <div className={localStyles.icon}>
-      {icons.map((icon, index) => (
-        <Button
-          key={index}
-          style={{ width: iconWidth}}
-          onClick={() => sortUsers(icon.method)}>
-          <img src={'./img/' + icon.path}/>
-        </Button>
-      ))}
-    </div>
+    <Grid columns={3} divided>
+      <Grid.Row>
+          {icons.map((icon, index) => (
+            <Grid.Column className={localStyles.icon}>
+              <Button
+                className={localStyles.sort}
+                key={index}
+                onClick={() => sortUsers(icon.method)}
+                icon={{name:icon.path, size:'big'}}
+              />
+            </Grid.Column>
+          ))}
+      </Grid.Row>
+    </Grid>
   );
 }
 

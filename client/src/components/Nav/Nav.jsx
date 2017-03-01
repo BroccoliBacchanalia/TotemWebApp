@@ -1,33 +1,23 @@
-import React from 'react';
-import { Navbar, Nav, NavDropdown, NavItem, MenuItem } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Header, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux';
 
-export default class NavigationBar extends React.Component {
+class HeaderBlock extends Component {
   render() {
-    console.log()
+    const { nav, dispatch } = this.props;
     return (
-      <Navbar>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#/">Totem</a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <NavLink to="/group">Group</NavLink>
-            <NavLink to="/map">Map</NavLink>
-            {this.props.venueId ? <NavLink to="/agenda">Agenda</NavLink> : ''}
-            {this.props.venueId ? <NavLink to="/schedule">Schedule</NavLink> : ''}
-            <NavLink to="/choosevenue">ChooseVenue</NavLink>
-            <NavLink to="/create">Create</NavLink>
-            <NavLink to="/invite">Invite</NavLink>
-          </Nav>
-          <Nav pullRight>
-            <NavItem eventKey={1} href="/signout">Logout</NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    );
+      <Header as='h3' block className='nav-header' textAlign='center'>T O T E M
+        <Button 
+          className='menu-button'
+          onClick={() => dispatch({type: 'toggle_menu'})}
+          icon='content' />
+      </Header>
+    )
   }
 }
+
+export default connect((store) => {
+  return {
+    nav: store.nav
+  };
+})(HeaderBlock);

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import store from '../../redux/store.js';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
-import $ from 'jquery';
 import firebase from 'firebase';
 
 class InviteFriends extends React.Component {
@@ -13,8 +12,8 @@ class InviteFriends extends React.Component {
  }
 
 sendPendingInvite (){
-  let checkedUsers = $('input:checkbox:checked').map((item)=>{
-    return $('input:checkbox:checked')[item].value
+  let checkedUsers = document.querySelectorAll('input[name=mycheckboxes]:checked').map((item)=>{
+    return document.querySelectorAll('input[name=mycheckboxes]:checked')[item].value
   }).get();
   let id = this.props.groupId;
   let name = this.props.groupName;
@@ -24,7 +23,7 @@ sendPendingInvite (){
   let db = firebase.database();
 
   for (var i = 0; i < checkedUsers.length; i++) {
-    db.ref(`users/${ checkedUsers[i] }/pendingInvites`).update(pendingInvites);
+    db.ref(`users/${ checkedUsers[i] }/pendingInvites`).update(pendingInvites)
   }
 }
 
