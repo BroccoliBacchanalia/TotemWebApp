@@ -19,6 +19,7 @@ class HomeView extends React.Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         geolocate();
+        ////////////////////
         store.dispatch(signInSuccess(user.uid, user.displayName));
         firebase.database().ref('/groups/' + props.user.groupId)
         .on('value', (snapshot) => {
@@ -53,8 +54,10 @@ class HomeView extends React.Component {
     const { auth, dispatch, group, user, venueSchedule } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
     const hasGroup = user.groupId !== null;
-     console.log('HAS PENDING INVITES', !hasGroup && hasPendingInvites)
-     console.log('HAS GROUP', !hasGroup)
+    console.log('AUTH', !auth.isUserSignedIn);
+    console.log('DATA', user.dataRetrieved);
+    console.log('INVITES', hasPendingInvites);
+    console.log('GROUPS', !hasGroup);
 
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} auth={ auth }/> :

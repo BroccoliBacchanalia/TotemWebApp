@@ -19,9 +19,6 @@ export default function groupReducer(state = defaults, action) {
       newState.users[uid] = user;
       return newState;
     }
-    case 'update_group_name': {
-      return { ...state, name: action.payload.name };
-    }
     case 'users_sort': {
       const users = objToArray(state.users);
       const sortedUsers = users.sort(action.payload.method);
