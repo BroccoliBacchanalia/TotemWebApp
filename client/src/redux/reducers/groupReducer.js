@@ -8,7 +8,7 @@ const defaults = {
 
 export default function groupReducer(state = defaults, action) {
   switch(action.type) {
-    case 'updating_user_loc': {
+    case 'UPDATING_USER_LOC': {
       const user = action.payload.user;
       const uid = action.payload.uid;
       const newState = {
@@ -19,15 +19,15 @@ export default function groupReducer(state = defaults, action) {
       newState.users[uid] = user;
       return newState;
     }
-    case 'users_sort': {
+    case 'USERS_SORT': {
       const users = objToArray(state.users);
       const sortedUsers = users.sort(action.payload.method);
       return {...state, users: arrToObj(sortedUsers)};
     }
-    case 'update_keys': {
+    case 'UPDATE_KEYS': {
       return { ...state, memberKeys: action.payload.keys };
     }
-    case 'show_name': {
+    case 'SHOW_NAME': {
       const uid = action.payload;
       const newState = {
         name: state.name,

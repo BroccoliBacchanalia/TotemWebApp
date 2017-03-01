@@ -2,28 +2,28 @@ import store from '../../redux/store';
 
 export function updateUserData(data) {
   return store.dispatch({
-    type: 'update_user_data',
+    type: 'UPDATE_USER_DATA',
     payload: { data }
   })
 }
 
 export function updateUserId(id) {
   return store.dispatch({
-    type: 'update_userId',
+    type: 'UPDATE_USER_ID',
     payload: { id }
   });
 }
 
 export function updateVenueId(id) {
   return store.dispatch({
-    type: 'update_venueId',
+    type: 'UPDATE_VENUE_ID',
     payload: { id }
   });
 }
 
 export function updateGroupId(id) {
   return store.dispatch({
-    type: 'update_groupId',
+    type: 'UPDATE_GROUP_ID',
     payload: { id }
   });
 }

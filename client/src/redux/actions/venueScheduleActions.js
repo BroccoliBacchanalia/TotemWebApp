@@ -3,33 +3,32 @@ import firebase from 'firebase';
 
 
 export function removeAgenda(agenda) {
-  console.log('actions agenda', agenda);
   store.dispatch({
-    type: 'remove_agenda', 
+    type: 'REMOVE_AGENDA', 
     payload: { agenda }
   });
 }
 export function addAgenda(agenda) {
   store.dispatch({
-    type: 'add_agenda', 
+    type: 'ADD_AGENDA', 
     payload: { agenda }
   });
 }
 
 export function updateDay(day) {
   store.dispatch({
-    type:'update_day',
+    type:'UPDATE_DAY',
     payload: { day }
   });
 }
 
 export function updateStage(stage) {
-  store.dispatch({type: 'update_stage', payload: { stage }})
+  store.dispatch({type: 'UPDATE_STAGE', payload: { stage }})
 }
 
 export function updateFestival(festival) {
   return {
-    type: 'update_festival',
+    type: 'UPDATE_FESTIVAL',
     payload: { festival }
   }
 }

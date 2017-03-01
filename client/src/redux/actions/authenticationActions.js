@@ -30,7 +30,7 @@ export function defaultAgenda() {
 
 export function updateScheduleData (scheduleData) {
   store.dispatch({
-    type: 'update_scheduleData',
+    type: 'UPDATE_SCHEDULEDATA',
      payload: { 
       scheduleData: scheduleData
       }
@@ -40,7 +40,7 @@ export function updateScheduleData (scheduleData) {
 export function afterUpdatingData(allDays, allStages, daysAndDates) {
   console.log("im actions stages: ", allStages);
   store.dispatch({
-    type: 'after_updatingData',
+    type: 'AFTER_UPDATING_DATA',
      payload: { 
       allStages: allStages,
       allDays: allDays,
@@ -126,7 +126,7 @@ export function stillSignedIn(uid) {
       store.dispatch({type: 'DATA_ON_RESIGN', userData: data.val()})
     }
   ).then(() =>{
-      store.dispatch({type: 'data_retreived'})
+      store.dispatch({type: 'DATA_RETRIEVED'})
     }
   )
 }
@@ -139,9 +139,9 @@ function updateUserData(){
   usersRef.once('value', snap =>{
     userDataFromFirebase = snap.val()
   }).then(
-      store.dispatch({type: 'update_user_data', pendingInvites: userDataFromFirebase.pendingInvites})
+      store.dispatch({type: 'UPDATE_USER_DATA', pendingInvites: userDataFromFirebase.pendingInvites})
   ).then(
-      store.dispatch({type: 'data_retreived'})
+      store.dispatch({type: 'DATA_RECEIVED'})
   )
 
 }

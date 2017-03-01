@@ -3,7 +3,7 @@ import store from '../store';
 
 export function updateUser(user, uid) {
   return store.dispatch({
-    type: 'updating_user_loc',
+    type: 'UPDATING_USER_LOC',
     payload: { user, uid }
   });
 }

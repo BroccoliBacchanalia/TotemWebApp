@@ -50,11 +50,11 @@ sendPendingInvite (){
       </form>
     </div>
     <div className={localStyles.iFooter}>
-      <Link to="/">
+      <Link to="/map">
         <button onClick={this.sendPendingInvite.bind(this)}>Invite</button>
       </Link>
       <div>
-        <Link to="/">
+        <Link to="/map">
           Skip
         </Link>
       </div>
