@@ -12,9 +12,12 @@ class InviteFriends extends React.Component {
  }
 
 sendPendingInvite (){
-  let checkedUsers = document.querySelectorAll('input[name=mycheckboxes]:checked').map((item)=>{
-    return document.querySelectorAll('input[name=mycheckboxes]:checked')[item].value
-  }).get();
+  let fromDom = document.querySelectorAll('input[type="checkbox"]:checked');
+  let checkedUsers = [];
+  for(var x = 0; x < fromDom.length; x++) {
+    checkedUsers.push(fromDom[x].value);
+  }
+
   let id = this.props.groupId;
   let name = this.props.groupName;
   let pendingInvites = {}
