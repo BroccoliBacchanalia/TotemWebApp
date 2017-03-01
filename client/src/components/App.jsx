@@ -14,6 +14,7 @@ import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import CreateGroup from './InitConfig/CreateGroup.jsx';
 import InviteFriends from './InitConfig/InviteFriends.jsx';
 import HeaderBlock from './Nav/Nav.jsx'
+import SpeedDialButton from './Nav/SpeedDial.jsx'
 
 class App extends React.Component {
 
@@ -22,11 +23,13 @@ class App extends React.Component {
 
     const { auth, user, nav, dispatch } = this.props;
     const hasGroup = user.groupId !== null;
+      //{auth.isUserSignedIn && hasGroup ? <NavigationBar venueId={user.venueId} /> : ''}
     
     return (
+
     <Router>
       <div style={{ height: '100%' }}>
-      <HeaderBlock />
+        <HeaderBlock />
         <Sidebar.Pushable as={Segment} className='main-view'>
           <Sidebar
             as={Menu}
@@ -70,6 +73,7 @@ class App extends React.Component {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+        <SpeedDialButton />
       </div>
      </Router>
     );
