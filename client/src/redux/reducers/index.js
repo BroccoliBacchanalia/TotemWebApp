@@ -1,7 +1,7 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 import user from './userReducer';
 import group from './groupReducer';
-import nav from './navReducer';
+import app from './appReducer';
 import auth from './authenticationReducer';
 import venues from './venueReducer';
 import venueSchedule from './venueScheduleReducer';
@@ -9,7 +9,7 @@ import venueSchedule from './venueScheduleReducer';
 export default combineReducers({
   user,
   group,
-  nav,
+  app,
   auth,
   venues,
   venueSchedule

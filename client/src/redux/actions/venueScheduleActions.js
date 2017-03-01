@@ -73,7 +73,7 @@ export function getArtist(stage, day){
 
 function generateDay(dateString) {
   let weekday = new Array(7);
-  weekday[0] =  "Sunday";
+  weekday[0] = "Sunday";
   weekday[1] = "Monday";
   weekday[2] = "Tuesday";
   weekday[3] = "Wednesday";
