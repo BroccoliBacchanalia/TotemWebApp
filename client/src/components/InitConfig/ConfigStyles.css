@@ -20,7 +20,7 @@
   line-height: 70px;
 }
 
-.cRow > div:hover {
+.cRow div:hover {
   cursor: pointer;
   background-color: lightgrey;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import localStyles from './VenueStyles.css';
-import { addAgenda } from '../../redux/actions/venueScheduleActions.js';
+import { addAgenda } from '../../redux/actions/agendaActions';
 
 function addAgendaItem(key, name, startTime, endTime, geofence, day) {
   let uid = firebase.auth().currentUser.uid;
@@ -13,17 +13,16 @@ function addAgendaItem(key, name, startTime, endTime, geofence, day) {
   //fetch new agenda
   var updateRef = db.ref('users/'+ uid +'/agenda/');
   updateRef.on("value", function(snapshot) {
-   
+
     let agenda  =  snapshot.val();
     agenda = Object.keys(agenda);
     agenda = agenda.slice(0,agenda.length-1);
-    console.log("ADDED AGENDA: ", agenda); 
+    console.log("ADDED AGENDA: ", agenda);
     addAgenda(agenda)
-    //store.dispatch({type: 'add_agenda', payload: { agenda } });  
+    //store.dispatch({type: 'add_agenda', payload: { agenda } });
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
-  console.log("INSIDE ADDED AGENDA");
 
 }
 
