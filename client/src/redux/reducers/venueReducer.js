@@ -6,10 +6,10 @@ const defaults = {
 
 export default function configReducer(state = defaults, action) {
   switch(action.type) {
-    case 'update_venues': {
+    case 'UPDATE_VENUES': {
       return { ...state, venues: action.payload.venues };
     }
-    case 'update_geofences':
+    case 'UPDATE_GEOFENCES':
   }
   return state;
 };

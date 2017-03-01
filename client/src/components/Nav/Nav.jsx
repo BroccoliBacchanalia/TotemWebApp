@@ -9,7 +9,7 @@ class HeaderBlock extends Component {
       <Header as='h3' block className='nav-header' textAlign='center'>T O T E M
         <Button 
           className='menu-button'
-          onClick={() => dispatch({type: 'toggle_menu'})}
+          onClick={() => dispatch({type: 'TOGGLE_MENU'})}
           icon='content' />
       </Header>
     )
