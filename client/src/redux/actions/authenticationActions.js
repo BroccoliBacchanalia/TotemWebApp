@@ -2,13 +2,12 @@ import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
 
-const authConfig = {
-  facebookPermissions: ['public_profile', 'email', 'user_friends']
-};
-
 let accessToken;
 let databaseGroup =[];
 let currentUserId;
+const authConfig = {
+  facebookPermissions: ['public_profile', 'email', 'user_friends']
+};
 
 export function defaultAgenda() {
   let uid = firebase.auth().currentUser.uid;
@@ -25,7 +24,6 @@ export function defaultAgenda() {
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
-  console.log("INSIDE DEFAULT AGENDA");
 }
 
 export function updateScheduleData (scheduleData) {
