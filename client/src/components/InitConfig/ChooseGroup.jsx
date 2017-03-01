@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import store from '../../redux/store.js';
-import { selectGroup, skipGroup } from '../../redux/actions/venueActions.js'
 import { updateGroupId } from '../../redux/actions/userActions';
 import firebase from 'firebase';
+import styles from '../Styles.css';
+import localStyles from './ConfigStyles.css';
 
 
 class ChooseGroup extends React.Component {
@@ -22,9 +23,9 @@ class ChooseGroup extends React.Component {
       invites = snap.val();
     }).then(
     delete invites[key],
-    db.ref(`users/${ userId }/pendingInvites`).set(invites) 
+    db.ref(`users/${ userId }/pendingInvites`).set(invites)
    )
-    
+
   }
 
   render(){
@@ -32,23 +33,32 @@ class ChooseGroup extends React.Component {
     const router = this.context.router;
 
   	return (
-  		<div>
-  		  <div>Choose Your Group</div>
-        <ul>
+  		<div className="custom-container">
+  		  <div className={localStyles.header}>
+          <h3>Choose Your Group</h3>
+        </div>
+        <div className={styles.scrollView + ' ' + localStyles.cRow}>
           {groupKeys.map((key, index) => (
             <Link to='/group'>
-            <li key={index} onClick={() => {
-              updateGroupId.call(this, key);
-                this.removeGroupFromPendingInvites(key)
-            }}>
-              {this.props.groupList[key]}
-            </li>
+              <div
+                key={index}
+                className={styles.row}
+                onClick={() => {
+                  updateGroupId.call(this, key);
+                  this.removeGroupFromPendingInvites(key);
+                }}>
+                {this.props.groupList[key]}
+              </div>
             </Link>
           ))}
-        </ul>
-        <Link to="/choosevenue">
-          Skip
-        </Link>
+        </div>
+        <div className={localStyles.cFooter}>
+          <div>
+            <Link to="/choosevenue">
+              Skip
+            </Link>
+          </div>
+        </div>
   		</div>
   	);
   }
