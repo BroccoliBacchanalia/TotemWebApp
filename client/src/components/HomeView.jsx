@@ -7,7 +7,7 @@ import { geolocate, addUserListener, updateGroupKeys } from '../redux/actions';
 import Group from './Group/Group.jsx';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
-import { signIn, signInSuccess, updateScheduleData, afterUpdatingData, defaultAgenda } from '../redux/actions/authenticationActions';
+import { signIn, signInSuccess, updateScheduleData, afterUpdatingData, defaultAgenda, stillSignedIn } from '../redux/actions/authenticationActions';
 import { allStages, allDays } from '../redux/actions/venueScheduleActions';
 import SignInButton from './Auth/SignInButton';
 import Loading from './Auth/Loading';
@@ -20,6 +20,7 @@ class HomeView extends React.Component {
       if (user) {
         geolocate();
         store.dispatch(signInSuccess(user.uid, user.displayName));
+        stillSignedIn(user.uid)
         firebase.database().ref('/groups/' + props.user.groupId)
         .on('value', (snapshot) => {
           const userKeys = snapshot.val().members;
@@ -53,13 +54,12 @@ class HomeView extends React.Component {
     const { auth, dispatch, group, user, venueSchedule } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
     const hasGroup = user.groupId !== null;
-     console.log('HAS PENDING INVITES', !hasGroup && hasPendingInvites)
-     console.log('HAS GROUP', !hasGroup)
 
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} auth={ auth }/> :
       !user.dataRetrieved ? <Loading /> :
-      !hasGroup && hasPendingInvites ? <ChooseGroup /> :
+      hasPendingInvites ? <ChooseGroup /> :
+      !hasPendingInvites ? <ChooseVenue /> :
       !hasGroup ? <ChooseVenue /> : <Group/>
     );
   }

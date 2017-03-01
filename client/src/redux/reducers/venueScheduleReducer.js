@@ -12,22 +12,22 @@ const defaults = {
 
 export default function venueScheduleReducer(state = defaults, action) {
   switch(action.type) {
-    case 'update_day': {
+    case 'UPDATE_DATE': {
       return { ...state, selectedDay: action.payload.day };
     }
-    case 'update_stage': {
+    case 'UPDATE_STAGE': {
       return { ...state, chooseStage: action.payload.stage };
     }
-    case 'update_festival': {
+    case 'UPDATE_FESTIVAL': {
       return { ...state, scheduleData: action.payload.festival };
     }
-    case 'def': {
+    case 'DEF': {
       return { ...state, selectedDay: "Friday", chooseStage: "" };
     }
-    case 'update_scheduleData': {
+    case 'UPDATE_SCHEDULE_DATA': {
       return {...state, scheduleData: action.payload.scheduleData };
     }
-    case 'after_updatingData': {
+    case 'AFTER_UPDATING_DATA': {
       return {
         ...state,
         stages: action.payload.allStages,
@@ -35,13 +35,13 @@ export default function venueScheduleReducer(state = defaults, action) {
         daysAndDates: action.payload.daysAndDates
       }
     }
-    case 'remove_agenda': {
+    case 'REMOVE_AGENDA': {
       return { ...state, agenda: action.payload.agenda };
     }
-    case 'default_agenda': {
+    case 'DEFAULT_AGENDA': {
       return { ...state, agenda: action.payload.agenda };
     }
-    case 'add_agenda': {
+    case 'ADD_AGENDA': {
       return { ...state, agenda: action.payload.agenda };
     }
   }

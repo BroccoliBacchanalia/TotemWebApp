@@ -14,7 +14,7 @@ const defaults = {
 
 export default function navReducer(state = defaults, action) {
   switch(action.type) {
-    case 'toggle_menu': {
+    case 'TOGGLE_MENU': {
       if (!state.visible) return { ...state, visible: true };
       return { ...state, visible: false };
     }

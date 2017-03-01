@@ -21,26 +21,37 @@ export default function appReducer(state = defaults, action) {
       return {
         ...state,
         uid: action.payload.uid,
-        name: action.payload.name
+        name: action.payload.name,
+        groupId: null
       };
-    case 'update_userId': {
+    case 'UPDATE_USER_ID': {
       return { ...state, uid: action.payload.id };
     }
-    case 'data_retreived': {
+    case 'DATA_RETRIEVED': {
       return { ...state, dataRetrieved: true};
     }
-    case 'update_user_data': {
+    case 'UPDATE_USER_DATA': {
       return { ...state, pendingInvites: action.pendingInvites };
     }
-    case 'update_venueId': {
+    case 'UPDATE_VENUE_ID': {
       return { ...state, venueId: action.payload.id };
     }
-    case 'update_groupId': {
+    case 'UPDATE_GROUP_ID': {
       return { ...state, groupId: action.payload.id };
     }
     case 'UPDATE_FRIENDS': {
-      return {...state, friendList: action.friends };
+      return { ...state, friendList: action.friendList };
+    }
+    case 'DATA_ON_RESIGN': {
+      if(action.userData.pendingInvites !== undefined) {
+      return { ...state, friendList: action.userData.friends, pendingInvites: action.userData.pendingInvites };
       }
+    } if (action.userData.pendingInvites === undefined) {
+      return { ...state, friendList: action.userData.friends, pendingInvites: '' };
+    }
+    case 'UPDATE_GROUP_NAME': {
+      return { ...state, groupName: action.payload.name }
+    }
   }
   return state;
 };

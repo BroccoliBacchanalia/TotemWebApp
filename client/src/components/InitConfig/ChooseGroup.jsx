@@ -36,13 +36,14 @@ class ChooseGroup extends React.Component {
   		  <div>Choose Your Group</div>
         <ul>
           {groupKeys.map((key, index) => (
+            <Link to='/group'>
             <li key={index} onClick={() => {
               updateGroupId.call(this, key);
                 this.removeGroupFromPendingInvites(key)
-              router.push('/');
             }}>
               {this.props.groupList[key]}
             </li>
+            </Link>
           ))}
         </ul>
         <Link to="/choosevenue">

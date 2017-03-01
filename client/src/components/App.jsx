@@ -41,19 +41,19 @@ class App extends React.Component {
             vertical
             inverted
           >
-            <Menu.Item as={Link} to='/map' onClick={() => dispatch({type: 'toggle_menu'})}>
+            <Menu.Item as={Link} to='/map' onClick={() => dispatch({type: 'TOGGLE_MENU'})}>
               <Icon name='map' />
               Map
             </Menu.Item>
-            <Menu.Item as={Link} to='/group' onClick={() => dispatch({type: 'toggle_menu'})}>
+            <Menu.Item as={Link} to='/group' onClick={() => dispatch({type: 'TOGGLE_MENU'})}>
               <Icon name='users' />
               Group
             </Menu.Item>
-            <Menu.Item as={Link} to='/agenda' onClick={() => dispatch({type: 'toggle_menu'})}>
+            <Menu.Item as={Link} to='/agenda' onClick={() => dispatch({type: 'TOGGLE_MENU'})}>
               <Icon name='signup' />
               Agenda
             </Menu.Item>
-            <Menu.Item as={Link} to='/schedule' onClick={() => dispatch({type: 'toggle_menu'})}>
+            <Menu.Item as={Link} to='/schedule' onClick={() => dispatch({type: 'TOGGLE_MENU'})}>
               <Icon name='clock' />
               Schedule
             </Menu.Item>
