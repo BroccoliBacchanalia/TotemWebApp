@@ -43,7 +43,11 @@ export default function appReducer(state = defaults, action) {
       return { ...state, friendList: action.friendList };
     }
     case 'DATA_ON_RESIGN': {
+      if(action.userData.pendingInvites !== undefined) {
       return { ...state, friendList: action.userData.friends, pendingInvites: action.userData.pendingInvites };
+      }
+    } if (action.userData.pendingInvites === undefined) {
+      return { ...state, friendList: action.userData.friends, pendingInvites: '' };
     }
     case 'update_group_name': {
       return { ...state, groupName: action.payload.name }
