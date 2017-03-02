@@ -14,7 +14,7 @@ class ContactEmergencyServices extends Component {
         <Modal.Content>
           <p className='modal-body'>Are you sure you want to send a distress signal to contact emergency services?</p>
         </Modal.Content>
-        <Modal.Actions float='center'>
+        <Modal.Actions>
           <Button basic size='huge' color='red' inverted onClick={toggleEmergencyServices}>
             <Icon name='remove' /> No
           </Button>

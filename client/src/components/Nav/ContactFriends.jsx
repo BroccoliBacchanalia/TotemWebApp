@@ -14,7 +14,7 @@ class ContactFriends extends Component {
         <Modal.Content>
           <p className='modal-body'>Are you sure you want to send an emergency signal to your group?</p>
         </Modal.Content>
-        <Modal.Actions float='center'>
+        <Modal.Actions>
           <Button basic size='huge' color='red' inverted onClick={toggleEmergencyFriends}>
             <Icon name='remove' /> No
           </Button>

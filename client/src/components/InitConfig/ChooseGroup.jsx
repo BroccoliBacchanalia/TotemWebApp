@@ -38,9 +38,9 @@ class ChooseGroup extends React.Component {
     const router = this.context.router;
     console.log(groupKeys, 'keys in choose group');
 
-  	return (
-  		<div className="custom-container">
-  		  <div className={ localStyles.header }>
+    return (
+      <div className="custom-container">
+        <div className={ localStyles.header }>
           <h3>Choose Your Group</h3>
         </div>
         <div className={styles.scrollView + ' ' + localStyles.cRow}>
@@ -64,8 +64,8 @@ class ChooseGroup extends React.Component {
             </Link>
           </div>
         </div>
-  		</div>
-  	);
+      </div>
+    );
   }
 }
 

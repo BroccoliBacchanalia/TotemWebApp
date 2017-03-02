@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import Markers from './Markers.jsx'
 import GroundOverlay from '../GroundOverlay';
 import localStyles from './MapStyles.css';
-console.log("MARKERSSSSS: _____: ", Marker )
+
 
 class MapViewer extends Component {
 
@@ -29,10 +29,6 @@ class MapViewer extends Component {
   // }
 
  handleMapClick(event) {
-   //  console.log("INSIDE CREATE MARKERS");
-   // // console.log("handlemapclick this ", this);
-   // console.log("CURRENT POSITION: ", event.latLng.lat(), " ",event.latLng.lng());
-
     const nextMarkers = [
       ...this.state.markers,
       {
@@ -44,12 +40,10 @@ class MapViewer extends Component {
         key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
       },
     ];
-
     console.log("PREVIOUS STATE: ",this.state );
     this.setState({
       markers: nextMarkers
     });
-
     console.log("CURRENT STATE: ",this.state);
     this.render();
 
@@ -61,19 +55,16 @@ class MapViewer extends Component {
   }
 
   render() {
-    //console.log("INSIDE RENDER THHIS: ", this)
-    console.log("-------------------------", this.state.markers);
     const LoadMap = withGoogleMap(props => (
       <GoogleMap
         ref={ props.onMapLoad }
-        defaultZoom={ 16 }
-        defaultCenter={{ lat: 37.769403, lng: -122.49 }}
+        defaultZoom={ 17 }
+        defaultCenter={{ lat: 33.682387, lng: -116.2389165 }}
         mapTypeId= 'terrain'
-        onClick={props.onMapClick.bind(this)}//{()=>{console.log('map clicked')}}
+        onClick={props.onMapClick.bind(this)}
         options={{ streetViewControl: false, mapTypeControl: false }}
         >
           {
-              //console.log("props.markers.map: ", props.markers)
               props.markers.map(marker => {
               return (
                 <Marker
@@ -85,18 +76,20 @@ class MapViewer extends Component {
 
         <Markers />
         <GroundOverlay
-          image='https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-307385678134/outside_lands.png'
-          opacity={0.7}
+          image='https://coachella-2014-site.s3.amazonaws.com/wp-content/uploads/2016/04/20100620/2016_coachella_maps_venue_v2.jpg'
+          opacity={0.9}
           imageBounds={{
-            north: 37.771614,
-            south: 37.765553,
-            east: -122.481277,
-            west: -122.496346
+            north: 33.685400,
+            south: 33.677657, 
+            east: -116.235888,
+            west: -116.242125
           }
         }/>
    
       </GoogleMap>
     ));
+
+ 
 
     return (
       <div className={localStyles.googleMap}>
