@@ -3,7 +3,7 @@ import store from '../../redux/store';
 
 export function sortUsers(method) {
   return store.dispatch({
-    type: 'users_sort',
+    type: 'USERS_SORT',
     payload: { method: sortMethods[method] }
   });
 }
