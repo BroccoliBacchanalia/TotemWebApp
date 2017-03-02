@@ -18,8 +18,10 @@ const defaults = {
 
 export default function appReducer(state = defaults, action) {
   switch(action.type) {
-    case 'TOGGLE_MENU': {
-      if (!state.visible) return { ...state, visible: true };
+    case 'OPEN_MENU': {
+      return { ...state, visible: true };
+    }    
+    case 'CLOSE_MENU': {
       return { ...state, visible: false };
     }
     case 'TOGGLE_DIMMER' : {

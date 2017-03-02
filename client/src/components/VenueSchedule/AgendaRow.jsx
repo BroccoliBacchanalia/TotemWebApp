@@ -24,12 +24,12 @@ function removeAgendaItem(key) {
   });
 }
 
-const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day }) => (
+const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl }) => (
   <div
     type="button"
     className={localStyles.gRow + " clearfix"}
     onClick={removeAgendaItem.bind(null, itemKey)}>
-    <img src='./img/totem1.png'/>
+    <img src={imgurl}/>
       <p>
         <span className="h3">{name}</span>
         <br/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import localStyles from './VenueStyles.css';
-import { def, updateDay } from '../../redux/actions/venueScheduleActions.js'
+import { def, updateDay } from '../../redux/actions'
 import { connect } from 'react-redux';
 import store from '../../redux/store';
 
