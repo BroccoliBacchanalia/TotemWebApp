@@ -27,7 +27,6 @@ const CreateGroup = (props) => (
 );
 
 function submit({ user, group, push }) {
-	console.log('LENGTH', user.groupName.length);
 	if(user.groupName.length < 1){
 		return
 	}
