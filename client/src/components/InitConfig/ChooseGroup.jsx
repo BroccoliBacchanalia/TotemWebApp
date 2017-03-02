@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import store from '../../redux/store.js';
 import { updateGroupId } from '../../redux/actions/userActions';
+import { setDefaultChat } from '../../redux/actions/chatActions';
 import firebase from 'firebase';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
@@ -52,6 +53,9 @@ class ChooseGroup extends React.Component {
                   this.removeGroupFromPendingInvites(key);
                 } }>
                 { this.props.groupList[key] }
+                  setDefaultChat(key);
+                }}>
+
               </div>
             </Link>
           ))}

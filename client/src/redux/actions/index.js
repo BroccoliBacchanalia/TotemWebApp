@@ -6,3 +6,4 @@ export * from './locationActions'
 export * from './sortActions';
 export * from './userActions';
 export * from './venueScheduleActions';
+export * from './chatActions';
