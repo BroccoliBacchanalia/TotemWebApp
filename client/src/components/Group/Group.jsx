@@ -22,7 +22,7 @@ const GroupView = ({ user, users }) => (
       })}
     </div>
     <div className={styles.scrollView}>
-      { Object.keys(users).map((userKey, index) => {
+      {Object.keys(users).map((userKey, index) => {
         const friend = users[userKey];
         if (userKey !== user.uid) {
           return (
