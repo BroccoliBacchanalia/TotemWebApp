@@ -1,18 +1,23 @@
 import store from '../store.js';
-import firebase from 'firebase';
 
-
-export function removeAgenda(agenda) {
+export function updateScheduleData(scheduleData) {
   store.dispatch({
-    type: 'REMOVE_AGENDA', 
-    payload: { agenda }
-  });
+    type: 'UPDATE_SCHEDULE_DATA',
+     payload: {
+      scheduleData: scheduleData
+      }
+    });
 }
-export function addAgenda(agenda) {
+
+export function afterUpdatingData(allDays, allStages, daysAndDates) {
   store.dispatch({
-    type: 'ADD_AGENDA', 
-    payload: { agenda }
-  });
+    type: 'AFTER_UPDATING_DATA',
+     payload: {
+      allStages: allStages,
+      allDays: allDays,
+      daysAndDates: daysAndDates
+      }
+    });
 }
 
 export function updateDay(day) {
@@ -33,10 +38,6 @@ export function updateFestival(festival) {
   }
 }
 
-export function def() {
-  store.dispatch({type: 'DEF'})
-}
-
 export function allStages (scheduleItems) {
   const stages = {};
   for(let key in scheduleItems) {
@@ -49,7 +50,6 @@ export function allStages (scheduleItems) {
 }
 
 export function allDays(scheduleData) {
-
     let datesDay={};
     for(let key in scheduleData) {
       let item = scheduleData[key];

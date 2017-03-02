@@ -7,8 +7,9 @@ import { geolocate, addUserListener, updateGroupKeys } from '../redux/actions';
 import Group from './Group/Group.jsx';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
-import { signIn, signInSuccess, updateScheduleData, afterUpdatingData, defaultAgenda, stillSignedIn } from '../redux/actions/authenticationActions';
-import { allStages, allDays } from '../redux/actions/venueScheduleActions';
+import { signIn, signInSuccess, stillSignedIn } from '../redux/actions/authenticationActions';
+import { allStages, allDays, updateScheduleData, afterUpdatingData } from '../redux/actions/venueScheduleActions';
+import { defaultAgenda } from '../redux/actions/agendaActions';
 import SignInButton from './Auth/SignInButton';
 import Loading from './Auth/Loading';
 
@@ -21,14 +22,17 @@ class HomeView extends React.Component {
         geolocate();
         store.dispatch(signInSuccess(user.uid, user.displayName));
         stillSignedIn(user.uid)
-        firebase.database().ref('/groups/' + props.user.groupId)
-        .on('value', (snapshot) => {
-          const userKeys = snapshot.val().members;
-          updateGroupKeys(userKeys);
-          for (let userId in userKeys) {
-            addUserListener(userId);
-          }
-        });
+
+        if (props.user.groupId) {
+          firebase.database().ref('/groups/' + props.user.groupId)
+          .on('value', (snapshot) => {
+            const userKeys = snapshot.val().members;
+            updateGroupKeys(userKeys);
+            for (let userId in userKeys) {
+              addUserListener(userId);
+            }
+          });
+        }
       }
     });
     //populate state with schedule data
@@ -53,14 +57,15 @@ class HomeView extends React.Component {
   render() {
     const { auth, dispatch, group, user, venueSchedule } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
+    console.log(hasPendingInvites, 'user has pending invites');
     const hasGroup = user.groupId !== null;
 
     return (
-      !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} auth={ auth }/> :
+      !auth.isUserSignedIn ? <SignInButton onSignInClick={ signIn } auth={ auth }/> :
       !user.dataRetrieved ? <Loading /> :
       hasPendingInvites ? <ChooseGroup /> :
       !hasPendingInvites ? <ChooseVenue /> :
-      !hasGroup ? <ChooseVenue /> : <Group/>
+      !hasGroup ? <ChooseVenue /> : <Map />
     );
   }
 }

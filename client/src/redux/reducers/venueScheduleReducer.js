@@ -2,11 +2,12 @@ import firebase from 'firebase';
 const defaults = {
   selectedDay: 'Friday',
   chooseStage: '',
-  scheduleData: "",
+  scheduleData: '',
   stages: [],
   days: [],
   daysAndDates: {},
-  agenda: []
+  agenda: [],
+  imgURL: ''
 
 };
 
