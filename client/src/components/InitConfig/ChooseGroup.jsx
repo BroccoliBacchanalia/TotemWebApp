@@ -27,9 +27,7 @@ class ChooseGroup extends React.Component {
       delete invites[key],
       db.ref(`users/${ userId }/pendingInvites`).set(invites)
     }).then(
-      db.ref(`users/${ userId }/groupId`).set({
-        groupId: key
-      })
+      db.ref(`users/${ userId }/groupId`).set(key)
     )
   }
 
@@ -38,9 +36,9 @@ class ChooseGroup extends React.Component {
     const router = this.context.router;
     console.log(groupKeys, 'keys in choose group');
 
-  	return (
-  		<div className="custom-container">
-  		  <div className={ localStyles.header }>
+    return (
+      <div className="custom-container">
+        <div className={ localStyles.header }>
           <h3>Choose Your Group</h3>
         </div>
         <div className={styles.scrollView + ' ' + localStyles.cRow}>
@@ -50,11 +48,9 @@ class ChooseGroup extends React.Component {
                 className={styles.row}
                 onClick={() => {
                   updateGroupId(key);
-                  setDefaultChat(key);
                   this.removeGroupFromPendingInvites(key);
                 }}>
                 { this.props.groupList[key] }
-                 
               </div>
             </Link>
           ))}
@@ -66,8 +62,8 @@ class ChooseGroup extends React.Component {
             </Link>
           </div>
         </div>
-  		</div>
-  	);
+      </div>
+    );
   }
 }
 
@@ -76,8 +72,8 @@ ChooseGroup.contextTypes = {
 }
 
 export default connect((store) => {
-	return {
-		groupList: store.user.pendingInvites,
+  return {
+    groupList: store.user.pendingInvites,
     userId : store.user.uid
-	}
+  }
 })(ChooseGroup)

@@ -19,7 +19,7 @@ export default function auth(state = defaults, action) {
     case 'SIGNIN':
       return {
         ...state,
-        isInProgress: true
+        isInProgress: true,
       };
     case 'SIGNIN_ERROR':
       const { errorMessage } = action;

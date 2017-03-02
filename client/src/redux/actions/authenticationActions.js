@@ -127,8 +127,8 @@ export function signIn() {
       email: email,
       lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
       agenda: { null: "null" },
-      venueId: null,
-      groupId: null,
+      venueId: '',
+      groupId: '',
     });
 
   })

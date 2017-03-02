@@ -4,14 +4,13 @@ import localStyles from './VenueStyles.css';
 import { removeAgenda } from '../../redux/actions/agendaActions';
 
 function removeAgendaItem(key) {
-  const uid = store.getState().user.uid;
-  var db = firebase.database();
 
+  const uid = firebase.auth().currentUser.uid;
+  const db = firebase.database();
   db.ref('users/' + uid + '/agenda/' + key).remove()
   .then(function(){
    // fetch data after removing agenda
-    var updateRef = db.ref('users/' + uid + '/agenda/');
-    
+    const updateRef = db.ref('users/'+ uid +'/agenda/');
     updateRef.on("value", function(snapshot) {
       let agenda  =  snapshot.val();
       agenda = Object.keys(agenda);

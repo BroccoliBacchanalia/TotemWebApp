@@ -64,12 +64,13 @@ class HomeView extends React.Component {
   render() {
     const { auth, dispatch, group, user, venueSchedule } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
-    const hasGroup = user.groupId !== null;
+    const hasGroup = user.groupId;
+    console.log('!!!!!', hasPendingInvites, !hasGroup)
 
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={ signIn } auth={ auth }/> :
       !user.dataRetrieved ? <Loading /> :
-      hasPendingInvites && hasGroup ? <ChooseGroup /> :
+      hasPendingInvites && !hasGroup ? <ChooseGroup /> :
       !hasGroup ? <ChooseVenue /> : <MapViewer />
     );
   }
