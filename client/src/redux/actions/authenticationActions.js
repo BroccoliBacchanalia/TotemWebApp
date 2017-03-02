@@ -2,10 +2,10 @@ import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
 import { updateGroupId, userResign } from './userActions';
-import { firebaseOnce, firebaseSet } from './firebaseActions';
+import { firebaseOnce, firebaseSet, firebaseUpdate } from './firebaseActions';
 import { updateGroup } from './groupActions';
-const dispatch = store.dispatch;
 
+const dispatch = store.dispatch;
 let accessToken;
 let databaseGroup =[];
 let currentUserId;
@@ -83,7 +83,7 @@ export function stillSignedIn(uid) {
       console.log(data.groupId, 'group id exists in stillsigned in')
       updateGroupId(data.groupId);
     }
-    dispatch({ type: 'DATA_RETRIEVED' });
+    dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
   });
 }
 
@@ -104,12 +104,11 @@ export function signIn() {
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
   firebase.auth().signInWithPopup(provider)
   .then((result) => {
-    console.log(result, 'result in signin permissions section')
     accessToken = result.credential.accessToken;
     const { user: { uid, displayName, photoURL, email } } = result;
     currentUserId = uid;
 
-    firebase.database().ref(`users/${ uid }`).update({
+    let userData = {
       label: displayName,
       img: photoURL,
       email: email,
@@ -117,8 +116,8 @@ export function signIn() {
       agenda: { null: "null" },
       venueId: '',
       groupId: '',
-    });
-
+    }
+    firebaseUpdate(`users/${ uid }`, userData);
   })
   .then(getUsers)
   .then(updateUserData)

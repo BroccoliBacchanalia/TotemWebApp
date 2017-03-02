@@ -1,7 +1,7 @@
 import React from 'react';
+import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import firebase from 'firebase';
 import { updateGroupName } from '../../redux/actions/groupActions';
 import { updateGroupId } from '../../redux/actions/userActions';
 import localStyles from './ConfigStyles.css';

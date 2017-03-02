@@ -1,17 +1,13 @@
 import React from 'react';
+import store from '../../redux/store';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import store from '../../redux/store';
 import { updateVenueId } from '../../redux/actions/groupActions';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
 import firebase from 'firebase';
+import { firebaseSet } from '../../redux/actions/firebaseActions';
 class ChooseVenue extends React.Component {
-
-  updateFirebaseVenueId (key) {
-    let db = firebase.database();
-    db.ref(`users/${ this.props.userId }/venueId`).set(key)
-  }
 
   render () {
     const venues = this.props.venues;
@@ -30,6 +26,7 @@ class ChooseVenue extends React.Component {
               className={ styles.row }
               onClick={() => {
                 updateVenueId.call(this, key);
+                firebaseSet(`users/${ this.props.userId }/venueId`, key);
                 router.push('/creategroup');
               }}>
               { venues[key].name }

@@ -13,7 +13,7 @@ const SortGroup = () => {
     <Grid columns={3} divided>
       <Grid.Row>
           {icons.map((icon, index) => (
-            <Grid.Column className={localStyles.icon}>
+            <Grid.Column className={localStyles.icon} key={index}>
               <Button
                 className={localStyles.sort}
                 key={index}

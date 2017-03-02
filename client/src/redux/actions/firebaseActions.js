@@ -11,7 +11,13 @@ export function firebaseOnce(url, callback) {
 }
 
 export function firebaseSet(url, payload) {
-  firebase.database().ref(url).set(payload);
+	const db = firebase.database();
+  db.ref(url).set(payload);
+}
+
+export function firebaseUpdate(url, payload) {
+	const db = firebase.database();
+	db.ref(url).update(payload);
 }
 
 export function firebaseOn(url, callback) {
