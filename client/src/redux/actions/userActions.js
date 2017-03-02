@@ -1,4 +1,6 @@
 import store from '../../redux/store';
+import { firebaseOnce } from './firebaseActions';
+import { updateGroup } from './groupActions';
 
 export function updateUserData(data) {
   return store.dispatch({
@@ -7,18 +9,13 @@ export function updateUserData(data) {
   })
 }
 
-export function updateVenueId(id) {
-  return store.dispatch({
-    type: 'UPDATE_VENUE_ID',
-    payload: { id }
-  });
-}
-
 export function updateGroupId(id) {
-  return store.dispatch({
+  store.dispatch({
     type: 'UPDATE_GROUP_ID',
     payload: { id }
   });
+
+  firebaseOnce('/groups/' + id, updateGroup);
 }
 
 export function userResign(user) {

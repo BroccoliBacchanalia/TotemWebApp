@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import store from '../../redux/store.js';
 import { updateGroupId } from '../../redux/actions/userActions';
 import { setDefaultChat } from '../../redux/actions/chatActions';
-import firebase from 'firebase';
+import { firebaseOnce, firebaseSet } from '../../redux/actions/firebaseActions';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
 
@@ -12,25 +12,6 @@ import localStyles from './ConfigStyles.css';
 class ChooseGroup extends React.Component {
   constructor(props, context) {
     super(props);
-  }
-
-  removeGroupFromPendingInvites(key) {
-    let userId = this.props.userId;
-    let invites;
-    let db = firebase.database();
-    let ref = db.ref();
-    let groupAdd = {};
-    groupAdd[userId] = this.props.userName
-    let usersRef = ref.child(`users/${ userId }/pendingInvites`)
-    usersRef.once('value', snap => {
-      return snap.val();
-    }).then(data => {
-      invites = data.val(),
-      delete invites[key],
-      db.ref(`users/${ userId }/pendingInvites`).set(invites)
-    }).then(
-      db.ref(`users/${ userId }/groupId`).set(key)
-    ).then(`groups/${ key }/members`).update(groupAdd)
   }
 
   render(){
@@ -66,6 +47,15 @@ class ChooseGroup extends React.Component {
         </div>
       </div>
     );
+  }
+
+  removeGroupFromPendingInvites(key) {
+    let userId = this.props.userId;
+
+    firebaseOnce(`users/${ userId }/pendingInvites`, (invites)=> {
+      delete invites[key];
+      firebaseSet(`users/${ userId }/pendingInvites`, invites);
+    });
   }
 }
 

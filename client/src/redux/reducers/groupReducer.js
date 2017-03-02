@@ -1,19 +1,20 @@
-import data from './mock_fb_friend_list'
 const defaults = {
-  name: null,
-  memberKeys: {},
-  users: data,
+  groupName: '',
+  members: {},
+  users: {},
+  venueId: ''
 };
 
 export default function groupReducer(state = defaults, action) {
   switch(action.type) {
-    case 'UPDATING_USER_LOC': {
+    case 'UPDATING_GROUP_MEMBER': {
       const user = action.payload.user;
       const uid = action.payload.uid;
       const newState = {
-        name: state.name,
-        memberKeys: { ...state.memberKeys },
-        users: { ...state.users }
+        groupName: state.groupName,
+        members: { ...state.members },
+        users: { ...state.users },
+        venueId: state.venueId
       };
       newState.users[uid] = user;
       return newState;
@@ -29,12 +30,22 @@ export default function groupReducer(state = defaults, action) {
     case 'SHOW_NAME': {
       const uid = action.payload;
       const newState = {
-        name: state.name,
-        memberKeys: { ...state.memberKeys },
-        users: { ...state.users }
+        groupName: state.groupName,
+        members: { ...state.members },
+        users: { ...state.users },
+        venueId: state.venueId
       };
       newState.users[uid].showInfo ? newState.users[uid].showInfo = !newState.users[uid].showInfo : newState.users[uid].showInfo = true;
       return newState;
+    }
+    case 'UPDATE_GROUP': {
+      return { ...state, ...action.payload.group }
+    }
+    case 'UPDATE_GROUP_NAME': {
+      return { ...state, groupName: action.payload.name }
+    }
+    case 'UPDATE_VENUE_ID': {
+      return { ...state, venueId: action.payload.id };
     }
   }
   return state;

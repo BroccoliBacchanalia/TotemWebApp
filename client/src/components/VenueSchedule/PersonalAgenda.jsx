@@ -6,7 +6,7 @@ import RenderStages from './RenderStages.jsx';
 import store from '../../redux/store';
 
 class PersonalAgenda extends React.Component {
-  
+
   render() {
 
     var displayAgenda={};
@@ -41,7 +41,7 @@ class PersonalAgenda extends React.Component {
                 </AgendaRow>
               );
             }
-         
+
         })}
       </div>
     );
