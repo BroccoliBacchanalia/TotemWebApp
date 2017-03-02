@@ -12,7 +12,7 @@ const defaults = {
   dataRetrieved: false
 };
 
-export default function appReducer(state = defaults, action) {
+export default function userReducer(state = defaults, action) {
   switch(action.type) {
     case 'SIGNIN_SUCCESS':
       return {

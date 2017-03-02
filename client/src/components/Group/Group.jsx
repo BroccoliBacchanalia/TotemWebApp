@@ -10,7 +10,7 @@ const GroupView = ({ user, users }) => (
   <div className="custom-container">
     <div>
       <GroupSort/>
-      {Object.keys(users).map((userKey, index) => {
+      {users.data.map((userKey, index) => {
         //Anchor current user info at top of view
         const friend = users[userKey];
         if (userKey === user.uid) {
@@ -21,7 +21,7 @@ const GroupView = ({ user, users }) => (
       })}
     </div>
     <div className={styles.scrollView}>
-      {Object.keys(users).map((userKey, index) => {
+      { Object.keys(users).map((userKey, index) => {
         const friend = users[userKey];
         if (userKey !== user.uid) {
           return (
