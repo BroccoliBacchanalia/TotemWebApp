@@ -19,6 +19,8 @@ class ChooseGroup extends React.Component {
     let invites;
     let db = firebase.database();
     let ref = db.ref();
+    let groupAdd = {};
+    groupAdd[userId] = this.props.userName
     let usersRef = ref.child(`users/${ userId }/pendingInvites`)
     usersRef.once('value', snap => {
       return snap.val();
@@ -28,7 +30,7 @@ class ChooseGroup extends React.Component {
       db.ref(`users/${ userId }/pendingInvites`).set(invites)
     }).then(
       db.ref(`users/${ userId }/groupId`).set(key)
-    )
+    ).then(`groups/${ key }/members`).update(groupAdd)
   }
 
   render(){
@@ -36,9 +38,9 @@ class ChooseGroup extends React.Component {
     const router = this.context.router;
     console.log(groupKeys, 'keys in choose group');
 
-  	return (
-  		<div className="custom-container">
-  		  <div className={ localStyles.header }>
+    return (
+      <div className="custom-container">
+        <div className={ localStyles.header }>
           <h3>Choose Your Group</h3>
         </div>
         <div className={styles.scrollView + ' ' + localStyles.cRow}>
@@ -62,8 +64,8 @@ class ChooseGroup extends React.Component {
             </Link>
           </div>
         </div>
-  		</div>
-  	);
+      </div>
+    );
   }
 }
 
@@ -74,6 +76,7 @@ ChooseGroup.contextTypes = {
 export default connect((store) => {
 	return {
 		groupList: store.user.pendingInvites,
-    userId : store.user.uid
+    userId : store.user.uid,
+    userName : store.user.name
 	}
 })(ChooseGroup)

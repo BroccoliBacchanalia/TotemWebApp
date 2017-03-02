@@ -13,6 +13,9 @@ import { defaultAgenda } from '../redux/actions/agendaActions';
 import SignInButton from './Auth/SignInButton';
 import Loading from './Auth/Loading';
 
+import { setDefaultChat } from '../redux/actions/chatActions';
+
+
 class HomeView extends React.Component {
 
   componentWillMount() {
@@ -22,7 +25,9 @@ class HomeView extends React.Component {
         geolocate();
         store.dispatch(signInSuccess(user.uid, user.displayName));
         stillSignedIn(user.uid)
-
+        //just for testing. this line needs to be removed later on
+         setDefaultChat("-KdSF7i59sk07XoRgcYo");
+        //remove the above line
         if (props.user.groupId) {
           console.log(props.user.groupId, 'group id in homeview');
           firebase.database().ref('/groups/' + props.user.groupId)
@@ -61,7 +66,6 @@ class HomeView extends React.Component {
     const { auth, dispatch, group, user, venueSchedule } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
     const hasGroup = user.groupId;
-    console.log('!!!!!', hasPendingInvites, !hasGroup)
 
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={ signIn } auth={ auth }/> :

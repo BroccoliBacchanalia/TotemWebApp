@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ScheduleRow from './ScheduleRow.jsx';
 import RenderDays from './RenderDays.jsx';
 import RenderStages from './RenderStages.jsx';
+import store from '../../redux/store';
 
 const VenueSchedule = ({ venueSchedule, venues, venueId }) => {
   const stages =  venueSchedule.stages;

@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import { updateGroupName } from '../../redux/actions/groupActions';
 import { updateGroupId } from '../../redux/actions/userActions';
 import localStyles from './ConfigStyles.css';
+import store from '../../redux/store';
 
 const CreateGroup = (props) => (
 	<div>
