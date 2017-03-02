@@ -54,8 +54,6 @@ class ChooseGroup extends React.Component {
                 }}>
                 { this.props.groupList[key] }
                   setDefaultChat(key);
-                }}>
-
               </div>
             </Link>
           ))}
