@@ -21,12 +21,16 @@ class ChooseGroup extends React.Component {
     let ref = db.ref();
     let usersRef = ref.child(`users/${ userId }/pendingInvites`)
     usersRef.once('value', snap => {
-      invites = snap.val();
+      return snap.val();
+    }).then(data => {
+      invites = data.val(),
+      delete invites[key],
+      db.ref(`users/${ userId }/pendingInvites`).set(invites)
     }).then(
-    delete invites[key],
-    db.ref(`users/${ userId }/pendingInvites`).set(invites)
-   )
-
+      db.ref(`users/${ userId }/groupId`).set({
+        groupId: key
+      })
+    )
   }
 
   render(){
@@ -36,26 +40,27 @@ class ChooseGroup extends React.Component {
 
   	return (
   		<div className="custom-container">
-  		  <div className={localStyles.header}>
+  		  <div className={ localStyles.header }>
           <h3>Choose Your Group</h3>
         </div>
         <div className={styles.scrollView + ' ' + localStyles.cRow}>
           {groupKeys.map((key, index) => (
-            <Link key={index} to='/'>
+            <Link key={index} to='/map'>
               <div
                 className={styles.row}
                 onClick={() => {
                   updateGroupId(key);
                   this.removeGroupFromPendingInvites(key);
-                  //for chat
+                }}>
+                { this.props.groupList[key] }
                   setDefaultChat(key);
                 }}>
-                {this.props.groupList[key]}
+
               </div>
             </Link>
           ))}
         </div>
-        <div className={localStyles.cFooter}>
+        <div className={ localStyles.cFooter }>
           <div>
             <Link to="/choosevenue">
               Skip

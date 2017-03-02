@@ -22,7 +22,7 @@ export default function appReducer(state = defaults, action) {
         groupId: null
       };
     case 'DATA_RETRIEVED': {
-      return { ...state, dataRetrieved: true};
+      return { ...state, dataRetrieved: true };
     }
     case 'UPDATE_USER_DATA': {
       return { ...state, pendingInvites: action.pendingInvites };
