@@ -13,17 +13,22 @@ export function addUserListener(userId) {
 //Grabs the location of the current user and updates firebase
 export function geolocate() {
   function success(pos) {
+    console.log(pos);
     const uid = store.getState().user.uid;
-    // const user = firebase.auth().currentUser
-    if (uid === '6LKIWFKvhVa7JmgpuM635VGwfZH2') {
+    if (uid === 'X2iuD3KrlHavWFC1GTOgqbObtY92') {
       firebaseSet(`users/${uid}/position`, {
-        lat: pos.coords.latitude - 0.0161225 + .0022278,
-        lng: pos.coords.longitude - 0.0857576 + .010937
+        lat: pos.coords.latitude - (pos.coords.latitude - 33.679914), // Sahara
+        lng: pos.coords.longitude - (pos.coords.longitude - (-116.236626)) // Sahara
+      });
+    } else if (uid === 'BuwtiwukL6XphZntzZILhIeu7u73') {
+      firebaseSet(`users/${uid}/position`, {
+        lat: pos.coords.latitude - (pos.coords.latitude - 33.681017), // Mojave
+        lng: pos.coords.longitude - (pos.coords.longitude - (-116.236942)) // Mojave
       });
     } else {
       firebaseSet(`users/${uid}/position`, {
-        lat: pos.coords.latitude - 0.0161225,
-        lng: pos.coords.longitude - 0.0857576
+        lat: pos.coords.latitude  - (pos.coords.latitude - 33.684365), // Coachella stage
+        lng: pos.coords.longitude - (pos.coords.longitude - (-122.4090397)) // Coachella stage
       });
     }
   }
