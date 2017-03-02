@@ -18,28 +18,26 @@ const CreateGroup = (props) => (
 				placeholder="Group Name"
 				onChange={(e) => updateGroupName(e.target.value)}
 			/>
-			<Link to='/invite'>
-			  <div>
-				  <button onClick={submit.bind(this, props)}>
-					  Create
-				  </button>
-			  </div>
-			</Link>
+		  <div>
+			  <button onClick={submit.bind(this, props)}>
+				  Create
+			  </button>
+		  </div>
 		</div>
 	</div>
 );
 
 function submit({ user, group, push }) {
-	if(user.groupName.length < 1){
-		return
+	if (user.groupName.length < 1) {
+		return alert('Please enter a group name');
 	}
 	const updates = {};
   const db = firebase.database();
 	const groupKey = db.ref().child('/groups/').push().key;
   const groupData = {
-    name: group.name,
+    groupName: group.groupName,
     members: {},
-		venueId: user.venueId
+		venueId: group.venueId
   };
   groupData.members[user.uid] = user.name;
 	updates['/groups/' + groupKey] = groupData;

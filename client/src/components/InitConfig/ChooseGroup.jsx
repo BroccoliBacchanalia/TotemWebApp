@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import store from '../../redux/store.js';
 import { updateGroupId } from '../../redux/actions/userActions';
 import { setDefaultChat } from '../../redux/actions/chatActions';
-import { firebaseGetOnce, firebaseSet } from '../../redux/actions/firebaseActions';
+import { firebaseOnce, firebaseSet } from '../../redux/actions/firebaseActions';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
 
@@ -52,7 +52,7 @@ class ChooseGroup extends React.Component {
   removeGroupFromPendingInvites(key) {
     let userId = this.props.userId;
 
-    firebaseGetOnce(`users/${ userId }/pendingInvites`, (invites)=> {
+    firebaseOnce(`users/${ userId }/pendingInvites`, (invites)=> {
       delete invites[key];
       firebaseSet(`users/${ userId }/pendingInvites`, invites);
     });
