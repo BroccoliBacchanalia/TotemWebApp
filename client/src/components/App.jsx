@@ -18,6 +18,7 @@ import HeaderBlock from './Nav/Nav'
 import SpeedDialButton from './Nav/SpeedDial'
 import ContactFriends from './Nav/ContactFriends'
 import ContactEmergencyServices from './Nav/ContactEmergencyServices'
+import Chat from './Chat/Chat'
 
 class App extends React.Component {
 
@@ -28,6 +29,7 @@ class App extends React.Component {
       { displayName: 'Group', endPoint: '/group', iconName: 'users' },
       { displayName: 'Agenda', endPoint: '/agenda', iconName: 'signup' },
       { displayName: 'Schedule', endPoint: '/schedule', iconName: 'clock' },
+       { displayName: 'Chat', endPoint: '/chat', iconName: 'chat' },
     ]}
 
     const { auth, user, app, dispatch } = this.props;
@@ -75,6 +77,8 @@ class App extends React.Component {
                   <Route path="/choosevenue" component={ChooseVenue}/>
                   <Route path="/creategroup" component={CreateGroup}/>
                   <Route path="/invite" component={InviteFriends}/>
+                   <Route path="/chat" component={Chat}/>
+
                 </div>
               </Segment>
             </Sidebar.Pusher>
