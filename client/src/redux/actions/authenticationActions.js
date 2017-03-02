@@ -131,7 +131,6 @@ export function signIn() {
       agenda: {null: "null"},
       venueId: "null",
       groupId: "null",
-      pendingInvites: "null",
     });
 
   })

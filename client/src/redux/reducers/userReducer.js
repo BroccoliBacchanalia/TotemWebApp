@@ -22,7 +22,7 @@ export default function appReducer(state = defaults, action) {
         groupId: null
       };
     case 'DATA_RETRIEVED': {
-      return { ...state, dataRetrieved: true};
+      return { ...state, dataRetrieved: true };
     }
     case 'UPDATE_USER_DATA': {
       return { ...state, pendingInvites: action.pendingInvites };
@@ -31,7 +31,7 @@ export default function appReducer(state = defaults, action) {
       return { ...state, venueId: action.id };
     }
     case 'UPDATE_GROUP_ID': {
-      return { ...state, groupId: action.id };
+      return { ...state, groupId: action.payload.id };
     }
     case 'UPDATE_FRIENDS': {
       return { ...state, friendList: action.friendList };
