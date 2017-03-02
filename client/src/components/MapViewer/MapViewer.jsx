@@ -66,16 +66,10 @@ class MapViewer extends Component {
     const LoadMap = withGoogleMap(props => (
       <GoogleMap
         ref={ props.onMapLoad }
-<<<<<<< HEAD
         defaultZoom={ 17 }
         defaultCenter={{ lat: 33.682387, lng: -116.2389165 }}
-        mapTypeId= 'satellite'
-=======
-        defaultZoom={ 16 }
-        defaultCenter={{ lat: 37.769403, lng: -122.49 }}
         mapTypeId= 'terrain'
         onClick={props.onMapClick.bind(this)}//{()=>{console.log('map clicked')}}
->>>>>>> cbaa3d1ab75302d527da3bf6f0837d4f5f7937cc
         options={{ streetViewControl: false, mapTypeControl: false }}
         >
           {
@@ -92,7 +86,7 @@ class MapViewer extends Component {
         <Markers />
         <GroundOverlay
           image='https://coachella-2014-site.s3.amazonaws.com/wp-content/uploads/2016/04/20100620/2016_coachella_maps_venue_v2.jpg'
-          opacity={0.4}
+          opacity={0.9}
           imageBounds={{
             north: 33.685400,
             south: 33.677657, 
