@@ -78,10 +78,11 @@ function getFriends() {
 
 export function stillSignedIn(uid) {
   firebaseGetOnce(`users/${ uid }`, (data) => {
-    console.log(data, 'data in stillsigned in')
     userResign(data);
-    updateGroupId(data.groupId);
-    firebaseGetOnce('/groups/' + data.groupId, updateGroup);
+    if (data.groupId) {
+      console.log(data.groupId, 'group id exists in stillsigned in')
+      updateGroupId(data.groupId);
+    }
     dispatch({ type: 'DATA_RETRIEVED' });
   });
 }

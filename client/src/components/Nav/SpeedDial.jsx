@@ -13,7 +13,7 @@ const list = {
     {
       primaryText: 'Highlight Emergency Tents',
       leftAvatar: <Avatar src='/img/emergency-tent.png' />,
-      onClick: console.log(true)
+      onClick: function() {console.log(true);}
     },
     {
       primaryText: 'Alert Your Friends',
