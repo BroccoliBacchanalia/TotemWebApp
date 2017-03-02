@@ -1,8 +1,13 @@
 import store from '../../redux/store';
 
-export function toggleMenu() {
+export function openMenu() {
   store.dispatch({
-    type: 'TOGGLE_MENU',
+    type: 'OPEN_MENU',
+  });
+}
+export function closeMenu() {
+  store.dispatch({
+    type: 'CLOSE_MENU',
   });
 }
 
