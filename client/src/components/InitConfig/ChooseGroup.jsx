@@ -36,22 +36,22 @@ class ChooseGroup extends React.Component {
   render(){
     const groupKeys = Object.keys(this.props.groupList);
     const router = this.context.router;
+    console.log(groupKeys, 'keys in choose group');
 
   	return (
   		<div className="custom-container">
   		  <div className={ localStyles.header }>
           <h3>Choose Your Group</h3>
         </div>
-        <div className={ styles.scrollView + ' ' + localStyles.cRow }>
-          { groupKeys.map((key, index) => (
-            <Link to='/map'>
+        <div className={styles.scrollView + ' ' + localStyles.cRow}>
+          {groupKeys.map((key, index) => (
+            <Link key={index} to='/map'>
               <div
-                key={ index }
-                className={ styles.row }
-                onClick={ () => {
-                  updateGroupId.call(this, key);
+                className={styles.row}
+                onClick={() => {
+                  updateGroupId(key);
                   this.removeGroupFromPendingInvites(key);
-                } }>
+                }}>
                 { this.props.groupList[key] }
                   setDefaultChat(key);
                 }}>

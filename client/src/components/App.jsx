@@ -31,62 +31,55 @@ class App extends React.Component {
       { displayName: 'Schedule', endPoint: '/schedule', iconName: 'clock' },
        { displayName: 'Chat', endPoint: '/chat', iconName: 'chat' },
     ]}
+    const { app } = this.props;
 
-    const { auth, user, app, dispatch } = this.props;
-    const hasGroup = user.groupId !== null;
-      //{auth.isUserSignedIn && hasGroup ? <NavigationBar venueId={user.venueId} /> : ''}
-    
     return (
 
     <Router>
       <div style={{ height: '100%' }}>
- {/*       <Dimmer.Dimmable dimmed={app.activeDimmer}>
-          <Dimmer active={app.activeDimmer} onClickOutside={ () => toggleDimmer() }/>*/}
-          <HeaderBlock />
-          <Sidebar.Pushable className='main-view'>
-            <Sidebar
-              as={Menu}
-              animation='overlay'
-              width='thin'
-              direction='right'
-              visible={app.visible}
-              icon='labeled'
-              vertical
-              inverted
-            >
-            {navList.items.map((item, index) => {
-              return (
-                <Menu.Item 
-                  key={ index } 
-                  as={ Link } 
-                  to={ item.endPoint } 
-                  onClick={ () => toggleMenu() }>
-                  <Icon name={ item.iconName } /> { item.displayName }
-                </Menu.Item>
-                )
-            })}
-            </Sidebar>
-            <Sidebar.Pusher>
-              <Segment basic className='remove-borders'>
-                <div>
-                  <Route exact path="/" component={HomeView}/>
-                  <Route path="/group" component={Group}/>
-                  <Route path="/map" component={MapViewer}/>
-                  <Route path="/agenda" component={PersonalAgenda}/>
-                  <Route path="/schedule" component={VenueSchedule}/>
-                  <Route path="/choosevenue" component={ChooseVenue}/>
-                  <Route path="/creategroup" component={CreateGroup}/>
-                  <Route path="/invite" component={InviteFriends}/>
-                   <Route path="/chat" component={Chat}/>
-
-                </div>
-              </Segment>
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
-          <SpeedDialButton />
-          <ContactFriends />
-          <ContactEmergencyServices />
-  {/*      </Dimmer.Dimmable>*/}
+        <HeaderBlock />
+        <Sidebar.Pushable className='main-view'>
+          <Sidebar
+            as={Menu}
+            animation='overlay'
+            width='thin'
+            direction='right'
+            visible={app.visible}
+            icon='labeled'
+            vertical
+            inverted
+          >
+          {navList.items.map((item, index) => {
+            return (
+              <Menu.Item 
+                key={ index } 
+                as={ Link } 
+                to={ item.endPoint } 
+                onClick={ () => toggleMenu() }>
+                <Icon name={ item.iconName } /> { item.displayName }
+              </Menu.Item>
+              )
+          })}
+          </Sidebar>
+          <Sidebar.Pusher>
+            <Segment basic className='remove-borders'>
+              <div>
+                <Route exact path="/" component={HomeView}/>
+                <Route path="/group" component={Group}/>
+                <Route path="/map" component={MapViewer}/>
+                <Route path="/agenda" component={PersonalAgenda}/>
+                <Route path="/schedule" component={VenueSchedule}/>
+                <Route path="/choosevenue" component={ChooseVenue}/>
+                <Route path="/creategroup" component={CreateGroup}/>
+                <Route path="/invite" component={InviteFriends}/>
+                <Route path="/chat" component={Chat}/>
+              </div>
+            </Segment>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
+        <SpeedDialButton />
+        <ContactFriends />
+        <ContactEmergencyServices />
       </div>
      </Router>
     );
@@ -95,9 +88,6 @@ class App extends React.Component {
 
 export default connect((store) => {
   return {
-    user: store.user,
-    auth: store.auth,
     app: store.app
   };
 })(App);
-

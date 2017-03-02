@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 const defaults = {
   selectedDay: 'Friday',
   chooseStage: '',

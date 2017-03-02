@@ -1,5 +1,4 @@
 import store from '../store.js';
-import firebase from 'firebase';
 
 export function updateScheduleData(scheduleData) {
   store.dispatch({

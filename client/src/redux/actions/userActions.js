@@ -20,3 +20,10 @@ export function updateGroupId(id) {
     payload: { id }
   });
 }
+
+export function userResign(user) {
+  return store.dispatch({
+    type: 'DATA_ON_RESIGN',
+    userData: user
+  });
+}
