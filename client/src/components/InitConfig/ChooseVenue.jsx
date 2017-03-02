@@ -8,12 +8,10 @@ import localStyles from './ConfigStyles.css';
 import firebase from 'firebase';
 class ChooseVenue extends React.Component {
 
-  // updateFirebaseVenueId (key) {
-  //   let db = firebase.database();
-  //   db.ref(`users/${ this.props.userId }/venueId`).set({
-      
-  //   })
-  // }
+  updateFirebaseVenueId (key) {
+    let db = firebase.database();
+    db.ref(`users/${ this.props.userId }/venueId`).set(key)
+  }
 
   render () {
     const venues = this.props.venues;
@@ -32,6 +30,7 @@ class ChooseVenue extends React.Component {
               className={ styles.row }
               onClick={() => {
                 updateVenueId.call(this, key);
+                //updateFirebaseVenueId.call(this, key);
                 router.push('/creategroup');
               }}>
               { venues[key].name }

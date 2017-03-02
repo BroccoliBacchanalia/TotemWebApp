@@ -1,8 +1,8 @@
 import store from '../../redux/store';
 
-export function updateGroup(name) {
+export function updateGroupName(name) {
   return store.dispatch({
-    type: 'UPDATE_GROUP',
+    type: 'UPDATE_GROUP_NAME',
     payload: { name }
   });
 }

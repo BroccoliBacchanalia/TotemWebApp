@@ -36,6 +36,9 @@ export default function appReducer(state = defaults, action) {
     case 'UPDATE_FRIENDS': {
       return { ...state, friendList: action.friendList };
     }
+    case 'UPDATE_GROUP_NAME': {
+      return { ...state, groupName: action.payload.name }
+    }
     case 'DATA_ON_RESIGN': {
       const newState = { ...state }
       if (action.userData.pendingInvites) {

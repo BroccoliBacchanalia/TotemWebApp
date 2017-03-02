@@ -12,14 +12,15 @@ class InviteFriends extends React.Component {
  }
 
 sendPendingInvite (){
-  const { groupId, name } = this.props;
-  const pendingInvites = {}
+  //const { groupId, name } = this.props;
+  const groupId = this.props.groupId;
+  const name = this.props.groupName;
+  let pendingInvites = {}
   let fromDom = document.querySelectorAll('input[type="checkbox"]:checked');
   let checkedUsers = [];
   for(var x = 0; x < fromDom.length; x++) {
     checkedUsers.push(fromDom[x].value);
   }
-
   pendingInvites[groupId] = name;
 
   let db = firebase.database();

@@ -17,11 +17,13 @@ const CreateGroup = (props) => (
 				placeholder="Group Name"
 				onChange={(e) => updateGroupName(e.target.value)}
 			/>
-			<div>
-				<button onClick={submit.bind(this, props)}>
-					Create
-				</button>
-			</div>
+			<Link to='/invite'>
+			  <div>
+				  <button onClick={submit.bind(this, props)}>
+					  Create
+				  </button>
+			  </div>
+			</Link>
 		</div>
 	</div>
 );
