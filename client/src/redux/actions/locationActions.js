@@ -16,10 +16,10 @@ export function geolocate() {
   function success(pos) {
     const uid = store.getState().user.uid;
     // const user = firebase.auth().currentUser
-    if (uid === '6LKIWFKvhVa7JmgpuM635VGwfZH2') {
+    if (uid === 'X2iuD3KrlHavWFC1GTOgqbObtY92') {
       firebase.database().ref(`users/${uid}/position`).set({
-        lat: pos.coords.latitude - 0.0161225 + .0022278,
-        lng: pos.coords.longitude - 0.0857576 + .010937
+        lat: pos.coords.latitude,// - 3.0885707,
+        lng: pos.coords.longitude// + 3.7440945
       });
     } else {
       firebase.database().ref(`users/${uid}/position`).set({
