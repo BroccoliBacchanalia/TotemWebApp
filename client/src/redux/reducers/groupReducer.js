@@ -1,5 +1,3 @@
-import firebase from 'firebase';
-
 const defaults = {
   name: null,
   memberKeys: {},
@@ -36,6 +34,9 @@ export default function groupReducer(state = defaults, action) {
       };
       newState.users[uid].showInfo ? newState.users[uid].showInfo = !newState.users[uid].showInfo : newState.users[uid].showInfo = true;
       return newState;
+    }
+    case 'UPDATE_GROUP_NAME': {
+      return { ...state, groupName: action.payload.name }
     }
   }
   return state;

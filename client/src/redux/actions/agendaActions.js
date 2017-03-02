@@ -16,8 +16,8 @@ export function addAgenda(agenda) {
 }
 
 export function defaultAgenda() {
-  let uid = firebase.auth().currentUser.uid;
-  var db = firebase.database();
+  const uid = store.getState().user.uid;
+  const db = firebase.database();
 
   var updateRef = db.ref('users/'+ uid +'/agenda/');
   updateRef.on("value", function(snapshot) {
