@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import store from '../redux/store.js';
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Dimmer } from 'semantic-ui-react'
-import { toggleMenu, toggleDimmer } from '../redux/actions'
+import { closeMenu, toggleDimmer } from '../redux/actions'
 
 /*  Components  */
 import HomeView from './HomeView'
@@ -25,19 +25,18 @@ class App extends React.Component {
   render() {
     const navList = {
       items: [
-      { displayName: 'Map', endPoint: '/map', iconName: 'map' },
-      { displayName: 'Group', endPoint: '/group', iconName: 'users' },
-      { displayName: 'Agenda', endPoint: '/agenda', iconName: 'signup' },
-      { displayName: 'Schedule', endPoint: '/schedule', iconName: 'clock' },
-       { displayName: 'Chat', endPoint: '/chat', iconName: 'chat' },
+      { displayName: 'Map',      endPoint: '/map',      iconName: 'map',    className: 'mapNav'   },
+      { displayName: 'Group',    endPoint: '/group',    iconName: 'users',  className: 'groupNav' },
+      { displayName: 'Agenda',   endPoint: '/agenda',   iconName: 'signup', className: 'agendaNav'},
+      { displayName: 'Schedule', endPoint: '/schedule', iconName: 'clock',  className: 'schedNav' },
+      { displayName: 'Chat',     endPoint: '/chat',     iconName: 'chat',   className: 'chatNav'  },
     ]}
     const { app } = this.props;
 
     return (
 
     <Router>
-      <div style={{ height: '100%' }}>
-        <HeaderBlock />
+      <div style={{ height: '100%' }} onClick={ app.visible ? closeMenu : ''}>
         <Sidebar.Pushable className='main-view'>
           <Sidebar
             as={Menu}
@@ -54,14 +53,14 @@ class App extends React.Component {
               <Menu.Item 
                 key={ index } 
                 as={ Link } 
-                to={ item.endPoint } 
-                onClick={ () => toggleMenu() }>
+                to={ item.endPoint }>
                 <Icon name={ item.iconName } /> { item.displayName }
               </Menu.Item>
               )
           })}
           </Sidebar>
           <Sidebar.Pusher>
+        <HeaderBlock />
             <Segment basic className='remove-borders'>
               <div>
                 <Route exact path="/" component={HomeView}/>
