@@ -45,7 +45,8 @@ class HomeView extends React.Component {
     //populate state with schedule data
     var db = firebase.database();
     var scheduleData;
-    var ref = db.ref('/venues/-KdmcqUff2U8vDv-qfC1/scheduleitems/');
+    //var ref = db.ref(`/venues/${ props.group.venueID }/scheduleitems/`);
+    var ref = db.ref(`/venues/-KdqnkqC4Sz0L4yh9-Jb/scheduleitems/`);
     ref.on("value", function(snapshot) {
       scheduleData  =  snapshot.val();
       updateScheduleData(scheduleData);

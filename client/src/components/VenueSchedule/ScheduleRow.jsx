@@ -27,12 +27,12 @@ function addAgendaItem(key, name, startTime, endTime, geofence, day) {
 
 }
 
-const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day }) => (
+const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl }) => (
   <div
     type="button"
     className={localStyles.gRow + " clearfix"}
     onClick={addAgendaItem.bind(null, itemKey, name, startTime, endTime, geofence, day)}>
-    <img src='./img/totem1.png'/>
+    <img src={ imgurl }/>
       <p>
         <span className="h3">{name}</span>
         <br/>
