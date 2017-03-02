@@ -32,7 +32,8 @@ const VenueSchedule = ({ venueSchedule, venues, venueId }) => {
               startTime = {item.starttime}
               endTime = {item.endtime}
               geofence={item.geofence}
-              day={item.day}>
+              day={item.day}
+              imgurl={item.imgurl}>
             </ScheduleRow>
           );
         }
