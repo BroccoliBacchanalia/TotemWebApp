@@ -31,6 +31,7 @@ class ChooseGroup extends React.Component {
   render(){
     const groupKeys = Object.keys(this.props.groupList);
     const router = this.context.router;
+    console.log(groupKeys, 'keys in choose group');
 
   	return (
   		<div className="custom-container">
@@ -39,12 +40,11 @@ class ChooseGroup extends React.Component {
         </div>
         <div className={styles.scrollView + ' ' + localStyles.cRow}>
           {groupKeys.map((key, index) => (
-            <Link to='/group'>
+            <Link key={index} to='/'>
               <div
-                key={index}
                 className={styles.row}
                 onClick={() => {
-                  updateGroupId.call(this, key);
+                  updateGroupId(key);
                   this.removeGroupFromPendingInvites(key);
                 }}>
                 {this.props.groupList[key]}

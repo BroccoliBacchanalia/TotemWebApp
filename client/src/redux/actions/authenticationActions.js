@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import axios from 'axios';
+import { updateGroupId, userResign } from './userActions';
 import store from '../../redux/store';
 
 const authConfig = {
@@ -81,11 +82,8 @@ export function stillSignedIn(uid) {
   const userRef = ref.child(`users/${ uid }`);
 
   userRef.once('value', snap => {
-    const user = Object.assign(snap.val());
-
-    store.dispatch({ type: 'DATA_ON_RESIGN', userData: user });
-
-    // if (user.groupId) updateGroupData(user.groupId);
+    userResign(snap.val());
+    updateGroupId(snap.val().groupId);
   })
   .then(() => {
     store.dispatch({ type: 'DATA_RETRIEVED' })
@@ -129,10 +127,10 @@ export function signIn() {
       img: photoURL,
       email: email,
       lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
-      agenda: {null: "null"},
-      venueId: "null",
-      groupId: "null",
-      pendingInvites: "null",
+      agenda: { null: "null" },
+      venueId: null,
+      groupId: null,
+      pendingInvites: null,
     });
 
   })

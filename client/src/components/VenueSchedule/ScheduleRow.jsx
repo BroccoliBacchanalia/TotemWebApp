@@ -4,7 +4,7 @@ import localStyles from './VenueStyles.css';
 import { addAgenda } from '../../redux/actions/agendaActions';
 
 function addAgendaItem(key, name, startTime, endTime, geofence, day) {
-  let uid = firebase.auth().currentUser.uid;
+  const uid = store.getState().user.uid;
   const db = firebase.database();
   const updates = {};
   updates[`users/${ uid }/agenda/${key}`] = true;
