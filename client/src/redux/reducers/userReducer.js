@@ -31,7 +31,7 @@ export default function appReducer(state = defaults, action) {
       return { ...state, venueId: action.payload.id };
     }
     case 'UPDATE_GROUP_ID': {
-      return { ...state, groupId: action.payload.id };
+      return { ...state, groupId: action.payload.groupId };
     }
     case 'UPDATE_FRIENDS': {
       return { ...state, friendList: action.friendList };

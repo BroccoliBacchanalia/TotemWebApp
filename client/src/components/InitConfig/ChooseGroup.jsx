@@ -27,9 +27,7 @@ class ChooseGroup extends React.Component {
       delete invites[key],
       db.ref(`users/${ userId }/pendingInvites`).set(invites)
     }).then(
-      db.ref(`users/${ userId }/groupId`).set({
-        groupId: key
-      })
+      db.ref(`users/${ userId }/groupId`).set(key)
     )
   }
 
@@ -53,9 +51,6 @@ class ChooseGroup extends React.Component {
                   this.removeGroupFromPendingInvites(key);
                 }}>
                 { this.props.groupList[key] }
-                  setDefaultChat(key);
-                }}>
-
               </div>
             </Link>
           ))}
