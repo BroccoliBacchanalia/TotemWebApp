@@ -28,6 +28,10 @@ class HomeView extends React.Component {
         //just for testing. this line needs to be removed later on
          setDefaultChat("-KdSF7i59sk07XoRgcYo");
         //remove the above line
+
+
+        //THIS IS WHAT NEEDS FIXING
+
         if (props.user.groupId) {
           console.log(props.user.groupId, 'group id in homeview');
           firebase.database().ref('/groups/' + props.user.groupId)
@@ -59,7 +63,7 @@ class HomeView extends React.Component {
       defaultAgenda();
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
-    })
+    });
   }
 
   render() {
