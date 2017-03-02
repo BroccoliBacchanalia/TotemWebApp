@@ -30,7 +30,7 @@ class ChooseVenue extends React.Component {
               className={ styles.row }
               onClick={() => {
                 updateVenueId.call(this, key);
-                updateFirebaseVenueId.call(this, key);
+                //updateFirebaseVenueId.call(this, key);
                 router.push('/creategroup');
               }}>
               { venues[key].name }
