@@ -9,8 +9,9 @@ import styles from '../Styles.css'
 const GroupView = ({ user, users }) => (
   <div className="custom-container">
     <div>
+    {console.log('!!!!!',users)}
       <GroupSort/>
-      {users.data.map((userKey, index) => {
+      {Object.keys(users).map((userKey, index) => {
         //Anchor current user info at top of view
         const friend = users[userKey];
         if (userKey === user.uid) {
