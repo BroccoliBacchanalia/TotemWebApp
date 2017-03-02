@@ -1,12 +1,11 @@
 import firebase from 'firebase';
 import { updateGroupMember } from './groupActions';
-import { firebaseOn } from './firebaseActions';
+import { firebaseOn, firebaseSet } from './firebaseActions';
 import store from '../store';
 
 //Listens to firebase for any changes in your group and returns the entire group
 export function addUserListener(userId) {
   firebaseOn('/users/' + userId, (data) => {
-    console.log('data from addUserListener', data);
     updateGroupMember(data, userId);
   });
 };
@@ -17,16 +16,15 @@ export function geolocate() {
     const uid = store.getState().user.uid;
     // const user = firebase.auth().currentUser
     if (uid === '6LKIWFKvhVa7JmgpuM635VGwfZH2') {
-      firebase.database().ref(`users/${uid}/position`).set({
+      firebaseSet(`users/${uid}/position`, {
         lat: pos.coords.latitude - 0.0161225 + .0022278,
         lng: pos.coords.longitude - 0.0857576 + .010937
       });
     } else {
-      firebase.database().ref(`users/${uid}/position`).set({
+      firebaseSet(`users/${uid}/position`, {
         lat: pos.coords.latitude - 0.0161225,
         lng: pos.coords.longitude - 0.0857576
       });
-
     }
   }
 

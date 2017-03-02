@@ -17,7 +17,6 @@ class ChooseGroup extends React.Component {
   render(){
     const groupKeys = Object.keys(this.props.groupList);
     const router = this.context.router;
-    console.log(groupKeys, 'keys in choose group');
 
     return (
       <div className="custom-container">
