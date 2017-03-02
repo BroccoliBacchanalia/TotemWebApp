@@ -59,7 +59,7 @@ sendPendingInvite () {
       </div>
     </div>
   </div>
-)
+  )
 }
 }
 
