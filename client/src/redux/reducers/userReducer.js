@@ -4,7 +4,6 @@ const defaults = {
   api_url: 'http://localhost:8000',
   uid: null,
   name: null,
-  venueId: null, //'-KdmcqUff2U8vDv-qfC1', //Outside lands
   groupId: null, //'-KdSF7i59sk07XoRgcYo', //group 'Ballers'
   groupName: '',
   pendingInvites: {},
@@ -26,9 +25,6 @@ export default function userReducer(state = defaults, action) {
     }
     case 'UPDATE_USER_DATA': {
       return { ...state, pendingInvites: action.pendingInvites };
-    }
-    case 'UPDATE_VENUE_ID': {
-      return { ...state, venueId: action.payload.id };
     }
     case 'UPDATE_GROUP_ID': {
       return { ...state, groupId: action.payload.id };

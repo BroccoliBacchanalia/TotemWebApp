@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
 import { updateGroupId, userResign } from './userActions';
-import { firebaseGetOnce, firebaseSet } from './firebaseActions';
+import { firebaseOnce, firebaseSet } from './firebaseActions';
 import { updateGroup } from './groupActions';
 const dispatch = store.dispatch;
 
@@ -37,7 +37,7 @@ function signInError(errorMessage) {
 }
 
 function getUsers() {
-  firebaseGetOnce('/users', (data) => {
+  firebaseOnce('/users', (data) => {
     databaseGroup.push(data);
     getFriends();
   });
@@ -77,7 +77,7 @@ function getFriends() {
 }
 
 export function stillSignedIn(uid) {
-  firebaseGetOnce(`users/${ uid }`, (data) => {
+  firebaseOnce(`users/${ uid }`, (data) => {
     userResign(data);
     if (data.groupId) {
       console.log(data.groupId, 'group id exists in stillsigned in')
@@ -88,7 +88,7 @@ export function stillSignedIn(uid) {
 }
 
 function updateUserData() {
-  firebaseGetOnce(`users/${currentUserId}`, (data) => {
+  firebaseOnce(`users/${currentUserId}`, (data) => {
     dispatch({
       type: 'UPDATE_USER_DATA',
       pendingInvites: data.pendingInvites
