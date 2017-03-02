@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../redux/store.js';
 import firebase from 'firebase'
-import { geolocate, addUserListener, updateGroupKeys } from '../redux/actions';
+import { geolocate } from '../redux/actions';
 /*  Components  */
 import MapViewer from './MapViewer/MapViewer';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
@@ -26,24 +26,7 @@ class HomeView extends React.Component {
         store.dispatch(signInSuccess(user.uid, user.displayName));
         stillSignedIn(user.uid)
         //just for testing. this line needs to be removed later on
-         setDefaultChat("-KdSF7i59sk07XoRgcYo");
-        //remove the above line
-
-
-        //THIS IS WHAT NEEDS FIXING
-
-        if (props.user.groupId) {
-          console.log(props.user.groupId, 'group id in homeview');
-          firebase.database().ref('/groups/' + props.user.groupId)
-          .on('value', (snapshot) => {
-            const userKeys = snapshot.val().members;
-            console.log('snapshot from group search', userKeys)
-            updateGroupKeys(userKeys);
-            for (let userId in userKeys) {
-              addUserListener(userId);
-            }
-          });
-        }
+        setDefaultChat("-KdSF7i59sk07XoRgcYo");
       }
     });
     //populate state with schedule data
