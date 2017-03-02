@@ -5,6 +5,7 @@ import app from './appReducer';
 import auth from './authenticationReducer';
 import venues from './venueReducer';
 import venueSchedule from './venueScheduleReducer';
+import chat from './chatReducer'
 
 export default combineReducers({
   user,
@@ -12,5 +13,6 @@ export default combineReducers({
   app,
   auth,
   venues,
-  venueSchedule
+  venueSchedule, 
+  chat
 });
