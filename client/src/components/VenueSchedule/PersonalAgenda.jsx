@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AgendaRow from './AgendaRow.jsx';
 import RenderAgendaDays from './RenderAgendaDays.jsx';
 import RenderStages from './RenderStages.jsx';
+import store from '../../redux/store';
 
 class PersonalAgenda extends React.Component {
   

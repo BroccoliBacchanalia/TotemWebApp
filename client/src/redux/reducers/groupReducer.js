@@ -1,7 +1,8 @@
+import data from './mock_fb_friend_list'
 const defaults = {
   name: null,
   memberKeys: {},
-  users: {},
+  users: data,
 };
 
 export default function groupReducer(state = defaults, action) {

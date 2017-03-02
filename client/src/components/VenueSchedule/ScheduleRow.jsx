@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import localStyles from './VenueStyles.css';
 import { addAgenda } from '../../redux/actions/agendaActions';
+import store from '../../redux/store';
 
 function addAgendaItem(key, name, startTime, endTime, geofence, day) {
   const uid = store.getState().user.uid;

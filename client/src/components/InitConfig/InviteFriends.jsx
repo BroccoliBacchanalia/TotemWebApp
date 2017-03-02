@@ -11,8 +11,7 @@ class InviteFriends extends React.Component {
   super(props);
  }
 
-sendPendingInvite (){
-  //const { groupId, name } = this.props;
+sendPendingInvite () {
   const groupId = this.props.groupId;
   const name = this.props.groupName;
   let pendingInvites = {}

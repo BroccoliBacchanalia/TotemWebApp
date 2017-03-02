@@ -19,6 +19,8 @@ class ChooseGroup extends React.Component {
     let invites;
     let db = firebase.database();
     let ref = db.ref();
+    let groupAdd = {};
+    groupAdd[userId] = this.props.userName
     let usersRef = ref.child(`users/${ userId }/pendingInvites`)
     usersRef.once('value', snap => {
       return snap.val();
@@ -28,7 +30,7 @@ class ChooseGroup extends React.Component {
       db.ref(`users/${ userId }/pendingInvites`).set(invites)
     }).then(
       db.ref(`users/${ userId }/groupId`).set(key)
-    )
+    ).then(`groups/${ key }/members`).update(groupAdd)
   }
 
   render(){
@@ -72,8 +74,9 @@ ChooseGroup.contextTypes = {
 }
 
 export default connect((store) => {
-  return {
-    groupList: store.user.pendingInvites,
-    userId : store.user.uid
-  }
+	return {
+		groupList: store.user.pendingInvites,
+    userId : store.user.uid,
+    userName : store.user.name
+	}
 })(ChooseGroup)

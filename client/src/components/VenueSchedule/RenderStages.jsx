@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import localStyles from './VenueStyles.css';
 import { updateStage } from '../../redux/actions/venueScheduleActions.js';
+import store from '../../redux/store';
 
 const RenderStages = ({ selectedDay, stages }) => {
   return (
