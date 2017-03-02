@@ -9,7 +9,6 @@ import styles from '../Styles.css'
 const GroupView = ({ user, users }) => (
   <div className="custom-container">
     <div>
-    {console.log('!!!!!',users)}
       <GroupSort/>
       {Object.keys(users).map((userKey, index) => {
         //Anchor current user info at top of view

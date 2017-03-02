@@ -6,6 +6,7 @@ import { updateGroupName } from '../../redux/actions/groupActions';
 import { updateGroupId } from '../../redux/actions/userActions';
 import localStyles from './ConfigStyles.css';
 import store from '../../redux/store';
+import { firebasePush } from '../../redux/actions/firebaseActions';
 
 const CreateGroup = (props) => (
 	<div>

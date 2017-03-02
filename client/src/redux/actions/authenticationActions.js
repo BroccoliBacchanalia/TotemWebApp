@@ -100,7 +100,7 @@ function updateUserData() {
 export function signIn() {
   const provider = new firebase.auth.FacebookAuthProvider();
   dispatch(signInInProgress());
-
+  
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
   firebase.auth().signInWithPopup(provider)
   .then((result) => {
