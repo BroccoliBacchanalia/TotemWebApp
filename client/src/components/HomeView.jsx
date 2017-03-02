@@ -59,7 +59,7 @@ class HomeView extends React.Component {
       defaultAgenda();
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
-    })
+    });
   }
 
   render() {

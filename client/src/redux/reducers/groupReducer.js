@@ -1,8 +1,9 @@
-import data from './mock_fb_friend_list'
 const defaults = {
-  name: null,
   memberKeys: {},
-  users: data,
+  users: {},
+  members: {},
+  name: '',
+  venueId: ''
 };
 
 export default function groupReducer(state = defaults, action) {
@@ -35,6 +36,9 @@ export default function groupReducer(state = defaults, action) {
       };
       newState.users[uid].showInfo ? newState.users[uid].showInfo = !newState.users[uid].showInfo : newState.users[uid].showInfo = true;
       return newState;
+    }
+    case 'UPDATE_GROUP': {
+      return { ...state, ...action.payload.group }
     }
   }
   return state;

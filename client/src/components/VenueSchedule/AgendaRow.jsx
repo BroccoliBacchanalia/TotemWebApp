@@ -11,11 +11,12 @@ function removeAgendaItem(key) {
   .then(function(){
    // fetch data after removing agenda
     const updateRef = db.ref('users/'+ uid +'/agenda/');
+
     updateRef.on("value", function(snapshot) {
       let agenda  =  snapshot.val();
+      console.log("REMOVED AGENDA: ", agenda);
       agenda = Object.keys(agenda);
       agenda = agenda.slice(0,agenda.length-1);
-      console.log("REMOVED AGENDA: ", agenda);
       removeAgenda(agenda)
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
