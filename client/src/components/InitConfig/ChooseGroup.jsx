@@ -50,10 +50,11 @@ class ChooseGroup extends React.Component {
                 className={styles.row}
                 onClick={() => {
                   updateGroupId(key);
+                  setDefaultChat(key);
                   this.removeGroupFromPendingInvites(key);
                 }}>
                 { this.props.groupList[key] }
-                  setDefaultChat(key);
+                 
               </div>
             </Link>
           ))}
