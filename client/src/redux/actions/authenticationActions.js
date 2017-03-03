@@ -1,9 +1,12 @@
 import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
-import { updateUserGroupID, userResign } from './userActions';
+
+/*  Actions */
+import { updateUserGroupID, initialUserData } from './userActions';
 import { firebaseOnce, firebaseSet, firebaseUpdate } from './firebaseActions';
 import { updateGroup } from './groupActions';
+import { updateVenueNames } from './venueActions';
 
 const dispatch = store.dispatch;
 let accessToken;
@@ -24,16 +27,16 @@ export function signInSuccess(uid, displayName) {
 }
 
 function signInInProgress() {
-  return {
+  return dispatch({
     type: 'SIGNIN'
-  }
+  });
 }
 
 function signInError(errorMessage) {
-  return {
+  return dispatch({
     type: 'SIGNIN_ERROR',
     errorMessage: errorMessage
-  }
+  });
 }
 
 function getUsers() {
@@ -78,29 +81,25 @@ function getFriends() {
 
 export function getUserData(id) {
   firebaseOnce(`users/${id}`, (data) => {
-    userResign(data);
+    initialUserData(data);
     if (data.groupId) {
       updateUserGroupID(data.groupId);
     }
-    dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
+    getVenueNames();
   });
 }
 
-function getPendingInvites() {
-  firebaseOnce(`users/${currentUserId}`, (data) => {
-    console.log(data, 'data in pending invites')
-    dispatch({
-      type: 'UPDATE_PENDING_INVITES',
-      pendingInvites: data.pendingInvites
-    });
-    dispatch({ type: 'DATA_RECEIVED' });
+function getVenueNames() {
+  firebaseOnce('venues/names', (venues) => {
+    updateVenueNames(venues);
+    dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
   });
 }
 
 export function signIn() {
   const provider = new firebase.auth.FacebookAuthProvider();
-  dispatch(signInInProgress());
-  
+  signInInProgress();
+
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
   firebase.auth().signInWithPopup(provider)
   .then((result) => {
@@ -121,8 +120,5 @@ export function signIn() {
     firebaseUpdate(updates);
   })
   .then(getUsers)
-  .then(getPendingInvites)
-  .catch(error => {
-    dispatch(signInError(error.message))
-  });
+  .catch(error => signInError(error.message));
 }

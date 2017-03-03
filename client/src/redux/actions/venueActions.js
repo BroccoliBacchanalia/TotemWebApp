@@ -6,3 +6,10 @@ export function updateVenue(venue) {
     payload: { venue }
   });
 }
+
+export function updateVenueNames(venues) {
+  return store.dispatch({
+    type: 'UPDATE_VENUE_NAMES',
+    payload: { venues }
+  });
+}
