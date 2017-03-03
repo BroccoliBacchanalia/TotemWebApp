@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { updateGroupName } from '../../redux/actions/groupActions';
-import { updateGroupId } from '../../redux/actions/userActions';
+import { updateUserGroupID } from '../../redux/actions/userActions';
 import localStyles from './ConfigStyles.css';
 import store from '../../redux/store';
 
@@ -42,7 +42,7 @@ function submit({ user, group, push }) {
   groupData.members[user.uid] = user.name;
 	updates['/groups/' + groupKey] = groupData;
 
-  updateGroupId(groupKey);
+  updateUserGroupID(groupKey);
 	db.ref().update(updates);
   push('/invite');
 }

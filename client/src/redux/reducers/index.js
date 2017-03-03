@@ -3,7 +3,7 @@ import user from './userReducer';
 import group from './groupReducer';
 import app from './appReducer';
 import auth from './authenticationReducer';
-import venues from './venueReducer';
+import venue from './venueReducer';
 import venueSchedule from './venueScheduleReducer';
 import chat from './chatReducer'
 
@@ -12,7 +12,7 @@ export default combineReducers({
   group,
   app,
   auth,
-  venues,
-  venueSchedule, 
+  venue,
+  venueSchedule,
   chat
 });
