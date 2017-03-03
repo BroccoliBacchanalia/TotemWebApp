@@ -38,6 +38,7 @@ button {
 
 .main-view {
   margin: 0px !important;
+  background: linear-gradient(to bottom right, #ffe482, rgba(255, 120, 113, 0.97));
 }
 
 .nav-header {
@@ -66,6 +67,10 @@ button {
 }
 
 .no-events {
+}
+
+.gm-style-iw + div {
+  display: none !important;
 }
 
 /*.ui.inverted.menu {

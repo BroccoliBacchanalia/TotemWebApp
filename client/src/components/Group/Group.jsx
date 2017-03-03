@@ -5,35 +5,38 @@ import GroupSort from './GroupSort.jsx';
 import store from '../../redux/store.js';
 import localStyles from './GroupStyles.css';
 import styles from '../Styles.css'
+import { Item } from 'semantic-ui-react'
 
 const GroupView = ({ user, users }) => (
   <div className="custom-container">
-    <div>
-      <GroupSort/>
+    <div className={localStyles.sortToolbar}>
+      <GroupSort />
+    </div>
+
       {Object.keys(users).map((userKey, index) => {
         //Anchor current user info at top of view
         const friend = users[userKey];
         if (userKey === user.uid) {
           return (
-            <GroupRow key={index} friend={friend} />
+            <GroupRow key={index} friend={friend} uid={userKey} />
           );
         }
       })}
-    </div>
-    <div className={styles.scrollView}>
+
       {Object.keys(users).map((userKey, index) => {
         const friend = users[userKey];
         if (userKey !== user.uid) {
           return (
-            <GroupRow key={index} friend={friend} />
+            <GroupRow key={index} friend={friend} uid={userKey} />
           );
         }
       })}
-    </div>
+
     <div className="footerBtn">
       <button>Add a Friend</button>
     </div>
   </div>
+
 );
 
 export default connect((store) => {

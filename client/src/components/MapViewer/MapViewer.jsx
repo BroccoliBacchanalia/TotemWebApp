@@ -7,6 +7,7 @@ import GroundOverlay from '../GroundOverlay';
 import localStyles from './MapStyles.css';
 
 class MapViewer extends Component {
+
   shouldComponentUpdate() {
     return false;
   }
@@ -47,6 +48,7 @@ class MapViewer extends Component {
       </div>
     );
   }
+
 
   setBasecamp(coords) {
     console.log(coords);
