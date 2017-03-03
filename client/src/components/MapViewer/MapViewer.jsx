@@ -12,22 +12,25 @@ class MapViewer extends Component {
   }
 
   render() {
-    const props = this.props;
-    console.log(this.props, 'props in map viewer');
+    const { map } = this.props;
     const LoadMap = withGoogleMap(() => (
       <GoogleMap
-        ref={props.onMapLoad}
-        defaultZoom={ 17 }
-        defaultCenter={props.map.center}
+        defaultZoom={17}
+        defaultCenter={map.center}
         mapTypeId= 'terrain'
-        onClick={() => console.log('map clicked')}
+        onClick={(event) => {
+          var latitude = event.latLng.lat();
+          var longitude = event.latLng.lng();
+          console.log(latitude, longitude);
+        }}
         options={{ streetViewControl: false, mapTypeControl: false }}
         >
         <Markers />
         <GroundOverlay
-          image={props.map.url}
-          opacity={props.map.opacity}
-          imageBounds={props.map.bounds}
+          clickable={true}
+          image={map.url}
+          opacity={map.opacity}
+          imageBounds={map.bounds}
         />
       </GoogleMap>
     ));

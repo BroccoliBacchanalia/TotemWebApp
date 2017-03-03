@@ -1,3 +1,7 @@
 .googleMap img {
   border-radius: 15px;
 }
+
+.overlay {
+  pointer-events: none;
+}
