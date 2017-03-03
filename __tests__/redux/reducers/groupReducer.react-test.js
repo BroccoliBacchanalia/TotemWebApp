@@ -29,7 +29,7 @@ describe('Group Reducer', () => {
 
 	test('Should be able to handle USERS_SORT', () => {
 		expect(
-		groupReducer({users: {'Y3241asss': {label: 'mitch'}, '21341234': {label:'hedberg'}}}, {
+		groupReducer({users: {'Y3241asss': {"label": 'mitch'}, '21341234': {label:'hedberg'}}}, {
 			type: 'USERS_SORT',
 			payload: {
 				method: 'sortAZ'

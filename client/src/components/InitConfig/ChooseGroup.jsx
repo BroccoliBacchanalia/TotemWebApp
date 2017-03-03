@@ -2,7 +2,6 @@ import React from 'react';
 import store from '../../redux/store.js';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import store from '../../redux/store.js';
 import { updateUserGroupID } from '../../redux/actions/userActions';
 import { setDefaultChat } from '../../redux/actions/chatActions';
 import { firebaseOnce, firebaseSet } from '../../redux/actions/firebaseActions';
