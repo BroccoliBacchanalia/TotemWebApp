@@ -1,4 +1,4 @@
-export const defaults = {
+const defaults = {
   isUserSignedIn: false,
   isInProgress: false,
   hasError: false,

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for redux/actions/sortActions.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">redux/actions</a> sortActions.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.76% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.88% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/17</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getGeofence } from './locationActions';
+import store from '../../redux/store';
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >sortUsers(</span>method) {
+<span class="cstat-no" title="statement not covered" >  return store.dispatch({</span>
+    type: 'USERS_SORT',
+    payload: { method: sortMethods[method] }
+  });
+}
+&nbsp;
+const sortMethods = {
+  sortAZ: function <span class="fstat-no" title="function not covered" >sortAZ(</span>a, b) {
+<span class="cstat-no" title="statement not covered" >    if(a.label &lt; b.label) <span class="cstat-no" title="statement not covered" >return -1;</span></span>
+<span class="cstat-no" title="statement not covered" >    if(a.label &gt; b.label) <span class="cstat-no" title="statement not covered" >return 1;</span></span>
+<span class="cstat-no" title="statement not covered" >    return 0;</span>
+  },
+&nbsp;
+  geofence: function <span class="fstat-no" title="function not covered" >sortGeofence(</span>a, b) {
+    const fenceA = <span class="cstat-no" title="statement not covered" >getGeofence(a.position);</span>
+    const fenceB = <span class="cstat-no" title="statement not covered" >getGeofence(b.position);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if(fenceA &lt; fenceB) <span class="cstat-no" title="statement not covered" >return -1;</span></span>
+<span class="cstat-no" title="statement not covered" >    if(fenceA &gt; fenceB) <span class="cstat-no" title="statement not covered" >return 1;</span></span>
+<span class="cstat-no" title="statement not covered" >    return 0;</span>
+  },
+&nbsp;
+  proximity: function <span class="fstat-no" title="function not covered" >sortProximity(</span>a, b) {
+    const users = <span class="cstat-no" title="statement not covered" >store.getState().group.users;</span>
+    const uid = <span class="cstat-no" title="statement not covered" >store.getState().user.uid;</span>
+    const userCoords = <span class="cstat-no" title="statement not covered" >users[uid].position;</span>
+    const aDiff = <span class="cstat-no" title="statement not covered" >getDistance(userCoords, a.position);</span>
+    const bDiff = <span class="cstat-no" title="statement not covered" >getDistance(userCoords, b.position);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return aDiff - bDiff;</span>
+  }
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getDistance(</span>base, target) {
+<span class="cstat-no" title="statement not covered" >  return Math.abs(base.lat - target.lat)</span>
+    + Math.abs(base.lng - target.lng);
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 02 2017 19:56:43 GMT-0800 (PST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

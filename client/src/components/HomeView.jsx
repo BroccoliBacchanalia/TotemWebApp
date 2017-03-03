@@ -27,25 +27,25 @@ class HomeView extends React.Component {
         stillSignedIn(user.uid)
         //just for testing. this line needs to be removed later on
         setDefaultChat("-KdSF7i59sk07XoRgcYo");
+        //populate state with schedule data
+        var db = firebase.database();
+        var scheduleData;
+        //var ref = db.ref(`/venues/${ props.group.venueID }/scheduleitems/`);
+        var ref = db.ref(`/venues/-KdqnkqC4Sz0L4yh9-Jb/scheduleitems/`);
+        ref.once("value", function(snapshot) {
+          scheduleData  =  snapshot.val();
+          updateScheduleData(scheduleData);
+
+          var daysAndDates = allDays(scheduleData);
+          var all_stages = allStages(scheduleData);
+          var all_days = Object.keys(daysAndDates)
+
+          afterUpdatingData(all_days, all_stages, daysAndDates)
+          defaultAgenda();
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });
       }
-    });
-    //populate state with schedule data
-    var db = firebase.database();
-    var scheduleData;
-    //var ref = db.ref(`/venues/${ props.group.venueID }/scheduleitems/`);
-    var ref = db.ref(`/venues/-KdqnkqC4Sz0L4yh9-Jb/scheduleitems/`);
-    ref.on("value", function(snapshot) {
-      scheduleData  =  snapshot.val();
-      updateScheduleData(scheduleData);
-
-      var daysAndDates = allDays(scheduleData);
-      var all_stages = allStages(scheduleData);
-      var all_days = Object.keys(daysAndDates)
-
-      afterUpdatingData(all_days, all_stages, daysAndDates)
-      defaultAgenda();
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
     });
   }
 
