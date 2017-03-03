@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Marker, InfoWindow } from 'react-google-maps';
 import store from '../../redux/store.js';
-import { getGeofence } from '../../redux/actions'
+import { getGeofence, showGroupMemberInfo } from '../../redux/actions'
 
 class MapViewer extends Component {
   render() {
@@ -10,8 +10,8 @@ class MapViewer extends Component {
     const userIds = Object.keys(members);
     return (
       <div>
-        {userIds.map((userId, index) => {
-          const user = members[userId];
+        {userIds.map((uid, index) => {
+          const user = members[uid];
           const icon = {
             url: user.img,
             scaledSize: new google.maps.Size(30, 30),
@@ -25,7 +25,7 @@ class MapViewer extends Component {
               {...user}
               label=''
               icon={icon}
-              onClick={() => store.dispatch({ type: 'SHOW_NAME', payload: userId })}
+              onClick={() => showGroupMemberInfo(uid)}
             >
               {user.showInfo && (
                 <InfoWindow>
