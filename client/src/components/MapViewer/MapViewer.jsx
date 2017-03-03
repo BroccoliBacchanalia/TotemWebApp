@@ -50,7 +50,7 @@ class MapViewer extends Component {
   render() {
     const LoadMap = withGoogleMap(props => (
       <GoogleMap
-        ref={ props.onMapLoad }
+        ref={props.onMapLoad}
         defaultZoom={ 17 }
         defaultCenter={{ lat: 33.682387, lng: -116.2389165 }}
         mapTypeId= 'terrain'
@@ -72,16 +72,16 @@ class MapViewer extends Component {
           opacity={0.9}
           imageBounds={{
             north: 33.685400,
-            south: 33.677657, 
+            south: 33.677657,
             east: -116.235888,
             west: -116.242125
           }
         }/>
-   
+
       </GoogleMap>
     ));
 
- 
+
 
     return (
       <div className={localStyles.googleMap}>
@@ -110,6 +110,6 @@ class MapViewer extends Component {
 
 export default connect((store) => {
   return {
-    users: store.group.users,
+    members: store.group.members,
   };
 })(MapViewer);
