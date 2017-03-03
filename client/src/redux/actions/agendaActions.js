@@ -25,8 +25,7 @@ export function defaultAgenda() {
     let agenda  =  snapshot.val();
     agenda = Object.keys(agenda);
     agenda = agenda.slice(0,agenda.length-1);
-    console.log("DEFAULT AGENDA: ", agenda);
-    store.dispatch({type: 'default_agenda', payload: { agenda } });
+    store.dispatch({type: 'DEFAULT_AGENDA', payload: { agenda } });
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });

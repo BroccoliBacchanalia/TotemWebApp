@@ -20,7 +20,7 @@ export default function userReducer(state = defaults, action) {
         name: action.payload.name,
         groupId: null
       };
-    case 'DATA_RETRIEVED': {
+    case 'DATA_RETRIEVED_FROM_FIREBASE': {
       return { ...state, dataRetrieved: true };
     }
     case 'UPDATE_PENDING_INVITES': {

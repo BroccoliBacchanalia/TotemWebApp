@@ -2,10 +2,10 @@ import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
 import { updateUserGroupID, userResign } from './userActions';
-import { firebaseOnce, firebaseSet } from './firebaseActions';
+import { firebaseOnce, firebaseSet, firebaseUpdate } from './firebaseActions';
 import { updateGroup } from './groupActions';
-const dispatch = store.dispatch;
 
+const dispatch = store.dispatch;
 let accessToken;
 let databaseGroup =[];
 let currentUserId;
@@ -82,7 +82,7 @@ export function getUserData(id) {
     if (data.groupId) {
       updateUserGroupID(data.groupId);
     }
-    dispatch({ type: 'DATA_RETRIEVED' });
+    dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
   });
 }
 
@@ -100,16 +100,15 @@ function getPendingInvites() {
 export function signIn() {
   const provider = new firebase.auth.FacebookAuthProvider();
   dispatch(signInInProgress());
-
+  
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
   firebase.auth().signInWithPopup(provider)
   .then((result) => {
-    console.log(result, 'result in signin permissions section')
     accessToken = result.credential.accessToken;
     const { user: { uid, displayName, photoURL, email } } = result;
     currentUserId = uid;
-
-    firebase.database().ref(`users/${ uid }`).update({
+    const updates = {};
+    let userData = {
       label: displayName,
       img: photoURL,
       email: email,
@@ -117,7 +116,9 @@ export function signIn() {
       agenda: { null: "null" },
       venueId: '',
       groupId: '',
-    });
+    }
+    updates[`users/${ uid }`] = userData;
+    firebaseUpdate(updates);
   })
   .then(getUsers)
   .then(getPendingInvites)

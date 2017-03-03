@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateGroupName } from '../../redux/actions/groupActions';
@@ -6,6 +7,7 @@ import { updateUserGroupID } from '../../redux/actions/userActions';
 import { firebaseUpdate, firebaseKeyGen } from '../../redux/actions/firebaseActions';
 import localStyles from './ConfigStyles.css';
 import store from '../../redux/store';
+import { firebasePush } from '../../redux/actions/firebaseActions';
 
 const CreateGroup = (props) => (
 	<div>
