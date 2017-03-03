@@ -10,7 +10,7 @@ import HomeView from './HomeView'
 import MapViewer from './MapViewer/MapViewer';
 import Group from './Group/Group';
 import VenueSchedule from './VenueSchedule/VenueSchedule';
-import PersonalAgenda from './VenueSchedule/PersonalAgenda';
+import PersonalAgenda from './Agenda/PersonalAgenda';
 import ChooseVenue from './InitConfig/ChooseVenue';
 import CreateGroup from './InitConfig/CreateGroup';
 import InviteFriends from './InitConfig/InviteFriends';
@@ -50,9 +50,9 @@ class App extends React.Component {
           >
           {navList.items.map((item, index) => {
             return (
-              <Menu.Item 
-                key={ index } 
-                as={ Link } 
+              <Menu.Item
+                key={ index }
+                as={ Link }
                 to={ item.endPoint }>
                 <Icon name={ item.iconName } /> { item.displayName }
               </Menu.Item>

@@ -5,6 +5,7 @@ import store from '../../redux/store.js';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
 import firebase from 'firebase';
+import { firebaseUpdate } from '../../redux/actions/firebaseActions';
 
 class InviteFriends extends React.Component {
  constructor(props){
@@ -22,10 +23,8 @@ sendPendingInvite () {
   }
   pendingInvites[groupId] = name;
 
-  let db = firebase.database();
-
   for (var i = 0; i < checkedUsers.length; i++) {
-    db.ref(`users/${ checkedUsers[i] }/pendingInvites`).push(pendingInvites)
+    firebaseUpdate(`users/${ checkedUsers[i] }/pendingInvites`,pendingInvites)
   }
 }
 
@@ -59,7 +58,7 @@ sendPendingInvite () {
       </div>
     </div>
   </div>
-)
+  )
 }
 }
 

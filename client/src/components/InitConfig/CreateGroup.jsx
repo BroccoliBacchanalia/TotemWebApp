@@ -1,11 +1,11 @@
 import React from 'react';
+import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import firebase from 'firebase';
 import { updateGroupName } from '../../redux/actions/groupActions';
-import { updateGroupId } from '../../redux/actions/userActions';
+import { updateUserGroupID } from '../../redux/actions/userActions';
+import { firebaseUpdate, firebaseKeyGen } from '../../redux/actions/firebaseActions';
 import localStyles from './ConfigStyles.css';
-import store from '../../redux/store';
 
 const CreateGroup = (props) => (
 	<div>
@@ -31,19 +31,20 @@ function submit({ user, group, push }) {
 	if (user.groupName.length < 1) {
 		return alert('Please enter a group name');
 	}
+
 	const updates = {};
-  const db = firebase.database();
-	const groupKey = db.ref().child('/groups/').push().key;
+	const groupKey = firebaseKeyGen('/groups/');
   const groupData = {
     groupName: group.groupName,
     members: {},
 		venueId: group.venueId
   };
+
   groupData.members[user.uid] = user.name;
 	updates['/groups/' + groupKey] = groupData;
 
-  updateGroupId(groupKey);
-	db.ref().update(updates);
+  updateUserGroupID(groupKey);
+	firebaseUpdate(updates);
   push('/invite');
 }
 

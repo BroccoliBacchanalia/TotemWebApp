@@ -1,11 +1,11 @@
 import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
-import { updateGroupId, userResign } from './userActions';
-import { firebaseOnce, firebaseSet } from './firebaseActions';
+import { updateUserGroupID, userResign } from './userActions';
+import { firebaseOnce, firebaseSet, firebaseUpdate } from './firebaseActions';
 import { updateGroup } from './groupActions';
-const dispatch = store.dispatch;
 
+const dispatch = store.dispatch;
 let accessToken;
 let databaseGroup =[];
 let currentUserId;
@@ -14,13 +14,13 @@ const authConfig = {
 };
 
 export function signInSuccess(uid, displayName) {
-  return {
+  return dispatch({
     type: 'SIGNIN_SUCCESS',
     payload: {
       uid: uid,
       name: displayName
     }
-  }
+  });
 }
 
 function signInInProgress() {
@@ -37,7 +37,7 @@ function signInError(errorMessage) {
 }
 
 function getUsers() {
-  firebaseOnce('/users', (data) => {
+  return firebaseOnce('/users', (data) => {
     databaseGroup.push(data);
     getFriends();
   });
@@ -76,21 +76,21 @@ function getFriends() {
   });
 }
 
-export function stillSignedIn(uid) {
-  firebaseOnce(`users/${ uid }`, (data) => {
+export function getUserData(id) {
+  firebaseOnce(`users/${id}`, (data) => {
     userResign(data);
     if (data.groupId) {
-      console.log(data.groupId, 'group id exists in stillsigned in')
-      updateGroupId(data.groupId);
+      updateUserGroupID(data.groupId);
     }
-    dispatch({ type: 'DATA_RETRIEVED' });
+    dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
   });
 }
 
-function updateUserData() {
+function getPendingInvites() {
   firebaseOnce(`users/${currentUserId}`, (data) => {
+    console.log(data, 'data in pending invites')
     dispatch({
-      type: 'UPDATE_USER_DATA',
+      type: 'UPDATE_PENDING_INVITES',
       pendingInvites: data.pendingInvites
     });
     dispatch({ type: 'DATA_RECEIVED' });
@@ -100,16 +100,15 @@ function updateUserData() {
 export function signIn() {
   const provider = new firebase.auth.FacebookAuthProvider();
   dispatch(signInInProgress());
-
+  
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
   firebase.auth().signInWithPopup(provider)
   .then((result) => {
-    console.log(result, 'result in signin permissions section')
     accessToken = result.credential.accessToken;
     const { user: { uid, displayName, photoURL, email } } = result;
     currentUserId = uid;
-
-    firebase.database().ref(`users/${ uid }`).update({
+    const updates = {};
+    let userData = {
       label: displayName,
       img: photoURL,
       email: email,
@@ -117,11 +116,12 @@ export function signIn() {
       agenda: { null: "null" },
       venueId: '',
       groupId: '',
-    });
-
+    }
+    updates[`users/${ uid }`] = userData;
+    firebaseUpdate(updates);
   })
   .then(getUsers)
-  .then(updateUserData)
+  .then(getPendingInvites)
   .catch(error => {
     dispatch(signInError(error.message))
   });

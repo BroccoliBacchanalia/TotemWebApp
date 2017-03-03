@@ -1,5 +1,7 @@
 import store from '../../redux/store';
+import { firebaseOnce } from './firebaseActions';
 import { addUserListener } from './locationActions';
+import { updateVenue } from './venueActions';
 
 export function updateGroup(group) {
   store.dispatch({
@@ -9,6 +11,10 @@ export function updateGroup(group) {
 
   for (let userId in group.members) {
     addUserListener(userId);
+  }
+
+  if (group.venueId) {
+    firebaseOnce('/venues/' + group.venueId, updateVenue);
   }
 }
 

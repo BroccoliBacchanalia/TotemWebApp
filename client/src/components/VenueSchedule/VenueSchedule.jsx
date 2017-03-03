@@ -1,34 +1,27 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import ScheduleRow from './ScheduleRow.jsx';
-import RenderDays from './RenderDays.jsx';
-import RenderStages from './RenderStages.jsx';
+import ScheduleNav from './ScheduleNav.jsx';
 import store from '../../redux/store';
+import { getStagesAndDays } from '../../redux/actions/venueScheduleActions';
 
-const VenueSchedule = ({ venueSchedule, venues, venueId }) => {
-  const stages =  venueSchedule.stages;
-  console.log("here are the stages", stages);
-  if(venueSchedule.chooseStage === '') {
-    return (
-      <div>
-        <RenderDays selectedDay={venueSchedule.selectedDay}/>
-        <RenderStages
-          selectedDay={venueSchedule.selectedDay}
-          stages = {stages}
-        />
-      </div>
-    );
-  }
+const VenueSchedule = ({ venue, venueSchedule }) => {
+  const { stages, days } = getStagesAndDays(venue.scheduleitems);
+  const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
+  const isAllStages = venueSchedule.selectedStage === 'All Stages';
+
   return (
     <div>
-      <RenderDays selectedDay={venueSchedule.selectedDay}/>
-      {Object.keys(venueSchedule.scheduleData).map((ite, key) => {
-        var item = venueSchedule.scheduleData[ite];
-        if(item.geofence === venueSchedule.chooseStage && item.day === venueSchedule.daysAndDates[venueSchedule.selectedDay]) {
+      <ScheduleNav days={days} stages={stages} />
+      {Object.keys(venue.scheduleitems).map((key, index) => {
+        const item = venue.scheduleitems[key];
+        const isSelectedStage = (item.geofence === venueSchedule.selectedStage);
+
+        if(item.day === selectedDay && (isSelectedStage || isAllStages)) {
           return (
             <ScheduleRow
-              key={key}
-              itemKey={ite}
+              key={index}
+              itemKey={key}
               name={item.name}
               startTime = {item.starttime}
               endTime = {item.endtime}
@@ -45,8 +38,7 @@ const VenueSchedule = ({ venueSchedule, venues, venueId }) => {
 
 export default connect((store) => {
   return {
-    venueSchedule: store.venueSchedule,
-    venues: store.venues.venues,
-    venueId: store.user.venueId
+    venue: store.venue.venue,
+    venueSchedule: store.venueSchedule
   };
 })(VenueSchedule);

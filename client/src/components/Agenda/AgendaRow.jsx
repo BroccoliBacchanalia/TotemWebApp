@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import localStyles from './VenueStyles.css';
+import localStyles from './AgendaStyles.css';
 import { removeAgenda } from '../../redux/actions/agendaActions';
 
 function removeAgendaItem(key) {

@@ -2,19 +2,16 @@ const defaults = {
   isUserSignedIn: false,
   isInProgress: false,
   hasError: false,
-  errorMessage: '',
-  accessToken: null
+  errorMessage: ''
 };
 
 export default function auth(state = defaults, action) {
   switch(action.type) {
     case 'SIGNIN_SUCCESS':
-      const { uid } = action.payload.uid;
       return {
         ...state,
         isInProgress: false,
-        isUserSignedIn: true,
-        accessToken: action.payload.token
+        isUserSignedIn: true
       };
     case 'SIGNIN':
       return {

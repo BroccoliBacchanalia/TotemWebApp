@@ -1,25 +1,5 @@
 import store from '../store.js';
 
-export function updateScheduleData(scheduleData) {
-  store.dispatch({
-    type: 'UPDATE_SCHEDULE_DATA',
-     payload: {
-      scheduleData: scheduleData
-      }
-    });
-}
-
-export function afterUpdatingData(allDays, allStages, daysAndDates) {
-  store.dispatch({
-    type: 'AFTER_UPDATING_DATA',
-     payload: {
-      allStages: allStages,
-      allDays: allDays,
-      daysAndDates: daysAndDates
-      }
-    });
-}
-
 export function updateDay(day) {
   store.dispatch({
     type:'UPDATE_DAY',
@@ -28,36 +8,23 @@ export function updateDay(day) {
 }
 
 export function updateStage(stage) {
-  store.dispatch({type: 'UPDATE_STAGE', payload: { stage }})
+  store.dispatch({
+    type: 'UPDATE_STAGE',
+    payload: { stage }
+  });
 }
 
-export function updateFestival(festival) {
-  return {
-    type: 'UPDATE_FESTIVAL',
-    payload: { festival }
-  }
-}
-
-export function allStages (scheduleItems) {
+export function getStagesAndDays(scheduleItems) {
   const stages = {};
-  for(let key in scheduleItems) {
-    const item = scheduleItems[key];
-    if(!(item.geofence in stages)) {
-      stages[item.geofence] = item.geofence;
-    }
-  }
-  return Object.keys(stages);
-}
+  const days = {};
 
-export function allDays(scheduleData) {
-    let datesDay={};
-    for(let key in scheduleData) {
-      let item = scheduleData[key];
-      if(!(item.day in datesDay)) {
-        datesDay[generateDay(item.day)] = item.day;
-      }
-    }
-    return datesDay;
+  for (let key in scheduleItems) {
+    const item = scheduleItems[key];
+    stages[item.geofence] = item.geofence;
+    days[generateDay(item.day)] = item.day;
+  }
+
+  return { stages: Object.keys(stages), days: days };
 }
 
 export function getArtist(stage, day){
@@ -72,7 +39,9 @@ export function getArtist(stage, day){
 }
 
 function generateDay(dateString) {
-  let weekday = new Array(7);
+  const weekday = [];
+  const d = new Date(dateString)
+
   weekday[0] = "Sunday";
   weekday[1] = "Monday";
   weekday[2] = "Tuesday";
@@ -80,6 +49,6 @@ function generateDay(dateString) {
   weekday[4] = "Thursday";
   weekday[5] = "Friday";
   weekday[6] = "Saturday";
-  let d = new Date(dateString)
+
   return weekday[d.getDay()];
 }

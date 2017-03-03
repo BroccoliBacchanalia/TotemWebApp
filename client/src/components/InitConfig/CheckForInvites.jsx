@@ -3,7 +3,6 @@ import store from '../../redux/store.js';
 import { connect } from 'react-redux';
 import ChooseGroup from './ChooseGroup.jsx';
 import ChooseVenue from './ChooseVenue.jsx';
-import store from '../../redux/store';
 
 class CheckForInvites extends React.Component {
 	render() {
