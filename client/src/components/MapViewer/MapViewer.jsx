@@ -4,7 +4,6 @@ import { withGoogleMap, GoogleMap, Marker, OverlayView, InfoWindow } from 'react
 import Helmet from 'react-helmet';
 import Markers from './Markers.jsx'
 import GroundOverlay from '../GroundOverlay';
-import localStyles from './MapStyles.css';
 
 class MapViewer extends Component {
 
@@ -38,7 +37,7 @@ class MapViewer extends Component {
     ));
 
     return (
-      <div className={localStyles.googleMap}>
+      <div>
         <Helmet title="Totem"/>
         <LoadMap
           containerElement={ <div/> }
@@ -63,7 +62,6 @@ class MapViewer extends Component {
 
 export default connect((store) => {
   return {
-    members: store.group.members,
     map: store.venue.venue.map
   };
 })(MapViewer);
