@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Button } from 'semantic-ui-react'
-import { toggleMenu } from '../../redux/actions'
+import { openMenu } from '../../redux/actions'
 
 export default class HeaderBlock extends Component {
   render() {
@@ -9,7 +9,7 @@ export default class HeaderBlock extends Component {
 {/*       <img src="img/totem_logo.png" alt="logo" />*/}
         <Button 
           className='menu-button'
-          onClick={ toggleMenu }
+          onClick={ openMenu }
           icon='content' />
       </Header>
     )

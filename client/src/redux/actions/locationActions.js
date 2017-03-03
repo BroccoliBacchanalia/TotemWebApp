@@ -1,12 +1,11 @@
 import firebase from 'firebase';
 import { updateGroupMember } from './groupActions';
-import { firebaseOn } from './firebaseActions';
+import { firebaseOn, firebaseSet } from './firebaseActions';
 import store from '../store';
 
 //Listens to firebase for any changes in your group and returns the entire group
 export function addUserListener(userId) {
   firebaseOn('/users/' + userId, (data) => {
-    console.log('data from addUserListener', data);
     updateGroupMember(data, userId);
   });
 };
@@ -14,19 +13,23 @@ export function addUserListener(userId) {
 //Grabs the location of the current user and updates firebase
 export function geolocate() {
   function success(pos) {
+    console.log(pos);
     const uid = store.getState().user.uid;
-    // const user = firebase.auth().currentUser
-    if (uid === '6LKIWFKvhVa7JmgpuM635VGwfZH2') {
-      firebase.database().ref(`users/${uid}/position`).set({
-        lat: pos.coords.latitude - 0.0161225 + .0022278,
-        lng: pos.coords.longitude - 0.0857576 + .010937
+    if (uid === 'X2iuD3KrlHavWFC1GTOgqbObtY92') {
+      firebaseSet(`users/${uid}/position`, {
+        lat: pos.coords.latitude - (pos.coords.latitude - 33.679914), // Sahara
+        lng: pos.coords.longitude - (pos.coords.longitude - (-116.236626)) // Sahara
+      });
+    } else if (uid === 'BuwtiwukL6XphZntzZILhIeu7u73') {
+      firebaseSet(`users/${uid}/position`, {
+        lat: pos.coords.latitude - (pos.coords.latitude - 33.681017), // Mojave
+        lng: pos.coords.longitude - (pos.coords.longitude - (-116.236942)) // Mojave
       });
     } else {
-      firebase.database().ref(`users/${uid}/position`).set({
-        lat: pos.coords.latitude - 0.0161225,
-        lng: pos.coords.longitude - 0.0857576
+      firebaseSet(`users/${uid}/position`, {
+        lat: pos.coords.latitude  - (pos.coords.latitude - 33.684365), // Coachella stage
+        lng: pos.coords.longitude - (pos.coords.longitude - (-122.4090397)) // Coachella stage
       });
-
     }
   }
 
