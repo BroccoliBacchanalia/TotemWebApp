@@ -2,7 +2,6 @@ import React from 'react';
 import localStyles from './AgendaStyles.css';
 import { updateDay } from '../../redux/actions/venueScheduleActions.js'
 import { connect } from 'react-redux';
-import store from '../../redux/store';
 
 const RenderAgendaDays = ({ venueSchedule}) => (
   <nav className="navbar navbar-inverse">
