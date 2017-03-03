@@ -1,54 +1,27 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import ScheduleRow from './ScheduleRow.jsx';
-import RenderDays from './RenderDays.jsx';
-import RenderStages from './RenderStages.jsx';
+import ScheduleNav from './ScheduleNav.jsx';
 import store from '../../redux/store';
 import { getStagesAndDays } from '../../redux/actions/venueScheduleActions';
 
 const VenueSchedule = ({ venue, venueSchedule }) => {
   const { stages, days } = getStagesAndDays(venue.scheduleitems);
-  console.log(stages, days);
-
-  if (venueSchedule.chooseStage.value === 'All Stages') {
-    return (
-      <div>
-        <RenderDays days={days} />
-        <RenderStages stages={stages} />
-        {Object.keys(venueSchedule.scheduleData).map((ite, key) => {
-          var item = venueSchedule.scheduleData[ite];
-          if(item.day === venueSchedule.daysAndDates[venueSchedule.selectedDay.value]) {
-            return (
-              <ScheduleRow
-                key={key}
-                itemKey={ite}
-                name={item.name}
-                startTime = {item.starttime}
-                endTime = {item.endtime}
-                geofence={item.geofence}
-                day={item.day}
-                imgurl={item.imgurl}>
-              </ScheduleRow>
-            );
-          }
-        })}
-      </div>
-    );
-  }
+  const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
+  const isAllStages = venueSchedule.selectedStage === 'All Stages';
 
   return (
     <div>
-      <RenderDays days={days} />
-      <RenderStages stages={stages} />
-      {Object.keys(venueSchedule.scheduleData).map((ite, key) => {
-        var item = venueSchedule.scheduleData[ite];
-        if(item.geofence === venueSchedule.chooseStage.value &&
-          item.day === venueSchedule.daysAndDates[venueSchedule.selectedDay.value]) {
+      <ScheduleNav days={days} stages={stages} />
+      {Object.keys(venue.scheduleitems).map((key, index) => {
+        const item = venue.scheduleitems[key];
+        const isSelectedStage = (item.geofence === venueSchedule.selectedStage);
 
+        if(item.day === selectedDay && (isSelectedStage || isAllStages)) {
           return (
             <ScheduleRow
-              key={key}
-              itemKey={ite}
+              key={index}
+              itemKey={key}
               name={item.name}
               startTime = {item.starttime}
               endTime = {item.endtime}

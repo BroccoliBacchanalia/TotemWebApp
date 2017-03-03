@@ -14,13 +14,6 @@ export function updateStage(stage) {
   });
 }
 
-export function updateFestival(festival) {
-  return {
-    type: 'UPDATE_FESTIVAL',
-    payload: { festival }
-  }
-}
-
 export function getStagesAndDays(scheduleItems) {
   const stages = {};
   const days = {};
