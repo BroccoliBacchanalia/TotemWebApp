@@ -13,22 +13,26 @@ class MapViewer extends Component {
   }
 
   render() {
-    const props = this.props;
-    console.log(this.props, 'props in map viewer');
+    const setBasecamp = this.setBasecamp;
+    const { map } = this.props;
     const LoadMap = withGoogleMap(() => (
       <GoogleMap
-        ref={props.onMapLoad}
-        defaultZoom={ 17 }
-        defaultCenter={props.map.center}
+        defaultZoom={17}
+        defaultCenter={map.center}
         mapTypeId= 'terrain'
-        onClick={() => console.log('map clicked')}
+        onClick={(e) => {
+          const lat = e.latLng.lat();
+          const lng = e.latLng.lng();
+          setBasecamp({ lat, lng });
+        }}
         options={{ streetViewControl: false, mapTypeControl: false }}
         >
         <Markers />
         <GroundOverlay
-          image={props.map.url}
-          opacity={props.map.opacity}
-          imageBounds={props.map.bounds}
+          clickable={true}
+          image={map.url}
+          opacity={map.opacity}
+          imageBounds={map.bounds}
         />
       </GoogleMap>
     ));
@@ -45,6 +49,10 @@ class MapViewer extends Component {
     );
   }
 
+
+  setBasecamp(coords) {
+    console.log(coords);
+  }
 
   handleMapLoad(map) {
     this._mapComponent = map;
