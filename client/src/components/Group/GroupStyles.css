@@ -1,25 +1,43 @@
 
-.gRow {
+/*.gRow {
   border-bottom: 1px solid black;
   margin: 5px;
-  height: 70px;
+  height: 90px;
 }
 
 .gRow img {
   padding: 5px;
-  width: 70px;
+  width: 90px;
 }
 
 .gRow > * {
   float: left;
   display: inline-block;
 }
+    background: linear-gradient(to bottom right, #ffe482, rgba(255, 120, 113, 0.97));
+    background-color: rgba(163, 216, 204, 0.2)
+
+    .ui.celled.grid {
+    width: 100%;
+    margin: 1em 0;
+    box-shadow: 0px 0px 8px 0px rgba(12, 12, 12, 0.55);
+
 
 .gRow p {
-  padding-top: 5px;
+  padding: 20px;
   margin-bottom: 0;
+}*/
+.grid {
+  width: 100%;
+  margin: 1em 0;
+  box-shadow: 0px 0px 8px 0px rgba(12, 12, 12, 0.55) !important;
+
 }
 
+.gRow {
+  background-color: rgba(163, 216, 204, 0.2);
+  box-shadow: none !important;
+}
 /* Icon Row */
 
 .icon {
@@ -36,4 +54,18 @@
 
 .sortToolbar {
   overflow-x: hidden !important;
+}
+
+.buttonDiv {
+  box-shadow: none !important;
+  padding-top: 26px !important;
+}
+
+.button {
+  float: right !important;
+}
+
+.centerDiv {
+    box-shadow: none !important;
+    padding: 1em;
 }

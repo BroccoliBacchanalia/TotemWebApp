@@ -45,3 +45,10 @@ export function updateGroupMember(user, uid) {
     payload: { user, uid }
   });
 }
+
+export function showGroupMemberInfo(uid) {
+  return store.dispatch({ 
+    type: 'SHOW_NAME', 
+    payload: uid
+  });
+}

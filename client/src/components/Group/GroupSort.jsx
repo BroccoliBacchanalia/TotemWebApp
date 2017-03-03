@@ -10,7 +10,7 @@ const SortGroup = () => {
     { path: 'street view', method: 'proximity' }
   ];
   return (
-    <Grid columns={3} divided className={localStyles.sortToolbar}>
+    <Grid columns={3} divided>
       <Grid.Row>
           {icons.map((icon, index) => (
             <Grid.Column key={index} className={localStyles.icon}>

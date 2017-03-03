@@ -25,6 +25,7 @@ class MapViewer extends Component {
   }
 
   handleMapClick(event) {
+    console.log('map clicked')
     const nextMarkers = [
       ...this.state.markers,
         {
@@ -97,9 +98,6 @@ class MapViewer extends Component {
     );
   }
 
-  onClick(user) {
-    user.showInfo = true;
-  }
 
   handleMapLoad(map) {
     this._mapComponent = map;
