@@ -63,7 +63,6 @@ class MapViewer extends Component {
 
 export default connect((store) => {
   return {
-    members: store.group.members,
     map: store.venue.venue.map
   };
 })(MapViewer);
