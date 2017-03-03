@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import store from '../redux/store.js';
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Dimmer } from 'semantic-ui-react'
-import { closeMenu, toggleDimmer } from '../redux/actions'
+import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Dimmer } from 'semantic-ui-react';
+import { closeMenu, toggleDimmer } from '../redux/actions';
 
 /*  Components  */
 import HomeView from './HomeView'
@@ -14,11 +14,11 @@ import PersonalAgenda from './Agenda/PersonalAgenda';
 import ChooseVenue from './InitConfig/ChooseVenue';
 import CreateGroup from './InitConfig/CreateGroup';
 import InviteFriends from './InitConfig/InviteFriends';
-import HeaderBlock from './Nav/Nav'
-import SpeedDialButton from './Nav/SpeedDial'
-import ContactFriends from './Nav/ContactFriends'
-import ContactEmergencyServices from './Nav/ContactEmergencyServices'
-import Chat from './Chat/Chat'
+import HeaderBlock from './Nav/Nav';
+import SpeedDialButton from './Nav/SpeedDial';
+import ContactFriends from './Nav/ContactFriends';
+import ContactEmergencyServices from './Nav/ContactEmergencyServices';
+import Chat from './Chat/Chat';
 
 class App extends React.Component {
 

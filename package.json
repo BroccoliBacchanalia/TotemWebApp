@@ -6,7 +6,7 @@
   "jest": {
     "verbose": true,
     "moduleNameMapper": {
-      "\\.(css)$": "<rootDir>/node_modules/jest-css-modules"
+      "\\.(css)$": "/node_modules/jest-css-modules"
     }
   },
   "scripts": {
