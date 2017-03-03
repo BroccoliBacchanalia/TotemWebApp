@@ -3,23 +3,19 @@ import { connect } from 'react-redux';
 import localStyles from './VenueStyles.css';
 import { updateStage } from '../../redux/actions/venueScheduleActions.js';
 import store from '../../redux/store';
+import Dropdown from 'react-dropdown';
 
-const RenderStages = ({ selectedDay, stages }) => {
+const RenderStages = ({ venueSchedule }) => {
+ {venueSchedule.stages.unshift('All Stages')}
   return (
- 	<div>
-    {stages.map((item, index) =>
-      <div
-        key={index}
-        className={localStyles.gRow + " clearfix"}>
-        <img src='./img/totem1.png'/>
-        <p onClick={updateStage.bind(this, item)}>
-          <span className="h3">{item}</span>
-          <br/>
-         
-        </p>
-      </div>
-    )}
-  </div>
+ <nav>
+    <Dropdown options={venueSchedule.stages} onChange={updateStage.bind(this)} placeholder={venueSchedule.chooseStage.value} />   
+  </nav>
 );}
 
-export default RenderStages;
+export default connect((store) => {
+  return {
+    venueSchedule: store.venueSchedule
+  };
+})(RenderStages);
+

@@ -10,12 +10,18 @@ export function updateScheduleData(scheduleData) {
 }
 
 export function afterUpdatingData(allDays, allStages, daysAndDates) {
+
+      console.log("--------------------------------");
+      console.log(allDays);
+      console.log(allStages);
+
   store.dispatch({
     type: 'AFTER_UPDATING_DATA',
      payload: {
       allStages: allStages,
       allDays: allDays,
-      daysAndDates: daysAndDates
+      daysAndDates: daysAndDates,
+      selectedDay: {label: allDays[0], value: allDays[0]}
       }
     });
 }
