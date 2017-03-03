@@ -6,7 +6,7 @@
   "jest": {
     "verbose": true,
     "moduleNameMapper": {
-      "\\.(css)$": "/node_modules/jest-css-modules"
+      "\\.(css|less)$": "<rootDir>/__testConfig__/CSSStub.js"
     }
   },
   "scripts": {
@@ -23,7 +23,6 @@
   "license": "",
   "dependencies": {
     "axios": "^0.15.3",
-    "babel-jest": "^19.0.0",
     "babel-preset-stage-2": "^6.22.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.1",
