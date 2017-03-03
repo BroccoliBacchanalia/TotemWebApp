@@ -23,11 +23,7 @@ export default function appReducer(state = defaults, action) {
     }    
     case 'CLOSE_MENU': {
       return { ...state, visible: false };
-    }
-    case 'TOGGLE_DIMMER' : {
-      if (!state.active) return { ...state, active: true };
-      return { ...state, active: false };
-    }   
+    } 
     case 'TOGGLE_EMERGENCY_FRIENDS' : {
       if (!state.friendsModal) return { ...state, friendsModal: true };
       return { ...state, friendsModal: false };
@@ -36,10 +32,6 @@ export default function appReducer(state = defaults, action) {
       if (!state.emergencyModal) return { ...state, emergencyModal: true };
       return { ...state, emergencyModal: false };
     }  
-    case 'TOGGLE_SPEED_DIAL' : {
-      if (!state.speedDial) return { ...state, speedDial: true };
-      return { ...state, speedDial: false };
-    }
   }
   return state;
 };
