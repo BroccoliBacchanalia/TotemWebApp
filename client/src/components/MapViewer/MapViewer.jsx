@@ -12,16 +12,17 @@ class MapViewer extends Component {
   }
 
   render() {
+    const setBasecamp = this.setBasecamp;
     const { map } = this.props;
     const LoadMap = withGoogleMap(() => (
       <GoogleMap
         defaultZoom={17}
         defaultCenter={map.center}
         mapTypeId= 'terrain'
-        onClick={(event) => {
-          var latitude = event.latLng.lat();
-          var longitude = event.latLng.lng();
-          console.log(latitude, longitude);
+        onClick={(e) => {
+          const lat = e.latLng.lat();
+          const lng = e.latLng.lng();
+          setBasecamp({ lat, lng });
         }}
         options={{ streetViewControl: false, mapTypeControl: false }}
         >
@@ -47,8 +48,8 @@ class MapViewer extends Component {
     );
   }
 
-  onClick(user) {
-    user.showInfo = true;
+  setBasecamp(coords) {
+    console.log(coords);
   }
 
   handleMapLoad(map) {

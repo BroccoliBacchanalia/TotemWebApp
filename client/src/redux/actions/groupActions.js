@@ -15,6 +15,10 @@ export function updateGroup(group) {
 
   if (group.venueId) {
     firebaseOnce('/venues/' + group.venueId, updateVenue);
+  } else {
+    /* Add code to render map on user's current location */
+
+    store.dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
   }
 }
 

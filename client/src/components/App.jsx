@@ -60,7 +60,7 @@ class App extends React.Component {
           })}
           </Sidebar>
           <Sidebar.Pusher>
-        <HeaderBlock />
+            <HeaderBlock />
             <Segment basic className='remove-borders'>
               <div>
                 <Route exact path="/" component={HomeView}/>
