@@ -82,17 +82,19 @@ function getFriends() {
 export function getUserData(id) {
   firebaseOnce(`users/${id}`, (data) => {
     initialUserData(data);
-    if (data.groupId) {
+    if (!!data.groupId) {
       updateUserGroupID(data.groupId);
     }
-    getVenueNames();
+    getVenueNames(!data.groupId);
   });
 }
 
-function getVenueNames() {
+function getVenueNames(finished) {
   firebaseOnce('venues/names', (venues) => {
     updateVenueNames(venues);
-    dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
+    if (finished) {
+      dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
+    }
   });
 }
 
