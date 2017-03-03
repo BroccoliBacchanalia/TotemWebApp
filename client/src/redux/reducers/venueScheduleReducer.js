@@ -1,6 +1,6 @@
 const defaults = {
-  selectedDay: 'Friday',
-  chooseStage: '',
+  selectedDay: '',
+  chooseStage: {label: 'All Stages', value: 'All Stages'},
   scheduleData: '',
   stages: [],
   days: [],
@@ -22,7 +22,7 @@ export default function venueScheduleReducer(state = defaults, action) {
       return { ...state, scheduleData: action.payload.festival };
     }
     case 'DEF': {
-      return { ...state, selectedDay: "Friday", chooseStage: "" };
+      return { ...state, chooseStage: def };
     }
     case 'UPDATE_SCHEDULE_DATA': {
       return {...state, scheduleData: action.payload.scheduleData };
@@ -32,7 +32,9 @@ export default function venueScheduleReducer(state = defaults, action) {
         ...state,
         stages: action.payload.allStages,
         days: action.payload.allDays,
-        daysAndDates: action.payload.daysAndDates
+        daysAndDates: action.payload.daysAndDates,
+        selectedDay: action.payload.selectedDay
+
       }
     }
     case 'REMOVE_AGENDA': {

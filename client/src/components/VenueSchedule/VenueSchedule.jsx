@@ -8,23 +8,38 @@ import store from '../../redux/store';
 const VenueSchedule = ({ venueSchedule, venues, venueId }) => {
   const stages =  venueSchedule.stages;
   console.log("here are the stages", stages);
-  if(venueSchedule.chooseStage === '') {
+  if(venueSchedule.chooseStage.value === 'All Stages') {
     return (
       <div>
-        <RenderDays selectedDay={venueSchedule.selectedDay}/>
-        <RenderStages
-          selectedDay={venueSchedule.selectedDay}
-          stages = {stages}
-        />
+      <RenderDays />
+      <RenderStages />
+      {Object.keys(venueSchedule.scheduleData).map((ite, key) => {
+        var item = venueSchedule.scheduleData[ite];
+        if(item.day === venueSchedule.daysAndDates[venueSchedule.selectedDay.value]) {
+          return (
+            <ScheduleRow
+              key={key}
+              itemKey={ite}
+              name={item.name}
+              startTime = {item.starttime}
+              endTime = {item.endtime}
+              geofence={item.geofence}
+              day={item.day}
+              imgurl={item.imgurl}>
+            </ScheduleRow>
+          );
+        }
+      })}
       </div>
     );
   }
   return (
     <div>
-      <RenderDays selectedDay={venueSchedule.selectedDay}/>
+      <RenderDays />
+      <RenderStages />
       {Object.keys(venueSchedule.scheduleData).map((ite, key) => {
         var item = venueSchedule.scheduleData[ite];
-        if(item.geofence === venueSchedule.chooseStage && item.day === venueSchedule.daysAndDates[venueSchedule.selectedDay]) {
+        if(item.geofence === venueSchedule.chooseStage.value && item.day === venueSchedule.daysAndDates[venueSchedule.selectedDay.value]) {
           return (
             <ScheduleRow
               key={key}
