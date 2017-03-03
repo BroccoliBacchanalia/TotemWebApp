@@ -5,7 +5,9 @@
   "main": "index.js",
   "jest": {
     "verbose": true,
-    "scriptPreprocessor": "node_modules/jest-css-modules"
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__testConfig__/CSSStub.js"
+    }
   },
   "scripts": {
     "test": "jest --coverage --watch",
@@ -21,7 +23,6 @@
   "license": "",
   "dependencies": {
     "axios": "^0.15.3",
-    "babel-jest": "^19.0.0",
     "babel-preset-stage-2": "^6.22.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.1",
