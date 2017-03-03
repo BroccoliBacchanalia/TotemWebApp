@@ -20,7 +20,6 @@ export default function groupReducer(state = defaults, action) {
       return newState;
     }
     case 'USERS_SORT': {
-      console.log(state.users)
       const users = objToArray(state.users);
       const sortedUsers = users.sort(action.payload.method);
       return {...state, users: arrToObj(sortedUsers)};

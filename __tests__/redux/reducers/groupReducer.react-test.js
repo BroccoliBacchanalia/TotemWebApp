@@ -11,8 +11,8 @@ describe('Group Reducer', () => {
 				members: {},
 				users: {},
 				venueId: ''
-		})
-	})
+		});
+	});
 
 	test('Should be able to handle UPDATING_GROUP_MEMBER', () => {
 		let uid = 123123;
@@ -25,17 +25,17 @@ describe('Group Reducer', () => {
 			  }
 			}).users
 			).toEqual({'123123': 'John'})
-	})
+	});
 
-	test('Should be able to handle USERS_SORT', () => {
+	test('Should be able to handle USERS_SORT sortAZ', () => {
 		expect(
-		groupReducer({users: {'Y3241asss': {"label": 'mitch'}, '21341234': {label:'hedberg'}}}, {
+		groupReducer({users: {'Y3241asss': {'label': 'mitch'}, '21341234': {'label':'hedberg'}}}, {
 			type: 'USERS_SORT',
 			payload: {
 				method: 'sortAZ'
 			}
 		}).users
-		).toEqual({"21341234": {"key": "21341234", "label": "hedberg"}, "Y3241asss": {"key": "Y3241asss", "label": "mitch"}})
-	})
+		).toEqual({'21341234': {'key': '21341234', 'label': 'hedberg'}, 'Y3241asss': {'key': 'Y3241asss', 'label': 'mitch'}})
+	});
 
-})
+});

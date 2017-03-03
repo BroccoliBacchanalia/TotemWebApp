@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.38% </span>
+        <span class="strong">6.12% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/47</span>
+        <span class='fraction'>3/49</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.52% </span>
+        <span class="strong">6.25% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/46</span>
+        <span class='fraction'>3/48</span>
       </div>
     </div>
   </div>
@@ -170,7 +170,8 @@
 125
 126
 127
-128</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+128
+129</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -253,7 +254,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -262,6 +262,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -279,7 +280,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -289,6 +290,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -300,7 +302,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
-import { updateGroupId, userResign } from './userActions';
+import { updateUserGroupID, userResign } from './userActions';
 import { firebaseOnce, firebaseSet, firebaseUpdate } from './firebaseActions';
 import { updateGroup } from './groupActions';
 &nbsp;
@@ -313,13 +315,13 @@ const authConfig = {
 };
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >signInSuccess(</span>uid, displayName) {
-<span class="cstat-no" title="statement not covered" >  return {</span>
+<span class="cstat-no" title="statement not covered" >  return dispatch({</span>
     type: 'SIGNIN_SUCCESS',
     payload: {
       uid: uid,
       name: displayName
     }
-  }
+  });
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >signInInProgress(</span>) {
@@ -336,7 +338,7 @@ function <span class="fstat-no" title="function not covered" >signInError(</span
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >getUsers(</span>) {
-<span class="cstat-no" title="statement not covered" >  firebaseOnce('/users', <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  return firebaseOnce('/users', <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    databaseGroup.push(data);</span>
 <span class="cstat-no" title="statement not covered" >    getFriends();</span>
   });
@@ -375,21 +377,21 @@ function <span class="fstat-no" title="function not covered" >getFriends(</span>
   });
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >stillSignedIn(</span>uid) {
-<span class="cstat-no" title="statement not covered" >  firebaseOnce(`users/${ uid }`, <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {</span>
+export function <span class="fstat-no" title="function not covered" >getUserData(</span>id) {
+<span class="cstat-no" title="statement not covered" >  firebaseOnce(`users/${id}`, <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    userResign(data);</span>
 <span class="cstat-no" title="statement not covered" >    if (data.groupId) {</span>
-<span class="cstat-no" title="statement not covered" >      console.log(data.groupId, 'group id exists in stillsigned in')</span>
-<span class="cstat-no" title="statement not covered" >      updateGroupId(data.groupId);</span>
+<span class="cstat-no" title="statement not covered" >      updateUserGroupID(data.groupId);</span>
     }
 <span class="cstat-no" title="statement not covered" >    dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });</span>
   });
 }
 &nbsp;
-function <span class="fstat-no" title="function not covered" >updateUserData(</span>) {
+function <span class="fstat-no" title="function not covered" >getPendingInvites(</span>) {
 <span class="cstat-no" title="statement not covered" >  firebaseOnce(`users/${currentUserId}`, <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    console.log(data, 'data in pending invites')</span>
 <span class="cstat-no" title="statement not covered" >    dispatch({</span>
-      type: 'UPDATE_USER_DATA',
+      type: 'UPDATE_PENDING_INVITES',
       pendingInvites: data.pendingInvites
     });
 <span class="cstat-no" title="statement not covered" >    dispatch({ type: 'DATA_RECEIVED' });</span>
@@ -406,7 +408,7 @@ export function <span class="fstat-no" title="function not covered" >signIn(</sp
 <span class="cstat-no" title="statement not covered" >    accessToken = result.credential.accessToken;</span>
     const { user: { uid, displayName, photoURL, email } } = <span class="cstat-no" title="statement not covered" >result;</span>
 <span class="cstat-no" title="statement not covered" >    currentUserId = uid;</span>
-&nbsp;
+    const updates = <span class="cstat-no" title="statement not covered" >{};</span>
     let userData = <span class="cstat-no" title="statement not covered" >{</span>
       label: displayName,
       img: photoURL,
@@ -416,10 +418,11 @@ export function <span class="fstat-no" title="function not covered" >signIn(</sp
       venueId: '',
       groupId: '',
     }
-<span class="cstat-no" title="statement not covered" >    firebaseUpdate(`users/${ uid }`, userData);</span>
+<span class="cstat-no" title="statement not covered" >    updates[`users/${ uid }`] = userData;</span>
+<span class="cstat-no" title="statement not covered" >    firebaseUpdate(updates);</span>
   })
   .then(getUsers)
-  .then(updateUserData)
+  .then(getPendingInvites)
   .catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; {
 <span class="cstat-no" title="statement not covered" >    dispatch(signInError(error.message))</span>
   });
@@ -430,7 +433,7 @@ export function <span class="fstat-no" title="function not covered" >signIn(</sp
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 02 2017 19:59:50 GMT-0800 (PST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 02 2017 20:17:33 GMT-0800 (PST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

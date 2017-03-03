@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">37.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/12</span>
+        <span class='fraction'>3/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">10% </span>
+        <span class="strong">16.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/10</span>
+        <span class='fraction'>1/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">37.5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/12</span>
+        <span class='fraction'>3/8</span>
       </div>
     </div>
   </div>
@@ -69,38 +69,7 @@
 24
 25
 26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+27</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,25 +82,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -146,15 +96,9 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const defaults = {
-  selectedDay: '',
-  chooseStage: {label: 'All Stages', value: 'All Stages'},
-  scheduleData: '',
-  stages: [],
-  days: [],
-  daysAndDates: {},
   agenda: [],
-  imgURL: ''
-&nbsp;
+  selectedDay: null,
+  selectedStage: 'All Stages'
 };
 &nbsp;
 export default function venueScheduleReducer(state = defaults, action) {
@@ -163,26 +107,7 @@ export default function venueScheduleReducer(state = defaults, action) {
 <span class="cstat-no" title="statement not covered" >      return { ...state, selectedDay: action.payload.day };</span>
     }
     case 'UPDATE_STAGE': {
-<span class="cstat-no" title="statement not covered" >      return { ...state, chooseStage: action.payload.stage };</span>
-    }
-    case 'UPDATE_FESTIVAL': {
-<span class="cstat-no" title="statement not covered" >      return { ...state, scheduleData: action.payload.festival };</span>
-    }
-    case 'DEF': {
-<span class="cstat-no" title="statement not covered" >      return { ...state, chooseStage: def };</span>
-    }
-    case 'UPDATE_SCHEDULE_DATA': {
-<span class="cstat-no" title="statement not covered" >      return {...state, scheduleData: action.payload.scheduleData };</span>
-    }
-    case 'AFTER_UPDATING_DATA': {
-<span class="cstat-no" title="statement not covered" >      return {</span>
-        ...state,
-        stages: action.payload.allStages,
-        days: action.payload.allDays,
-        daysAndDates: action.payload.daysAndDates,
-        selectedDay: action.payload.selectedDay
-&nbsp;
-      }
+<span class="cstat-no" title="statement not covered" >      return { ...state, selectedStage: action.payload.stage };</span>
     }
     case 'REMOVE_AGENDA': {
 <span class="cstat-no" title="statement not covered" >      return { ...state, agenda: action.payload.agenda };</span>
@@ -202,7 +127,7 @@ export default function venueScheduleReducer(state = defaults, action) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 02 2017 19:59:50 GMT-0800 (PST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 02 2017 20:17:33 GMT-0800 (PST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

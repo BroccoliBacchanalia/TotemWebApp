@@ -51,7 +51,7 @@ ChooseVenue.contextTypes = {
 
 export default connect((store) => {
 	return {
-		venues: store.venues.venues,
+		venues: store.venue.venues,
     userId: store.user.uid
 	}
 })(ChooseVenue)
