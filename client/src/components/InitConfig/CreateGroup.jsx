@@ -36,11 +36,11 @@ function submit({ user, group, push }) {
 	const groupKey = firebaseKeyGen('/groups/');
   const groupData = {
     groupName: group.groupName,
-    members: {},
+    memberKeys: {},
 		venueId: group.venueId
   };
 
-  groupData.members[user.uid] = user.name;
+  groupData.memberKeys[user.uid] = user.name;
 	updates['/groups/' + groupKey] = groupData;
 
   updateUserGroupID(groupKey);
