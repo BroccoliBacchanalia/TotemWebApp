@@ -39,6 +39,6 @@ const GroupView = ({ user, users }) => (
 export default connect((store) => {
   return {
     user: store.user,
-    users: store.group.users
+    users: store.group.members
   };
 })(GroupView);

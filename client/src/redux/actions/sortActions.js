@@ -25,7 +25,7 @@ const sortMethods = {
   },
 
   proximity: function sortProximity(a, b) {
-    const users = store.getState().group.users;
+    const users = store.getState().group.members;
     const uid = store.getState().user.uid;
     const userCoords = users[uid].position;
     const aDiff = getDistance(userCoords, a.position);

@@ -16,7 +16,10 @@ var config = {
           presets: ['es2015', 'react', 'stage-2']
         }
       },
-      {test: /\.json$/, loader: 'json-loader'},
+      { 
+        test: /\.json$/, 
+        loader: 'json-loader' 
+      },
       {
         test: /\.css$/,
         loader: 'style-loader'

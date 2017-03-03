@@ -1,4 +1,3 @@
-import auth from '../../../client/src/redux/reducers/authenticationReducer';
 import * as actions from '../../../client/src/redux/actions/authenticationActions';
 import React from 'react';
 import renderer from 'react-test-renderer';

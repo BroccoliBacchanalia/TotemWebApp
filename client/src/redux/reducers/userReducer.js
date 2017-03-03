@@ -23,9 +23,6 @@ export default function userReducer(state = defaults, action) {
     case 'DATA_RETRIEVED_FROM_FIREBASE': {
       return { ...state, dataRetrieved: true };
     }
-    case 'UPDATE_PENDING_INVITES': {
-      return { ...state, pendingInvites: action.pendingInvites };
-    }
     case 'UPDATE_USER_GROUP_ID': {
       return { ...state, groupId: action.payload.id };
     }
@@ -35,7 +32,7 @@ export default function userReducer(state = defaults, action) {
     case 'UPDATE_GROUP_NAME': {
       return { ...state, groupName: action.payload.name }
     }
-    case 'DATA_ON_RESIGN': {
+    case 'INITIAL_USER_DATA': {
       const newState = { ...state }
       if (action.userData.pendingInvites) {
         newState.pendingInvites = action.userData.pendingInvites
