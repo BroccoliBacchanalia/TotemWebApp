@@ -1,7 +1,5 @@
-const mockVenueData = require('./mock_venue_data');
-
 const defaults = {
-  venues: mockVenueData,
+  venues: {},
   venue: {},
   geofences: {}
 };
@@ -15,6 +13,13 @@ export default function configReducer(state = defaults, action) {
         geofences: action.payload.venue.geofences
       };
     }
+    case 'UPDATE_VENUE_NAMES': {
+      return {
+        ...state,
+        venues: action.payload.venues
+      };
+    }
   }
+
   return state;
 };

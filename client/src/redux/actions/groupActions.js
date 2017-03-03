@@ -9,8 +9,10 @@ export function updateGroup(group) {
     payload: { group }
   });
 
-  for (let userId in group.memberKeys) {
-    addUserListener(userId);
+
+  console.log(group.memberKeys)
+  for (let key in group.memberKeys) {
+    addUserListener(key);
   }
 
   if (group.venueId) {

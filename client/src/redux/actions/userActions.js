@@ -18,9 +18,9 @@ export function updateUserGroupID(id) {
   firebaseOnce('/groups/' + id, updateGroup);
 }
 
-export function userResign(user) {
+export function initialUserData(user) {
   return store.dispatch({
-    type: 'DATA_ON_RESIGN',
+    type: 'INITIAL_USER_DATA',
     userData: user
   });
 }
