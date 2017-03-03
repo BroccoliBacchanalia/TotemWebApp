@@ -57,14 +57,13 @@ class MapViewer extends Component {
         onClick={props.onMapClick.bind(this)}
         options={{ streetViewControl: false, mapTypeControl: false }}
         >
-          {
-              props.markers.map(marker => {
-              return (
-                <Marker
-                    {...marker}
-                />
-              )
-            })
+          { props.markers.map(marker => {
+            return (
+              <Marker
+                {...marker}
+              />
+            )
+          })
           }
 
         <Markers />
