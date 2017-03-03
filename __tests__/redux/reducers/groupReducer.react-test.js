@@ -9,7 +9,7 @@ describe('Group Reducer', () => {
 		expect(groupReducer(undefined, {})).toEqual({
 				groupName: '',
 				members: {},
-				users: {},
+				memberKeys: {},
 				venueId: ''
 		});
 	});
@@ -23,7 +23,7 @@ describe('Group Reducer', () => {
 			    user: 'John',
 			    uid: 123123
 			  }
-			}).users
+			}).members
 			).toEqual({'123123': 'John'})
 	});
 
@@ -35,7 +35,6 @@ describe('Group Reducer', () => {
 				method: 'sortAZ'
 			}
 		}).users
-		).toEqual({'21341234': {'key': '21341234', 'label': 'hedberg'}, 'Y3241asss': {'key': 'Y3241asss', 'label': 'mitch'}})
-	});
-
-});
+		).toEqual({"21341234": {"label": "hedberg"}, "Y3241asss": {"label": "mitch"}});
+})
+})
