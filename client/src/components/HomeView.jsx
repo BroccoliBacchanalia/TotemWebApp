@@ -17,7 +17,6 @@ import { signIn, signInSuccess, getUserData } from '../redux/actions/authenticat
 import { geolocate } from '../redux/actions';
 
 class HomeView extends React.Component {
-
   componentWillMount() {
     const props = this.props;
     firebase.auth().onAuthStateChanged(function(user) {
@@ -34,7 +33,7 @@ class HomeView extends React.Component {
   render() {
     const { auth, dispatch, group, user, venueSchedule } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
-    const hasGroup = user.groupId;
+    const hasGroup = !!user.groupId;
 
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} auth={auth}/> :
