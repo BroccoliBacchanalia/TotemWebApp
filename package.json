@@ -5,9 +5,7 @@
   "main": "index.js",
   "jest": {
     "verbose": true,
-    "moduleNameMapper": {
-      "\\.(css)$": "/node_modules/jest-css-modules"
-    }
+    "scriptPreprocessor": "node_modules/jest-css-modules"
   },
   "scripts": {
     "test": "jest --coverage --watch",
