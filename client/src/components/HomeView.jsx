@@ -2,19 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../redux/store.js';
 import firebase from 'firebase'
-import { geolocate } from '../redux/actions';
 /*  Components  */
 import MapViewer from './MapViewer/MapViewer';
 import ChooseGroup from './InitConfig/ChooseGroup.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
-import { signIn, signInSuccess, stillSignedIn } from '../redux/actions/authenticationActions';
-import { allStages, allDays, updateScheduleData, afterUpdatingData } from '../redux/actions/venueScheduleActions';
-import { defaultAgenda } from '../redux/actions/agendaActions';
 import SignInButton from './Auth/SignInButton';
 import Loading from './Auth/Loading';
-
+/* Actions */
+import { defaultAgenda } from '../redux/actions/agendaActions';
 import { setDefaultChat } from '../redux/actions/chatActions';
-
+import { signIn, signInSuccess, stillSignedIn } from '../redux/actions/authenticationActions';
+import { allStages, allDays, updateScheduleData, afterUpdatingData } from '../redux/actions/venueScheduleActions';
+import { geolocate } from '../redux/actions';
 
 class HomeView extends React.Component {
 

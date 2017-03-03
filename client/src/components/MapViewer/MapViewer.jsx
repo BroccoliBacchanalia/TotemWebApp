@@ -21,37 +21,30 @@ class MapViewer extends Component {
         defaultAnimation: 2,
       }],
     };
-    ///console.log("Constuctor this ", this);
     this.handleMapClick.bind(this);
   }
-  // componenWillMount() {
-  //   console.log("inside compoent will mount: ",this)
-  // }
 
- handleMapClick(event) {
+  handleMapClick(event) {
     const nextMarkers = [
       ...this.state.markers,
-      {
-        position: {
+        {
+          position: {
             lat: event.latLng.lat(),
             lng: event.latLng.lng()
         },
-        defaultAnimation: 2,
-        key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
-      },
+          defaultAnimation: 2,
+          key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
+        },
     ];
-    console.log("PREVIOUS STATE: ",this.state );
     this.setState({
       markers: nextMarkers
     });
-    console.log("CURRENT STATE: ",this.state);
     this.render();
-
   }
 
 
   shouldComponentUpdate() {
-     return false;
+    return false;
   }
 
   render() {
@@ -64,14 +57,13 @@ class MapViewer extends Component {
         onClick={props.onMapClick.bind(this)}
         options={{ streetViewControl: false, mapTypeControl: false }}
         >
-          {
-              props.markers.map(marker => {
-              return (
-                <Marker
-                    {...marker}
-                />
-              )
-            })
+          { props.markers.map(marker => {
+            return (
+              <Marker
+                {...marker}
+              />
+            )
+          })
           }
 
         <Markers />
