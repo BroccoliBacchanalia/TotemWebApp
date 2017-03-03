@@ -46,7 +46,7 @@ export function geolocate() {
 }
 
 export function getGeofence(coordinates) {
-  const geofences = store.getState().venues.geofences;
+  const geofences = store.getState().venue.geofences;
 
   for (let key in geofences) {
     const fence = geofences[key];

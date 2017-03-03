@@ -9,9 +9,9 @@ export function updateUserData(data) {
   })
 }
 
-export function updateGroupId(id) {
+export function updateUserGroupID(id) {
   store.dispatch({
-    type: 'UPDATE_GROUP_ID',
+    type: 'UPDATE_USER_GROUP_ID',
     payload: { id }
   });
 
