@@ -38,4 +38,15 @@ describe('Group Reducer', () => {
 		).toEqual({'21341234': {'key': '21341234', 'label': 'hedberg'}, 'Y3241asss': {'key': 'Y3241asss', 'label': 'mitch'}})
 	});
 
+	test('Should be able to handle USERS_SORT geofence', () => {
+		expect(
+      groupReduce({users: {'214321342': {'position': 2421423}, '1242341': {'position': 12344}}}, {
+      	type: 'USERS_SORT',
+      	payload: {
+      		method: 'sortGeofence'
+      	}
+      }).users
+		).toEqual({'1242341': {'position': 12344}, '214321342': {'position': 2421423}})
+	})
+
 });

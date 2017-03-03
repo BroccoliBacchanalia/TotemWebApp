@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">72.41% </span>
+        <span class="strong">60.71% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>21/29</span>
+        <span class='fraction'>17/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">30% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">72.41% </span>
+        <span class="strong">60.71% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>21/29</span>
+        <span class='fraction'>17/28</span>
       </div>
     </div>
   </div>
@@ -113,7 +113,8 @@
 68
 69
 70
-71</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+71
+72</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,7 +139,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -152,6 +152,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,8 +172,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,14 +181,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const defaults = {
   groupName: '',
+  memberKeys: {},
   members: {},
-  users: {},
   venueId: ''
 };
 &nbsp;
@@ -197,18 +199,17 @@ export default function groupReducer(state = defaults, action) {
       const uid = action.payload.uid;
       const newState = {
         groupName: state.groupName,
+        memberKeys: { ...state.memberKeys },
         members: { ...state.members },
-        users: { ...state.users },
         venueId: state.venueId
       };
-      newState.users[uid] = user;
+      newState.members[uid] = user;
       return newState;
     }
     case 'USERS_SORT': {
-      console.log(state.users)
-      const users = objToArray(state.users);
-      const sortedUsers = users.sort(action.payload.method);
-      return {...state, users: arrToObj(sortedUsers)};
+      const members = objToArray(state.members);
+      const sortedUsers = members.sort(action.payload.method);
+      return {...state, members: arrToObj(sortedUsers)};
     }
 <span class="branch-2 cbranch-no" title="branch not covered" >    case 'UPDATE_KEYS': {</span>
 <span class="cstat-no" title="statement not covered" >      return { ...state, memberKeys: action.payload.keys };</span>
@@ -217,11 +218,13 @@ export default function groupReducer(state = defaults, action) {
       const uid = <span class="cstat-no" title="statement not covered" >action.payload;</span>
       const newState = <span class="cstat-no" title="statement not covered" >{</span>
         groupName: state.groupName,
+        memberKeys: { ...state.memberKeys },
         members: { ...state.members },
-        users: { ...state.users },
         venueId: state.venueId
       };
-<span class="cstat-no" title="statement not covered" >      newState.users[uid].showInfo ? newState.users[uid].showInfo = !newState.users[uid].showInfo : newState.users[uid].showInfo = true;</span>
+<span class="cstat-no" title="statement not covered" >      newState.members[uid].showInfo ?</span>
+      newState.members[uid].showInfo = !newState.members[uid].showInfo :
+      newState.members[uid].showInfo = true;
 <span class="cstat-no" title="statement not covered" >      return newState;</span>
     }
 <span class="branch-4 cbranch-no" title="branch not covered" >    case 'UPDATE_GROUP': {</span>
@@ -240,8 +243,8 @@ export default function groupReducer(state = defaults, action) {
 function objToArray(obj) {
   const result = [];
   for (let key in obj) {
-    const newObj = { ...obj[key], key: key };
-    result.push(newObj);
+    const newObj = <span class="cstat-no" title="statement not covered" >{ ...obj[key], key: key };</span>
+<span class="cstat-no" title="statement not covered" >    result.push(newObj);</span>
   }
   return result;
 }
@@ -249,7 +252,7 @@ function objToArray(obj) {
 function arrToObj(arr) {
   const result = {};
   for (let item of arr) {
-    result[item.key] = item;
+<span class="cstat-no" title="statement not covered" >    result[item.key] = item;</span>
   }
   return result;
 }
@@ -259,7 +262,7 @@ function arrToObj(arr) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 02 2017 20:17:33 GMT-0800 (PST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Mar 03 2017 11:15:49 GMT-0800 (PST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -27,7 +27,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -169,9 +169,10 @@
 124
 125
 126
-127
-128
-129</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+127</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -263,10 +264,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -294,17 +293,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
-import { updateUserGroupID, userResign } from './userActions';
+&nbsp;
+/*  Actions */
+import { updateUserGroupID, initialUserData } from './userActions';
 import { firebaseOnce, firebaseSet, firebaseUpdate } from './firebaseActions';
 import { updateGroup } from './groupActions';
+import { updateVenueNames } from './venueActions';
 &nbsp;
 const dispatch = store.dispatch;
 let accessToken;
@@ -325,16 +324,16 @@ export function <span class="fstat-no" title="function not covered" >signInSucce
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >signInInProgress(</span>) {
-<span class="cstat-no" title="statement not covered" >  return {</span>
+<span class="cstat-no" title="statement not covered" >  return dispatch({</span>
     type: 'SIGNIN'
-  }
+  });
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >signInError(</span>errorMessage) {
-<span class="cstat-no" title="statement not covered" >  return {</span>
+<span class="cstat-no" title="statement not covered" >  return dispatch({</span>
     type: 'SIGNIN_ERROR',
     errorMessage: errorMessage
-  }
+  });
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >getUsers(</span>) {
@@ -379,29 +378,27 @@ function <span class="fstat-no" title="function not covered" >getFriends(</span>
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >getUserData(</span>id) {
 <span class="cstat-no" title="statement not covered" >  firebaseOnce(`users/${id}`, <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    userResign(data);</span>
-<span class="cstat-no" title="statement not covered" >    if (data.groupId) {</span>
+<span class="cstat-no" title="statement not covered" >    initialUserData(data);</span>
+<span class="cstat-no" title="statement not covered" >    if (!!data.groupId) {</span>
 <span class="cstat-no" title="statement not covered" >      updateUserGroupID(data.groupId);</span>
     }
-<span class="cstat-no" title="statement not covered" >    dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });</span>
+<span class="cstat-no" title="statement not covered" >    getVenueNames(!data.groupId);</span>
   });
 }
 &nbsp;
-function <span class="fstat-no" title="function not covered" >getPendingInvites(</span>) {
-<span class="cstat-no" title="statement not covered" >  firebaseOnce(`users/${currentUserId}`, <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    console.log(data, 'data in pending invites')</span>
-<span class="cstat-no" title="statement not covered" >    dispatch({</span>
-      type: 'UPDATE_PENDING_INVITES',
-      pendingInvites: data.pendingInvites
-    });
-<span class="cstat-no" title="statement not covered" >    dispatch({ type: 'DATA_RECEIVED' });</span>
+function <span class="fstat-no" title="function not covered" >getVenueNames(</span>finished) {
+<span class="cstat-no" title="statement not covered" >  firebaseOnce('venues/names', <span class="fstat-no" title="function not covered" >(v</span>enues) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    updateVenueNames(venues);</span>
+<span class="cstat-no" title="statement not covered" >    if (finished) {</span>
+<span class="cstat-no" title="statement not covered" >      dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });</span>
+    }
   });
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >signIn(</span>) {
   const provider = <span class="cstat-no" title="statement not covered" >new firebase.auth.FacebookAuthProvider();</span>
-<span class="cstat-no" title="statement not covered" >  dispatch(signInInProgress());</span>
-  
+<span class="cstat-no" title="statement not covered" >  signInInProgress();</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  authConfig.facebookPermissions.forEach(<span class="fstat-no" title="function not covered" >pe</span>rmission =&gt; <span class="cstat-no" title="statement not covered" >provider.addScope(permission))</span>;</span>
 <span class="cstat-no" title="statement not covered" >  firebase.auth().signInWithPopup(provider)</span>
   .then(<span class="fstat-no" title="function not covered" >(r</span>esult) =&gt; {
@@ -422,10 +419,7 @@ export function <span class="fstat-no" title="function not covered" >signIn(</sp
 <span class="cstat-no" title="statement not covered" >    firebaseUpdate(updates);</span>
   })
   .then(getUsers)
-  .then(getPendingInvites)
-  .catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; {
-<span class="cstat-no" title="statement not covered" >    dispatch(signInError(error.message))</span>
-  });
+  .catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; <span class="cstat-no" title="statement not covered" >signInError(error.message))</span>;
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -433,7 +427,7 @@ export function <span class="fstat-no" title="function not covered" >signIn(</sp
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 02 2017 20:17:33 GMT-0800 (PST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Mar 03 2017 11:15:49 GMT-0800 (PST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
