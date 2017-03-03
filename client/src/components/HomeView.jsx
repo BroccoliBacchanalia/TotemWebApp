@@ -23,7 +23,7 @@ class HomeView extends React.Component {
       if (user) {
         geolocate();
         signInSuccess(user.uid, user.displayName);
-        getUserData(user.uid)
+        getUserData(user.uid);
         //just for testing. this line needs to be removed later on
         setDefaultChat("-KdSF7i59sk07XoRgcYo");
       }

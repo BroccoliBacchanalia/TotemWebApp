@@ -22,7 +22,7 @@ export function geolocate() {
       });
     } else if (uid === 'NpheOU9bI5TQUDF44VgteQbXuvn2') {
       firebaseSet(`users/${uid}/position`, {
-        lat: pos.coords.latitude - (pos.coords.latitude - 33.681017), // Mojave
+        lat: pos.coords.latitude - (pos.coords.latitude - 33.681317), // Mojave
         lng: pos.coords.longitude - (pos.coords.longitude - (-116.236942)) // Mojave
       });
     } else {

@@ -101,14 +101,34 @@ module.exports = (0, _flowRight3.default)(_react2.default.createClass, (0, _enha
 
   getInitialState: function getInitialState() {
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#GroundOverlay
-    var groundOverlay = new google.maps.GroundOverlay(this.props.image, this.props.imageBounds);
+    var groundOverlay = new google.maps.GroundOverlay(
+      this.props.image,
+      this.props.imageBounds
+    );
+    var map = this.context[_constants.MAP];
 
     // You must call setMap() with a valid Map object to trigger the call to
     // the onAdd() method and setMap(null) in order to trigger the onRemove() method.
-    groundOverlay.setMap(this.context[_constants.MAP]);
+    groundOverlay.setMap(map);
+
     if (this.props.opacity) {
       groundOverlay.setOpacity(this.props.opacity);
     }
+    if (this.props.clickable) {
+      var triggerClick;
+      google.maps.event.addListener(groundOverlay, "mousedown", function(event) {
+        triggerClick = setTimeout(function() {
+          google.maps.event.trigger(map, 'click', event);
+        }, 1000);
+      });
+      google.maps.event.addListener(groundOverlay, "mouseup", function(event) {
+        clearTimeout(triggerClick);
+      });
+      google.maps.event.addListener(groundOverlay, "mouseleave", function(event) {
+        clearTimeout(triggerClick);
+      });
+    }
+
     return (0, _defineProperty3.default)({}, _constants.OVERLAY_VIEW, groundOverlay);
   },
   componentWillUnmount: function componentWillUnmount() {
