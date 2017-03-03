@@ -1,7 +1,7 @@
 const defaults = {
   groupName: '',
+  memberKeys: {},
   members: {},
-  users: {},
   venueId: ''
 };
 
@@ -12,17 +12,17 @@ export default function groupReducer(state = defaults, action) {
       const uid = action.payload.uid;
       const newState = {
         groupName: state.groupName,
+        memberKeys: { ...state.memberKeys },
         members: { ...state.members },
-        users: { ...state.users },
         venueId: state.venueId
       };
-      newState.users[uid] = user;
+      newState.members[uid] = user;
       return newState;
     }
     case 'USERS_SORT': {
-      const users = objToArray(state.users);
-      const sortedUsers = users.sort(action.payload.method);
-      return {...state, users: arrToObj(sortedUsers)};
+      const members = objToArray(state.members);
+      const sortedUsers = members.sort(action.payload.method);
+      return {...state, members: arrToObj(sortedUsers)};
     }
     case 'UPDATE_KEYS': {
       return { ...state, memberKeys: action.payload.keys };
@@ -31,11 +31,13 @@ export default function groupReducer(state = defaults, action) {
       const uid = action.payload;
       const newState = {
         groupName: state.groupName,
+        memberKeys: { ...state.memberKeys },
         members: { ...state.members },
-        users: { ...state.users },
         venueId: state.venueId
       };
-      newState.users[uid].showInfo ? newState.users[uid].showInfo = !newState.users[uid].showInfo : newState.users[uid].showInfo = true;
+      newState.members[uid].showInfo ?
+      newState.members[uid].showInfo = !newState.members[uid].showInfo :
+      newState.members[uid].showInfo = true;
       return newState;
     }
     case 'UPDATE_GROUP': {

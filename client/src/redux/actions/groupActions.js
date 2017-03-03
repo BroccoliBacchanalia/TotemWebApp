@@ -9,7 +9,7 @@ export function updateGroup(group) {
     payload: { group }
   });
 
-  for (let userId in group.members) {
+  for (let userId in group.memberKeys) {
     addUserListener(userId);
   }
 

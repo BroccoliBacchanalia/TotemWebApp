@@ -6,12 +6,12 @@ import { getGeofence } from '../../redux/actions'
 
 class MapViewer extends Component {
   render() {
-    const users = this.props.users;
-    const userKeys = Object.keys(users);
+    const members = this.props.members;
+    const userIds = Object.keys(members);
     return (
       <div>
-        {userKeys.map((userKey, index) => {
-          const user = users[userKey];
+        {userIds.map((userId, index) => {
+          const user = members[userId];
           const icon = {
             url: user.img,
             scaledSize: new google.maps.Size(30, 30),
@@ -25,7 +25,7 @@ class MapViewer extends Component {
               {...user}
               label=''
               icon={icon}
-              onClick={() => store.dispatch({type: 'SHOW_NAME', payload: userKey})}
+              onClick={() => store.dispatch({ type: 'SHOW_NAME', payload: userId })}
             >
               {user.showInfo && (
                 <InfoWindow>
@@ -45,6 +45,6 @@ class MapViewer extends Component {
 
 export default connect((store) => {
   return {
-    users: store.group.users,
+    members: store.group.members,
   };
 })(MapViewer);
