@@ -1,6 +1,6 @@
 .mapNav {
   color: #f9d6ff !important;
-}  
+}
 
 .groupNav {
   color: #dddaff !important;
@@ -19,7 +19,7 @@
 }
 
 .header {
-  padding: 0px !important;
+  padding: 10px 0 !important;
   margin: 0px !important;
   background-color: #bffffd !important;
   border-color: #bffffd !important;

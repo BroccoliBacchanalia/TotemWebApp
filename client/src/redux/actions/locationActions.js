@@ -20,7 +20,7 @@ export function geolocate() {
         lat: pos.coords.latitude - (pos.coords.latitude - 33.679914), // Sahara
         lng: pos.coords.longitude - (pos.coords.longitude - (-116.236626)) // Sahara
       });
-    } else if (uid === 'NpheOU9bI5TQUDF44VgteQbXuvn2') {
+    } else if (uid === 'GnI9OC5JbfWThmLEEpVUoqBN3Br1') {
       firebaseSet(`users/${uid}/position`, {
         lat: pos.coords.latitude - (pos.coords.latitude - 33.681317), // Mojave
         lng: pos.coords.longitude - (pos.coords.longitude - (-116.236942)) // Mojave
