@@ -50,7 +50,7 @@ class PersonalAgenda extends React.Component {
 export default connect((store) => {
   return {
     venueSchedule: store.venueSchedule,
-    venues: store.venues.venues,
+    venues: store.venue.venues,
     venueId: store.user.venueId
   };
 })(PersonalAgenda);
