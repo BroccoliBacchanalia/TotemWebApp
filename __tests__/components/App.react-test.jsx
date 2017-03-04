@@ -1,16 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { shallow, mount, render } from 'enzyme';
-import AgendaRow from '../../client/src/components/VenueSchedule/AgendaRow';
+import { Provider } from 'react-redux';
+import { shallow } from 'enzyme';
+import store from '../../client/src/redux/store';
+import App from '../../client/src/components/App';
 
-
-const props = { itemKey, name, startTime, endTime, geofence, day, imgurl };
-
-describe('TEST', () => {
-
-
-  it('should render without exploding', () => {
-    expect(shallow(<AgendaRow />).length).toBeTruthy();
-  })
-})
-
+describe('App', () => {
+  it('the App component should render without exploding', () => {
+    const wrapper = shallow(
+      <Provider store={store}>
+        <App />
+      </Provider>);
+    expect(wrapper.length).toEqual(1);
+  });
+});
