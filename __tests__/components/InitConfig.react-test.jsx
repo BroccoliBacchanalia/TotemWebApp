@@ -41,6 +41,7 @@ describe('Initial Routes', () => {
     actions.updateUserGroupId('12342143cc')
     actions.updateVenueName('2341234')
     actions.signInSuccess('1243', '123444')
+    
   })
 
 })
