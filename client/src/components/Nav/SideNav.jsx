@@ -13,15 +13,18 @@ import ChooseVenue from '../InitConfig/ChooseVenue';
 import CreateGroup from '../InitConfig/CreateGroup';
 import InviteFriends from '../InitConfig/InviteFriends';
 import Chat from '../Chat/Chat';
+import localStyles from './UtilStyles.css'
 
 const SideNav = ({ app }) => {
   const navList = [
-    { displayName: 'Map',      endPoint: '/map',      iconName: 'map',    className: 'mapNav'   },
-    { displayName: 'Group',    endPoint: '/group',    iconName: 'users',  className: 'groupNav' },
-    { displayName: 'Agenda',   endPoint: '/agenda',   iconName: 'signup', className: 'agendaNav'},
-    { displayName: 'Schedule', endPoint: '/schedule', iconName: 'clock',  className: 'schedNav' },
-    { displayName: 'Chat',     endPoint: '/chat',     iconName: 'chat',   className: 'chatNav'  },
+    { displayName: 'Map',      endPoint: '/map',      iconName: 'map',    className: localStyles.mapNav    },
+    { displayName: 'Group',    endPoint: '/group',    iconName: 'users',  className: localStyles.groupNav  },
+    { displayName: 'Agenda',   endPoint: '/agenda',   iconName: 'signup', className: localStyles.agendaNav },
+    { displayName: 'Schedule', endPoint: '/schedule', iconName: 'clock',  className: localStyles.schedNav  },
   ];
+
+    
+  const chat = { displayName: 'Chat', href: 'https://m.me/', iconName: 'chat', className: localStyles.chatNav  }
 
   return (
     <Sidebar.Pushable className='main-view'>
@@ -37,12 +40,20 @@ const SideNav = ({ app }) => {
       >
         {navList.map((item, index) => (
           <Menu.Item
+            className={ item.className }
             key={ index }
             as={ Link }
             to={ item.endPoint }>
             <Icon name={ item.iconName } /> { item.displayName }
           </Menu.Item>
         ))}
+
+        <Menu.Item
+          href={ chat.href }
+          className={ chat.className }>
+          <Icon name={ chat.iconName } /> { chat.displayName }
+        </Menu.Item>
+
       </Sidebar>
       <Sidebar.Pusher>
         <HeaderBlock />
@@ -56,7 +67,6 @@ const SideNav = ({ app }) => {
             <Route path="/choosevenue" component={ChooseVenue}/>
             <Route path="/creategroup" component={CreateGroup}/>
             <Route path="/invite" component={InviteFriends}/>
-            <Route path="/chat" component={Chat}/>
           </div>
         </Segment>
       </Sidebar.Pusher>
