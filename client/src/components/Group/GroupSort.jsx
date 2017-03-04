@@ -15,6 +15,7 @@ const SortGroup = () => {
           {icons.map((icon, index) => (
             <Grid.Column key={index} className={localStyles.icon}>
               <Button
+                className={localStyles.gButton}
                 className={localStyles.sort}
                 key={index}
                 onClick={() => sortUsers(icon.method)}

@@ -3,8 +3,37 @@ import store from '../../redux/store';
 import { firebaseOnce, firebaseUpdate } from '../../redux/actions/firebaseActions';
 import { addAgenda } from '../../redux/actions/agendaActions';
 import localStyles from './VenueStyles.css';
+import { Grid, Button, Image, Icon } from 'semantic-ui-react'
 
 const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl }) => (
+  
+  <Grid.Row>
+    <Grid.Column width={3}>
+      <Image src={imgurl} />
+    </Grid.Column>
+    <Grid.Column width={11}>
+      <span className="h4">{name}</span>
+      <br />
+      <span className="h5">{geofence}</span>
+      <br />
+      {startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
+        " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
+    </Grid.Column>
+    <Grid.Column width={2} className={localStyles.buttonDiv}>
+      
+        <Icon 
+          className={localStyles.addButton}
+          name='add circle' 
+          size='big' 
+          onClick={() => { addAgendaItem.bind(null, itemKey) }}/>
+     
+    </Grid.Column>
+  </Grid.Row>
+
+
+
+
+/*
   <div
     type="button"
     className={localStyles.gRow + " clearfix"}
@@ -16,7 +45,7 @@ const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl 
       {startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
         " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
     </p>
-  </div>
+  </div>*/
 );
 
 function addAgendaItem(key) {

@@ -46,10 +46,15 @@
   padding: 0px !important;
 }
 
+.sort:hover {
+  background: rgba(148, 215, 247, 0.25) !important;
+}
+
 .sort {
   height: 100%;
   width: 100%;
   border-radius: 0px !important;
+  background: rgba(146, 78, 78, 0.43) !important;
 }
 
 .sortToolbar {
@@ -68,4 +73,13 @@
 .centerDiv {
     box-shadow: none !important;
     padding: 1em;
+}
+
+.gButton:hover {
+  background: rgba(148, 215, 247, 0.25) !important;
+}
+
+.gButton {
+  background: rgba(146, 78, 78, 0.43) !important;
+  color: rgba(0, 0, 0, 0.58) !important;
 }

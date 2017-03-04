@@ -1,5 +1,5 @@
 module.exports = {
-  "-KdmcqUff2U8vDv-qfC1" : {
+  "OSL" : {
     "address" : {
       "city" : "San Francisco",
       "country" : "USA",
