@@ -73,6 +73,6 @@ button {
   display: none !important;
 }
 
-.pusher {
-  height: 100% !important;
+.spacing-dropdown {
+  margin-bottom: 10px !important;
 }

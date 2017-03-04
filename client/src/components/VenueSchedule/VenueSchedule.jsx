@@ -5,6 +5,8 @@ import ScheduleNav from './ScheduleNav.jsx';
 import store from '../../redux/store';
 import { getStagesAndDays } from '../../redux/actions/venueScheduleActions';
 import { Grid } from 'semantic-ui-react'
+import localStyles from './VenueStyles.css';
+
 
 
 const VenueSchedule = ({ venue, venueSchedule }) => {
@@ -15,7 +17,8 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
   return (
     <div>
       <ScheduleNav days={days} stages={stages} />
-      <Grid>
+      <Grid className={localStyles.container}>
+      <br /><br />
         {Object.keys(venue.scheduleitems).map((key, index) => {
           const item = venue.scheduleitems[key];
           const isSelectedStage = (item.geofence === venueSchedule.selectedStage);
