@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Button } from 'semantic-ui-react'
 import { openMenu } from '../../redux/actions'
+import localStyles from './UtilStyles.css';
 
 const HeaderBlock = () => (
   <Header as='h3' block className={localStyles.header} textAlign='center'>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { Sidebar, Segment, Menu, Icon } from 'semantic-ui-react';
+import localStyles from './UtilStyles.css';
 
 /*  Components  */
 import HeaderBlock from './HeaderBlock';
