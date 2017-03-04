@@ -2,7 +2,13 @@ import venueScheduleReducer from '../../../client/src/redux/reducers/venueSchedu
 import React from 'react';
 import renderer from 'react-test-renderer';
 import * as actions from '../../../client/src/redux/actions/venueScheduleActions';
-console.log("_____________________________________________________________________________");
+const defaults = {
+  agenda: [1,5,3,8],
+  selectedDay: "Friday",
+  selectedStage: 'sutro'
+};
+
+
 describe('Venue Schedule Reducer', () => {
 
 	 test('Should have set defaults', () => {
@@ -32,5 +38,14 @@ describe('Venue Schedule Reducer', () => {
       }).selectedStage
     ).toBeTruthy()
   })
-  
+  test('Should be able remove agenda', () => {
+   // expect(
+    expect(venueScheduleReducer(defaults, {
+        type: 'REMOVE_AGENDA',
+        payload: {
+          agenda: [1,5,3]
+        }
+      }).agenda.length
+    ).toEqual(3)
+  })  
 })

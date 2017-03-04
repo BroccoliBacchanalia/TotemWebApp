@@ -14,14 +14,14 @@ describe('Schedule View Component Tests', () => {
         </Provider>)
       expect(wrapper.length).toEqual(1);
     })
-    // it(' schedule items should have image', () => {
-    //   const wrapper = shallow(
-    //     <Provider store={store}>
-    //       <VenueScheduleRow />
-    //     </Provider>)
-    //   console.log("-------------------",wrapper.find('img').props());
-    //   expect(wrapper.find('img').props().src).toEqual("abc");
-    // })
+    it(' schedule items should have image', () => {
+      const wra = shallow(
+        <Provider store={store}>
+          <VenueScheduleRow />
+        </Provider>)
+      console.log("-------------------",wra.find('img'));
+      //expect(wrapper.find('.img').props().src).toEqual("abc");
+    })
     // display image artist time geofence
 
     //add items to agenda
