@@ -31,7 +31,6 @@ const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl 
           name='add circle' 
           size='big' 
         />
-     
     </Grid.Column>
   </Grid.Row>
 
