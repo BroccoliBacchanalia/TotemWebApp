@@ -29,14 +29,11 @@ const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl,
         addAgendaItem(itemKey)
         toggleAddRemove()
       }}>
-      
-        <Icon 
-          className={localStyles.addButton}
-          name={addRemoveClass || 'add circle'} 
-          size='big' 
-        />
-    
-     
+      <Icon 
+        className={localStyles.addButton}
+        name={addRemoveClass || 'add circle'} 
+        size='big' 
+      />
     </Grid.Column>
   </Grid.Row>
 );
@@ -63,15 +60,3 @@ export default connect((store) => {
     venueSchedule: store.venueSchedule
   };
 })(ScheduleRow);
-  // <div
-  //   type="button"
-  //   className={localStyles.gRow + " clearfix"}
-  //   onClick={addAgendaItem.bind(null, itemKey)}>
-  //   <img src={ imgurl }/>
-  //   <p>
-  //     <span className="h3">{name}</span>
-  //     <br/>
-  //     {startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
-  //       " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
-  //   </p>
-  // </div>

@@ -41,6 +41,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
           }
         })}
       </Grid>
+      <br/><br/><br/><br/>
     </div>
   );
 }

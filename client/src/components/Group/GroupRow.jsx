@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 const GroupRow = ({ friend, uid }) => (
 
-  <Grid celled className={localStyles.grid}>
     <Grid.Row className={localStyles.gRow}>
       <Grid.Column width={3}>
         <Image src={friend.img} />
@@ -18,13 +17,21 @@ const GroupRow = ({ friend, uid }) => (
       </Grid.Column>
       <Grid.Column width={5} className={localStyles.buttonDiv}>
         <Link to='/map'> 
-          <Button basic className={localStyles.button} icon='marker' size='large' onClick={() => {
-            showGroupMemberInfo(uid)}}/>{' '}
+          <Button 
+            basic 
+            className={localStyles.button} 
+            icon='marker' 
+            size='large' 
+            onClick={() => {showGroupMemberInfo(uid)}}/>{' '}
         </Link>
-        <Button basic className={localStyles.button} icon='comment outline' size='large' />
+        <Button 
+          basic 
+          className={localStyles.button} 
+          icon='comment outline' 
+          size='large' 
+          href='https://m.me/'/>
       </Grid.Column>
     </Grid.Row>
-  </Grid>
 );
 
 export default GroupRow;
