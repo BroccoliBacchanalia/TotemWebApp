@@ -8,7 +8,7 @@ const HeaderBlock = () => (
     <img src="img/totemlogo.png" className={localStyles.logo} alt="logo" />
     <Button
       className={localStyles.button}
-      onClick={ openMenu }
+      onClick={openMenu}
       icon='content' />
   </Header>
 );

@@ -22,8 +22,8 @@ const Nav = ({ app, user }) => {
     { displayName: 'Agenda',   endPoint: '/agenda',   iconName: 'signup', className: localStyles.agendaNav },
     { displayName: 'Schedule', endPoint: '/schedule', iconName: 'clock',  className: localStyles.schedNav  },
   ];
-
   const chat = { displayName: 'Chat', href: 'https://m.me/', iconName: 'chat', className: localStyles.chatNav  }
+
   return (
     <Sidebar.Pushable className='main-view'>
       <Sidebar
@@ -51,7 +51,6 @@ const Nav = ({ app, user }) => {
           className={ chat.className }>
           <Icon name={ chat.iconName } /> { chat.displayName }
         </Menu.Item>
-
       </Sidebar>
       <Sidebar.Pusher>
         {!!user.groupId ? <HeaderBlock /> : ''}

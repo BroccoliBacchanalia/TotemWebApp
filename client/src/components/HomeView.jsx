@@ -43,7 +43,6 @@ export class HomeView extends React.Component {
   }
 }
 
-
 export default connect((store) => {
   return {
     user: store.user,
