@@ -36,5 +36,5 @@ describe('Group Reducer', () => {
 			}
 		}).users
 		).toEqual({"21341234": {"label": "hedberg"}, "Y3241asss": {"label": "mitch"}});
-})
+	})
 })
