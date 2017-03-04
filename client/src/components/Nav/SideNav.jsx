@@ -46,8 +46,8 @@ const SideNav = ({ app }) => {
       </Sidebar>
       <Sidebar.Pusher>
         <HeaderBlock />
-        <Segment basic className='remove-borders'>
-          <div>
+        <Segment basic className='remove-borders' style={{ height: '100%' }}>
+          <div style={{ height: '100%' }}>
             <Route exact path="/" component={HomeView}/>
             <Route path="/group" component={Group}/>
             <Route path="/map" component={MapViewer}/>
