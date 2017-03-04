@@ -19,8 +19,20 @@
 }
 
 .header {
+  padding: 0px !important;
   margin: 0px !important;
   background-color: white !important;
   border-color: white !important;
   box-shadow: 0px 0px 8px 0px rgba(12, 12, 12, 0.55) !important;
+}
+
+.logo {
+  height: 55px !important;
+  width: 168px !important;
+}
+
+.button {
+  float: right;
+  padding: 15px 0px 15px 0px !important;
+  background: rgba(0, 0, 0, 0) !important;
 }

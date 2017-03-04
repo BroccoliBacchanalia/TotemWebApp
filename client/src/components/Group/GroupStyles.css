@@ -35,6 +35,9 @@
 }
 
 .gRow {
+  border-bottom: rgba(99, 52, 1, 0.25);
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
   background-color: rgba(163, 216, 204, 0.2);
   box-shadow: none !important;
 }

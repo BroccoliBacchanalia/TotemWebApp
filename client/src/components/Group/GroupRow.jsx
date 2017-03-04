@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 const GroupRow = ({ friend, uid }) => (
 
-  <Grid celled className={localStyles.grid}>
     <Grid.Row className={localStyles.gRow}>
       <Grid.Column width={3}>
         <Image src={friend.img} />
@@ -33,7 +32,6 @@ const GroupRow = ({ friend, uid }) => (
           href='https://m.me/'/>
       </Grid.Column>
     </Grid.Row>
-  </Grid>
 );
 
 export default GroupRow;
