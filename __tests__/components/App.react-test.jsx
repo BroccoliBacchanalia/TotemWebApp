@@ -6,7 +6,6 @@ import firebase from 'firebase';
 import { firebaseConfig } from '../../client/src/firebase'
 import store from '../../client/src/redux/store';
 import App from '../../client/src/components/App';
-import SignInButton from '../../client/src/components/Auth/SignInButton';
 
 describe('App', () => {
   it('the App component should render without exploding', () => {
@@ -24,20 +23,5 @@ describe('App', () => {
       </Provider>
     );
     expect(wrapper.length).toEqual(1);
-  });
-
-  it('should render the signin page when auth.isUserSignedIn is false', () => {
-    const wrapper = mount(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-    // expect(wrapper.unrendered.props.store.getState().auth.isUserSignedIn).toEqual(false);
-
-    console.log(wrapper.node.props.children);
-    // console.log(wrapper.renderer.getRenderOutput().find(SignInButton));
-    // console.log(wrapper.props());
-    // console.log(wrapper.find(SignInButton));
-    expect(wrapper.find(SignInButton).length).toEqual(1);
   });
 });
