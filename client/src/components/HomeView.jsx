@@ -16,7 +16,7 @@ import { setDefaultChat } from '../redux/actions/chatActions';
 import { signIn, signInSuccess, getUserData } from '../redux/actions/authenticationActions';
 import { geolocate } from '../redux/actions';
 
-class HomeView extends React.Component {
+export class HomeView extends React.Component {
   componentWillMount() {
     const props = this.props;
     firebase.auth().onAuthStateChanged(function(user) {
@@ -31,7 +31,7 @@ class HomeView extends React.Component {
   }
 
   render() {
-    const { auth, dispatch, group, user, venueSchedule } = this.props;
+    const { auth, dispatch, group, user } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
     const hasGroup = !!user.groupId;
 
@@ -50,7 +50,6 @@ export default connect((store) => {
     user: store.user,
     nav: store.nav,
     group: store.group,
-    auth: store.auth,
-    venueSchedule: store.venueSchedule
+    auth: store.auth
   };
 })(HomeView);
