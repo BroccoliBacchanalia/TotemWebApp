@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import localStyles from './AgendaStyles.css';
+/* Actions */
 import { removeAgenda } from '../../redux/actions/agendaActions';
 
 function removeAgendaItem(key) {
@@ -14,14 +15,12 @@ function removeAgendaItem(key) {
 
     updateRef.on("value", function(snapshot) {
       let agenda  =  snapshot.val();
-      console.log("REMOVED AGENDA: ", agenda);
       agenda = Object.keys(agenda);
       agenda = agenda.slice(0,agenda.length-1);
       removeAgenda(agenda)
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
-
   });
 }
 
