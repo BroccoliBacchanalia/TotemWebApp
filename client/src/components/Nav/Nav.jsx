@@ -46,8 +46,8 @@ const Nav = ({ app, user }) => {
       </Sidebar>
       <Sidebar.Pusher>
         {!!user.groupId ? <HeaderBlock /> : ''}
-        <Segment basic className='remove-borders' style={{ height: '100%' }}>
-          <div style={{ height: '100%' }}>
+        <Segment basic className='remove-borders'>
+          <div>
             <Route exact path="/" component={HomeView}/>
             <Route path="/group" component={Group}/>
             <Route path="/map" component={MapViewer}/>
