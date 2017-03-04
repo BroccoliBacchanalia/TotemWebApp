@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../redux/store.js';
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 /*  Components  */
 import MapViewer from './MapViewer/MapViewer';
@@ -11,12 +11,11 @@ import SignInButton from './Auth/SignInButton';
 import Loading from './Auth/Loading';
 
 /* Actions */
-import { defaultAgenda } from '../redux/actions/agendaActions';
 import { setDefaultChat } from '../redux/actions/chatActions';
 import { signIn, signInSuccess, getUserData } from '../redux/actions/authenticationActions';
 import { geolocate } from '../redux/actions';
 
-class HomeView extends React.Component {
+export class HomeView extends React.Component {
   componentWillMount() {
     const props = this.props;
     firebase.auth().onAuthStateChanged(function(user) {
@@ -31,7 +30,7 @@ class HomeView extends React.Component {
   }
 
   render() {
-    const { auth, dispatch, group, user, venueSchedule } = this.props;
+    const { auth, user } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
     const hasGroup = !!user.groupId;
 
@@ -48,9 +47,6 @@ class HomeView extends React.Component {
 export default connect((store) => {
   return {
     user: store.user,
-    nav: store.nav,
-    group: store.group,
-    auth: store.auth,
-    venueSchedule: store.venueSchedule
+    auth: store.auth
   };
 })(HomeView);

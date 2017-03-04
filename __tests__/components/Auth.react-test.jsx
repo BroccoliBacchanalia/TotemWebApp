@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount, render, Console } from 'enzyme';
+import { shallow, mount, render } from 'enzyme';
 import Loading from '../../client/src/components/Auth/Loading';
 
 describe('Auth', () => {
