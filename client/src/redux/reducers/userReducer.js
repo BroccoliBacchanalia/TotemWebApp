@@ -16,9 +16,6 @@ export default function userReducer(state = defaults, action) {
     case 'REMOVE_AGENDA': {
       return { ...state, agenda: action.payload.agenda };
     }
-    case 'DEFAULT_AGENDA': {
-      return { ...state, agenda: action.payload.agenda };
-    }
     case 'ADD_AGENDA': {
       return { ...state, agenda: action.payload.agenda };
     }
@@ -42,7 +39,6 @@ export default function userReducer(state = defaults, action) {
       return { ...state, groupName: action.payload.name }
     }
     case 'INITIAL_USER_DATA': {
-     // console.log("INITIAL USER DATATATATAATATATATATATA:", action.userData)
       const newState = { ...state }
       if (action.userData.pendingInvites) {
         newState.pendingInvites = action.userData.pendingInvites
