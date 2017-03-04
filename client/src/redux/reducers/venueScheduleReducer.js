@@ -1,7 +1,7 @@
 const defaults = {
-  agenda: [],
   selectedDay: null,
-  selectedStage: 'All Stages'
+  selectedStage: 'All Stages',
+ isToggle: false
 };
 
 export default function venueScheduleReducer(state = defaults, action) {
@@ -13,14 +13,8 @@ export default function venueScheduleReducer(state = defaults, action) {
     case 'UPDATE_STAGE': {
       return { ...state, selectedStage: action.payload.stage };
     }
-    case 'REMOVE_AGENDA': {
-      return { ...state, agenda: action.payload.agenda };
-    }
-    case 'DEFAULT_AGENDA': {
-      return { ...state, agenda: action.payload.agenda };
-    }
-    case 'ADD_AGENDA': {
-      return { ...state, agenda: action.payload.agenda };
+    case 'TOGGLE': {
+      return { ...state, isToggle: !state.isToggle };
     }
   }
   return state;

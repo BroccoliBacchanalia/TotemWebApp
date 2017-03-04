@@ -1,6 +1,7 @@
 const mockFBFriends = require('./mock_fb_friend_list');
 
 const defaults = {
+  agenda: [],
   uid: null,
   name: null,
   groupId: null, //'-KdSF7i59sk07XoRgcYo', //group 'Ballers'
@@ -12,6 +13,12 @@ const defaults = {
 
 export default function userReducer(state = defaults, action) {
   switch(action.type) {
+    case 'REMOVE_AGENDA': {
+      return { ...state, agenda: action.payload.agenda };
+    }
+    case 'ADD_AGENDA': {
+      return { ...state, agenda: action.payload.agenda };
+    }
     case 'SIGNIN_SUCCESS':
       return {
         ...state,
@@ -38,6 +45,9 @@ export default function userReducer(state = defaults, action) {
       }
       if (action.userData.friends) {
         newState.friendList = action.userData.friends
+      }
+      if (action.userData.agenda) {
+        newState.agenda = Object.keys(action.userData.agenda)
       }
       return newState;
     }

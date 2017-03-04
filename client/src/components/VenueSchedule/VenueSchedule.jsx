@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import store from '../../redux/store';
 import { connect } from 'react-redux';
+
 import ScheduleRow from './ScheduleRow.jsx';
 import ScheduleNav from './ScheduleNav.jsx';
-import store from '../../redux/store';
+
 import { getStagesAndDays } from '../../redux/actions/venueScheduleActions';
 import { Grid } from 'semantic-ui-react'
 import localStyles from './VenueStyles.css';

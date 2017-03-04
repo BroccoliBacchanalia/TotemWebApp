@@ -1,11 +1,13 @@
 import React from 'react';
 import store from '../../redux/store';
+import { connect } from 'react-redux';
 import { firebaseOnce, firebaseUpdate } from '../../redux/actions/firebaseActions';
-import { addAgenda } from '../../redux/actions/agendaActions';
+import { toggleAddRemove } from '../../redux/actions/agendaActions';
+import { addAgenda } from '../../redux/actions/userActions';
 import localStyles from './VenueStyles.css';
-import { Grid, Button, Image, Icon } from 'semantic-ui-react'
-
-const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl }) => (
+import { Grid, Image, Icon, Button } from 'semantic-ui-react'
+var addRemoveClass;
+const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl, venueSchedule }) => (
   
   <Grid.Row className={localStyles.sRow}>
     <Grid.Column width={3}>
@@ -21,39 +23,26 @@ const ScheduleRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl 
     </Grid.Column>
     <Grid.Column 
       width={3} 
-      className={localStyles.buttonDiv}
       onClick={() => { 
         console.log('clicked')
-        addAgendaItem.bind(null, itemKey);
+        addRemoveClass = venueSchedule.isToggle ? 'add circle' : 'remove circle'
+        addAgendaItem(itemKey)
+        toggleAddRemove()
       }}>
+      
         <Icon 
           className={localStyles.addButton}
-          name='add circle' 
+          name={addRemoveClass || 'add circle'} 
           size='big' 
         />
+    
      
     </Grid.Column>
   </Grid.Row>
-
-
-
-
-
-  // <div
-  //   type="button"
-  //   className={localStyles.gRow + " clearfix"}
-  //   onClick={addAgendaItem.bind(null, itemKey)}>
-  //   <img src={ imgurl }/>
-  //   <p>
-  //     <span className="h3">{name}</span>
-  //     <br/>
-  //     {startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
-  //       " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
-  //   </p>
-  // </div>
 );
 
 function addAgendaItem(key) {
+  console.log("in add agedna");
   const uid = store.getState().user.uid;
   const updates = {};
 
@@ -67,4 +56,22 @@ function addAgendaItem(key) {
   });
 }
 
-export default ScheduleRow;
+
+export default connect((store) => {
+  return {
+    venue: store.venue.venue,
+    venueSchedule: store.venueSchedule
+  };
+})(ScheduleRow);
+  // <div
+  //   type="button"
+  //   className={localStyles.gRow + " clearfix"}
+  //   onClick={addAgendaItem.bind(null, itemKey)}>
+  //   <img src={ imgurl }/>
+  //   <p>
+  //     <span className="h3">{name}</span>
+  //     <br/>
+  //     {startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
+  //       " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
+  //   </p>
+  // </div>
