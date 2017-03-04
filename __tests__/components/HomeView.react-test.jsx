@@ -33,7 +33,7 @@ describe('HomeView', () => {
     it('should render SignInButton when auth.isUserSignedIn is false', () => {
       const { wrapper } = setup(false, false);
 
-      expect(wrapper.props().auth.isUserSignedIn).toEqual(false);
+      expect(wrapper.unrendered.props.auth.isUserSignedIn).toEqual(false);
       expect(wrapper.find(SignInButton).length).toEqual(1);
     });
 

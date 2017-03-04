@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Button } from 'semantic-ui-react';
 import { updateGroupName } from '../../redux/actions/groupActions';
 import { updateUserGroupID } from '../../redux/actions/userActions';
 import { firebaseUpdate, firebaseKeyGen } from '../../redux/actions/firebaseActions';
@@ -19,9 +20,9 @@ const CreateGroup = (props) => (
 				onChange={(e) => updateGroupName(e.target.value)}
 			/>
 		  <div>
-			  <button onClick={submit.bind(this, props)}>
+			  <Button onClick={submit.bind(this, props)}>
 				  Create
-			  </button>
+			  </Button>
 		  </div>
 		</div>
 	</div>
