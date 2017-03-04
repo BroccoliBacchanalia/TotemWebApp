@@ -1,9 +1,15 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react'
-export default class SignInButton extends React.Component {
+import localStyles from './AuthStyles.css';
 
-  render() {
-    const { onSignInClick } = this.props;
-    return <Button onClick={ onSignInClick }>Signin Here</Button>;
-  }
-}
+const SignInButton = ({ onSignInClick }) => (
+  <div className={localStyles.outer}>
+    <div className={localStyles.inner}>
+      <img src="img/totem_logo.png" />
+      <div className={localStyles.button} onClick={onSignInClick} id="login-button">
+        <img src="img/facebook-sign-in.png"/>
+      </div>
+    </div>
+  </div>
+);
+
+export default SignInButton;
