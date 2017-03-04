@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, OverlayView, InfoWindow } from 'react-google-maps';
-import Helmet from 'react-helmet';
 import Markers from './Markers.jsx'
 import GroundOverlay from '../GroundOverlay';
+import localStyles from './MapStyles.css';
 
 class MapViewer extends Component {
 
@@ -37,8 +37,7 @@ class MapViewer extends Component {
     ));
 
     return (
-      <div>
-        <Helmet title="Totem"/>
+      <div className={localStyles.googleMap}>
         <LoadMap
           containerElement={ <div/> }
           mapElement={ <div style={{ height: window.innerHeight - 50 }} /> }
@@ -62,6 +61,7 @@ class MapViewer extends Component {
 
 export default connect((store) => {
   return {
+    members: store.group.members,
     map: store.venue.venue.map
   };
 })(MapViewer);

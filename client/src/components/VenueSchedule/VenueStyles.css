@@ -1,33 +1,30 @@
-
-.gRow {
-  border-bottom: 1px solid black;
-  margin: 5px;
-  height: 70px;
+.sRow {
+  border-bottom: rgba(107, 1, 1, 0.32);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
-.gRow img {
-  padding: 5px;
-  width: 70px;
-}
-
-.gRow > * {
-  padding-top: 5px;
-  float: left;
-  display: inline-block;
-}
-
-.gRow p {
-  margin-bottom: 0;
-}
-
-.gRow > div:hover {
-  cursor: pointer;
-  background-color: lightgrey;
+.sRowSelected {
+  background-color: rgba(171, 135, 183, 0.39);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
 .navB {
-	display: inline-block;
-	margin: 10px;
-	font-size: 15px;
-	color: #d4d8dd;
+  display: inline-block;
+  margin: 10px;
+  font-size: 15px;
+  color: #d4d8dd;
+}
+
+.addButton {
+  color: rgba(0, 0, 0, 0.60); 
+  top: 25%;
+  position: absolute;
+
+}
+
+.container {
+  flex-direction: row-reverse !important;
+  display: table-cell;
 }

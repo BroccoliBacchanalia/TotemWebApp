@@ -5,11 +5,11 @@ import GroupSort from './GroupSort.jsx';
 import store from '../../redux/store.js';
 import localStyles from './GroupStyles.css';
 import styles from '../Styles.css'
-import { Item } from 'semantic-ui-react'
+import { Item, Button } from 'semantic-ui-react'
 
 const GroupView = ({ user, users }) => (
   <div className="custom-container">
-    <div className={localStyles.sortToolbar}>
+    <div className={localStyles.sortToolbar} >
       <GroupSort />
     </div>
 
@@ -32,8 +32,8 @@ const GroupView = ({ user, users }) => (
         }
       })}
 
-    <div className="footerBtn">
-      <button>Add a Friend</button>
+    <div className="footerBtn" >
+      <Button className={localStyles.gButton}>Add a Friend</Button>
     </div>
   </div>
 

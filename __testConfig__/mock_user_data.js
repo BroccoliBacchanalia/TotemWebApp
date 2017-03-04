@@ -7,6 +7,7 @@ module.exports = {
     },
     "label" : "Pat",
     "img" : 'https://facebook.github.io/react/img/logo_og.png',
+    "showInfo" : false,
   },
   "PHkSj4wfmUR1g9f1pfupIvblxf52" : {
     "position" : { lat: 37.76772, lng: -122.49438 },
@@ -16,6 +17,7 @@ module.exports = {
     },
     "label" : "John",
     "img" : 'https://facebook.github.io/react/img/logo_og.png',
+    "showInfo" : false,
   },
   "aiRJiwP8s6USzeNQXKNp21Q8Hjc2" : {
     "position" : { lat: 37.76978, lng: -122.48631 },
@@ -25,6 +27,7 @@ module.exports = {
     },
     "label" : "Derek",
     "img" : 'https://facebook.github.io/react/img/logo_og.png',
+    "showInfo" : false,
   },
   "yIP2JNG9UfU3x6sPNMruFA7P8eR2" : {
     "position" : { lat: 37.76759, lng: -122.49436 },
@@ -34,6 +37,7 @@ module.exports = {
     },
     "label" : "Smriti",
     "img" : 'https://facebook.github.io/react/img/logo_og.png',
+    "showInfo" : false,
   },
   "aaaaaaaaaaa6sPNMruFA7P8eR2" : {
     "position" : { lat: 37.76837, lng: -122.48994 },
@@ -43,5 +47,6 @@ module.exports = {
     },
     "label" : "Zeus",
     "img" : 'https://facebook.github.io/react/img/logo_og.png',
+  "showInfo" : false,
   }
 }
