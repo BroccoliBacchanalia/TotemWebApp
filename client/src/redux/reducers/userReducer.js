@@ -1,7 +1,6 @@
 const mockFBFriends = require('./mock_fb_friend_list');
 
 const defaults = {
-  api_url: 'http://localhost:8000',
   uid: null,
   name: null,
   groupId: null, //'-KdSF7i59sk07XoRgcYo', //group 'Ballers'

@@ -10,8 +10,8 @@ describe('Authentication Reducer', () => {
 		  isInProgress: false,
 		  hasError: false,
 		  errorMessage: '',
-	  })
-  })
+	  });
+  });
 
   test('Should be able to handle SIGN_IN_SUCCESS', () => {
   	expect(
@@ -19,7 +19,7 @@ describe('Authentication Reducer', () => {
         type: 'SIGNIN_SUCCESS'
       }).isUserSignedIn
     ).toBeTruthy()
-  })
+  });
 
   test('Should be able to handle SIGN_IN_SUCCESS', () => {
   	expect(
@@ -27,7 +27,7 @@ describe('Authentication Reducer', () => {
         type: 'SIGNIN_SUCCESS'
       }).isInProgress
     ).toBeFalsy()
-  })
+  });
 
   test('Should be able to handle SIGNIN', () => {
   	expect(
@@ -35,7 +35,7 @@ describe('Authentication Reducer', () => {
         type: 'SIGNIN'
       }).isInProgress
     ).toBeTruthy()
-  })
+  });
 
   test('Should be able to handle SIGNIN_ERROR', () => {
   	expect(
@@ -43,5 +43,5 @@ describe('Authentication Reducer', () => {
         type: 'SIGNIN_ERROR'
       }).hasError
     ).toBeTruthy()
-  })
-})
+  });
+});
