@@ -1,5 +1,11 @@
 import store from '../store.js';
 
+export function toggle() {
+  store.dispatch({
+    type: "TOGGLE"
+  })
+}
+
 export function updateDay(day) {
   store.dispatch({
     type:'UPDATE_DAY',

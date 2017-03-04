@@ -2,6 +2,21 @@ import store from '../../redux/store';
 import { firebaseOnce } from './firebaseActions';
 import { updateGroup } from './groupActions';
 
+
+export function addAgenda(agenda) {
+  store.dispatch({
+    type: 'ADD_AGENDA',
+    payload: { agenda }
+  });
+}
+
+export function removeAgenda(agenda) {
+  store.dispatch({
+    type: 'REMOVE_AGENDA',
+    payload: { agenda }
+  });
+}
+
 export function updateUserData(data) {
   return store.dispatch({
     type: 'UPDATE_USER_DATA',

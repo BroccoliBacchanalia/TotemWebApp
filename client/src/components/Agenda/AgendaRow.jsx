@@ -2,7 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import localStyles from './AgendaStyles.css';
 /* Actions */
-import { removeAgenda } from '../../redux/actions/agendaActions';
+import { removeAgenda } from '../../redux/actions/userActions';
 
 function removeAgendaItem(key) {
 
