@@ -25,7 +25,6 @@ class ChooseVenue extends React.Component {
               className={ styles.row }
               onClick={() => {
                 updateVenueId.call(this, key);
-                firebaseSet(`users/${ this.props.userId }/venueId`, key);
                 router.push('/creategroup');
               }}>
               {venues[key]}

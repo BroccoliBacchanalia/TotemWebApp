@@ -11,25 +11,17 @@ describe('Schedule View Component Tests', () => {
       const wrapper = shallow(
         <Provider store={store}>
           <VenueSchedule />
-        </Provider>)
+        </Provider>
+      );
       expect(wrapper.length).toEqual(1);
-    })
-    it(' schedule items should have image', () => {
+    });
+    
+    xit(' schedule items should have image', () => {
       const wra = shallow(
         <Provider store={store}>
           <VenueScheduleRow />
-        </Provider>)
-      console.log("-------------------",wra.find('img'));
-      //expect(wrapper.find('.img').props().src).toEqual("abc");
-    })
-    // display image artist time geofence
-
-    //add items to agenda
-    //default tofirat day
-    // default to all stage
-    // filter by stage and day
-    // if no schedule, fail gracefully
-    //should render shcedule items
-    //should have retrived the venue information
-  })
-})
+        </Provider>
+      );
+    });
+  });
+});

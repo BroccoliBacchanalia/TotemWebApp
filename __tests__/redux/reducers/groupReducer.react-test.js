@@ -1,7 +1,6 @@
 import groupReducer from '../../../client/src/redux/reducers/groupReducer';
 import * as actions from '../../../client/src/redux/actions/groupActions';
 import React from 'react';
-import renderer from 'react-test-renderer';
 
 describe('Group Reducer', () => {
 
