@@ -6,16 +6,11 @@
 }
 
 .inner {
+  text-align: center;
 	position: relative;
 	left: -50%;
 }
 
 .button {
-  margin: 50px auto 0 auto;
-  width: 200px;
-  cursor: pointer;
-}
-
-.button img {
-  width: 200px;
+  margin: 50px auto 0 auto !important;
 }

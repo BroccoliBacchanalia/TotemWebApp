@@ -8,34 +8,32 @@ import mockVenue from '../../__testConfig__/mock_venue_data'
 import mockUser from '../../__testConfig__/mock_user_data'
 import * as actions from '../../client/src/redux/actions'
 
-console.log(mockUser)
+//console.log(mockUser)
 
-function setup(isUserSignedIn, dataRetrieved, pendingInvites = {}, groupId = '') {
-  const props = {
-    members: store.getState().group.members,
-    map: store.getState().venue.venue.map
-  }
-  props.auth.isUserSignedIn = isUserSignedIn;
-  props.user.dataRetrieved = dataRetrieved;
-  props.user.pendingInvites = pendingInvites;
-  props.user.groupId = groupId;
+// function setup(map, members) {
+//   const props = {
+//     members: store.getState().group.members,
+//     map: store.getState().venue.venue.map
+//   }
+//   props.group.members = members;
+//   props.venue.venue.map = map;
 
-  HomeView.prototype.componentWillMount = function() {};
-  const wrapper = shallow(<HomeView {...props} store={store} />);
+//   MapViewer.prototype.componentWillMount = function() {};
+//   const wrapper = shallow(<MapViewer {...props} store={store} />);
 
-  return {
-    props,
-    wrapper
-  };
-}
+//   return {
+//     props,
+//     wrapper
+//   };
+// }
 
 describe('MapViewer Component Tests', () => {
-      const mapWrapper = shallow(<MapViewer store={store} props={mockUser}/>);
+      const mapWrapper = shallow(<MapViewer store={store} />);
       const markersWrapper = shallow(<Markers store={store}/>);
       mapWrapper.props().store.getState().group.members = mockUser;
 
   describe('Initialize Testing Suite', () => {
-    it('the map should render without exploding', () => {
+    test('the map should render without exploding', () => {
       expect(mapWrapper.props().store.getState().venue.venue).toBeAnObject;
     })
     test('the markers should render without exploding', () => {

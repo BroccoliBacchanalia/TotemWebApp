@@ -33,7 +33,7 @@ button {
 
 .main-view {
   margin: 0px !important;
-  background: linear-gradient(to bottom right, #ffe482, rgba(255, 120, 113, 0.97));
+  background: linear-gradient(to bottom right, #ffe482, rgba(255, 120, 113, 0.5));
 }
 
 .nav-header {
