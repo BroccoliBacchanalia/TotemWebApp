@@ -29,7 +29,7 @@ const GroupRow = ({ friend, uid }) => (
           className={localStyles.button} 
           icon='comment outline' 
           size='large' 
-          href='https://m.me/'/>
+          href={'https://m.me/' + friend.facebookID}/>
       </Grid.Column>
     </Grid.Row>
 );
