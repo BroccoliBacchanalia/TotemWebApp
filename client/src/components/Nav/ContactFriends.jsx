@@ -6,8 +6,8 @@ import { toggleEmergencyFriends } from '../../redux/actions'
 class ContactFriends extends Component {
 
   render() {
-    const { app } = this.props
-
+    const { app, venue } = this.props
+    
     return (
       <Modal open={app.friendsModal} basic size='fullscreen'>
         <Header className='modal-header' icon='child' content='Need some help?' />
@@ -15,10 +15,19 @@ class ContactFriends extends Component {
           <p className='modal-body'>Are you sure you want to send an emergency signal to your group?</p>
         </Modal.Content>
         <Modal.Actions>
-          <Button basic size='huge' color='red' inverted onClick={toggleEmergencyFriends}>
+          <Button 
+            basic 
+            size='huge' 
+            color='red' 
+            inverted 
+            onClick={toggleEmergencyFriends}>
             <Icon name='remove' /> No
           </Button>
-          <Button color='green' size='huge' inverted onClick={toggleEmergencyFriends}>
+          <Button 
+            color='green' 
+            size='huge' 
+            inverted 
+            onClick={toggleEmergencyFriends}>
             <Icon name='checkmark' /> Yes
           </Button>
         </Modal.Actions>
@@ -29,6 +38,6 @@ class ContactFriends extends Component {
 
 export default connect((store) => {
   return {
-    app: store.app
+    app: store.app,
   };
 })(ContactFriends);

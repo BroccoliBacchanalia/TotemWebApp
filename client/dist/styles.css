@@ -31,11 +31,6 @@ button {
   border-radius: 0;
 }
 
-.menu-button {
-  float: right;
-  background: rgba(0, 0, 0, 0) !important;
-}
-
 .main-view {
   margin: 0px !important;
   background: linear-gradient(to bottom right, #ffe482, rgba(255, 120, 113, 0.97));

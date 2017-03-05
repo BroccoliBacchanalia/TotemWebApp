@@ -4,7 +4,7 @@ import { Marker, InfoWindow } from 'react-google-maps';
 import store from '../../redux/store.js';
 import { getGeofence, showGroupMemberInfo } from '../../redux/actions'
 
-class MapViewer extends Component {
+export class Markers extends Component {
   render() {
     const members = this.props.members;
     const userIds = Object.keys(members);
@@ -47,4 +47,4 @@ export default connect((store) => {
   return {
     members: store.group.members,
   };
-})(MapViewer);
+})(Markers);

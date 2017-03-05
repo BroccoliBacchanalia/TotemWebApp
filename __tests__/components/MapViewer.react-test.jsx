@@ -2,13 +2,32 @@ import React from 'react';
 import store from '../../client/src/redux/store'
 import { connect, Provider } from 'react-redux';
 import { shallow, mount, render } from 'enzyme';
-import MapViewer from '../../client/src/components/MapViewer/MapViewer';
-import Markers from '../../client/src/components/MapViewer/Markers';
+import { MapViewer } from '../../client/src/components/MapViewer/MapViewer';
+import { Markers } from '../../client/src/components/MapViewer/Markers';
 import mockVenue from '../../__testConfig__/mock_venue_data'
 import mockUser from '../../__testConfig__/mock_user_data'
 import * as actions from '../../client/src/redux/actions'
 
 console.log(mockUser)
+
+function setup(isUserSignedIn, dataRetrieved, pendingInvites = {}, groupId = '') {
+  const props = {
+    members: store.getState().group.members,
+    map: store.getState().venue.venue.map
+  }
+  props.auth.isUserSignedIn = isUserSignedIn;
+  props.user.dataRetrieved = dataRetrieved;
+  props.user.pendingInvites = pendingInvites;
+  props.user.groupId = groupId;
+
+  HomeView.prototype.componentWillMount = function() {};
+  const wrapper = shallow(<HomeView {...props} store={store} />);
+
+  return {
+    props,
+    wrapper
+  };
+}
 
 describe('MapViewer Component Tests', () => {
       const mapWrapper = shallow(<MapViewer store={store} props={mockUser}/>);
