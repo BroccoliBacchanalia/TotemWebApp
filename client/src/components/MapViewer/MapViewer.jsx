@@ -5,7 +5,7 @@ import Markers from './Markers.jsx'
 import GroundOverlay from '../GroundOverlay';
 import localStyles from './MapStyles.css';
 
-class MapViewer extends Component {
+export class MapViewer extends Component {
 
   shouldComponentUpdate() {
     return false;
