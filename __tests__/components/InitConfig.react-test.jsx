@@ -37,11 +37,11 @@ describe('InviteFriends', () => {
 
 describe('Initial Routes', () => {
 
-  it('should render map if the user is signed in, has a group, and a venue', () => {
+  xit('should render map if the user is signed in, has a group, and a venue', () => {
     actions.updateUserGroupId('12342143cc')
     actions.updateVenueName('2341234')
     actions.signInSuccess('1243', '123444')
-    
+
   })
 
 })

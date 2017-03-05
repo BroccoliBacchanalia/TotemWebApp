@@ -1,7 +1,7 @@
 import venueScheduleReducer from '../../../client/src/redux/reducers/venueScheduleReducer.js';
 import React from 'react';
-import renderer from 'react-test-renderer';
 import * as actions from '../../../client/src/redux/actions/venueScheduleActions';
+
 const defaults = {
   agenda: [1,5,3,8],
   selectedDay: "Friday",
@@ -47,5 +47,5 @@ describe('Venue Schedule Reducer', () => {
         }
       }).agenda.length
     ).toEqual(3)
-  })  
+  })
 })
