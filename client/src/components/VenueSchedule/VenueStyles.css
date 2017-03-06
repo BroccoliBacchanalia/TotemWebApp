@@ -5,7 +5,8 @@
 }
 
 .sRowSelected {
-  background-color: rgba(171, 135, 183, 0.39);
+  background-color: rgba(219, 255, 252, 0.35);
+  border-bottom: rgba(107, 1, 1, 0.32);
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
@@ -18,13 +19,22 @@
 }
 
 .addButton {
-  color: rgba(0, 0, 0, 0.60); 
+  color: rgba(0, 144, 0, 0.70); 
   top: 25%;
   position: absolute;
+}
 
+.removeButton {
+  color: rgba(222, 0, 0, 0.70); 
+  top: 25%;
+  position: absolute;
 }
 
 .container {
   flex-direction: row-reverse !important;
   display: table-cell;
+}
+
+.clickingDiv {
+  padding: 0px !important;
 }
