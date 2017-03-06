@@ -1,13 +1,12 @@
 const defaults = {
   selectedDay: null,
   selectedStage: 'All Stages',
- isToggle: false
+  isToggle: false
 };
 
 export default function venueScheduleReducer(state = defaults, action) {
   switch(action.type) {
     case 'UPDATE_DAY': {
-      console.log(action)
       return { ...state, selectedDay: action.payload.day };
     }
     case 'UPDATE_STAGE': {
