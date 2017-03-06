@@ -10,34 +10,41 @@ import { Grid } from 'semantic-ui-react'
 import localStyles from './VenueStyles.css';
 
 
-
 const VenueSchedule = ({ venue, venueSchedule }) => {
   const { stages, days } = getStagesAndDays(venue.scheduleitems);
+  const { selectedStage } = venueSchedule;
   const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
-  const isAllStages = venueSchedule.selectedStage === 'All Stages';
 
   return (
     <div>
-      <ScheduleNav days={days} stages={stages} />
+      <ScheduleNav
+        days={days}
+        stages={stages}
+        selectedDay={selectedDay}
+        selectedStage={selectedStage}
+      />
       <Grid className={localStyles.container}>
-      <br /><br />
+        <br />
+        <br />
         {Object.keys(venue.scheduleitems).map((key, index) => {
           const item = venue.scheduleitems[key];
-          const isSelectedStage = (item.geofence === venueSchedule.selectedStage);
 
-          if (item.day === selectedDay && (isSelectedStage || isAllStages)) {
-            return (
-              <ScheduleRow
-                key={index}
-                itemKey={key}
-                name={item.name}
-                startTime = {item.starttime}
-                endTime = {item.endtime}
-                geofence={item.geofence}
-                day={item.day}
-                imgurl={item.imgurl}>
-              </ScheduleRow>
-            );
+          if (item) {
+            const isSelectedStage = selectedStage === item.geofence || selectedStage === 'All Stages';
+            if (item.day === selectedDay && isSelectedStage) {
+              return (
+                <ScheduleRow
+                  key={index}
+                  itemKey={key}
+                  name={item.name}
+                  startTime = {item.starttime}
+                  endTime = {item.endtime}
+                  geofence={item.geofence}
+                  day={item.day}
+                  imgurl={item.imgurl}
+                />
+              );
+            }
           }
         })}
       </Grid>

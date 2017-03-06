@@ -35,7 +35,7 @@
     "react-dropdown": "^1.2.1",
     "react-google-maps": "^6.0.1",
     "react-helmet": "^4.0.0",
-    "react-router-dom": "^4.0.0-beta.6",
+    "react-router-dom": "^4.0.0-beta.7",
     "react-speed-dial": "^0.4.0",
     "react-tap-event-plugin": "^2.0.1",
     "semantic-ui": "^2.2.9",

@@ -1,10 +1,11 @@
 import React from 'react';
 import { updateStage, updateDay } from '../../redux/actions/venueScheduleActions.js';
 
-const ScheduleNav = ({ days, stages }) => (
+const ScheduleNav = ({ days, stages, selectedDay, selectedStage }) => (
   <nav>
     <select
       id="days-dropdown"
+      value={selectedDay}
       className="ui selection fluid dropdown"
       onChange={updateValue.bind(this, 'days-dropdown')}>
       {Object.keys(days).map((day, i) => (
@@ -13,6 +14,7 @@ const ScheduleNav = ({ days, stages }) => (
     </select>
     <select
       id="stages-dropdown"
+      value={selectedStage}
       className="ui selection fluid dropdown spacing-dropdown"
       onChange={updateValue.bind(this, 'stages-dropdown')}>
       <option value="All Stages">All Stages</option>
