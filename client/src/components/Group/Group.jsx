@@ -8,13 +8,16 @@ import styles from '../Styles.css'
 import { Item, Button, Grid } from 'semantic-ui-react'
 
 const GroupView = ({ user, users }) => (
-  <div className="custom-container">
+  <div>
     <div className={localStyles.sortToolbar} >
       <GroupSort />
     </div>
 
-    <Grid celled className={localStyles.grid}>
-
+    <Grid
+      celled
+      className={localStyles.grid}
+      style={{ height: window.innerHeight - 197 }}
+    >
       {Object.keys(users).map((userKey, index) => {
         //Anchor current user info at top of view
         const friend = users[userKey];
@@ -33,11 +36,13 @@ const GroupView = ({ user, users }) => (
           );
         }
       })}
-      
+
     </Grid>
 
-    <div className="footerBtn" >
-      <Button className={localStyles.gButton}>Add a Friend</Button>
+    <div className="footerContainer">
+      <div className="footerBtn" >
+        <Button className={localStyles.gButton}>Add a Friend</Button>
+      </div>
     </div>
   </div>
 

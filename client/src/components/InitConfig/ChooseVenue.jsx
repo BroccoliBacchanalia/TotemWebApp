@@ -8,11 +8,14 @@ import { updateVenueId } from '../../redux/actions/groupActions';
 import { firebaseSet } from '../../redux/actions/firebaseActions';
 
 const ChooseVenue = ({ venues }) => (
-  <div className="custom-container">
+  <div>
     <div className={localStyles.header}>
       <h3>Select a Venue</h3>
     </div>
-    <div className={styles.scrollView + ' ' + localStyles.cRow}>
+    <div
+      style={{ height: window.innerHeight - 140 }}
+      className={styles.scrollView + ' ' + localStyles.cRow}
+    >
       {Object.keys(venues).map((key, index) => (
         <Link key={index} to='/creategroup'>
           <div

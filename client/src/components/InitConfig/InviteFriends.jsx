@@ -30,12 +30,39 @@ class InviteFriends extends React.Component {
 
   render() {
     return (
-      <div className="custom-container">
+      <div>
         <div className={localStyles.header}>
     			<h3>Invite Your Friends</h3>
     		</div>
-        <div className={styles.scrollView}>
+        <div
+          style={{ height: window.innerHeight - 257 }}
+          className={styles.scrollView}
+        >
           <form id="check_table">
+            {this.props.friendList.map((friend, index) => (
+              <div
+                key={index}
+                className={localStyles.iFriend}>
+                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
+                <h4>{friend.label}</h4>
+              </div>
+            ))}
+            {this.props.friendList.map((friend, index) => (
+              <div
+                key={index}
+                className={localStyles.iFriend}>
+                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
+                <h4>{friend.label}</h4>
+              </div>
+            ))}
+            {this.props.friendList.map((friend, index) => (
+              <div
+                key={index}
+                className={localStyles.iFriend}>
+                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
+                <h4>{friend.label}</h4>
+              </div>
+            ))}
             {this.props.friendList.map((friend, index) => (
               <div
                 key={index}
