@@ -1,9 +1,10 @@
 
-.gRow {
-  border-bottom: 1px solid black;
-  margin: 5px;
-  height: 70px;
+.aRow {
+  border-bottom: rgba(107, 1, 1, 0.32);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
+
 
 .gRow img {
   padding: 5px;
@@ -30,4 +31,19 @@
 	margin: 10px;
 	font-size: 15px;
 	color: #d4d8dd;
+}
+
+.removeButton {
+  color: rgba(222, 0, 0, 0.70); 
+  top: 25%;
+  position: absolute;
+}
+
+.clickingDiv {
+  padding: 0px !important;
+}
+
+.container {
+  flex-direction: row-reverse !important;
+  display: table-cell;
 }

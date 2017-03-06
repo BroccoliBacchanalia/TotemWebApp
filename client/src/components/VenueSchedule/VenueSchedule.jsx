@@ -25,7 +25,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
           const item = venue.scheduleitems[key];
           const isSelectedStage = (item.geofence === venueSchedule.selectedStage);
 
-          if(item.day === selectedDay && (isSelectedStage || isAllStages)) {
+          if (item.day === selectedDay && (isSelectedStage || isAllStages)) {
             return (
               <ScheduleRow
                 key={index}
