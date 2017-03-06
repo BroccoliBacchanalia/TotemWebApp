@@ -30,7 +30,7 @@ class InviteFriends extends React.Component {
 
   render() {
     return (
-      <div className="custom-container">
+      <div>
         <div className={localStyles.header}>
     			<h3>Invite Your Friends</h3>
     		</div>

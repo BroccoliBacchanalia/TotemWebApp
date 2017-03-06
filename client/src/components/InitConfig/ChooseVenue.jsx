@@ -8,7 +8,7 @@ import { updateVenueId } from '../../redux/actions/groupActions';
 import { firebaseSet } from '../../redux/actions/firebaseActions';
 
 const ChooseVenue = ({ venues }) => (
-  <div className="custom-container">
+  <div>
     <div className={localStyles.header}>
       <h3>Select a Venue</h3>
     </div>

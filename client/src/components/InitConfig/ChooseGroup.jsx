@@ -13,7 +13,7 @@ class ChooseGroup extends React.Component {
     const groupKeys = Object.keys(this.props.groupList);
 
     return (
-      <div className="custom-container">
+      <div>
         <div className={ localStyles.header }>
           <h3>Choose Your Group</h3>
         </div>
