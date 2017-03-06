@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import localStyles from './AgendaStyles.css';
+import { Grid, Image, Icon } from 'semantic-ui-react';
 /* Actions */
 import { removeAgenda } from '../../redux/actions/userActions';
 
@@ -25,20 +26,29 @@ function removeAgendaItem(key) {
 }
 
 const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl }) => (
-  <div
-    type="button"
-    className={localStyles.gRow + " clearfix"}
-    onClick={removeAgendaItem.bind(null, itemKey)}>
-    <img src={imgurl}/>
-      <p>
-        <span className="h3">{name}</span>
-        <br/>
-        <span>{geofence}</span>
-        <br/>
-        {startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
-          " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
-      </p>
-  </div>
+  <Grid.Row className={localStyles.aRow}>
+    <Grid.Column width={3}>
+      <Image src={imgurl}/>
+    </Grid.Column>
+    <Grid.Column width={10}>
+      <span className='h4'>{name}</span>
+      <br/>
+      <span className='h5'>{geofence}</span>
+      <br/>
+      {startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
+        " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
+    </Grid.Column>
+    <Grid.Column 
+      className={localStyles.clickingDiv}
+      width={3} 
+      onClick={removeAgendaItem.bind(null, itemKey)}>
+      <Icon 
+        className={localStyles.removeButton}
+        name='remove circle' 
+        size='big' 
+      />
+    </Grid.Column>
+  </Grid.Row>
 );
 
 export default AgendaRow;
