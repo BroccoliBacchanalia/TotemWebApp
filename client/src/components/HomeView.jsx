@@ -23,8 +23,6 @@ export class HomeView extends React.Component {
         geolocate();
         signInSuccess(user.uid, user.displayName);
         getUserData(user.uid);
-        //just for testing. this line needs to be removed later on
-        setDefaultChat("-KdSF7i59sk07XoRgcYo");
       }
     });
   }
