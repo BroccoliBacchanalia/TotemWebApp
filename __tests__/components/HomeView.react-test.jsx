@@ -7,7 +7,7 @@ import Loading from '../../client/src/components/Auth/Loading';
 import SignInButton from '../../client/src/components/Auth/SignInButton';
 import ChooseGroup from '../../client/src/components/InitConfig/ChooseGroup';
 import ChooseVenue from '../../client/src/components/InitConfig/ChooseVenue';
-import { MapViewer } from '../../client/src/components/MapViewer/MapViewer';
+import MapViewer from '../../client/src/components/MapViewer/MapViewer';
 
 function setup(isUserSignedIn, dataRetrieved, pendingInvites = {}, groupId = '') {
   const props = {

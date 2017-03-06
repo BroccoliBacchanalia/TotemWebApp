@@ -12,31 +12,33 @@ export class Markers extends Component {
       <div>
         {userIds.map((uid, index) => {
           const user = members[uid];
-          const icon = {
-            url: user.img,
-            scaledSize: new google.maps.Size(30, 30),
-            origin: new google.maps.Point(0,0),
-            anchor: new google.maps.Point(0, 0),
-            labelOrigin: new google.maps.Point(15, 35)
-          };
-          return (
-            <Marker
-              key={index}
-              {...user}
-              label=''
-              icon={icon}
-              onClick={() => showGroupMemberInfo(uid)}
-            >
-              {user.showInfo && (
-                <InfoWindow>
-                  <div>
-                    <div>{user.label}</div>
-                    <div>{getGeofence(user.position)}</div>
-                  </div>
-                </InfoWindow>
-              )}
-            </Marker>
-          );
+          if (user) {
+            const icon = {
+              url: user.img,
+              scaledSize: new google.maps.Size(30, 30),
+              origin: new google.maps.Point(0,0),
+              anchor: new google.maps.Point(0, 0),
+              labelOrigin: new google.maps.Point(15, 35)
+            };
+            return (
+              <Marker
+                key={index}
+                {...user}
+                label=''
+                icon={icon}
+                onClick={() => showGroupMemberInfo(uid)}
+                >
+                {user.showInfo && (
+                  <InfoWindow>
+                    <div>
+                      <div>{user.label}</div>
+                      <div>{getGeofence(user.position)}</div>
+                    </div>
+                  </InfoWindow>
+                )}
+              </Marker>
+            );
+          }
         })}
       </div>
     );
