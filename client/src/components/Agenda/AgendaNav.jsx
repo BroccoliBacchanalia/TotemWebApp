@@ -3,10 +3,11 @@ import localStyles from './AgendaStyles.css';
 /* Actions */
 import { updateStage, updateDay } from '../../redux/actions/venueScheduleActions.js';
 
-const RenderAgendaDays = ({ days }) => (
+const AgendaNav = ({ days, selectedDay }) => (
    <nav>
     <select
       id="days-dropdown"
+      value={selectedDay}
       className="ui selection fluid dropdown"
       onChange={updateValue.bind(this, 'days-dropdown')}>
       {Object.keys(days).map((day, i) => (
@@ -17,11 +18,7 @@ const RenderAgendaDays = ({ days }) => (
 );
 
 function updateValue(id, e) {
-  const value = document.getElementById(id).value;
-  return id === 'days-dropdown' ? updateDay(value) : updateStage(value);
+  return updateDay(document.getElementById(id).value);
 }
 
-export default RenderAgendaDays;
-
-
-
+export default AgendaNav;
