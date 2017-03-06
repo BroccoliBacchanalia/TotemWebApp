@@ -19,6 +19,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
   return (
     <div>
       <ScheduleNav days={days} stages={stages} />
+      <br />
       <Grid className={localStyles.container}>
       <br /><br />
         {Object.keys(venue.scheduleitems).map((key, index) => {
@@ -41,7 +42,6 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
           }
         })}
       </Grid>
-      <br/><br/><br/><br/>
     </div>
   );
 }

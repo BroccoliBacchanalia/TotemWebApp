@@ -42,7 +42,7 @@ class PersonalAgenda extends React.Component {
             }
           })}
         </Grid>
-
+        <br/><br/><br/><br/>
       </div>
     );
   }

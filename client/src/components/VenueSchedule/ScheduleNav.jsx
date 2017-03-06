@@ -5,7 +5,7 @@ const ScheduleNav = ({ days, stages }) => (
   <nav>
     <select
       id="days-dropdown"
-      className="ui selection fluid dropdown"
+      className="ui selection fluid dropdown sched-nav"
       onChange={updateValue.bind(this, 'days-dropdown')}>
       {Object.keys(days).map((day, i) => (
         <option key={i} value={days[day]}>{day}</option>
@@ -13,7 +13,7 @@ const ScheduleNav = ({ days, stages }) => (
     </select>
     <select
       id="stages-dropdown"
-      className="ui selection fluid dropdown spacing-dropdown"
+      className="ui selection fluid dropdown spacing-dropdown sched-nav"
       onChange={updateValue.bind(this, 'stages-dropdown')}>
       <option value="All Stages">All Stages</option>
       {stages.map((stage, i) => (
@@ -31,3 +31,4 @@ function updateValue(id, e) {
 }
 
 export default ScheduleNav;
+
