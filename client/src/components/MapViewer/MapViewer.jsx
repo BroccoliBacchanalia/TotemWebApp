@@ -47,7 +47,6 @@ export class MapViewer extends Component {
     );
   }
 
-
   setBasecamp(coords) {
     console.log(coords);
   }

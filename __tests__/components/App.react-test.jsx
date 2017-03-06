@@ -15,13 +15,4 @@ describe('App', () => {
       </Provider>);
     expect(wrapper.length).toEqual(1);
   });
-
-  it('should render the login page if the user is not authorized', () => {
-    const wrapper = render(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-    expect(wrapper.length).toEqual(1);
-  });
 });
