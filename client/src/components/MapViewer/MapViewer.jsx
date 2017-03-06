@@ -47,7 +47,6 @@ export class MapViewer extends Component {
     );
   }
 
-
   setBasecamp(coords) {
     console.log(coords);
   }
@@ -57,7 +56,6 @@ export class MapViewer extends Component {
     if (map) map.getZoom();
   }
 }
-
 
 export default connect((store) => {
   return {

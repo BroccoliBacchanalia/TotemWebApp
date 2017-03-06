@@ -15,6 +15,7 @@ class InviteFriends extends React.Component {
   sendPendingInvite() {
     const groupId = this.props.groupId;
     const name = this.props.groupName;
+    const updates = {};
     let pendingInvites = {}
     let fromDom = document.querySelectorAll('input[type="checkbox"]:checked');
     let checkedUsers = [];
@@ -22,9 +23,12 @@ class InviteFriends extends React.Component {
       checkedUsers.push(fromDom[x].value);
     }
     pendingInvites[groupId] = name;
+    updates[`users/${ checkedUsers[i] }/pendingInvites`]
 
     for (var i = 0; i < checkedUsers.length; i++) {
-      firebaseUpdate(`users/${ checkedUsers[i] }/pendingInvites`,pendingInvites)
+      const updates = {};
+      updates[`users/${ checkedUsers[i] }/pendingInvites`] = pendingInvites;
+      firebaseUpdate(updates);
     }
   }
 
