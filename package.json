@@ -12,7 +12,8 @@
   "scripts": {
     "test": "jest --coverage --watch",
     "start": "nodemon server/index.js",
-    "build": "webpack --config webpack.config.js --watch"
+    "build": "webpack --config webpack.config.js --watch",
+    "syncbuild": "aws s3 sync client/dist/ s3://mobile.totemfinder.com --delete && aws cloudfront create-invalidation --distribution-id E3LBEIUCZWC5UQ --paths /bundle.js"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,7 @@
     "react-dropdown": "^1.2.1",
     "react-google-maps": "^6.0.1",
     "react-helmet": "^4.0.0",
-    "react-router-dom": "^4.0.0-beta.6",
+    "react-router-dom": "^4.0.0-beta.7",
     "react-speed-dial": "^0.4.0",
     "react-tap-event-plugin": "^2.0.1",
     "semantic-ui": "^2.2.9",
