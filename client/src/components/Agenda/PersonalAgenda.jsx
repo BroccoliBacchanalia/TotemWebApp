@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import store from '../../redux/store';
 import { connect } from 'react-redux';
+import localStyles from './AgendaStyles.css';
 /* Components */
 import AgendaRow from './AgendaRow.jsx';
 import RenderAgendaDays from './RenderAgendaDays.jsx';
 /* Actions */
 import { getStagesAndDays, generateDay } from '../../redux/actions/venueScheduleActions';
+import { Grid } from 'semantic-ui-react'
 
 class PersonalAgenda extends React.Component {
 
@@ -14,15 +16,18 @@ class PersonalAgenda extends React.Component {
     const agenda = this.props.user.agenda;
     const venueSchedule = this.props.venueSchedule;
     const { days } = getStagesAndDays(data);
+    const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
+
     return (
       <div>
         <RenderAgendaDays days={days}/>
-        {
-          agenda.map(function(key){
+        <br/>
+        <Grid className={localStyles.container}>
+          {agenda.map((key) => {
             console.log("key: ", key)
             let  item = data[key];
-            if(item && (item.day === venueSchedule.selectedDay)) {
-               return (
+            if (item && (item.day === selectedDay)) {
+              return (
                 <AgendaRow
                   key={key}
                   itemKey={key}
@@ -35,8 +40,9 @@ class PersonalAgenda extends React.Component {
                 </AgendaRow>
               );
             }
-          })
-        }
+          })}
+        </Grid>
+
       </div>
     );
   }
