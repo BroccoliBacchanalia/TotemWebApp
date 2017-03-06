@@ -13,7 +13,6 @@ import VenueSchedule from '../VenueSchedule/VenueSchedule';
 import ChooseVenue from '../InitConfig/ChooseVenue';
 import CreateGroup from '../InitConfig/CreateGroup';
 import InviteFriends from '../InitConfig/InviteFriends';
-import Chat from '../Chat/Chat';
 
 const Nav = ({ app, user }) => {
   const navList = [

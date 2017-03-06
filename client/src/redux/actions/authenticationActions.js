@@ -109,15 +109,18 @@ export function signIn() {
     const { user: { uid, displayName, photoURL, email } } = result;
     currentUserId = uid;
     const updates = {};
-    let userData = {
-      label: displayName,
-      img: photoURL,
-      email: email,
-      lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP,
-      agenda: { null: "null" },
-      groupId: '',
-    }
-    updates[`users/${ uid }`] = userData;
+    let userData = {}
+
+      userData[uid + '/label'] = displayName;
+      userData[uid + '/img'] = photoURL;
+      userData[uid + '/email'] = email;
+      userData[uid + '/lastTimeLoggedIn'] = firebase.database.ServerValue.TIMESTAMP;
+    
+    updates[`/users/${uid}/`] = { label: displayName };
+    updates[`/users/${uid}/`] = { img: photoURL };
+    updates[`/users/${uid}/`] = { email: email };
+    updates[`/users/${uid}/`] = { lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP };
+    console.log('userData',updates)
     firebaseUpdate(updates);
   })
   .then(getUsers)

@@ -22,7 +22,7 @@ export function firebaseSet(url, payload) {
 }
 
 export function firebaseUpdate(updates) {
-  return firebase.database().ref().update(updates);
+  return firebase.database().ref().set(updates);
 }
 
 export function firebaseKeyGen(path) {
