@@ -18,8 +18,10 @@ const ScheduleRow = ({ user, itemKey, name, startTime, endTime, geofence, day, i
       <br />
       <span className="h5">{geofence}</span>
       <br />
+      <div className="time">
       {startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
         " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
+      </div>
     </Grid.Column>
     <Grid.Column 
       className={localStyles.clickingDiv}
