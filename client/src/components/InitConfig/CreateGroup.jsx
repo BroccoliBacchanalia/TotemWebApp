@@ -8,7 +8,7 @@ import { updateUserGroupID } from '../../redux/actions/userActions';
 import { firebaseUpdate, firebaseKeyGen } from '../../redux/actions/firebaseActions';
 import localStyles from './ConfigStyles.css';
 
-const CreateGroup = (props) => (
+const CreateGroup = ({ user, group }) => (
 	<div>
 	  <div className={localStyles.header}>
 			<h3>Create a Group</h3>
@@ -20,19 +20,20 @@ const CreateGroup = (props) => (
 				onChange={(e) => updateGroupName(e.target.value)}
 			/>
 		  <div>
-			  <Button onClick={submit.bind(this, props)}>
-				  Create
+			  <Button
+					onClick={submit.bind(this, user, group)}
+					disabled={user.groupName.length < 1}
+				>
+					<Link to='/invite'>
+						Create
+					</Link>
 			  </Button>
 		  </div>
 		</div>
 	</div>
 );
 
-function submit({ user, group, push }) {
-	if (user.groupName.length < 1) {
-		return alert('Please enter a group name');
-	}
-
+function submit(user, group) {
 	const updates = {};
 	const groupKey = firebaseKeyGen('/groups/');
   const groupData = {
@@ -46,7 +47,6 @@ function submit({ user, group, push }) {
 
   updateUserGroupID(groupKey);
 	firebaseUpdate(updates);
-  push('/invite');
 }
 
 export default connect((store) => {

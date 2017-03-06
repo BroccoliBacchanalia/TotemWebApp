@@ -7,49 +7,34 @@ import localStyles from './ConfigStyles.css';
 import { updateVenueId } from '../../redux/actions/groupActions';
 import { firebaseSet } from '../../redux/actions/firebaseActions';
 
-class ChooseVenue extends React.Component {
-
-  render () {
-    const venues = this.props.venues;
-    const router = this.context.router;
-
-  	return (
-      <div className="custom-container">
-        <div className={ localStyles.header }>
-          <h3>Select a Venue</h3>
-        </div>
-        <div className={ styles.scrollView + ' ' + localStyles.cRow }>
-          {Object.keys(venues).map((key, index) => (
-            <div
-              key={ index }
-              className={ styles.row }
-              onClick={() => {
-                updateVenueId.call(this, key);
-                router.push('/creategroup');
-              }}>
-              {venues[key]}
-            </div>
-          ))}
-        </div>
-        <div className={ localStyles.cFooter }>
-          <div>
-            <Link to="/creategroup">
-              Skip
-            </Link>
+const ChooseVenue = ({ venues }) => (
+  <div className="custom-container">
+    <div className={localStyles.header}>
+      <h3>Select a Venue</h3>
+    </div>
+    <div className={styles.scrollView + ' ' + localStyles.cRow}>
+      {Object.keys(venues).map((key, index) => (
+        <Link key={index} to='/creategroup'>
+          <div
+            className={styles.row}
+            onClick={updateVenueId.bind(this, key)}>
+            {venues[key]}
           </div>
-        </div>
+        </Link>
+      ))}
+    </div>
+    <div className={localStyles.cFooter}>
+      <div>
+        <Link to="/creategroup">
+          Skip
+        </Link>
       </div>
-  	);
-  }
-}
-
-ChooseVenue.contextTypes = {
-  router: React.PropTypes.object.isRequired
-}
+    </div>
+  </div>
+);
 
 export default connect((store) => {
 	return {
-		venues: store.venue.venues,
-    userId: store.user.uid
+		venues: store.venue.venues
 	}
 })(ChooseVenue)
