@@ -1,6 +1,6 @@
 .mapNav {
   color: #f9d6ff !important;
-}  
+}
 
 .groupNav {
   color: #dddaff !important;
@@ -27,8 +27,9 @@
 }
 
 .logo {
+  margin: 0px !important;
   height: 55px !important;
-  width: 168px !important;
+  width: 239px !important;
 }
 
 .button {

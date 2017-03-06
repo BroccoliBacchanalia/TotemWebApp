@@ -1,7 +1,17 @@
 const defaults = {
   venues: {},
-  venue: {},
-  geofences: {}
+  venue: {
+    address: {},
+    dates: {},
+    emergency: {
+      operator: 911
+    },
+    geofences: {},
+    map: {},
+    name: {},
+    scheduleitems: []
+  },
+  
 };
 
 export default function configReducer(state = defaults, action) {
