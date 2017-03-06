@@ -7,8 +7,8 @@ const AgendaNav = ({ days, selectedDay }) => (
    <nav>
     <select
       id="days-dropdown"
+      className="ui selection fluid dropdown agenda-nav"
       value={selectedDay}
-      className="ui selection fluid dropdown"
       onChange={updateValue.bind(this, 'days-dropdown')}>
       {Object.keys(days).map((day, i) => (
         <option key={i} value={days[day]}>{day}</option>

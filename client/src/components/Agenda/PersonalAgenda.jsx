@@ -37,6 +37,7 @@ const Agenda = ({ venueSchedule, venue, user }) => {
           }
         })}
       </Grid>
+      <br/><br/><br/><br/>
     </div>
   );
 }

@@ -61,7 +61,28 @@ button {
   border-radius: 0px !important;
 }
 
-.no-events {
+.sched-nav {
+  -webkit-appearance: none !important;
+  -webkit-border-radius: 0px !important;
+  width: 50% !important;
+  background: black !important;
+  height: 50px !important;
+  padding-left: 70px !important;
+  display: inline-block !important;
+  color: rgba(191, 255, 253, 1) !important;
+  box-shadow: 0px 2px 8px 0px rgba(12, 12, 12, 0.55) !important;
+}
+
+.agenda-nav {
+  -webkit-appearance: none !important;
+  -webkit-border-radius: 0px !important;
+  width: 100% !important;
+  background: black !important;
+  height: 50px !important;
+  padding-left: 174px !important;
+  display: inline-block !important;
+  color: rgba(191, 255, 253, 1) !important;
+  box-shadow: 0px 2px 8px 0px rgba(12, 12, 12, 0.55) !important;
 }
 
 .gm-style-iw + div {

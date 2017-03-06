@@ -23,6 +23,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
         selectedDay={selectedDay}
         selectedStage={selectedStage}
       />
+      <br />
       <Grid className={localStyles.container}>
         <br />
         <br />
@@ -48,7 +49,6 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
           }
         })}
       </Grid>
-      <br/><br/><br/><br/>
     </div>
   );
 }
