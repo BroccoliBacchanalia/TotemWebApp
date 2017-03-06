@@ -14,11 +14,13 @@ const CreateGroup = ({ user, group }) => (
 			<h3>Create a Group</h3>
 		</div>
 		<div className={localStyles.cgBody}>
-			<input
-				type="text"
-				placeholder="Group Name"
-				onChange={(e) => updateGroupName(e.target.value)}
-			/>
+			<div className="ui input focus">
+				<input
+					type="text"
+					placeholder="Group Name"
+					onChange={(e) => updateGroupName(e.target.value)}
+				/>
+			</div>
 		  <div>
 			  <Button
 					onClick={submit.bind(this, user, group)}
