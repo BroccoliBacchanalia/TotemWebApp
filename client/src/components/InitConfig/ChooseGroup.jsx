@@ -9,13 +9,8 @@ import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
 
 class ChooseGroup extends React.Component {
-  constructor(props, context) {
-    super(props);
-  }
-
   render(){
     const groupKeys = Object.keys(this.props.groupList);
-    const router = this.context.router;
 
     return (
       <div className="custom-container">
@@ -56,10 +51,6 @@ class ChooseGroup extends React.Component {
       firebaseSet(`users/${ userId }/pendingInvites`, invites);
     });
   }
-}
-
-ChooseGroup.contextTypes = {
-  router: React.PropTypes.object.isRequired
 }
 
 export default connect((store) => {
