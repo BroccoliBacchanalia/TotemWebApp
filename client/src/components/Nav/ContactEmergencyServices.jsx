@@ -28,7 +28,7 @@ class ContactEmergencyServices extends Component {
             color='green' 
             size='huge' 
             inverted 
-            href={operator ? 'tell://' + operator : 'tell://911'}
+            href={"tel:+" + operator}
             onClick={toggleEmergencyServices}>
             <Icon name='checkmark' /> Yes
           </Button>
