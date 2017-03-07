@@ -8,7 +8,7 @@ import HeaderBlock from './HeaderBlock';
 import HomeView from '../HomeView'
 import Group from '../Group/Group';
 import MapViewer from '../MapViewer/MapViewer';
-import PersonalAgenda from '../Agenda/PersonalAgenda';
+import Agenda from '../Agenda/Agenda';
 import VenueSchedule from '../VenueSchedule/VenueSchedule';
 import ChooseVenue from '../InitConfig/ChooseVenue';
 import CreateGroup from '../InitConfig/CreateGroup';
@@ -59,7 +59,7 @@ const Nav = ({ app, user }) => {
             <Route exact path="/" component={HomeView}/>
             <Route path="/group" component={Group}/>
             <Route path="/map" component={MapViewer}/>
-            <Route path="/agenda" component={PersonalAgenda}/>
+            <Route path="/agenda" component={Agenda}/>
             <Route path="/schedule" component={VenueSchedule}/>
             <Route path="/choosevenue" component={ChooseVenue}/>
             <Route path="/creategroup" component={CreateGroup}/>
