@@ -9,7 +9,7 @@ export function sortUsers(method) {
   });
 }
 
-const sortMethods = {
+export const sortMethods = {
   sortAZ: function sortAZ(a, b) {
     if(a.label < b.label) return -1;
     if(a.label > b.label) return 1;

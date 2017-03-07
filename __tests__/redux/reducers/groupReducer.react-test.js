@@ -1,8 +1,8 @@
 import groupReducer from '../../../client/src/redux/reducers/groupReducer';
 import * as actions from '../../../client/src/redux/actions/groupActions';
 import React from 'react';
-import sortUsers from '../../../client/src/redux/actions/groupActions';
-
+import sortMethods from '../../../client/src/redux/actions/sortActions';
+console.log(':::::', sortMethods)
 describe('Group Reducer', () => {
 
 	test('Should have set defaults', () => {
@@ -10,7 +10,7 @@ describe('Group Reducer', () => {
 				groupName: '',
 				members: {},
 				memberKeys: {},
-				totemCoords : {},
+				totemCoords: {},
 				venueId: ''
 		});
 	});
@@ -28,8 +28,14 @@ describe('Group Reducer', () => {
 			).toEqual({'123123': 'John'})
 	});
 
-	xtest('Should be able to handle USERS_SORT sortAZ', () => {
-		expect(sortUsers('sortAZ').users
+	test('Should be able to handle USERS_SORT sortAZ', () => {
+		expect(
+		groupReducer({users: {'Y3241asss': {'label': 'mitch'}, '21341234': {'label':'hedberg'}}}, {
+			type: 'USERS_SORT',
+			payload: {
+				method: sortMethods['sortAZ']
+			}
+		}).users
 		).toEqual({"21341234": {"label": "hedberg"}, "Y3241asss": {"label": "mitch"}});
 	})
 })
