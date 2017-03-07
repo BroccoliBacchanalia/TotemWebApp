@@ -2,13 +2,14 @@ import { getGeofence } from './locationActions';
 import store from '../../redux/store';
 
 export function sortUsers(method) {
+  console.log('METHOD', sortMethods[method])
   return store.dispatch({
     type: 'USERS_SORT',
     payload: { method: sortMethods[method] }
   });
 }
 
-export const sortMethods = {
+const sortMethods = {
   sortAZ: function sortAZ(a, b) {
     if(a.label < b.label) return -1;
     if(a.label > b.label) return 1;
