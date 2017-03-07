@@ -51,30 +51,6 @@ class InviteFriends extends React.Component {
                 <h4>{friend.label}</h4>
               </div>
             ))}
-            {this.props.friendList.map((friend, index) => (
-              <div
-                key={index}
-                className={localStyles.iFriend}>
-                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
-                <h4>{friend.label}</h4>
-              </div>
-            ))}
-            {this.props.friendList.map((friend, index) => (
-              <div
-                key={index}
-                className={localStyles.iFriend}>
-                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
-                <h4>{friend.label}</h4>
-              </div>
-            ))}
-            {this.props.friendList.map((friend, index) => (
-              <div
-                key={index}
-                className={localStyles.iFriend}>
-                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
-                <h4>{friend.label}</h4>
-              </div>
-            ))}
           </form>
         </div>
         <div className={localStyles.iFooter}>
