@@ -20,8 +20,14 @@
   padding: 0px !important;
 }
 
+.icon button {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .sortRow {
   margin: 0 !important;
+  padding: 0 !important;
 }
 
 .sort:hover {
@@ -37,6 +43,10 @@
 
 .sortToolbar {
   overflow-x: hidden !important;
+}
+
+.sortToolbar > div {
+  margin: 0 !important;
 }
 
 .buttonDiv {
