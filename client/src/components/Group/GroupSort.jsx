@@ -16,7 +16,6 @@ const SortGroup = () => {
             <Grid.Column
               key={index}
               className={localStyles.icon}
-              style={{ width: window.innerWidth / 3 }}
             >
               <Button
                 className={localStyles.gButton}

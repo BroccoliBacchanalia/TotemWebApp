@@ -58,7 +58,6 @@ export function getGeofence(coordinates) {
 
   for (let key in geofences) {
     const fence = geofences[key];
-    console.log(fence);
     const degrees = getDegrees(fence.radius);
     const latDiff = Math.abs(fence.lat - coordinates.lat);
     const longDiff = Math.abs(fence.lng - coordinates.lng);
