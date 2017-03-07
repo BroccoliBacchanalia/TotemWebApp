@@ -2,7 +2,6 @@ import { getGeofence } from './locationActions';
 import store from '../../redux/store';
 
 export function sortUsers(method) {
-  console.log('METHOD', sortMethods[method])
   return store.dispatch({
     type: 'USERS_SORT',
     payload: { method: sortMethods[method] }
