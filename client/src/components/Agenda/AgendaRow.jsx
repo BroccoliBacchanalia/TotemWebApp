@@ -28,7 +28,7 @@ function removeAgendaItem(key) {
 
 const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl }) => (
   <Grid.Row className={localStyles.aRow}>
-    <Grid.Column width={3}>
+    <Grid.Column className={localStyles.imageDiv} width={3}>
       <Image src={imgurl}/>
     </Grid.Column>
     <Grid.Column width={10}>

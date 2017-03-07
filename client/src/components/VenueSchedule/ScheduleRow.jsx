@@ -9,7 +9,7 @@ import { Grid, Image, Icon, Button } from 'semantic-ui-react'
 const ScheduleRow = ({ user, itemKey, name, startTime, endTime, geofence, day, imgurl, venueSchedule }) => (
 
   <Grid.Row className={(user.agenda && user.agenda.includes(itemKey)) ? localStyles.sRowSelected : localStyles.sRow}>
-    <Grid.Column width={3}>
+    <Grid.Column width={3} className={localStyles.imageDiv}>
       <Image src={imgurl} />
     </Grid.Column>
     <Grid.Column className={localStyles.centerDiv}>
