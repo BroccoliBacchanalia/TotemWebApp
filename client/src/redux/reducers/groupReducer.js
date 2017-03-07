@@ -2,7 +2,8 @@ const defaults = {
   groupName: '',
   memberKeys: {},
   members: {},
-  venueId: ''
+  venueId: '',
+  totemCoords: {}
 };
 
 export default function groupReducer(state = defaults, action) {
@@ -48,6 +49,9 @@ export default function groupReducer(state = defaults, action) {
     }
     case 'UPDATE_VENUE_ID': {
       return { ...state, venueId: action.payload.id };
+    }
+    case 'UPDATE_TOTEM_COORDS': {
+      return { ...state, totemCoords: action.payload.coords };
     }
   }
   return state;

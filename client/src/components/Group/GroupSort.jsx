@@ -11,9 +11,13 @@ const SortGroup = () => {
   ];
   return (
     <Grid columns={3} divided>
-      <Grid.Row>
+      <Grid.Row className={localStyles.sortRow}>
           {icons.map((icon, index) => (
-            <Grid.Column key={index} className={localStyles.icon}>
+            <Grid.Column
+              key={index}
+              className={localStyles.icon}
+              style={{ width: window.innerWidth / 3 }}
+            >
               <Button
                 className={localStyles.gButton}
                 className={localStyles.sort}

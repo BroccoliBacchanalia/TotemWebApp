@@ -13,7 +13,8 @@
     "test": "jest --coverage --watch",
     "start": "nodemon server/index.js",
     "build": "webpack --config webpack.config.js --watch",
-    "syncbuild": "aws s3 sync client/dist/ s3://mobile.totemfinder.com --delete && aws cloudfront create-invalidation --distribution-id E3LBEIUCZWC5UQ --paths /bundle.js"
+    "syncbuild": "aws s3 sync client/dist/ s3://mobile.totemfinder.com --delete && aws cloudfront create-invalidation --distribution-id E3LBEIUCZWC5UQ --paths /bundle.js",
+    "checkInvalidation": "aws cloudfront get-invalidation --distribution-id E3LBEIUCZWC5UQ --id [id]"
   },
   "repository": {
     "type": "git",
