@@ -51,8 +51,15 @@ export function updateGroupMember(user, uid) {
 }
 
 export function showGroupMemberInfo(uid) {
-  return store.dispatch({ 
-    type: 'SHOW_NAME', 
+  return store.dispatch({
+    type: 'SHOW_NAME',
     payload: uid
+  });
+}
+
+export function updateTotemCoords(coords) {
+  return store.dispatch({
+    type: 'UPDATE_TOTEM_COORDS',
+    payload: { coords }
   });
 }

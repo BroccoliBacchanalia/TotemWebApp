@@ -6,11 +6,20 @@ import { updateUserGroupID } from '../../redux/actions/userActions';
 import { firebaseOnce, firebaseSet } from '../../redux/actions/firebaseActions';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';
+import * as firebase from 'firebase';
 
-class ChooseGroup extends React.Component {
+export class ChooseGroup extends React.Component {
+
+  removeGroupFromPendingInvites(key) {
+    let userId = this.props.userId;
+    updateUserGroupID(key);
+    firebaseOnce(`users/${ userId }/pendingInvites`, (invites)=> {
+      delete invites[key];
+      firebaseSet(`users/${ userId }/pendingInvites`, invites);
+    });
+  }
   render(){
     const groupKeys = Object.keys(this.props.groupList);
-
     return (
       <div>
         <div className={ localStyles.header }>
@@ -18,12 +27,12 @@ class ChooseGroup extends React.Component {
         </div>
         <div className={styles.scrollView + ' ' + localStyles.cRow}>
           {groupKeys.map((key, index) => (
-            <Link key={index} to='/map'>
+            <Link className='link' key={index} to='/map'>
               <div
                 key={index}
                 className={styles.row}
+                id='select'
                 onClick={() => {
-                  updateUserGroupID(key);
                   this.removeGroupFromPendingInvites(key);
                 }}>
                 { this.props.groupList[key] }
@@ -41,21 +50,12 @@ class ChooseGroup extends React.Component {
       </div>
     );
   }
-
-  removeGroupFromPendingInvites(key) {
-    let userId = this.props.userId;
-
-    firebaseOnce(`users/${ userId }/pendingInvites`, (invites)=> {
-      delete invites[key];
-      firebaseSet(`users/${ userId }/pendingInvites`, invites);
-    });
-  }
 }
 
 export default connect((store) => {
-	return {
-		groupList: store.user.pendingInvites,
+  return {
+    groupList: store.user.pendingInvites,
     userId : store.user.uid,
     userName : store.user.name
-	}
+  }
 })(ChooseGroup)

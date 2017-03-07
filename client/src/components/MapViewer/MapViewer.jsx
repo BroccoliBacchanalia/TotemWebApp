@@ -4,6 +4,7 @@ import { withGoogleMap, GoogleMap, Marker, OverlayView, InfoWindow } from 'react
 import Markers from './Markers.jsx'
 import GroundOverlay from '../GroundOverlay';
 import localStyles from './MapStyles.css';
+import { updateTotemCoords } from '../../redux/actions/groupActions';
 
 export class MapViewer extends Component {
 
@@ -48,7 +49,7 @@ export class MapViewer extends Component {
   }
 
   setBasecamp(coords) {
-    console.log(coords);
+    updateTotemCoords(coords);
   }
 
   handleMapLoad(map) {
