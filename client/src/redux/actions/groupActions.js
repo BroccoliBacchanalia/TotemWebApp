@@ -1,5 +1,5 @@
 import store from '../../redux/store';
-import { firebaseOnce } from './firebaseActions';
+import { firebaseOnce, firebaseSet } from './firebaseActions';
 import { addUserListener } from './locationActions';
 import { updateVenue } from './venueActions';
 
@@ -57,9 +57,14 @@ export function showGroupMemberInfo(uid) {
   });
 }
 
-export function updateTotemCoords(coords) {
-  return store.dispatch({
+export function updateTotemCoords(coords, groupId) {
+  store.dispatch({
     type: 'UPDATE_TOTEM_COORDS',
     payload: { coords }
   });
+
+  console.log(groupId);
+  console.log(`/groups/${groupId}/totemCoords`);
+
+  firebaseSet(`/groups/${groupId}/totemCoords`, coords);
 }

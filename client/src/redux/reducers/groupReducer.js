@@ -15,7 +15,8 @@ export default function groupReducer(state = defaults, action) {
         groupName: state.groupName,
         memberKeys: { ...state.memberKeys },
         members: { ...state.members },
-        venueId: state.venueId
+        venueId: state.venueId,
+        totemCoords: { ...state.totemCoords }
       };
       newState.members[uid] = user;
       return newState;
@@ -35,7 +36,8 @@ export default function groupReducer(state = defaults, action) {
         groupName: state.groupName,
         memberKeys: { ...state.memberKeys },
         members: { ...state.members },
-        venueId: state.venueId
+        venueId: state.venueId,
+        totemCoords: { ...state.totemCoords }
       };
       newState.members[uid].showInfo ?
       newState.members[uid].showInfo = !newState.members[uid].showInfo :
