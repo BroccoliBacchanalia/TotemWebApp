@@ -11,7 +11,7 @@ const SortGroup = () => {
   ];
   return (
     <Grid columns={3} divided>
-      <Grid.Row>
+      <Grid.Row className={localStyles.sortRow}>
           {icons.map((icon, index) => (
             <Grid.Column key={index} className={localStyles.icon}>
               <Button
