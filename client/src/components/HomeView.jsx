@@ -33,7 +33,7 @@ export class HomeView extends React.Component {
     const hasGroup = !!user.groupId;
 
     return (
-      !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} /> :
+      !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} id='signInButton'/> :
       !user.dataRetrieved ? <Loading /> :
       hasPendingInvites && !hasGroup ? <ChooseGroup /> :
       !hasGroup ? <ChooseVenue /> : <MapViewer />
