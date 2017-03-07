@@ -40,16 +40,13 @@ describe('InviteFriends', () => {
 
 describe('Choose Group', () => {
 
-function setup() {
-  ChooseGroup.prototype.removeGroupFromPendingInvites = function(id) {
-    store.dispatch({
+ChooseGroup.prototype.removeGroupFromPendingInvites = function(id) {
+  store.dispatch({
     type: 'UPDATE_USER_GROUP_ID',
     payload: { id }
   });
-  };
-}
+};
 
-setup();
 const props = {
   groupList: {
     '23234342423': 'testGroup',

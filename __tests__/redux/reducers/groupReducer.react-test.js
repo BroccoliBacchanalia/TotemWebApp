@@ -2,6 +2,9 @@ import groupReducer from '../../../client/src/redux/reducers/groupReducer';
 import * as actions from '../../../client/src/redux/actions/groupActions';
 import React from 'react';
 import { sortMethods } from '../../../client/src/redux/actions/sortActions';
+import { updateGroup } from '../../../client/src/redux/actions/groupActions';
+import * as locationActions from '../../../client/src/redux/actions/locationActions';
+import * as firebaseActions from '../../../client/src/redux/actions/firebaseActions';
 
 describe('Group Reducer', () => {
 
@@ -27,6 +30,21 @@ describe('Group Reducer', () => {
 			}).members
 			).toEqual({'123123': 'John'})
 	});
+
+	test('Should add user listener to each user in group', () => {
+
+		const group = {
+			memberKeys : {
+        '1232321' : 'Derek',
+        '2342344' : 'Patrick',
+        '1213131' : 'Smriti'
+			}
+		}
+		firebaseActions.firebaseOnce = jest.fn();
+    locationActions.addUserListener = jest.fn();
+    updateGroup(group);
+    expect(locationActions.addUserListener).toHaveBeenCalledTimes(3);
+	})
 
 	test('Should be able to handle USERS_SORT sortAZ', () => {
 		expect(
