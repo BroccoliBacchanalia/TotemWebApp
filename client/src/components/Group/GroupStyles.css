@@ -76,5 +76,10 @@
 }
 
 .imageDiv {
-  padding-right: 0px !important;
+  padding: 10px !important;
+}
+
+.timestamp {
+  font-size: 10px;
+  color: #5f6b6d;
 }

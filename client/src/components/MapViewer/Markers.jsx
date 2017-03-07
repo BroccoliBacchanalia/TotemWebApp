@@ -52,6 +52,8 @@ export class Markers extends Component {
                   <div>
                     <div>{user.label}</div>
                     <div>{getGeofence(user.position)}</div>
+                    { new Date(user.position.timestamp).toString().substring(0, 3) + ' ' + 
+                      new Date(user.position.timestamp).toString().substring(15, 21) } 
                   </div>
                 </InfoWindow>
               )}
