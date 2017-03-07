@@ -24,7 +24,7 @@ const CreateGroup = ({ user, group }) => (
 		  <div>
 			  <Button
 					onClick={submit.bind(this, user, group)}
-					disabled={user.groupName.length < 1}
+					disabled={group.groupName.length < 1}
 				>
 					<Link to='/invite'>
 						Create
