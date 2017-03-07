@@ -3,19 +3,11 @@ import store from '../../client/src/redux/store.js';
 import { mount, shallow, render } from 'enzyme';
 import { connect, mapStateToProps} from 'react-redux';
 import InviteFriends from '../../client/src/components/InitConfig/InviteFriends.jsx';
-import { ChooseGroup } from '../../client/src/components/InitConfig/ChooseGroup.jsx'
+import { ChooseGroup } from '../../client/src/components/InitConfig/ChooseGroup.jsx';
+import { ChooseVenue } from '../../client/src/components/InitConfig/ChooseVenue.jsx'
 import mockFBFriends from '../../client/src/redux/reducers/mock_fb_friend_list.js';
 import * as actions from '../../client/src/redux/actions';
 import * as firebase from 'firebase';
-
-function setup() {
-  ChooseGroup.prototype.removeGroupFromPendingInvites = function(id) {
-    store.dispatch({
-    type: 'UPDATE_USER_GROUP_ID',
-    payload: { id }
-  });
-  };
-}
 
 describe('InviteFriends', () => {
 
@@ -44,11 +36,19 @@ describe('InviteFriends', () => {
     expect(actions.updateUserData(mockFBFriends.data)).toEqual({type: 'UPDATE_USER_DATA', payload: mockFBFriends});
   });
 
-  // it('should add listeners')
-
 })
 
 describe('Choose Group', () => {
+
+function setup() {
+  ChooseGroup.prototype.removeGroupFromPendingInvites = function(id) {
+    store.dispatch({
+    type: 'UPDATE_USER_GROUP_ID',
+    payload: { id }
+  });
+  };
+}
+
 setup();
 const props = {
   groupList: {
@@ -70,4 +70,17 @@ const props = {
     expect(store.getState().user.groupId.length).toBeGreaterThan(1)
   })
 
+})
+
+describe('Choose Venue', () => {
+
+  const venues = {
+
+  }
+
+  const chooseVenue = shallow(<ChooseVenue venues={ venues } />)
+
+  it('should assign a venue id when clicked', () => {
+
+  }
 })
