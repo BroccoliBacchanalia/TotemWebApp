@@ -73,14 +73,22 @@ const props = {
 })
 
 describe('Choose Venue', () => {
-
   const venues = {
-
+    'qwrwewqerqwre' : 'Outside Lands',
+    '241wffasddsff' : 'Coachella',
+    '2342341saafaa' : 'burningman'
   }
 
-  const chooseVenue = shallow(<ChooseVenue venues={ venues } />)
+  const chooseVenue = shallow(<ChooseVenue venues={ venues }/>)
 
-  it('should assign a venue id when clicked', () => {
+  it('should display list of all venues', () => {
+    let listOfVenues = chooseVenue.find('#venueItem');
+    expect(listOfVenues.length).toEqual(3);
+  })
 
-  }
+  it('should add a venue id when venue is clicked', () =>{
+    let clickVenues = chooseVenue.find('#venueItem').first();
+    clickVenues.simulate('click');
+    expect(store.getState().group.venueId.length).toBeGreaterThan(0);
+  })
 })
