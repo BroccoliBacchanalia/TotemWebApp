@@ -3,7 +3,6 @@ import store from '../../redux/store.js';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { updateUserGroupID } from '../../redux/actions/userActions';
-import { setDefaultChat } from '../../redux/actions/chatActions';
 import { firebaseOnce, firebaseSet } from '../../redux/actions/firebaseActions';
 import styles from '../Styles.css';
 import localStyles from './ConfigStyles.css';

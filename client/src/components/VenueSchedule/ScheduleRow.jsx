@@ -3,13 +3,12 @@ import store from '../../redux/store';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { firebaseOnce, firebaseUpdate } from '../../redux/actions/firebaseActions';
-import { toggleAddRemove } from '../../redux/actions/agendaActions';
 import { addAgenda, removeAgenda } from '../../redux/actions/userActions';
 import localStyles from './VenueStyles.css';
 import { Grid, Image, Icon, Button } from 'semantic-ui-react'
 const ScheduleRow = ({ user, itemKey, name, startTime, endTime, geofence, day, imgurl, venueSchedule }) => (
   
-  <Grid.Row className={user.agenda.includes(itemKey) ? localStyles.sRowSelected : localStyles.sRow}>
+  <Grid.Row className={(user.agenda && user.agenda.includes(itemKey)) ? localStyles.sRowSelected : localStyles.sRow}>
     <Grid.Column width={3}>
       <Image src={imgurl} />
     </Grid.Column>
@@ -26,13 +25,13 @@ const ScheduleRow = ({ user, itemKey, name, startTime, endTime, geofence, day, i
     <Grid.Column 
       className={localStyles.clickingDiv}
       width={3} 
-      onClick={user.agenda.includes(itemKey) ? 
+      onClick={(user.agenda && user.agenda.includes(itemKey)) ? 
         () => { removeAgendaItem(itemKey) } :
         () => { addAgendaItem(itemKey) }
       }>
       <Icon 
-        className={user.agenda.includes(itemKey) ? localStyles.removeButton : localStyles.addButton}
-        name={user.agenda.includes(itemKey) ? 'remove circle' : 'add circle'} 
+        className={(user.agenda && user.agenda.includes(itemKey)) ? localStyles.removeButton : localStyles.addButton}
+        name={(user.agenda && user.agenda.includes(itemKey)) ? 'remove circle' : 'add circle'} 
         size='big' 
       />
     </Grid.Column>
@@ -49,6 +48,7 @@ function addAgendaItem(key) {
   //fetch new agenda
   firebaseOnce('users/'+ uid +'/agenda/', (agenda) => {
     agenda = Object.keys(agenda);
+    console.log('after addition', agenda);
     addAgenda(agenda);
   });
 }
@@ -57,16 +57,18 @@ function removeAgendaItem(key) {
   const uid = store.getState().user.uid;
   const db = firebase.database();
   db.ref('users/' + uid + '/agenda/' + key).remove()
-  .then(function(){
+  .then(() => {
    // fetch data after removing agenda
     const updateRef = db.ref('users/'+ uid +'/agenda/');
 
-    updateRef.on("value", function(snapshot) {
+    updateRef.on("value", (snapshot) => {
       let agenda  =  snapshot.val();
-      agenda = Object.keys(agenda);
-      agenda = agenda.slice(0,agenda.length-1);
+      if (agenda) {
+        agenda = Object.keys(agenda);
+      }
+      console.log('after remove', agenda)
       removeAgenda(agenda)
-    }, function (errorObject) {
+    },  (errorObject) => {
       console.log("The read failed: " + errorObject.code);
     });
   });
