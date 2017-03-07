@@ -21,13 +21,13 @@ describe('Auth', () => {
       const onSignInClick = jest.fn();
       const wrapper = render(<SignInButton onSignInClick={onSignInClick} />);
       const imgURL = wrapper.find('#login-button')[0].children[0].attribs.src;
-      expect(imgURL).toEqual('img/facebook-sign-in.png');
+      expect(imgURL).toEqual('img/newlogo.png');
     });
 
     it('should call onSignInClick when the image is clicked', () => {
       const onSignInClick = jest.fn();
       const wrapper = mount(<SignInButton onSignInClick={onSignInClick} />);
-      wrapper.find('#login-button').simulate('click');
+      wrapper.find('#signInButton').simulate('click');
       expect(onSignInClick).toHaveBeenCalled();
     });
   });

@@ -8,16 +8,16 @@ import mockVenue from '../../__testConfig__/mock_venue_data'
 import mockUser from '../../__testConfig__/mock_user_data'
 import * as actions from '../../client/src/redux/actions'
 
-describe('MapViewer Component Tests', () => {
+xdescribe('MapViewer Component Tests', () => {
   const mapWrapper = shallow(<MapViewer store={store} />);
   const markersWrapper = shallow(<Markers store={store}/>);
   mapWrapper.props().store.getState().group.members = mockUser;
 
   describe('Initialize Testing Suite', () => {
-    test('the map should render without exploding', () => {
+    xtest('the map should render without exploding', () => {
       expect(mapWrapper.props().store.getState().venue.venue).toBeAnObject;
     });
-    test('the markers should render without exploding', () => {
+    xtest('the markers should render without exploding', () => {
       expect(markersWrapper.length).toEqual(1);
     });
   });

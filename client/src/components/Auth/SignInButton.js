@@ -4,11 +4,12 @@ import localStyles from './AuthStyles.css';
 
 const SignInButton = ({ onSignInClick }) => (
   <div className={localStyles.outer}>
-    <div className={localStyles.inner}>
+    <div className={localStyles.inner} id='login-button'>
       <img src="img/newlogo.png" />
       <Button 
         className={localStyles.button} 
         color='facebook'
+        id='signInButton'
         onClick={onSignInClick}>
         <Icon name='facebook' /> Login with facebook
       </Button>
@@ -17,10 +18,3 @@ const SignInButton = ({ onSignInClick }) => (
 );
 
 export default SignInButton;
-
-
-
-
-      // <div className={localStyles.button} onClick={onSignInClick} id="login-button">
-      //   <img src="img/facebook-sign-in.png"/>
-      // </div>
