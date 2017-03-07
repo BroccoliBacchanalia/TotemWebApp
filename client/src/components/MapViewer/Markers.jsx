@@ -10,7 +10,10 @@ export class Markers extends Component {
     const userIds = Object.keys(members);
     const basecamp = {
       url: 'img/loading.gif',
-      scaledSize: new google.maps.Size(50, 96)
+      scaledSize: new google.maps.Size(50, 96),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(25, 96)
+
     };
     const totemCoords = this.props.totem;
     const basecampExists = Object.keys(this.props.totem).length > 0;
@@ -32,7 +35,7 @@ export class Markers extends Component {
             url: user.img,
             scaledSize: new google.maps.Size(30, 30),
             origin: new google.maps.Point(0,0),
-            anchor: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(15, 15),
             labelOrigin: new google.maps.Point(15, 35)
           };
 

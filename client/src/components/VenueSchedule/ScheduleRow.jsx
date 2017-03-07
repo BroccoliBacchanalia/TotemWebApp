@@ -7,12 +7,12 @@ import { addAgenda, removeAgenda } from '../../redux/actions/userActions';
 import localStyles from './VenueStyles.css';
 import { Grid, Image, Icon, Button } from 'semantic-ui-react'
 const ScheduleRow = ({ user, itemKey, name, startTime, endTime, geofence, day, imgurl, venueSchedule }) => (
-  
+
   <Grid.Row className={(user.agenda && user.agenda.includes(itemKey)) ? localStyles.sRowSelected : localStyles.sRow}>
-    <Grid.Column width={3}>
+    <Grid.Column width={3} className={localStyles.imageDiv}>
       <Image src={imgurl} />
     </Grid.Column>
-    <Grid.Column width={10}>
+    <Grid.Column className={localStyles.centerDiv}>
       <span className="h4">{name}</span>
       <br />
       <span className="h5">{geofence}</span>
@@ -22,17 +22,17 @@ const ScheduleRow = ({ user, itemKey, name, startTime, endTime, geofence, day, i
         " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
       </div>
     </Grid.Column>
-    <Grid.Column 
+    <Grid.Column
       className={localStyles.clickingDiv}
-      width={3} 
-      onClick={(user.agenda && user.agenda.includes(itemKey)) ? 
+      width={3}
+      onClick={(user.agenda && user.agenda.includes(itemKey)) ?
         () => { removeAgendaItem(itemKey) } :
         () => { addAgendaItem(itemKey) }
       }>
-      <Icon 
+      <Icon
         className={(user.agenda && user.agenda.includes(itemKey)) ? localStyles.removeButton : localStyles.addButton}
-        name={(user.agenda && user.agenda.includes(itemKey)) ? 'remove circle' : 'add circle'} 
-        size='big' 
+        name={(user.agenda && user.agenda.includes(itemKey)) ? 'remove circle' : 'add circle'}
+        size='big'
       />
     </Grid.Column>
   </Grid.Row>

@@ -4,11 +4,19 @@
   border-bottom-style: solid;
 }
 
+.sRow > * {
+  padding-right: 0 !important;
+}
+
 .sRowSelected {
   background-color: rgba(219, 255, 252, 0.35);
   border-bottom: rgba(107, 1, 1, 0.32);
   border-bottom-width: 1px;
   border-bottom-style: solid;
+}
+
+.centerDiv {
+  width: 62% !important;
 }
 
 .navB {
@@ -19,13 +27,13 @@
 }
 
 .addButton {
-  color: rgba(0, 144, 0, 0.70); 
+  color: rgba(0, 144, 0, 0.70);
   top: 25%;
   position: absolute;
 }
 
 .removeButton {
-  color: rgba(222, 0, 0, 0.70); 
+  color: rgba(222, 0, 0, 0.70);
   top: 25%;
   position: absolute;
 }
@@ -37,4 +45,8 @@
 
 .clickingDiv {
   padding: 0px !important;
+}
+
+.imageDiv {
+  padding-right: 0px !important;
 }

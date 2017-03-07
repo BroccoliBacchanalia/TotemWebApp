@@ -63,8 +63,5 @@ export function updateTotemCoords(coords, groupId) {
     payload: { coords }
   });
 
-  console.log(groupId);
-  console.log(`/groups/${groupId}/totemCoords`);
-
   firebaseSet(`/groups/${groupId}/totemCoords`, coords);
 }
