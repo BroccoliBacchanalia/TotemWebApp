@@ -15,8 +15,8 @@ const App = ({ app, user }) => (
     <div style={{ height: '100%' }} onClick={app.visible ? closeMenu : ''}>
       <Nav app={app} user={user}/>
       {!!user.groupId ? <SpeedDialButton /> : ''}
-      <ContactFriends />
       <ContactEmergencyServices />
+      <ContactFriends />
     </div>
   </Router>
 );
