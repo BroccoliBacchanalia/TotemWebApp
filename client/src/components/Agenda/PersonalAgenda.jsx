@@ -11,7 +11,8 @@ import { Grid } from 'semantic-ui-react'
 
 const Agenda = ({ venueSchedule, venue, user }) => {
   const { days } = getStagesAndDays(venue.scheduleitems);
-  const agenda = user.agenda;
+  let agenda;
+  user.agenda ? agenda = user.agenda : agenda = []
   const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
 
   return (
