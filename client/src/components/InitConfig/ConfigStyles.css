@@ -46,6 +46,7 @@
 
 /*  Create Group  */
 .cgBody {
+  text-align: center;
   margin-top: 50px !important;
   padding: 10px;
   width: 60%;
@@ -53,6 +54,7 @@
 }
 
 .cgBody > * {
+  margin-bottom: 20px;
   display: inline-block;
 }
 
@@ -64,6 +66,10 @@
 
 .iFriend input {
   margin-right: 10px;
+}
+
+.iFriend h4 {
+  margin: 0 !important;
 }
 
 .iFriend > * {

@@ -15,6 +15,7 @@ class InviteFriends extends React.Component {
   sendPendingInvite() {
     const groupId = this.props.groupId;
     const name = this.props.groupName;
+    const updates = {};
     let pendingInvites = {}
     let fromDom = document.querySelectorAll('input[type="checkbox"]:checked');
     let checkedUsers = [];
@@ -22,20 +23,50 @@ class InviteFriends extends React.Component {
       checkedUsers.push(fromDom[x].value);
     }
     pendingInvites[groupId] = name;
+    updates[`users/${ checkedUsers[i] }/pendingInvites`]
 
     for (var i = 0; i < checkedUsers.length; i++) {
-      firebaseUpdate(`users/${ checkedUsers[i] }/pendingInvites`,pendingInvites)
+      const updates = {};
+      updates[`users/${ checkedUsers[i] }/pendingInvites`] = pendingInvites;
+      firebaseUpdate(updates);
     }
   }
 
   render() {
     return (
-      <div className="custom-container">
+      <div>
         <div className={localStyles.header}>
     			<h3>Invite Your Friends</h3>
     		</div>
-        <div className={styles.scrollView}>
+        <div
+          style={{ height: window.innerHeight - 257 }}
+          className={styles.scrollView}
+        >
           <form id="check_table">
+            {this.props.friendList.map((friend, index) => (
+              <div
+                key={index}
+                className={localStyles.iFriend}>
+                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
+                <h4>{friend.label}</h4>
+              </div>
+            ))}
+            {this.props.friendList.map((friend, index) => (
+              <div
+                key={index}
+                className={localStyles.iFriend}>
+                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
+                <h4>{friend.label}</h4>
+              </div>
+            ))}
+            {this.props.friendList.map((friend, index) => (
+              <div
+                key={index}
+                className={localStyles.iFriend}>
+                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
+                <h4>{friend.label}</h4>
+              </div>
+            ))}
             {this.props.friendList.map((friend, index) => (
               <div
                 key={index}

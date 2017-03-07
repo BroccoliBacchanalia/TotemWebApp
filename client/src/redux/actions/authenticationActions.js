@@ -4,7 +4,7 @@ import store from '../../redux/store';
 
 /*  Actions */
 import { updateUserGroupID, initialUserData } from './userActions';
-import { firebaseOnce, firebaseSet, firebaseUpdate } from './firebaseActions';
+import { firebaseOnce, firebaseSet } from './firebaseActions';
 import { updateGroup } from './groupActions';
 import { updateVenueNames } from './venueActions';
 
@@ -108,20 +108,10 @@ export function signIn() {
     accessToken = result.credential.accessToken;
     const { user: { uid, displayName, photoURL, email } } = result;
     currentUserId = uid;
-    const updates = {};
-    let userData = {}
-
-      userData[uid + '/label'] = displayName;
-      userData[uid + '/img'] = photoURL;
-      userData[uid + '/email'] = email;
-      userData[uid + '/lastTimeLoggedIn'] = firebase.database.ServerValue.TIMESTAMP;
-    
-    updates[`/users/${uid}/`] = { label: displayName };
-    updates[`/users/${uid}/`] = { img: photoURL };
-    updates[`/users/${uid}/`] = { email: email };
-    updates[`/users/${uid}/`] = { lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP };
-    console.log('userData',updates)
-    firebaseUpdate(updates);
+    firebaseSet(`users/${uid}/label`, displayName);
+    firebaseSet(`users/${uid}/img`, photoURL);
+    firebaseSet(`users/${uid}/email`, email);
+    firebaseSet(`users/${uid}/lastTimeLoggedIn`, firebase.database.ServerValue.TIMESTAMP);
   })
   .then(getUsers)
   .catch(error => signInError(error.message));

@@ -8,36 +8,43 @@ import styles from '../Styles.css'
 import { Item, Button, Grid } from 'semantic-ui-react'
 
 const GroupView = ({ user, users }) => (
-  <div className="custom-container">
+  <div>
     <div className={localStyles.sortToolbar} >
       <GroupSort />
     </div>
 
-    <Grid celled className={localStyles.grid}>
 
-      {Object.keys(users).map((userKey, index) => {
-        //Anchor current user info at top of view
-        const friend = users[userKey];
-        if (userKey === user.uid) {
-          return (
-            <GroupRow key={index} friend={friend} uid={userKey} />
-          );
-        }
-      })}
+    <div style={{ height: window.innerHeight - 197 }}>
+      <Grid
+        celled
+        className={localStyles.grid}
+      >
+        {Object.keys(users).map((userKey, index) => {
+          //Anchor current user info at top of view
+          const friend = users[userKey];
+          if (userKey === user.uid) {
+            return (
+              <GroupRow key={index} friend={friend} uid={userKey} />
+            );
+          }
+        })}
 
-      {Object.keys(users).map((userKey, index) => {
-        const friend = users[userKey];
-        if (userKey !== user.uid) {
-          return (
-            <GroupRow key={index} friend={friend} uid={userKey} />
-          );
-        }
-      })}
-      
-    </Grid>
+        {Object.keys(users).map((userKey, index) => {
+          const friend = users[userKey];
+          if (friend && userKey !== user.uid) {
+            return (
+              <GroupRow key={index} friend={friend} uid={userKey} />
+            );
+          }
+        })}
+      </Grid>
+    </div>
 
-    <div className="footerBtn" >
-      <Button className={localStyles.gButton}>Add a Friend</Button>
+
+    <div className="footerContainer">
+      <div className="footerBtn" >
+        <Button className={localStyles.gButton}>Add a Friend</Button>
+      </div>
     </div>
   </div>
 

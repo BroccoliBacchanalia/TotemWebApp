@@ -24,7 +24,7 @@ export class MapViewer extends Component {
           const lng = e.latLng.lng();
           setBasecamp({ lat, lng });
         }}
-        options={{ streetViewControl: false, mapTypeControl: false }}
+        options={{ streetViewControl: false, mapTypeControl: false, zoomControl: false }}
         >
         <Markers />
         <GroundOverlay
@@ -47,7 +47,6 @@ export class MapViewer extends Component {
     );
   }
 
-
   setBasecamp(coords) {
     console.log(coords);
   }
@@ -57,7 +56,6 @@ export class MapViewer extends Component {
     if (map) map.getZoom();
   }
 }
-
 
 export default connect((store) => {
   return {
