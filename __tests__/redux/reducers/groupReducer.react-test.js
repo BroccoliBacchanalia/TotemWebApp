@@ -1,6 +1,7 @@
 import groupReducer from '../../../client/src/redux/reducers/groupReducer';
 import * as actions from '../../../client/src/redux/actions/groupActions';
 import React from 'react';
+import { sortMethods } from '../../../client/src/redux/actions/sortActions';
 
 describe('Group Reducer', () => {
 
@@ -9,6 +10,7 @@ describe('Group Reducer', () => {
 				groupName: '',
 				members: {},
 				memberKeys: {},
+				totemCoords: {},
 				venueId: ''
 		});
 	});
@@ -31,7 +33,7 @@ describe('Group Reducer', () => {
 		groupReducer({users: {'Y3241asss': {'label': 'mitch'}, '21341234': {'label':'hedberg'}}}, {
 			type: 'USERS_SORT',
 			payload: {
-				method: 'sortAZ'
+				method: sortMethods.sortAZ
 			}
 		}).users
 		).toEqual({"21341234": {"label": "hedberg"}, "Y3241asss": {"label": "mitch"}});

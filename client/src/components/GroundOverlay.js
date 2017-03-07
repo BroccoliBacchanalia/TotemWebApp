@@ -119,7 +119,7 @@ module.exports = (0, _flowRight3.default)(_react2.default.createClass, (0, _enha
       google.maps.event.addListener(groundOverlay, "mousedown", function(event) {
         triggerClick = setTimeout(function() {
           google.maps.event.trigger(map, 'click', event);
-        }, 1000);
+        }, 3000);
       });
       google.maps.event.addListener(groundOverlay, "mouseup", function(event) {
         clearTimeout(triggerClick);
