@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const GroupRow = ({ friend, uid }) => (
 
     <Grid.Row className={localStyles.gRow}>
-      <Grid.Column width={3}>
+      <Grid.Column width={3} className={localStyles.imageDiv}>
         <Image src={friend.img} />
       </Grid.Column>
       <Grid.Column width={7} className={localStyles.centerDiv}>

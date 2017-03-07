@@ -9,7 +9,7 @@ class ContactFriends extends Component {
     const { app, venue } = this.props
     
     return (
-      <Modal open={app.friendsModal} basic size='fullscreen'>
+      <Modal open={app.friendsModal} basic size='fullscreen' mountNode={document.getElementById('app')}>
         <Header className='modal-header' icon='child' content='Need some help?' />
         <Modal.Content>
           <p className='modal-body'>Are you sure you want to send an emergency signal to your group?</p>

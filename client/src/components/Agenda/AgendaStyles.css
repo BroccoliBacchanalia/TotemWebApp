@@ -47,3 +47,7 @@
   flex-direction: row-reverse !important;
   display: table-cell;
 }
+
+.imageDiv {
+  padding-right: 0px !important;
+}

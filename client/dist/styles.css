@@ -67,7 +67,6 @@ button {
   width: 50% !important;
   background: black !important;
   height: 50px !important;
-  padding-left: 70px !important;
   display: inline-block !important;
   color: rgba(191, 255, 253, 1) !important;
   box-shadow: 0px 2px 8px 0px rgba(12, 12, 12, 0.55) !important;
@@ -79,7 +78,6 @@ button {
   width: 100% !important;
   background: black !important;
   height: 50px !important;
-  padding-left: 174px !important;
   display: inline-block !important;
   color: rgba(191, 255, 253, 1) !important;
   box-shadow: 0px 2px 8px 0px rgba(12, 12, 12, 0.55) !important;
@@ -91,4 +89,10 @@ button {
 
 .spacing-dropdown {
   margin-bottom: 10px !important;
+}
+
+select {
+  padding: 14px 11px 14px 11px !important;
+  text-align: center;
+  text-align-last: center;
 }
