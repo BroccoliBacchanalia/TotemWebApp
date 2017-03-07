@@ -16,6 +16,7 @@
 /* Icon Row */
 
 .icon {
+  width: 33.2% !important;
   margin: 0 !important;
   height: 70px;
   padding: 0 !important;
@@ -62,6 +63,7 @@
 .centerDiv {
   box-shadow: none !important;
   padding: 1em 0 !important;
+  width: 43% !important;
 }
 
 .gButton:hover {
