@@ -30,29 +30,29 @@ module.exports = {
     },
     "geofences" : {
       "-KdnpQ8ug0RYlHyH-IL_" : {
-        "latitude" : 37.76766,
-        "longitude" : -122.49479,
+        "lat" : 37.76766,
+        "lng" : -122.49479,
         "name" : "Lands End Stage",
         "radius" : 50,
         "type" : "venue"
       },
       "-KdnpQ8wFzhNWcbj-Yai" : {
-        "latitude" : 37.76992,
-        "longitude" : -122.49341,
+        "lat" : 37.76992,
+        "lng" : -122.49341,
         "name" : "Sutro Stage",
         "radius" : 50,
         "type" : "venue"
       },
       "-KdnpQ8wFzhNWcbj-Yaj" : {
-        "latitude" : 37.76984,
-        "longitude" : -122.48619,
+        "lat" : 37.76984,
+        "lng" : -122.48619,
         "name" : "Panhandle Stage",
         "radius" : 50,
         "type" : "venue"
       },
       "-KdnpQ8wFzhNWcbj-Yak" : {
-        "latitude" : 37.76974,
-        "longitude" : -122.48383,
+        "lat" : 37.76974,
+        "lng" : -122.48383,
         "name" : "Twin Peaks Stage",
         "radius" : 50,
         "type" : "venue"
