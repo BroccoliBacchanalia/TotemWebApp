@@ -11,7 +11,6 @@ import SignInButton from './Auth/SignInButton';
 import Loading from './Auth/Loading';
 
 /* Actions */
-import { setDefaultChat } from '../redux/actions/chatActions';
 import { signIn, signInSuccess, getUserData } from '../redux/actions/authenticationActions';
 import { geolocate } from '../redux/actions';
 
