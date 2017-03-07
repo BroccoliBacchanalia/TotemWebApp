@@ -5,6 +5,7 @@ import Markers from './Markers.jsx'
 import GroundOverlay from '../GroundOverlay';
 import localStyles from './MapStyles.css';
 import { updateTotemCoords } from '../../redux/actions/groupActions';
+import store from '../../redux/store';
 
 export class MapViewer extends Component {
 
@@ -13,7 +14,7 @@ export class MapViewer extends Component {
   }
 
   render() {
-    const setBasecamp = this.setBasecamp;
+    const setBasecamp = this.setBasecamp.bind(this);
     const { map } = this.props;
     const LoadMap = withGoogleMap(() => (
       <GoogleMap
@@ -49,7 +50,18 @@ export class MapViewer extends Component {
   }
 
   setBasecamp(coords) {
-    updateTotemCoords(coords);
+    const totemExists = Object.keys(store.getState().group.totemCoords).length > 0;
+    coords.radius = 10;
+    coords.name = 'Basecamp';
+
+    let message = 'Would you like to drop your group\'s totem at this location?';
+    if (totemExists) message = 'Would you like to update your group\'s totem to this location?';
+
+    const ok = confirm(message);
+
+    if (ok) {
+      updateTotemCoords(coords, store.getState().user.groupId);
+    }
   }
 
   handleMapLoad(map) {

@@ -8,8 +8,23 @@ export class Markers extends Component {
   render() {
     const members = this.props.members;
     const userIds = Object.keys(members);
+    const basecamp = {
+      url: 'img/loading.gif',
+      scaledSize: new google.maps.Size(50, 96)
+    };
+    const totemCoords = this.props.totem;
+    const basecampExists = Object.keys(this.props.totem).length > 0;
+
     return (
       <div>
+        {basecampExists &&
+          <Marker
+            label=''
+            icon={basecamp}
+            position={totemCoords}
+          />
+        }
+
         {userIds.map((uid, index) => {
           const user = members[uid];
 
@@ -20,6 +35,7 @@ export class Markers extends Component {
             anchor: new google.maps.Point(0, 0),
             labelOrigin: new google.maps.Point(15, 35)
           };
+
           return (
             <Marker
               key={index}
@@ -27,7 +43,7 @@ export class Markers extends Component {
               label=''
               icon={icon}
               onClick={() => showGroupMemberInfo(uid)}
-              >
+            >
               {user.showInfo && (
                 <InfoWindow>
                   <div>
@@ -47,5 +63,6 @@ export class Markers extends Component {
 export default connect((store) => {
   return {
     members: store.group.members,
+    totem: store.group.totemCoords
   };
 })(Markers);
