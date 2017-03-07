@@ -108,7 +108,6 @@ export function signIn() {
     accessToken = result.credential.accessToken;
     const { user: { uid, displayName, photoURL, email } } = result;
     currentUserId = uid;
-
     firebaseSet(`users/${uid}/label`, displayName);
     firebaseSet(`users/${uid}/img`, photoURL);
     firebaseSet(`users/${uid}/email`, email);

@@ -5,7 +5,6 @@ const defaults = {
   uid: null,
   name: null,
   groupId: null, //'-KdSF7i59sk07XoRgcYo', //group 'Ballers'
-  groupName: '',
   pendingInvites: {},
   friendList: mockFBFriends,
   dataRetrieved: false

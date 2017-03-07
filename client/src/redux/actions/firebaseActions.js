@@ -21,8 +21,8 @@ export function firebaseSet(url, payload) {
   return firebase.database().ref(url).set(payload);
 }
 
-export function firebaseUpdate(updates) {
-  return firebase.database().ref().update(updates);
+export function firebaseUpdate(url, updates) {
+  return firebase.database().ref(url).update(updates);
 }
 
 export function firebaseKeyGen(path) {

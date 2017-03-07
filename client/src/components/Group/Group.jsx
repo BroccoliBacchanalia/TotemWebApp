@@ -13,31 +13,33 @@ const GroupView = ({ user, users }) => (
       <GroupSort />
     </div>
 
-    <Grid
-      celled
-      className={localStyles.grid}
-      style={{ height: window.innerHeight - 197 }}
-    >
-      {Object.keys(users).map((userKey, index) => {
-        //Anchor current user info at top of view
-        const friend = users[userKey];
-        if (userKey === user.uid) {
-          return (
-            <GroupRow key={index} friend={friend} uid={userKey} />
-          );
-        }
-      })}
 
-      {Object.keys(users).map((userKey, index) => {
-        const friend = users[userKey];
-        if (userKey !== user.uid) {
-          return (
-            <GroupRow key={index} friend={friend} uid={userKey} />
-          );
-        }
-      })}
+    <div style={{ height: window.innerHeight - 197 }}>
+      <Grid
+        celled
+        className={localStyles.grid}
+      >
+        {Object.keys(users).map((userKey, index) => {
+          //Anchor current user info at top of view
+          const friend = users[userKey];
+          if (userKey === user.uid) {
+            return (
+              <GroupRow key={index} friend={friend} uid={userKey} />
+            );
+          }
+        })}
 
-    </Grid>
+        {Object.keys(users).map((userKey, index) => {
+          const friend = users[userKey];
+          if (friend && userKey !== user.uid) {
+            return (
+              <GroupRow key={index} friend={friend} uid={userKey} />
+            );
+          }
+        })}
+      </Grid>
+    </div>
+
 
     <div className="footerContainer">
       <div className="footerBtn" >

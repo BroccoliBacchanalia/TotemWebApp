@@ -14,7 +14,6 @@ import ChooseVenue from '../InitConfig/ChooseVenue';
 import CreateGroup from '../InitConfig/CreateGroup';
 import InviteFriends from '../InitConfig/InviteFriends';
 
-
 const Nav = ({ app, user }) => {
   const navList = [
     { displayName: 'Map',      endPoint: '/map',      iconName: 'map',    className: localStyles.mapNav    },

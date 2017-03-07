@@ -10,12 +10,12 @@ const GroupRow = ({ friend, uid }) => (
       <Grid.Column width={3}>
         <Image src={friend.img} />
       </Grid.Column>
-      <Grid.Column width={8} className={localStyles.centerDiv}>
-        <span className="h3">{friend.label}</span>
+      <Grid.Column width={7} className={localStyles.centerDiv}>
+        <span className="h4">{friend.label}</span>
         <br />
         {friend.position ? getGeofence(friend.position) : ''}
       </Grid.Column>
-      <Grid.Column width={5} className={localStyles.buttonDiv}>
+      <Grid.Column width={6} className={localStyles.buttonDiv}>
         <Link to='/map'> 
           <Button 
             basic 
