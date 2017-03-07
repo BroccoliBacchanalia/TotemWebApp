@@ -23,6 +23,7 @@ export default function groupReducer(state = defaults, action) {
     }
     case 'USERS_SORT': {
       const members = objToArray(state.members);
+      console.log('!!!', action.payload.method)
       const sortedUsers = members.sort(action.payload.method);
       return {...state, members: arrToObj(sortedUsers)};
     }

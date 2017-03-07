@@ -18,6 +18,7 @@ export class ChooseGroup extends React.Component {
       firebaseSet(`users/${ userId }/pendingInvites`, invites);
     });
   }
+  
   render(){
     const groupKeys = Object.keys(this.props.groupList);
     return (

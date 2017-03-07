@@ -1,5 +1,6 @@
 import venueScheduleReducer from '../../../client/src/redux/reducers/venueScheduleReducer.js';
 import React from 'react';
+import store from '../../../client/src/redux/store';
 import * as actions from '../../../client/src/redux/actions/venueScheduleActions';
 
 const defaults = {
@@ -13,7 +14,7 @@ describe('Venue Schedule Reducer', () => {
 
 	 test('Should have set defaults', () => {
 	  expect(venueScheduleReducer(undefined, {})).toEqual({
-		  agenda: [],
+		  isToggle: false,
 		  selectedDay: null,
 		  selectedStage: 'All Stages'
 	  })
@@ -38,14 +39,13 @@ describe('Venue Schedule Reducer', () => {
       }).selectedStage
     ).toBeTruthy()
   })
-  test('Should be able remove agenda', () => {
-   // expect(
+  xtest('Should be able remove agenda', () => {
     expect(venueScheduleReducer(defaults, {
         type: 'REMOVE_AGENDA',
         payload: {
           agenda: [1,5,3]
         }
-      }).agenda.length
+      }).defaults.agenda.length
     ).toEqual(3)
   })
 })

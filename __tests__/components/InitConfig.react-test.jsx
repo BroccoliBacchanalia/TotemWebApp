@@ -10,7 +10,6 @@ import * as firebase from 'firebase';
 
 function setup() {
   ChooseGroup.prototype.removeGroupFromPendingInvites = function(id) {
-    console.log('id', id)
     store.dispatch({
     type: 'UPDATE_USER_GROUP_ID',
     payload: { id }
@@ -45,6 +44,8 @@ describe('InviteFriends', () => {
     expect(actions.updateUserData(mockFBFriends.data)).toEqual({type: 'UPDATE_USER_DATA', payload: mockFBFriends});
   });
 
+  // it('should add listeners')
+
 })
 
 describe('Choose Group', () => {
@@ -56,7 +57,7 @@ const props = {
   }
 }
 
-  const chooseGroup = shallow(<ChooseGroup groupList={ props.groupList } updateUserGroupID={ function(){} }/>)
+  const chooseGroup = shallow(<ChooseGroup groupList={ props.groupList } pendingInvites={ function(){} }/>)
 
   it('should display list of invites to user', () => {
     let listOfGroups = chooseGroup.find('.link');
@@ -68,4 +69,5 @@ const props = {
     oneGroup.simulate('click')
     expect(store.getState().user.groupId.length).toBeGreaterThan(1)
   })
+
 })
