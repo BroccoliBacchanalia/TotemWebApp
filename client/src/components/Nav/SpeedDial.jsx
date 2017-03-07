@@ -58,8 +58,4 @@ class SpeedDialButton extends Component {
 
 SpeedDialButton.displayName = 'SpeedDialButton';
 
-export default connect((store) => {
-  return {
-    app: store.app,
-  };
-})(SpeedDialButton);
+export default SpeedDialButton;

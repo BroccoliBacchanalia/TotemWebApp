@@ -31,7 +31,7 @@ const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl })
     <Grid.Column className={localStyles.imageDiv} width={3}>
       <Image src={imgurl}/>
     </Grid.Column>
-    <Grid.Column width={10}>
+    <Grid.Column className={localStyles.centerDiv}>
       <span className='h4'>{name}</span>
       <br/>
       <span className='h5'>{geofence}</span>
@@ -39,14 +39,14 @@ const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl })
       {startTime.slice(0,-6)+" "+startTime.slice(startTime.length-2)+" "+
         " - "+endTime.slice(0,-6)+" "+endTime.slice(endTime.length-2)}
     </Grid.Column>
-    <Grid.Column 
+    <Grid.Column
       className={localStyles.clickingDiv}
-      width={3} 
+      width={3}
       onClick={removeAgendaItem.bind(null, itemKey)}>
-      <Icon 
+      <Icon
         className={localStyles.removeButton}
-        name='remove circle' 
-        size='big' 
+        name='remove circle'
+        size='big'
       />
     </Grid.Column>
   </Grid.Row>
