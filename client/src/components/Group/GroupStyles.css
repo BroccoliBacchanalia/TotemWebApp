@@ -104,6 +104,7 @@
 
 .mCenterDiv {
   padding: 0px !important;
+  width: 43% !important;
 }
 
 .mArtistName {
@@ -120,16 +121,18 @@
   font-size: 12px !important
 }
 
-.agendaCol {
-  color: #424242 !important;
+.agendaCol, .includesAgendaCol {
   padding-right: 0px !important;
   padding-left: 20px !important;
+  width: 43% !important;
+}
+
+.agendaCol {
+  color: #424242 !important;
 }
 
 .includesAgendaCol {
   color: #00a7de !important;
-  padding-right: 0px !important;
-  padding-left: 20px !important;
 }
 
 .mHeader {

@@ -43,7 +43,7 @@ const PlaceTotem = ({ app, venue }) => {
           inverted
           onClick={() => {
             const time = document.querySelector('input[name="meetup-time"]').value;
-            if (time.length > 0) updateMeetupTime(time);
+            updateMeetupTime(time);
             placeTotemOnClick(true);
             toggleTotemModal(false);
           }}>
