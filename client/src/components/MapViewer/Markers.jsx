@@ -42,7 +42,7 @@ export class Markers extends Component {
 
         {userIds.map((uid, index) => {
           const user = members[uid];
-          console.log(user);
+
           if (user) {
             const icon = {
               url: user.img,
@@ -59,16 +59,16 @@ export class Markers extends Component {
                 label=''
                 icon={icon}
                 onClick={() => showGroupMemberInfo(uid)}
-                >
-                  {user.showInfo && (
-                    <InfoWindow>
-                      <div>
-                        <div>{user.label}</div>
-                        <div>{getGeofence(user.position)}</div>
-                        {this.formatDate(user.position.timestamp)}
-                      </div>
-                    </InfoWindow>
-                  )}
+              >
+                {user.showInfo && (
+                  <InfoWindow>
+                    <div>
+                      <div>{user.label}</div>
+                      <div>{getGeofence(user.position)}</div>
+                      {this.formatDate(user.position.timestamp)}
+                    </div>
+                  </InfoWindow>
+                )}
               </Marker>
             );
           }
