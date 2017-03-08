@@ -11,25 +11,25 @@ import GroupMemberModal from './GroupMemberModal'
 var mockScheduleItems =
   [ {
     "day" : "2017-04-14T07:00:00.000Z",
-    "endtime" : "11:00:00 PM",
+    "endtime" : "2017-04-14T23:00:00",
     "geofence" : "Yuma",
     "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d8980c3/586ad6d898157.jpg",
     "name" : "DILLON FRANCIS",
-    "starttime" : "10:00:00 PM"
+    "starttime" : "2017-04-14T22:00:00"
   }, {
     "day" : "2017-04-14T07:00:00.000Z",
-    "endtime" : "11:00:00 PM",
+    "endtime" : "2017-04-14T23:00:00",
     "geofence" : "Sahara",
     "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d89e862/586ad6d89e914.jpg",
     "name" : "EMPIRE OF THE SUN",
-    "starttime" : "10:00:00 PM"
+    "starttime" : "2017-04-14T22:00:00"
   }, {
     "day" : "2017-04-14T07:00:00.000Z",
-    "endtime" : "11:00:00 PM",
+    "endtime" : "2017-04-14T23:00:00",
     "geofence" : "Mojave",
     "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d8a04f6/586ad6d8a0579.jpg",
     "name" : "FATHER JOHN MISTY",
-    "starttime" : "10:00:00 PM"
+    "starttime" : "2017-04-14T22:00:00"
   }];
 
 const GroupRow = ({ friend, uid }) => {

@@ -1,7 +1,6 @@
 import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
-import schedule from '../../../test';
 
 /*  Actions */
 import { updateUserGroupID, initialUserData } from './userActions';
@@ -102,9 +101,6 @@ function getVenueNames(finished) {
 export function signIn() {
   const provider = new firebase.auth.FacebookAuthProvider();
   signInInProgress();
-
-  console.log(schedule[0]);
-  console.log(schedule[schedule.length - 1]);
 
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
 
