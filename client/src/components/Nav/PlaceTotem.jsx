@@ -47,6 +47,7 @@ const PlaceTotem = ({ app, venue }) => {
             updateMeetupTime(time);
             placeTotemOnClick(true);
             toggleTotemModal(false);
+            
           }}>
           OK
         </Button>

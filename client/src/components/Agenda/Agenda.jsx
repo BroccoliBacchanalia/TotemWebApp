@@ -14,7 +14,6 @@ export const Agenda = ({ venueSchedule, venue, user }) => {
   let agenda;
   user.agenda ? agenda = user.agenda : agenda = []
   const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
-
   return (
     <div>
       <AgendaNav days={days} selectedDay={selectedDay} />

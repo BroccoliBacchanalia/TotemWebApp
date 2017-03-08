@@ -1,6 +1,8 @@
 import React from 'react';
 import localStyles from './AgendaStyles.css';
 import { Grid, Image, Icon } from 'semantic-ui-react';
+/* Actions */
+import { removeAgenda } from '../../redux/actions/userActions';
 import AgendaModal from './AgendaModal'
 
 const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl }) => (

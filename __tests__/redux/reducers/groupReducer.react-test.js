@@ -10,16 +10,17 @@ describe('Group Reducer', () => {
 
 	test('Should have set defaults', () => {
 		expect(groupReducer(undefined, {})).toEqual({
-				groupName: '',
-				members: {},
-				memberKeys: {},
-				venueId: '',
-				totem: {
-			    coords: {},
-			    name: 'Basecamp',
-			    meetupTime: null
-			  },
-			  showTotemInfo: false
+      "groupName": "",
+      "memberKeys": {},
+      "members": {},
+      "placeTotem": false,
+      "showTotemInfo": false,
+      "totem": {
+      	"coords": {},
+        "meetupTime": null,
+        "name": "Basecamp"
+      },
+      "venueId": ""
 		});
 	});
 

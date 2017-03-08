@@ -54,6 +54,7 @@ function getFriends() {
     let firebaseArray = [];
     let firebaseData = {};
     let temp = {};
+    let friendObject = {};
 
     for(let key in databaseGroup[0]) {
       databaseGroup[0][key]['firebaseId'] = key
@@ -67,6 +68,8 @@ function getFriends() {
     for (let i = 0; i < firebaseData.data.length-1; i++) {
       for (let x = 0; x < faceBookFriends.data.length-1; x++) {
         if (firebaseData.data[i].label === faceBookFriends.data[x].name) {
+          //filters out their friend list so not to create an infinite loop
+          delete firebaseData.data[i].friends;
           friendsWithAccounts.data.push(firebaseData.data[i]);
         }
       }
