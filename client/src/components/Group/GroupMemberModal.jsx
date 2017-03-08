@@ -2,22 +2,27 @@ import React from 'react';
 import localStyles from './GroupStyles.css';
 import { connect } from 'react-redux';
 import { getGeofence, showGroupMemberInfo, getStagesAndDays, updateDay } from '../../redux/actions';
-import { Grid, Image, Button, Modal } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Grid, Image, Button, Modal, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
-  const { days } = getStagesAndDays(venue.scheduleitems);
-  let agenda;
+  let agenda; 
   let pAgenda;
+  const { days } = getStagesAndDays(venue.scheduleitems);
+  const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
   user.agenda ? pAgenda = user.agenda : pAgenda = [];
   friend.agenda ? agenda = Object.keys(friend.agenda) : agenda = [];
-  const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
+
   return (
-   <Modal
-      className={localStyles.modal}
-      trigger={<Button className={localStyles.ellipsis} size='large' icon='vertical ellipsis'/>}
-      closeIcon='close'>
+    <Modal 
+      className={localStyles.modal} 
+      closeIcon='close'
+      trigger={
+        <Button className={localStyles.ellipsis} size='large'>
+          <Icon name='vertical ellipsis' size='large'/>
+        </Button>
+    }>
 
       <Modal.Header className={localStyles.mHeader}>
         {friend.label}
@@ -80,6 +85,7 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
           })}
         </Grid>
       </Modal.Content>
+
     </Modal>
   )
 }

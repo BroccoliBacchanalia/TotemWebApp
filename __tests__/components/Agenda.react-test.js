@@ -45,11 +45,4 @@ describe('Agenda', () => {
     let items = agenda.find('#agenda');
     expect(items.length).toEqual(2);
 	})
-
-  it('when an agenda item is clicked it should remove it from list', () => {
-    let item = agenda.find('#agenda').first();
-    let peter = agenda.find('#peter').first();
-    peter.simulate('click')
-    expect(agenda.find('#agenda').length).toEqual(1);
-  })
 })
