@@ -20,7 +20,7 @@
 }
 
 .removeButton {
-  color: rgba(222, 0, 0, 0.70);
+  color: rgba(0, 0, 0, 0.70);
   top: 25%;
   position: absolute;
 }
@@ -36,4 +36,47 @@
 
 .imageDiv {
   padding-right: 0px !important;
+}
+
+.modal {
+  height: 400px !important;
+}
+
+.ellipsis {
+  background: rgba(0, 0, 0, 0) !important;
+  padding-left: 0px !important;
+}
+
+#mContent {
+  padding-right: 0px !important;
+  height: 316px !important;
+}
+
+.mImage {
+  padding-left: 15px !important;
+}
+
+.mInfo {
+  padding-left: 0px !important;
+}
+
+.mDay {
+  font-size: 18px !important;
+}
+
+.mStage {
+  font-size: 24px !important;
+}
+
+.mTime {
+  font-size: 14px !important;
+}
+
+.mHeader {
+  font-size: 20px !important;
+}
+
+.mButton {
+  width: 100% !important;
+  height: 50px !important;
 }
