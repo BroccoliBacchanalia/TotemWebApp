@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { SpeedDial, BubbleList, BubbleListItem } from 'react-speed-dial';
 import {
   getGeofence,
-  placeTotemOnClick,
+  toggleTotemModal,
   toggleEmergencyFriends,
   toggleEmergencyServices,
   toggleSpeedDial
@@ -21,7 +21,7 @@ class SpeedDialButton extends Component {
           primaryText: 'Place a Totem',
           leftAvatar: <Avatar src='/img/totemsquare.png' />,
           onClick: () => {
-            placeTotemOnClick(true);
+            toggleTotemModal(true);
             this.refs['speedDial'].handleClickClose();
           }
         },

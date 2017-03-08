@@ -52,7 +52,7 @@ export class MapViewer extends Component {
     closeInfoWindows();
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
-    console.log(lat, lng);
+
     if (store.getState().group.placeTotem) {
       this.setBasecamp({ lat, lng });
     }
@@ -60,13 +60,9 @@ export class MapViewer extends Component {
 
   setBasecamp(coords) {
     coords.radius = 10;
-    placeTotemOnClick(false);
-    toggleTotemModal(true);
+    console.log(store.getState().group.totem);
     console.log(coords);
-
-    // if (ok) {
-    //   updateTotem(coords, store.getState().user.groupId);
-    // }
+    placeTotemOnClick(false);
   }
 
   handleMapLoad(map) {
