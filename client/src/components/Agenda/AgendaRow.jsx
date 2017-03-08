@@ -6,7 +6,6 @@ import { Grid, Image, Icon } from 'semantic-ui-react';
 import { removeAgenda } from '../../redux/actions/userActions';
 
 function removeAgendaItem(key) {
-  console.log('CALLED!!')
   const uid = firebase.auth().currentUser.uid;
   const db = firebase.database();
   db.ref('users/' + uid + '/agenda/' + key).remove()
