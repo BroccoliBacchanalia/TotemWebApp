@@ -12,8 +12,8 @@ class SpeedDialButton extends Component {
     const list = {
       items: [
         {
-          primaryText: 'Highlight Emergency Tents',
-          leftAvatar: <Avatar src='/img/emergency-tent.png' />,
+          primaryText: 'Place a Totem',
+          leftAvatar: <Avatar src='/img/totemsquare.png' />,
           onClick: () => {
             console.log(true);
             this.refs['speedDial'].handleClickClose();
@@ -39,11 +39,11 @@ class SpeedDialButton extends Component {
     };
     return (
       <MuiThemeProvider>
-        <SpeedDial 
+        <SpeedDial
           id='speedDial'
           ref='speedDial'
-          positionH='left' 
-          positionV='bottom' 
+          positionH='left'
+          positionV='bottom'
          >
           <BubbleList>
             {list.items.map((item, index) => {

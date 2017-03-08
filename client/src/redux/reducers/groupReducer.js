@@ -3,7 +3,12 @@ const defaults = {
   memberKeys: {},
   members: {},
   venueId: '',
-  totemCoords: {}
+  totem: {
+    coords: {},
+    name: 'Basecamp',
+    meetupTime: null
+  },
+  showTotemInfo: false
 };
 
 export default function groupReducer(state = defaults, action) {
@@ -16,7 +21,8 @@ export default function groupReducer(state = defaults, action) {
         memberKeys: { ...state.memberKeys },
         members: { ...state.members },
         venueId: state.venueId,
-        totemCoords: { ...state.totemCoords }
+        totem: { ...state.totem },
+        showTotemInfo: state.showTotemInfo
       };
       newState.members[uid] = user;
       return newState;
@@ -36,7 +42,8 @@ export default function groupReducer(state = defaults, action) {
         memberKeys: { ...state.memberKeys },
         members: { ...state.members },
         venueId: state.venueId,
-        totemCoords: { ...state.totemCoords }
+        totem: { ...state.totem },
+        showTotemInfo: state.showTotemInfo
       };
       newState.members[uid].showInfo ?
       newState.members[uid].showInfo = !newState.members[uid].showInfo :
@@ -53,7 +60,19 @@ export default function groupReducer(state = defaults, action) {
       return { ...state, venueId: action.payload.id };
     }
     case 'UPDATE_TOTEM_COORDS': {
-      return { ...state, totemCoords: action.payload.coords };
+      const newState = {
+        groupName: state.groupName,
+        memberKeys: { ...state.memberKeys },
+        members: { ...state.members },
+        venueId: state.venueId,
+        totem: { ...state.totem },
+        showTotemInfo: state.showTotemInfo
+      };
+      newState.totem.coords = action.payload.coords;
+      return newState;
+    }
+    case 'TOGGLE_TOTEM_INFO': {
+      return { ...state, showTotemInfo: !state.showTotemInfo };
     }
   }
   return state;
