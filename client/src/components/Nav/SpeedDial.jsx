@@ -4,7 +4,13 @@ import ContactFriends from './ContactFriends.jsx'
 import Avatar from 'material-ui/Avatar';
 import { connect } from 'react-redux';
 import { SpeedDial, BubbleList, BubbleListItem } from 'react-speed-dial';
-import { getGeofence, toggleEmergencyFriends, toggleEmergencyServices, toggleSpeedDial } from '../../redux/actions'
+import {
+  getGeofence,
+  placeTotemOnClick,
+  toggleEmergencyFriends,
+  toggleEmergencyServices,
+  toggleSpeedDial
+} from '../../redux/actions'
 import { localStyles } from './UtilStyles.css'
 
 class SpeedDialButton extends Component {
@@ -15,7 +21,7 @@ class SpeedDialButton extends Component {
           primaryText: 'Place a Totem',
           leftAvatar: <Avatar src='/img/totemsquare.png' />,
           onClick: () => {
-            console.log(true);
+            placeTotemOnClick(true);
             this.refs['speedDial'].handleClickClose();
           }
         },
