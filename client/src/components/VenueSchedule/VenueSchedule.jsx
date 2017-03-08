@@ -37,12 +37,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
                 <ScheduleRow
                   key={index}
                   itemKey={key}
-                  name={item.name}
-                  startTime = {item.starttime}
-                  endTime = {item.endtime}
-                  geofence={item.geofence}
-                  day={item.day}
-                  imgurl={item.imgurl}
+                  item={item}
                 />
               );
             }

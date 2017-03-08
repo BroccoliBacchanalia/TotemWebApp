@@ -20,6 +20,10 @@ export function firebaseSet(url, payload) {
   return firebase.database().ref(url).set(payload);
 }
 
+export function firebaseRemove(url) {
+  return firebase.database().ref(url).remove();
+}
+
 export function firebaseUpdate(updates) {
   return firebase.database().ref().update(updates);
 }
