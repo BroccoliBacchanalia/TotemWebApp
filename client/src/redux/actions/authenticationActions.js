@@ -103,12 +103,13 @@ export function signIn() {
   signInInProgress();
 
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
+
   firebase.auth().signInWithPopup(provider)
   .then((result) => {
     accessToken = result.credential.accessToken;
     const { user: { uid, displayName, photoURL, email } } = result;
     currentUserId = uid;
-    
+
     firebaseSet(`users/${uid}/label`, displayName);
     firebaseSet(`users/${uid}/img`, photoURL);
     firebaseSet(`users/${uid}/email`, email);
