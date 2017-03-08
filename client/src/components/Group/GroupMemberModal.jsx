@@ -7,21 +7,22 @@ import { Link } from 'react-router-dom';
 
 
 const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
-  const { days } = getStagesAndDays(venue.scheduleitems);
-  let agenda;
+  let agenda; 
   let pAgenda;
+  const { days } = getStagesAndDays(venue.scheduleitems);
+  const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
   user.agenda ? pAgenda = user.agenda : pAgenda = [];
   friend.agenda ? agenda = Object.keys(friend.agenda) : agenda = [];
-  const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
+
   return (
-   <Modal 
+    <Modal 
       className={localStyles.modal} 
+      closeIcon='close'
       trigger={
         <Button className={localStyles.ellipsis} size='large'>
           <Icon name='vertical ellipsis' size='large'/>
         </Button>
-      } 
-      closeIcon='close'>
+    }>
 
       <Modal.Header className={localStyles.mHeader}>
         {friend.label}
@@ -45,12 +46,12 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
             <Grid.Column width={4}>
               <Image className={localStyles.modalImage} wrapped size='tiny' src={friend.img} />
             </Grid.Column>
-            <Grid.Column width={7} className={localStyles.mCenterDiv}>
+            <Grid.Column className={localStyles.mCenterDiv}>
               <div className={localStyles.mGeofence}>{friend.position ? getGeofence(friend.position) : ''}</div>
               <div className={localStyles.mArtistName}>Place holder for artist</div>
-              <div className={localStyles.timestamp}> Last updated at: { ' ' + 
-                new Date(friend.position.timestamp).toString().substring(0, 3) + ' ' + 
-                new Date(friend.position.timestamp).toString().substring(15, 21)} 
+              <div className={localStyles.timestamp}> Last updated: { ' ' +
+                new Date(friend.position.timestamp).toString().substring(0, 3) + ' ' +
+                new Date(friend.position.timestamp).toString().substring(15, 21)}
               </div>
             </Grid.Column>
             <Grid.Column width={5} className={localStyles.mButtonDiv}>
@@ -76,7 +77,7 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
               return (
                 <Grid.Row className={localStyles.agenda} key={key}>
                   <Grid.Column width={4} className={pAgenda.includes(key) ? localStyles.includesAgendaCol : localStyles.agendaCol}>{item.starttime}</Grid.Column>
-                  <Grid.Column width={7} className={pAgenda.includes(key) ? localStyles.includesAgendaCol : localStyles.agendaCol}>{item.name}</Grid.Column>
+                  <Grid.Column className={pAgenda.includes(key) ? localStyles.includesAgendaCol : localStyles.agendaCol}>{item.name}</Grid.Column>
                   <Grid.Column width={5} className={pAgenda.includes(key) ? localStyles.includesAgendaCol : localStyles.agendaCol}>{item.geofence}</Grid.Column>
                 </Grid.Row>
               )
@@ -84,6 +85,7 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
           })}
         </Grid>
       </Modal.Content>
+
     </Modal>
   )
 }
@@ -99,6 +101,3 @@ export default connect((store) => {
     user: store.user
   };
 })(GroupMemberModal);
-
-
-

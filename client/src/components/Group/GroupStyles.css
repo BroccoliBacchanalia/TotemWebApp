@@ -64,6 +64,7 @@
 .centerDiv {
   box-shadow: none !important;
   padding: 1em 0 !important;
+  width: 62% !important;
 }
 
 .gButton:hover {
@@ -103,6 +104,7 @@
 
 .mCenterDiv {
   padding: 0px !important;
+  width: 43% !important;
 }
 
 .mArtistName {
@@ -120,16 +122,18 @@
   font-size: 12px !important
 }
 
+.agendaCol, .includesAgendaCol {
+  padding-right: 0px !important;
+  padding-left: 20px !important;
+  width: 43% !important;
+}
+
 .agendaCol {
   color: #424242 !important;
-  padding-right: 0px !important;
-  padding-left: 20px !important; 
 }
 
 .includesAgendaCol {
   color: #00a7de !important;
-  padding-right: 0px !important;
-  padding-left: 20px !important; 
 }
 
 .mHeader {
@@ -146,21 +150,19 @@
   padding-right: 0px !important;
 }
 
-.azButton {
-  color: #bffffd !important;
+.azButton, .gfButton, .pxButton {
   height: 100%;
   width: 100%;
   border-radius: 0px !important;
   background: black !important;
 }
 
+.azButton {
+  color: #bffffd !important;
+}
 
 .gfButton {
   color: #e7bfff !important;
-  height: 100%;
-  width: 100%;
-  border-radius: 0px !important;
-  background: black !important;
   border-left-style: solid !important;
   border-width: 1px !important;
   border-color: #2d2d2d !important;
@@ -169,28 +171,24 @@
 
 .pxButton {
   color: #ffbfbf !important;
-  height: 100%;
-  width: 100%;
-  border-radius: 0px !important;
-  background: black !important;
   border-left-style: solid !important;
   border-width: 1px !important;
   border-color: #2d2d2d !important;
 }
 
+.azButton:hover, .gfButton:hover, .pxButton:hover {
+  background: #191919 !important;
+}
+
 .azButton:hover {
   color: #71fdf9 !important;
-  background: #191919 !important;
 }
 
 .gfButton:hover {
   color: #cc78ff !important;
-  background: #191919 !important;
-
 }
 
 .pxButton:hover {
   color: #ff6b6b !important;
-  background: #191919 !important;
 }
 
