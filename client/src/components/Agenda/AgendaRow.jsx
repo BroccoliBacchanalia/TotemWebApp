@@ -1,7 +1,6 @@
 import React from 'react';
 import localStyles from './AgendaStyles.css';
 import { Grid, Image, Icon } from 'semantic-ui-react';
-<<<<<<< HEAD
 /* Actions */
 import { removeAgenda } from '../../redux/actions/userActions';
 

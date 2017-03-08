@@ -28,7 +28,7 @@ export class HomeView extends React.Component {
   }
 
   render() {
-
+  
     const { auth, user } = this.props;
     const hasPendingInvites = Object.keys(user.pendingInvites).length > 0;
     const hasGroup = !!user.groupId;

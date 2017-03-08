@@ -4,11 +4,6 @@ import { Agenda } from '../../client/src/components/Agenda/Agenda';
 
 describe('Agenda', () => {
   const venue = {
-    address: {
-      city: 'Indio',
-      line1: 'Empire Polo Club'
-    },
-    dates: {},
     scheduleitems: [
       {
         name: 'Dillion Francis',
@@ -18,29 +13,19 @@ describe('Agenda', () => {
         name: 'Francis and the lights',
         day: '2017-04-14T07:00:00.000Z'
       }
-    ],
-    emergency: {
-      operator: 911
-    }
+    ]
   }
   const venues = {
-  	isToggle: false,
-    selectedDay: '2017-04-14T07:00:00.000Z',
-    selectedStage: 'All Stages'
+    selectedDay: '',
+    selectedStage: ''
   }
   const user = {
   	agenda: ['0', '1'],
-    dataRetrived: false,
-    friendList: {},
-    groupId: '123424',
-    groupName: 'oui',
-    name: 'derek',
-    uid: '1244121234'
+    friendList: {}
   }
 
-
   const agenda = shallow(<Agenda venueSchedule={ venues } user={ user } venue={ venue }/>);
- console.log(agenda.debug())
+
 	it('should show all of the items in the agenda', () => {
     let items = agenda.find('#agenda');
     expect(items.length).toEqual(2);
