@@ -1,15 +1,13 @@
 import React from 'react';
 import localStyles from './AgendaStyles.css';
 import { connect } from 'react-redux';
-import { getGeofence, showGroupMemberInfo, getStagesAndDays, updateDay, removeAgenda } from '../../redux/actions';
+import { removeAgenda } from '../../redux/actions';
 import { Grid, Image, Button, Modal, Icon, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import moment from 'moment';
 
-
-
-const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl, venueSchedule, venue, user, users }) => {
+const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl, user, users }) => {
   return (
     <Modal 
        className={localStyles.modal} 
@@ -40,9 +38,6 @@ const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl,
             const friend = users[userKey];
             if (friend && userKey !== user.uid && friend.agenda[itemKey]) { return friend.label }
           })}
-
-
-
         </Modal.Description>
       </Modal.Content>
       <Button className={localStyles.mButton} color='red' attached='bottom' onClick={removeAgendaItem.bind(null, itemKey)}>
@@ -50,7 +45,6 @@ const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl,
       </Button>
     </Modal>
   )
-  
 }
 
 function removeAgendaItem(key) {

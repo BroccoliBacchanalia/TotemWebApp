@@ -1,31 +1,7 @@
 import React from 'react';
-import firebase from 'firebase';
 import localStyles from './AgendaStyles.css';
 import { Grid, Image, Icon } from 'semantic-ui-react';
 import AgendaModal from './AgendaModal'
-/* Actions */
-import { removeAgenda } from '../../redux/actions/userActions';
-
-function removeAgendaItem(key) {
-
-  const uid = firebase.auth().currentUser.uid;
-  const db = firebase.database();
-  db.ref('users/' + uid + '/agenda/' + key).remove()
-  .then(function(){
-   // fetch data after removing agenda
-    const updateRef = db.ref('users/'+ uid +'/agenda/');
-
-    updateRef.on("value", (snapshot) => {
-      let agenda = snapshot.val();
-      if (agenda) {
-        agenda = Object.keys(agenda);
-      }
-      removeAgenda(agenda)
-    },  (errorObject) => {
-      console.log("The read failed: " + errorObject.code);
-    });
-  });
-}
 
 const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl }) => (
   <Grid.Row className={localStyles.aRow}>
