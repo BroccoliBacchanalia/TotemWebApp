@@ -7,7 +7,7 @@ import localStyles from './ConfigStyles.css';
 import { updateVenueId } from '../../redux/actions/groupActions';
 import { firebaseSet } from '../../redux/actions/firebaseActions';
 
-const ChooseVenue = ({ venues }) => (
+export const ChooseVenue = ({ venues }) => (
   <div>
     <div className={localStyles.header}>
       <h3>Select a Venue</h3>
@@ -20,6 +20,7 @@ const ChooseVenue = ({ venues }) => (
         <Link key={index} to='/creategroup'>
           <div
             className={styles.row}
+            id = 'venueItem'
             onClick={updateVenueId.bind(this, key)}>
             {venues[key]}
           </div>

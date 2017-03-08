@@ -7,17 +7,19 @@ import localStyles from './ConfigStyles.css';
 import firebase from 'firebase';
 import { firebaseUpdate } from '../../redux/actions/firebaseActions';
 
-class InviteFriends extends React.Component {
+export class InviteFriends extends React.Component {
    constructor(props){
     super(props);
    }
 
   sendPendingInvite() {
+    console.log('HIT');
     const groupId = this.props.groupId;
     const name = this.props.groupName;
     const updates = {};
     let pendingInvites = {}
     let fromDom = document.querySelectorAll('input[type="checkbox"]:checked');
+    console.log('DOM', fromDom.length)
     let checkedUsers = [];
     for(var x = 0; x < fromDom.length; x++) {
       checkedUsers.push(fromDom[x].value);
@@ -42,12 +44,12 @@ class InviteFriends extends React.Component {
           style={{ height: window.innerHeight - 257 }}
           className={styles.scrollView}
         >
-          <form id="check_table">
+          <form id='check_table'>
             {this.props.friendList.map((friend, index) => (
               <div
                 key={index}
                 className={localStyles.iFriend}>
-                <input type="checkbox" name={friend.label} value={friend.firebaseId}/>
+                <input type='checkbox' name={ friend.label } value={ friend.firebaseId } id='yes'/>
                 <h4>{friend.label}</h4>
               </div>
             ))}
@@ -55,7 +57,7 @@ class InviteFriends extends React.Component {
         </div>
         <div className={localStyles.iFooter}>
           <Link to="/map">
-            <button onClick={this.sendPendingInvite.bind(this)}>Invite</button>
+            <button id='submitButton' onClick={this.sendPendingInvite.bind(this)}>Invite</button>
           </Link>
           <div>
             <Link to="/map">

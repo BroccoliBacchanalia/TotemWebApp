@@ -9,7 +9,7 @@ import AgendaNav from './AgendaNav.jsx';
 import { getStagesAndDays, generateDay } from '../../redux/actions/venueScheduleActions';
 import { Grid } from 'semantic-ui-react'
 
-const Agenda = ({ venueSchedule, venue, user }) => {
+export const Agenda = ({ venueSchedule, venue, user }) => {
   const { days } = getStagesAndDays(venue.scheduleitems);
   let agenda;
   user.agenda ? agenda = user.agenda : agenda = []
@@ -32,6 +32,7 @@ const Agenda = ({ venueSchedule, venue, user }) => {
                 endTime = {item.endtime}
                 geofence={item.geofence}
                 day={item.day}
+                id='agenda'
                 imgurl={item.imgurl}>
               </AgendaRow>
             );

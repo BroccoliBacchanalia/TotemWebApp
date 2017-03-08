@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-import addUserListener from './locationActions';
 
 export function firebaseOn(url, callback) {
   const db = firebase.database()
