@@ -7,25 +7,25 @@ import moment from 'moment';
 
 var mock=[{
         "day" : "2017-03-07T17:05:44.766Z",
-        "endtime" : "5:00:00 PM",
+        "endtime" : "6:00:00 PM",
         "geofence" : "Coachella Stage",
         "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d88f669/586ad6d88f70b.jpg",
         "name" : "gobi",
-        "starttime" : "3:00:00 PM"
+        "starttime" : "5:00:00 PM"
       }, {
         "day" : "2017-03-07T17:05:44.766Z",
-        "endtime" : "5:30:00 PM",
+        "endtime" : "7:00:00 PM",
         "geofence" : "Mojave",
         "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d8a8b2b/586ad6d8a8bd1.jpg",
         "name" : "GOLDLINK",
-        "starttime" : "4:37:00 PM"
+        "starttime" : "5:54:00 PM"
       }, {
         "day" : "2017-03-07T17:05:44.766Z",
         "endtime" : "6:00:00 PM",
-        "geofence" : "Yuma",
+        "geofence" : "sahara",
         "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/y/j/g/losblenders600.jpg",
         "name" : "LOS BLENDERS",
-        "starttime" : "5:00:00 PM"
+        "starttime" : "5:51:00 PM"
       }]
 let geofence;
 
@@ -40,8 +40,8 @@ const GroupRow = ({ friend, uid }) => (
         <br />
         {(geofence = friend.position ? getGeofence(friend.position) : '')}
         <br />
-        {getArtist(geofence)}
-        <br />
+        {getArtist(geofence, friend.position.timestamp)}
+         <br />
         <span className={localStyles.timestamp}> Last updated at: { ' ' + 
           new Date(friend.position.timestamp).toString().substring(0, 3) + ' ' + 
           new Date(friend.position.timestamp).toString().substring(15, 21)} 
@@ -66,9 +66,9 @@ const GroupRow = ({ friend, uid }) => (
     </Grid.Row>
 );
 
-function timeInRange(starttime, endtime, date) {
+function timeInRange(starttime, endtime, date, currentTime_ms) {
 
-    let currentTime_ms = (new Date()).getTime();
+    //let currentTime_ms = (new Date()).getTime();
     let startTime_ms = getMillisecond(date,starttime )
     let endTime_ms = getMillisecond(date, endtime)
 
@@ -86,21 +86,28 @@ function getMillisecond(date,time) {
   return today.getTime();
 }
 
-function getArtist(geofence) {
+function getArtist(geofence, currentTime) {
+  console.log("currentime in geofence: ", currentTime);
+
+  if(!currentTime)
+    currentTime = (new Date()).getTime();
 
   if(geofence === null || geofence === undefined || geofence === "")
     return "";
+  console.log("",geofence);
 
   geofence = geofence.toLowerCase();
 
   let result =  mock.filter(function(item){
     let stage = item.geofence.toLowerCase();
+    console.log("geofence and item.geofence", (stage.indexOf(geofence) !== -1 || geofence.indexOf(stage) !== -1))
     if( (stage.indexOf(geofence) !== -1 || geofence.indexOf(stage) !== -1) 
-      && timeInRange(item.starttime, item.endtime, item.day)) {
+      && timeInRange(item.starttime, item.endtime, item.day, currentTime)) {
       return true
     }
     return false
   })
+  console.log(result);
   if(result.length !== 0 )
     return result[0].name
 
