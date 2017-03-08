@@ -1,15 +1,21 @@
 import React from 'react';
-import store from '../../redux/store';
-import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { firebaseOnce, firebaseUpdate } from '../../redux/actions/firebaseActions';
-import { addAgendaItem, removeAgendaItem } from '../../redux/actions/userActions';
-import localStyles from './VenueStyles.css';
 import { Grid, Image, Icon, Button } from 'semantic-ui-react'
 
+import store from '../../redux/store';
+import localStyles from './VenueStyles.css';
+
+import { hourTimeFormat } from '../helperFunctions';
+import { firebaseOnce, firebaseUpdate } from '../../redux/actions/firebaseActions';
+import { addAgendaItem, removeAgendaItem } from '../../redux/actions/userActions';
+
 const ScheduleRow = ({ itemKey, item, user }) => {
-  const { name, starttime, endtime, geofence, imgurl } = item;
+  let { starttime, endtime } = item;
+  const { name,  geofence, imgurl } = item;
   const hasAgendaItem = (user.agenda && user.agenda.includes(itemKey));
+
+  starttime = hourTimeFormat(starttime);
+  endtime = hourTimeFormat(endtime);
 
   return (
     <Grid.Row className={
@@ -26,8 +32,7 @@ const ScheduleRow = ({ itemKey, item, user }) => {
         <span className="h5">{geofence}</span>
         <br />
         <div className="time">
-        {starttime.slice(0,-6)+" "+starttime.slice(starttime.length-2)+" "+
-          " - "+endtime.slice(0,-6)+" "+endtime.slice(endtime.length-2)}
+          {starttime + ' - ' + endtime}
         </div>
       </Grid.Column>
       <Grid.Column

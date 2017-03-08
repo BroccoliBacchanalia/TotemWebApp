@@ -19,19 +19,19 @@ export const Agenda = ({ venueSchedule, venue, user }) => {
       <AgendaNav days={days} selectedDay={selectedDay} />
       <br/>
       <Grid className={localStyles.container}>
-        {agenda.map((key) => {
+        {agenda.map((key, index) => {
           const item = venue.scheduleitems[key];
           if (item && (item.day === selectedDay)) {
             return (
               <AgendaRow
-                key={key}
+                id='agenda'
+                key={index}
                 itemKey={key}
                 name={item.name}
                 startTime = {item.starttime}
                 endTime = {item.endtime}
                 geofence={item.geofence}
                 day={item.day}
-                id='agenda'
                 imgurl={item.imgurl}>
               </AgendaRow>
             );
