@@ -60,9 +60,8 @@ export class MapViewer extends Component {
 
   setBasecamp(coords) {
     coords.radius = 10;
-    console.log(store.getState().group.totem);
-    console.log(coords);
     placeTotemOnClick(false);
+    updateTotem(coords, store.getState().user.groupId);
   }
 
   handleMapLoad(map) {
