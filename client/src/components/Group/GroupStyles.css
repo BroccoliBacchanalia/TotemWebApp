@@ -11,7 +11,7 @@
   border-bottom-width: 2px;
   background-color: rgba(163, 216, 204, 0.2);
   box-shadow: none !important;
-  padding: 10px 0 !important;
+  padding: 10px 0px 0px 0px !important;
 }
 /* Icon Row */
 
@@ -53,7 +53,8 @@
 
 .buttonDiv {
   box-shadow: none !important;
-  padding: 1em 10px 0 0 !important;
+  padding-top: 12px !important;
+  padding-right: 20px !important;
 }
 
 .button {
@@ -63,7 +64,6 @@
 .centerDiv {
   box-shadow: none !important;
   padding: 1em 0 !important;
-  width: 43% !important;
 }
 
 .gButton:hover {
@@ -82,4 +82,65 @@
 .timestamp {
   font-size: 10px;
   color: #5f6b6d;
+}
+
+.modal {
+  height: 400px !important;
+}
+
+.modalImage {
+  display: inline-block !important;
+  padding-left: 10px !important;
+}
+
+.mGeofence {
+  font-size: 18px;
+}
+
+.mButtonDiv {
+  padding: 5px 0px 5px 0px !important;;
+}
+
+.mCenterDiv {
+  padding: 0px !important;
+}
+
+.mArtistName {
+  font-size: 14px
+}
+
+.ellipsis {
+  background: rgba(0, 0, 0, 0) !important 
+}
+
+.agenda {
+  padding: 0px 0px 0px 0px !important;
+  display: flex;
+  font-size: 12px !important
+}
+
+.agendaCol {
+  color: #424242 !important;
+  padding-right: 0px !important;
+  padding-left: 20px !important; 
+}
+
+.includesAgendaCol {
+  color: #00a7de !important;
+  padding-right: 0px !important;
+  padding-left: 20px !important; 
+}
+
+.mHeader {
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+}
+
+.mSelector {
+  font-size: 14px !important;
+}
+
+#mContent {
+  padding-right: 0px !important;
 }

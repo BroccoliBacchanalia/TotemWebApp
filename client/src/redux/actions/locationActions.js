@@ -70,7 +70,7 @@ export function getGeofence(coordinates) {
       return fence.name;
     }
   }
-  return '';
+  return 'Not at a stage';
 }
 
 function getDegrees(meters) {
