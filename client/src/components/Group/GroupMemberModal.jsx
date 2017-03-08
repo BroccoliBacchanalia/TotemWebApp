@@ -14,9 +14,9 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
   friend.agenda ? agenda = Object.keys(friend.agenda) : agenda = [];
   const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
   return (
-   <Modal 
-      className={localStyles.modal} 
-      trigger={<Button className={localStyles.ellipsis} size='large' icon='vertical ellipsis'/>} 
+   <Modal
+      className={localStyles.modal}
+      trigger={<Button className={localStyles.ellipsis} size='large' icon='vertical ellipsis'/>}
       closeIcon='close'>
 
       <Modal.Header className={localStyles.mHeader}>
@@ -44,9 +44,9 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
             <Grid.Column width={7} className={localStyles.mCenterDiv}>
               <div className={localStyles.mGeofence}>{friend.position ? getGeofence(friend.position) : ''}</div>
               <div className={localStyles.mArtistName}>Place holder for artist</div>
-              <div className={localStyles.timestamp}> Last updated at: { ' ' + 
-                new Date(friend.position.timestamp).toString().substring(0, 3) + ' ' + 
-                new Date(friend.position.timestamp).toString().substring(15, 21)} 
+              <div className={localStyles.timestamp}> Last updated: { ' ' + 
+                new Date(friend.position.timestamp).toString().substring(0, 3) + ' ' +
+                new Date(friend.position.timestamp).toString().substring(15, 21)}
               </div>
             </Grid.Column>
             <Grid.Column width={5} className={localStyles.mButtonDiv}>
@@ -95,6 +95,3 @@ export default connect((store) => {
     user: store.user
   };
 })(GroupMemberModal);
-
-
-
