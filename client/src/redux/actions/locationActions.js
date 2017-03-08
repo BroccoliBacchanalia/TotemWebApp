@@ -52,7 +52,11 @@ export function geolocate() {
     maximumAge: 0
   };
 
-  navigator.geolocation.watchPosition(success, error, options);
+  navigator.geolocation.getCurrentPosition(success, error, options);
+
+  setInterval(() => {
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }, 4000);
 }
 
 export function getGeofence(coordinates) {
@@ -70,7 +74,7 @@ export function getGeofence(coordinates) {
       return fence.name;
     }
   }
-  return 'Not at a stage';
+  return '';
 }
 
 function getDegrees(meters) {

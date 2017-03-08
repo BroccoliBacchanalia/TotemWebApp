@@ -83,7 +83,7 @@ function getArtist(geofence, currentTime) {
 
   geofence = geofence.toLowerCase();
 
-  const result = mock.filter((item) => {
+  const result = scheduleItems.filter((item) => {
     const stage = item.geofence.toLowerCase();
     const isAtStage = stage.indexOf(geofence) !== -1 || geofence.indexOf(stage) !== -1;
     const isInRange = timeInRange(item.starttime, item.endtime, item.day, currentTime);

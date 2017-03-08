@@ -76,7 +76,6 @@ export class Markers extends Component {
   }
 
   formatDate(timeStamp) {
-    console.log(timeStamp);
     return (new Date(timeStamp).toString().substring(0, 3) + ' ' +
       new Date(timeStamp).toString().substring(15, 21));
   }
