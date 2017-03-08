@@ -13,10 +13,9 @@ export function addUserListener(userId) {
 //Grabs the location of the current user and updates firebase
 export function geolocate() {
   function success(pos) {
-    alert('Lat: ' + pos.coords.latitude + ' and lng: ' + pos.coords.longitude);
-
     console.log(pos);
     const uid = store.getState().user.uid;
+
     if (uid === 'KrSypCuwkBdEiH2JAJgOGxZN8m52') {
       firebaseSet(`users/${uid}/position`, {
         timestamp: pos.timestamp,
@@ -54,7 +53,11 @@ export function geolocate() {
     maximumAge: 0
   };
 
-  navigator.geolocation.watchPosition(success, error, options);
+  navigator.geolocation.getCurrentPosition(success, error, options);
+
+  setInterval(() => {
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }, 5000);
 }
 
 export function getGeofence(coordinates) {

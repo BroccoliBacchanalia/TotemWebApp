@@ -50,7 +50,7 @@ const Nav = ({ app, user }) => {
           className={ chat.className }>
           <Icon name={ chat.iconName } /> { chat.displayName }
         </Menu.Item>
-        <p><span style={{ color: 'white' }}>Test v1.22</span></p>
+        <p><span style={{ color: 'white' }}>Test v1.23</span></p>
       </Sidebar>
       <Sidebar.Pusher>
         {!!user.groupId ? <HeaderBlock /> : ''}

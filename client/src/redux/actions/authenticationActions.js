@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import axios from 'axios';
 import store from '../../redux/store';
+import schedule from '../../../test';
 
 /*  Actions */
 import { updateUserGroupID, initialUserData } from './userActions';
@@ -102,13 +103,17 @@ export function signIn() {
   const provider = new firebase.auth.FacebookAuthProvider();
   signInInProgress();
 
+  console.log(schedule[0]);
+  console.log(schedule[schedule.length - 1]);
+
   authConfig.facebookPermissions.forEach(permission => provider.addScope(permission));
+
   firebase.auth().signInWithPopup(provider)
   .then((result) => {
     accessToken = result.credential.accessToken;
     const { user: { uid, displayName, photoURL, email } } = result;
     currentUserId = uid;
-    
+
     firebaseSet(`users/${uid}/label`, displayName);
     firebaseSet(`users/${uid}/img`, photoURL);
     firebaseSet(`users/${uid}/email`, email);

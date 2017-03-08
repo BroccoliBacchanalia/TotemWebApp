@@ -8,28 +8,29 @@ import { getGeofence, showGroupMemberInfo } from '../../redux/actions';
 import GroupMemberModal from './GroupMemberModal'
 
 
-var mockScheduleItems = [{
-  "day" : "2017-03-07T17:05:44.766Z",
-  "endtime" : "6:00:00 PM",
-  "geofence" : "Coachella Stage",
-  "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d88f669/586ad6d88f70b.jpg",
-  "name" : "gobi",
-  "starttime" : "5:00:00 PM"
-}, {
-  "day" : "2017-03-07T17:05:44.766Z",
-  "endtime" : "8:59:00 PM",
-  "geofence" : "Mojave",
-  "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d8a8b2b/586ad6d8a8bd1.jpg",
-  "name" : "GOLDLINK",
-  "starttime" : "8:40:00 PM"
-}, {
-  "day" : "2017-03-07T17:05:44.766Z",
-  "endtime" : "6:00:00 PM",
-  "geofence" : "sahara",
-  "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/y/j/g/losblenders600.jpg",
-  "name" : "LOS BLENDERS",
-  "starttime" : "5:51:00 PM"
-}];
+var mockScheduleItems =
+  [ {
+    "day" : "2017-04-14T07:00:00.000Z",
+    "endtime" : "11:00:00 PM",
+    "geofence" : "Yuma",
+    "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d8980c3/586ad6d898157.jpg",
+    "name" : "DILLON FRANCIS",
+    "starttime" : "10:00:00 PM"
+  }, {
+    "day" : "2017-04-14T07:00:00.000Z",
+    "endtime" : "11:00:00 PM",
+    "geofence" : "Sahara",
+    "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d89e862/586ad6d89e914.jpg",
+    "name" : "EMPIRE OF THE SUN",
+    "starttime" : "10:00:00 PM"
+  }, {
+    "day" : "2017-04-14T07:00:00.000Z",
+    "endtime" : "11:00:00 PM",
+    "geofence" : "Mojave",
+    "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d8a04f6/586ad6d8a0579.jpg",
+    "name" : "FATHER JOHN MISTY",
+    "starttime" : "10:00:00 PM"
+  }];
 
 const GroupRow = ({ friend, uid }) => {
   const geofence = friend.position ? getGeofence(friend.position) : false;
@@ -45,7 +46,7 @@ const GroupRow = ({ friend, uid }) => {
         <span className="h4">{friend.label}</span>
         <br />
         {geofence ? <div>{geofence + artist}<br /></div> : ''}
-        <span className={localStyles.timestamp}> Last updated: 
+        <span className={localStyles.timestamp}> Last updated:
           { ' ' + moment(friend.position.timestamp).add(3, 'days').calendar() }
         </span>
       </Grid.Column>
