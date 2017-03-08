@@ -1,12 +1,10 @@
-const mockFBFriends = require('./mock_fb_friend_list');
-
 const defaults = {
   agenda: [],
   uid: null,
   name: null,
   groupId: null,
   pendingInvites: {},
-  friendList: mockFBFriends,
+  friendList: [],
   dataRetrieved: false
 };
 
