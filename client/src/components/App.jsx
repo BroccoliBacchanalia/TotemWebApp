@@ -8,6 +8,7 @@ import { closeMenu } from '../redux/actions';
 import Nav from './Nav/Nav';
 import SpeedDialButton from './Nav/SpeedDial';
 import ContactFriends from './Nav/ContactFriends';
+import PlaceTotem from './Nav/PlaceTotem';
 import ContactEmergencyServices from './Nav/ContactEmergencyServices';
 
 const App = ({ app, user }) => (
@@ -17,6 +18,7 @@ const App = ({ app, user }) => (
       {!!user.groupId ? <SpeedDialButton /> : ''}
       <ContactEmergencyServices />
       <ContactFriends />
+      <PlaceTotem />
     </div>
   </Router>
 );

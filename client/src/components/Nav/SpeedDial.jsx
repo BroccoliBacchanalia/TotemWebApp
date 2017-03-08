@@ -4,7 +4,13 @@ import ContactFriends from './ContactFriends.jsx'
 import Avatar from 'material-ui/Avatar';
 import { connect } from 'react-redux';
 import { SpeedDial, BubbleList, BubbleListItem } from 'react-speed-dial';
-import { getGeofence, toggleEmergencyFriends, toggleEmergencyServices, toggleSpeedDial } from '../../redux/actions'
+import {
+  getGeofence,
+  toggleTotemModal,
+  toggleEmergencyFriends,
+  toggleEmergencyServices,
+  toggleSpeedDial
+} from '../../redux/actions'
 import { localStyles } from './UtilStyles.css'
 
 class SpeedDialButton extends Component {
@@ -12,10 +18,10 @@ class SpeedDialButton extends Component {
     const list = {
       items: [
         {
-          primaryText: 'Highlight Emergency Tents',
-          leftAvatar: <Avatar src='/img/emergency-tent.png' />,
+          primaryText: 'Place a Totem',
+          leftAvatar: <Avatar src='/img/totemsquare.png' />,
           onClick: () => {
-            console.log(true);
+            toggleTotemModal(true);
             this.refs['speedDial'].handleClickClose();
           }
         },
@@ -39,11 +45,11 @@ class SpeedDialButton extends Component {
     };
     return (
       <MuiThemeProvider>
-        <SpeedDial 
+        <SpeedDial
           id='speedDial'
           ref='speedDial'
-          positionH='left' 
-          positionV='bottom' 
+          positionH='left'
+          positionV='bottom'
          >
           <BubbleList>
             {list.items.map((item, index) => {

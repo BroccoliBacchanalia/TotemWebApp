@@ -50,6 +50,12 @@ export function updateGroupMember(user, uid) {
   });
 }
 
+export function closeInfoWindows() {
+  return store.dispatch({
+    type: 'CLOSE_INFO_WINDOWS'
+  });
+}
+
 export function showGroupMemberInfo(uid) {
   return store.dispatch({
     type: 'SHOW_NAME',
@@ -57,11 +63,24 @@ export function showGroupMemberInfo(uid) {
   });
 }
 
-export function updateTotemCoords(coords, groupId) {
+export function showTotemInfo() {
+  return store.dispatch({
+    type: 'TOGGLE_TOTEM_INFO'
+  });
+}
+
+export function placeTotemOnClick(bool) {
   store.dispatch({
-    type: 'UPDATE_TOTEM_COORDS',
-    payload: { coords }
+    type: 'PLACE_TOTEM',
+    payload: bool
+  });
+}
+
+export function updateTotem(a, groupId) {
+  store.dispatch({
+    type: 'UPDATE_TOTEM',
+    // payload: { coords }
   });
 
-  firebaseSet(`/groups/${groupId}/totemCoords`, coords);
+  // firebaseSet(`/groups/${groupId}/totem`, coords);
 }

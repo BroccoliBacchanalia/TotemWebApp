@@ -1,11 +1,14 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, OverlayView, InfoWindow } from 'react-google-maps';
+import store from '../../redux/store';
+import localStyles from './MapStyles.css';
+
 import Markers from './Markers.jsx'
 import GroundOverlay from '../GroundOverlay';
-import localStyles from './MapStyles.css';
-import { updateTotemCoords } from '../../redux/actions/groupActions';
-import store from '../../redux/store';
+
+import { updateTotem, closeInfoWindows, placeTotemOnClick } from '../../redux/actions/groupActions'
+import { toggleTotemModal } from '../../redux/actions/appActions';
 
 export class MapViewer extends Component {
 
@@ -14,18 +17,14 @@ export class MapViewer extends Component {
   }
 
   render() {
-    const setBasecamp = this.setBasecamp.bind(this);
+    const handleClick = this.handleClick.bind(this);
     const { map } = this.props;
     const LoadMap = withGoogleMap(() => (
       <GoogleMap
         defaultZoom={17}
         defaultCenter={map.center}
         mapTypeId= 'terrain'
-        onClick={(e) => {
-          const lat = e.latLng.lat();
-          const lng = e.latLng.lng();
-          setBasecamp({ lat, lng });
-        }}
+        onClick={handleClick}
         options={{ streetViewControl: false, mapTypeControl: false, zoomControl: false }}
         >
         <Markers />
@@ -49,19 +48,21 @@ export class MapViewer extends Component {
     );
   }
 
-  setBasecamp(coords) {
-    const totemExists = Object.keys(store.getState().group.totemCoords).length > 0;
-    coords.radius = 10;
-    coords.name = 'Basecamp';
+  handleClick(e) {
+    closeInfoWindows();
+    const lat = e.latLng.lat();
+    const lng = e.latLng.lng();
 
-    let message = 'Would you like to drop your group\'s totem at this location?';
-    if (totemExists) message = 'Would you like to update your group\'s totem to this location?';
-
-    const ok = confirm(message);
-
-    if (ok) {
-      updateTotemCoords(coords, store.getState().user.groupId);
+    if (store.getState().group.placeTotem) {
+      this.setBasecamp({ lat, lng });
     }
+  }
+
+  setBasecamp(coords) {
+    coords.radius = 10;
+    console.log(store.getState().group.totem);
+    console.log(coords);
+    placeTotemOnClick(false);
   }
 
   handleMapLoad(map) {

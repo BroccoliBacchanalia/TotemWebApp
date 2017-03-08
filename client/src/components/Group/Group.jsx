@@ -12,8 +12,6 @@ const GroupView = ({ user, users }) => (
     <div className={localStyles.sortToolbar} >
       <GroupSort />
     </div>
-
-
     <div style={{ height: window.innerHeight - 197 }} className={styles.scrollView}>
       <Grid
         celled
@@ -23,15 +21,6 @@ const GroupView = ({ user, users }) => (
           //Anchor current user info at top of view
           const friend = users[userKey];
           if (userKey === user.uid) {
-            return (
-              <GroupRow key={index} friend={friend} uid={userKey} />
-            );
-          }
-        })}
-
-        {Object.keys(users).map((userKey, index) => {
-          const friend = users[userKey];
-          if (friend && userKey !== user.uid) {
             return (
               <GroupRow key={index} friend={friend} uid={userKey} />
             );
@@ -47,15 +36,12 @@ const GroupView = ({ user, users }) => (
         })}
       </Grid>
     </div>
-
-
     <div className="footerContainer">
       <div className="footerBtn" >
         <Button className={localStyles.gButton}>Add a Friend</Button>
       </div>
     </div>
   </div>
-
 );
 
 export default connect((store) => {

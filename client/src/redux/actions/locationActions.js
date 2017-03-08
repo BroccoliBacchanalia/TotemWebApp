@@ -57,7 +57,7 @@ export function geolocate() {
 
 export function getGeofence(coordinates) {
   const geofences = store.getState().venue.geofences;
-  const basecamp = store.getState().group.totemCoords;
+  const basecamp = store.getState().group.totem.coords;
   geofences.basecamp = basecamp;
 
   for (let key in geofences) {

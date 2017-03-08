@@ -3,7 +3,13 @@ const defaults = {
   memberKeys: {},
   members: {},
   venueId: '',
-  totemCoords: {}
+  totem: {
+    coords: {},
+    name: 'Basecamp',
+    meetupTime: null
+  },
+  showTotemInfo: false,
+  placeTotem: false,
 };
 
 export default function groupReducer(state = defaults, action) {
@@ -16,7 +22,9 @@ export default function groupReducer(state = defaults, action) {
         memberKeys: { ...state.memberKeys },
         members: { ...state.members },
         venueId: state.venueId,
-        totemCoords: { ...state.totemCoords }
+        totem: { ...state.totem },
+        showTotemInfo: state.showTotemInfo,
+        placeTotem: state.placeTotem
       };
       newState.members[uid] = user;
       return newState;
@@ -36,11 +44,11 @@ export default function groupReducer(state = defaults, action) {
         memberKeys: { ...state.memberKeys },
         members: { ...state.members },
         venueId: state.venueId,
-        totemCoords: { ...state.totemCoords }
+        totem: { ...state.totem },
+        showTotemInfo: state.showTotemInfo,
+        placeTotem: state.placeTotem
       };
-      newState.members[uid].showInfo ?
-      newState.members[uid].showInfo = !newState.members[uid].showInfo :
-      newState.members[uid].showInfo = true;
+      newState.members[uid].showInfo = !newState.members[uid].showInfo;
       return newState;
     }
     case 'UPDATE_GROUP': {
@@ -53,7 +61,40 @@ export default function groupReducer(state = defaults, action) {
       return { ...state, venueId: action.payload.id };
     }
     case 'UPDATE_TOTEM_COORDS': {
-      return { ...state, totemCoords: action.payload.coords };
+      const newState = {
+        groupName: state.groupName,
+        memberKeys: { ...state.memberKeys },
+        members: { ...state.members },
+        venueId: state.venueId,
+        totem: { ...state.totem },
+        showTotemInfo: state.showTotemInfo,
+        placeTotem: state.placeTotem
+      };
+      newState.totem.coords = action.payload.coords;
+      return newState;
+    }
+    case 'TOGGLE_TOTEM_INFO': {
+      return { ...state, showTotemInfo: !state.showTotemInfo };
+    }
+    case 'PLACE_TOTEM': {
+      return { ...state, placeTotem: action.payload };
+    }
+    case 'CLOSE_INFO_WINDOWS': {
+      const newState = {
+        groupName: state.groupName,
+        memberKeys: { ...state.memberKeys },
+        members: { ...state.members },
+        venueId: state.venueId,
+        totem: { ...state.totem },
+        showTotemInfo: false,
+        placeTotem: state.placeTotem
+      };
+
+      for (let key in newState.members) {
+        newState.members[key].showInfo = false;
+      }
+
+      return newState;
     }
   }
   return state;

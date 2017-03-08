@@ -34,3 +34,10 @@ export function toggleSpeedDial() {
     type: 'TOGGLE_SPEED_DIAL',
   });
 }
+
+export function toggleTotemModal(bool) {
+  store.dispatch({
+    type: 'TOGGLE_TOTEM_MODAL',
+    payload: bool
+  });
+}
