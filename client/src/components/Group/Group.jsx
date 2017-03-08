@@ -14,7 +14,7 @@ const GroupView = ({ user, users }) => (
     </div>
 
 
-    <div style={{ height: window.innerHeight - 197 }}>
+    <div style={{ height: window.innerHeight - 197 }} className={styles.scrollView}>
       <Grid
         celled
         className={localStyles.grid}
@@ -29,6 +29,14 @@ const GroupView = ({ user, users }) => (
           }
         })}
 
+        {Object.keys(users).map((userKey, index) => {
+          const friend = users[userKey];
+          if (friend && userKey !== user.uid) {
+            return (
+              <GroupRow key={index} friend={friend} uid={userKey} />
+            );
+          }
+        })}
         {Object.keys(users).map((userKey, index) => {
           const friend = users[userKey];
           if (friend && userKey !== user.uid) {

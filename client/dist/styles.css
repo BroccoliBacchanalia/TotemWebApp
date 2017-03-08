@@ -96,3 +96,9 @@ select {
   text-align: center;
   text-align-last: center;
 }
+
+.group-modal {
+  padding: 0px 0px 0px 12px !important;
+}
+
+

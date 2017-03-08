@@ -1,8 +1,9 @@
 import React from 'react';
 import localStyles from './GroupStyles.css';
 import { getGeofence, showGroupMemberInfo } from '../../redux/actions';
-import { Grid, Image, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Grid, Image, Button, Modal } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import GroupMemberModal from './GroupMemberModal'
 
 const GroupRow = ({ friend, uid }) => (
 
@@ -10,7 +11,7 @@ const GroupRow = ({ friend, uid }) => (
       <Grid.Column width={3} className={localStyles.imageDiv}>
         <Image src={friend.img} />
       </Grid.Column>
-      <Grid.Column width={9} className={localStyles.centerDiv}>
+      <Grid.Column width={10} className={localStyles.centerDiv}>
         <span className="h4">{friend.label}</span>
         <br />
         {friend.position ? getGeofence(friend.position) : ''}
@@ -20,23 +21,22 @@ const GroupRow = ({ friend, uid }) => (
           new Date(friend.position.timestamp).toString().substring(15, 21)} 
         </span>
       </Grid.Column>
-      <Grid.Column width={4} className={localStyles.buttonDiv}>
-        <Link to='/map'>
-          <Button
-            basic
-            className={localStyles.button}
-            icon='marker'
-            size='large'
-            onClick={() => {showGroupMemberInfo(uid)}}/>{' '}
-        </Link>
-        <Button
-          basic
-          className={localStyles.button}
-          icon='comment outline'
-          size='large'
-          href={'https://m.me/' + friend.facebookID}/>
+      <Grid.Column width={3} className={localStyles.buttonDiv}>
+        <GroupMemberModal friend={friend} uid={uid} />
       </Grid.Column>
     </Grid.Row>
 );
 
 export default GroupRow;
+
+
+
+
+
+        
+
+
+
+
+
+
