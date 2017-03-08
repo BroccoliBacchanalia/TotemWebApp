@@ -26,7 +26,6 @@ const GroupView = ({ user, users }) => (
             );
           }
         })}
-
         {Object.keys(users).map((userKey, index) => {
           const friend = users[userKey];
           if (friend && userKey !== user.uid) {
@@ -43,7 +42,6 @@ const GroupView = ({ user, users }) => (
       </div>
     </div>
   </div>
-
 );
 
 export default connect((store) => {
