@@ -2,8 +2,8 @@ import React from 'react';
 import localStyles from './GroupStyles.css';
 import { connect } from 'react-redux';
 import { getGeofence, showGroupMemberInfo, getStagesAndDays, updateDay } from '../../redux/actions';
-import { Grid, Image, Button, Modal } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Grid, Image, Button, Modal, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
@@ -16,7 +16,11 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
   return (
    <Modal 
       className={localStyles.modal} 
-      trigger={<Button className={localStyles.ellipsis} size='large' icon='vertical ellipsis'/>} 
+      trigger={
+        <Button className={localStyles.ellipsis} size='large'>
+          <Icon name='vertical ellipsis' size='large'/>
+        </Button>
+      } 
       closeIcon='close'>
 
       <Modal.Header className={localStyles.mHeader}>

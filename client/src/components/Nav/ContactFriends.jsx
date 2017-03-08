@@ -16,7 +16,6 @@ class ContactFriends extends Component {
         </Modal.Content>
         <Modal.Actions>
           <Button 
-            basic 
             size='huge' 
             color='red' 
             inverted 

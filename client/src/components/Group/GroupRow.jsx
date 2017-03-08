@@ -15,14 +15,14 @@ var mock=[{
         "starttime" : "5:00:00 PM"
       }, {
         "day" : "2017-03-07T17:05:44.766Z",
-        "endtime" : "7:00:00 PM",
+        "endtime" : "8:00:00 PM",
         "geofence" : "Mojave",
         "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d8a8b2b/586ad6d8a8bd1.jpg",
         "name" : "GOLDLINK",
-        "starttime" : "5:54:00 PM"
+        "starttime" : "7:54:00 PM"
       }, {
         "day" : "2017-03-07T17:05:44.766Z",
-        "endtime" : "6:00:00 PM",
+        "endtime" : "7:54:00 PM",
         "geofence" : "sahara",
         "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/y/j/g/losblenders600.jpg",
         "name" : "LOS BLENDERS",

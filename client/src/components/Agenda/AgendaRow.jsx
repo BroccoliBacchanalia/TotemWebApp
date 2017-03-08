@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import localStyles from './AgendaStyles.css';
 import { Grid, Image, Icon } from 'semantic-ui-react';
+import AgendaModal from './AgendaModal'
 /* Actions */
 import { removeAgenda } from '../../redux/actions/userActions';
 
@@ -41,15 +42,21 @@ const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl })
     </Grid.Column>
     <Grid.Column
       className={localStyles.clickingDiv}
-      width={3}
-      onClick={removeAgendaItem.bind(null, itemKey)}>
-      <Icon
-        className={localStyles.removeButton}
-        name='remove circle'
-        size='big'
+      width={3}>
+      <AgendaModal 
+        itemKey={itemKey}
+        name={name}
+        startTime = {startTime}
+        endTime = {endTime}
+        geofence={geofence}
+        day={day}
+        id='agenda'
+        imgurl={imgurl}
       />
     </Grid.Column>
   </Grid.Row>
 );
 
 export default AgendaRow;
+
+//onClick={removeAgendaItem.bind(null, itemKey)}
