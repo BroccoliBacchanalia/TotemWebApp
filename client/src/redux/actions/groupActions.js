@@ -63,7 +63,7 @@ export function showGroupMemberInfo(uid) {
   });
 }
 
-export function showTotemInfo() {
+export function toggleTotemInfo() {
   return store.dispatch({
     type: 'TOGGLE_TOTEM_INFO'
   });
