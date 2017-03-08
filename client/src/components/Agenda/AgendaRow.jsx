@@ -41,6 +41,7 @@ const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl })
     <Grid.Column
       className={localStyles.clickingDiv}
       width={3}
+      id='peter'
       onClick={removeAgendaItem.bind(null, itemKey)}>
       <Icon
         className={localStyles.removeButton}

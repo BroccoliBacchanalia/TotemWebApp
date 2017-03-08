@@ -40,7 +40,7 @@ describe('Agenda', () => {
 
 
   const agenda = shallow(<Agenda venueSchedule={ venues } user={ user } venue={ venue }/>);
- 
+ console.log(agenda.debug())
 	it('should show all of the items in the agenda', () => {
     let items = agenda.find('#agenda');
     expect(items.length).toEqual(2);
@@ -48,7 +48,8 @@ describe('Agenda', () => {
 
   it('when an agenda item is clicked it should remove it from list', () => {
     let item = agenda.find('#agenda').first();
-    item.simulate('click')
-    expect(item.length).toEqual(1);
+    let peter = agenda.find('#peter').first();
+    peter.simulate('click')
+    expect(agenda.find('#agenda').length).toEqual(1);
   })
 })
