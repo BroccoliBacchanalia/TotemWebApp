@@ -10,8 +10,13 @@ describe('Group Reducer', () => {
 				groupName: '',
 				members: {},
 				memberKeys: {},
-				totemCoords: {},
-				venueId: ''
+				venueId: '',
+				totem: {
+			    coords: {},
+			    name: 'Basecamp',
+			    meetupTime: null
+			  },
+			  showTotemInfo: false
 		});
 	});
 

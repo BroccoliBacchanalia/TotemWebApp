@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Marker, InfoWindow } from 'react-google-maps';
 import store from '../../redux/store.js';
-import { getGeofence, showGroupMemberInfo } from '../../redux/actions'
+import { getGeofence, showGroupMemberInfo } from '../../redux/actions';
+import { showTotemInfo } from '../../redux/actions/groupActions';
 
 export class Markers extends Component {
   render() {
@@ -15,8 +16,8 @@ export class Markers extends Component {
       anchor: new google.maps.Point(25, 96)
 
     };
-    const totemCoords = this.props.totem;
-    const basecampExists = Object.keys(this.props.totem).length > 0;
+    const totemCoords = this.props.totem.coords;
+    const basecampExists = Object.keys(this.props.totem.coords).length > 0;
 
     return (
       <div>
@@ -25,7 +26,16 @@ export class Markers extends Component {
             label=''
             icon={basecamp}
             position={totemCoords}
-          />
+            onClick={showTotemInfo}
+          >
+            {this.props.showTotemInfo && (
+              <InfoWindow>
+                <div>
+                  <div>Bascamp</div>
+                </div>
+              </InfoWindow>
+            )}
+          </Marker>
         }
 
         {userIds.map((uid, index) => {
@@ -52,8 +62,8 @@ export class Markers extends Component {
                   <div>
                     <div>{user.label}</div>
                     <div>{getGeofence(user.position)}</div>
-                    { new Date(user.position.timestamp).toString().substring(0, 3) + ' ' + 
-                      new Date(user.position.timestamp).toString().substring(15, 21) } 
+                    { new Date(user.position.timestamp).toString().substring(0, 3) + ' ' +
+                      new Date(user.position.timestamp).toString().substring(15, 21) }
                   </div>
                 </InfoWindow>
               )}
@@ -68,6 +78,7 @@ export class Markers extends Component {
 export default connect((store) => {
   return {
     members: store.group.members,
-    totem: store.group.totemCoords
+    totem: store.group.totem,
+    showTotemInfo: store.group.showTotemInfo
   };
 })(Markers);

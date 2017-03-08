@@ -65,3 +65,9 @@ export function updateTotemCoords(coords, groupId) {
 
   firebaseSet(`/groups/${groupId}/totemCoords`, coords);
 }
+
+export function showTotemInfo() {
+  return store.dispatch({
+    type: 'TOGGLE_TOTEM_INFO'
+  });
+}
