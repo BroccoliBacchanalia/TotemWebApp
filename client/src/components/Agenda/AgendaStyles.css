@@ -1,29 +1,15 @@
-
 .aRow {
   border-bottom: rgba(107, 1, 1, 0.32);
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
 
-
-.gRow img {
-  padding: 5px;
-  width: 70px;
+.aRow > * {
+  padding-right: 0 !important;
 }
 
-.gRow > * {
-  padding-top: 5px;
-  float: left;
-  display: inline-block;
-}
-
-.gRow p {
-  margin-bottom: 0;
-}
-
-.gRow > div:hover {
-  cursor: pointer;
-  background-color: lightgrey;
+.centerDiv {
+  width: 62% !important;
 }
 
 .navB {
@@ -34,7 +20,7 @@
 }
 
 .removeButton {
-  color: rgba(222, 0, 0, 0.70); 
+  color: rgba(222, 0, 0, 0.70);
   top: 25%;
   position: absolute;
 }
