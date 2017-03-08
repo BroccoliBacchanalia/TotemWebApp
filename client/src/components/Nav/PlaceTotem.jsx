@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import { Button, Header, Icon, Modal, Dimmer, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { toggleTotemModal } from '../../redux/actions/appActions';
-import { placeTotemOnClick } from '../../redux/actions/groupActions';
+import { placeTotemOnClick, updateMeetupTime } from '../../redux/actions/groupActions';
 import localStyles from './UtilStyles.css';
 
 const PlaceTotem = ({ app, venue }) => {
   return (
     <Modal open={app.totemModal} basic size='fullscreen'>
-      <Header className={localStyles.center + ' modal-header'} content='Place a Totem' />
+      <Header
+        className={localStyles.center + ' modal-header'}
+        content='Place a Totem'
+      />
       <div className={localStyles.center}>
         <img src='img/loading.gif' className={localStyles.totImg} />
       </div>
@@ -39,6 +42,8 @@ const PlaceTotem = ({ app, venue }) => {
           size='huge'
           inverted
           onClick={() => {
+            const time = document.querySelector('input[name="meetup-time"]').value;
+            updateMeetupTime(time);
             placeTotemOnClick(true);
             toggleTotemModal(false);
           }}>

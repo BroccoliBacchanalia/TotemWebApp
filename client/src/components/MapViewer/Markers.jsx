@@ -3,21 +3,21 @@ import { connect } from 'react-redux';
 import { Marker, InfoWindow } from 'react-google-maps';
 import store from '../../redux/store.js';
 import { getGeofence, showGroupMemberInfo } from '../../redux/actions';
-import { showTotemInfo } from '../../redux/actions/groupActions';
+import { toggleTotemInfo } from '../../redux/actions/groupActions';
 
 export class Markers extends Component {
   render() {
-    const members = this.props.members;
+    const { members, totem, showTotemInfo, placeTotem } = this.props;
     const userIds = Object.keys(members);
     const basecamp = {
       url: 'img/loading.gif',
       scaledSize: new google.maps.Size(50, 96),
       origin: new google.maps.Point(0,0),
       anchor: new google.maps.Point(25, 96)
-
     };
-    const totemCoords = this.props.totem.coords;
-    const basecampExists = Object.keys(this.props.totem.coords).length > 0;
+    const basecampExists = Object.keys(totem.coords).length > 0;
+    const offset = new Date().getTimezoneOffset();
+    const milliSeconds = Date.parse(totem.meetupTime) + (offset * 60 * 1000);
 
     return (
       <div>
@@ -25,13 +25,15 @@ export class Markers extends Component {
           <Marker
             label=''
             icon={basecamp}
-            position={totemCoords}
-            onClick={showTotemInfo}
+            position={totem.coords}
+            onClick={toggleTotemInfo}
           >
-            {this.props.showTotemInfo && (
+            {showTotemInfo && (
               <InfoWindow>
                 <div>
                   <div>Bascamp</div>
+                  {totem.meetupTime && !placeTotem &&
+                  <div>{this.formatDate(milliSeconds)}</div>}
                 </div>
               </InfoWindow>
             )}
@@ -62,8 +64,7 @@ export class Markers extends Component {
                   <div>
                     <div>{user.label}</div>
                     <div>{getGeofence(user.position)}</div>
-                    { new Date(user.position.timestamp).toString().substring(0, 3) + ' ' +
-                      new Date(user.position.timestamp).toString().substring(15, 21) }
+                    {this.formatDate(user.position.timestamp)}
                   </div>
                 </InfoWindow>
               )}
@@ -73,12 +74,19 @@ export class Markers extends Component {
       </div>
     );
   }
+
+  formatDate(timeStamp) {
+    console.log(timeStamp);
+    return (new Date(timeStamp).toString().substring(0, 3) + ' ' +
+      new Date(timeStamp).toString().substring(15, 21));
+  }
 }
 
 export default connect((store) => {
   return {
     members: store.group.members,
     totem: store.group.totem,
-    showTotemInfo: store.group.showTotemInfo
+    showTotemInfo: store.group.showTotemInfo,
+    placeTotem: store.group.placeTotem
   };
 })(Markers);

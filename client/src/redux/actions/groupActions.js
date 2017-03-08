@@ -16,7 +16,7 @@ export function updateGroup(group) {
   if (group.venueId) {
     firebaseOnce('/venues/' + group.venueId, updateVenue);
   } else {
-    // Add code to render map on user's current location 
+    // Add code to render map on user's current location
 
     store.dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
   }
@@ -63,24 +63,31 @@ export function showGroupMemberInfo(uid) {
   });
 }
 
-export function showTotemInfo() {
+export function toggleTotemInfo() {
   return store.dispatch({
     type: 'TOGGLE_TOTEM_INFO'
   });
 }
 
 export function placeTotemOnClick(bool) {
-  store.dispatch({
+  return store.dispatch({
     type: 'PLACE_TOTEM',
     payload: bool
   });
 }
 
-export function updateTotem(a, groupId) {
-  store.dispatch({
-    type: 'UPDATE_TOTEM',
-    // payload: { coords }
+export function updateMeetupTime(time) {
+  return store.dispatch({
+    type: 'UPDATE_MEETUP_TIME',
+    payload: { time }
   });
+}
 
-  // firebaseSet(`/groups/${groupId}/totem`, coords);
+export function updateTotem(coords, groupId) {
+  store.dispatch({
+    type: 'UPDATE_TOTEM_COORDS',
+    payload: { coords }
+  });
+  const totem = store.getState().group.totem;
+  firebaseSet(`/groups/${groupId}/totem`, totem);
 }

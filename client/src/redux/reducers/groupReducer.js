@@ -73,6 +73,19 @@ export default function groupReducer(state = defaults, action) {
       newState.totem.coords = action.payload.coords;
       return newState;
     }
+    case 'UPDATE_MEETUP_TIME': {
+      const newState = {
+        groupName: state.groupName,
+        memberKeys: { ...state.memberKeys },
+        members: { ...state.members },
+        venueId: state.venueId,
+        totem: { ...state.totem },
+        showTotemInfo: state.showTotemInfo,
+        placeTotem: state.placeTotem
+      };
+      newState.totem.meetupTime = action.payload.time;
+      return newState;
+    }
     case 'TOGGLE_TOTEM_INFO': {
       return { ...state, showTotemInfo: !state.showTotemInfo };
     }

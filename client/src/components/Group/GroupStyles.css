@@ -64,6 +64,7 @@
 .centerDiv {
   box-shadow: none !important;
   padding: 1em 0 !important;
+  width: 62% !important;
 }
 
 .gButton:hover {
@@ -103,6 +104,7 @@
 
 .mCenterDiv {
   padding: 0px !important;
+  width: 43% !important;
 }
 
 .mArtistName {
@@ -110,7 +112,7 @@
 }
 
 .ellipsis {
-  background: rgba(0, 0, 0, 0) !important 
+  background: rgba(0, 0, 0, 0) !important
 }
 
 .agenda {
@@ -119,16 +121,18 @@
   font-size: 12px !important
 }
 
+.agendaCol, .includesAgendaCol {
+  padding-right: 0px !important;
+  padding-left: 20px !important;
+  width: 43% !important;
+}
+
 .agendaCol {
   color: #424242 !important;
-  padding-right: 0px !important;
-  padding-left: 20px !important; 
 }
 
 .includesAgendaCol {
   color: #00a7de !important;
-  padding-right: 0px !important;
-  padding-left: 20px !important; 
 }
 
 .mHeader {
