@@ -17,7 +17,7 @@ export const Agenda = ({ venueSchedule, venue, user }) => {
 
   return (
     <div>
-      <AgendaNav key='moots' days={days} selectedDay={selectedDay} />
+      <AgendaNav days={days} selectedDay={selectedDay} />
       <br/>
       <Grid className={localStyles.container}>
         {agenda.map((key) => {
