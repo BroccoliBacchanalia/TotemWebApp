@@ -13,13 +13,11 @@ export class InviteFriends extends React.Component {
    }
 
   sendPendingInvite() {
-    console.log('HIT');
     const groupId = this.props.groupId;
     const name = this.props.groupName;
     const updates = {};
     let pendingInvites = {}
     let fromDom = document.querySelectorAll('input[type="checkbox"]:checked');
-    console.log('DOM', fromDom.length)
     let checkedUsers = [];
     for(var x = 0; x < fromDom.length; x++) {
       checkedUsers.push(fromDom[x].value);
