@@ -11,8 +11,7 @@ import { Grid } from 'semantic-ui-react'
 
 export const Agenda = ({ venueSchedule, venue, user }) => {
   const { days } = getStagesAndDays(venue.scheduleitems);
-  let agenda;
-  user.agenda ? agenda = user.agenda : agenda = []
+  const agenda = user.agenda;
   const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
   return (
     <div>
@@ -27,13 +26,8 @@ export const Agenda = ({ venueSchedule, venue, user }) => {
                 id='agenda'
                 key={index}
                 itemKey={key}
-                name={item.name}
-                startTime = {item.starttime}
-                endTime = {item.endtime}
-                geofence={item.geofence}
-                day={item.day}
-                imgurl={item.imgurl}>
-              </AgendaRow>
+                item={item}
+              />
             );
           }
         })}

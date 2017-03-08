@@ -8,7 +8,7 @@ import moment from 'moment';
 import localStyles from './AgendaStyles.css';
 import { removeAgendaItem } from '../../redux/actions/userActions';
 
-const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl, user, users }) => {
+const AgendaModal = ({ itemKey, name, starttime, endtime, geofence, day, imgurl, user, users }) => {
   return (
     <Modal
        className={localStyles.modal}
@@ -28,7 +28,7 @@ const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl,
             <Grid.Column width={8} className={localStyles.mInfo}>
               <div className={localStyles.mStage}>{geofence}</div>
               <div className={localStyles.mDay}>{moment(day).format('dddd') + ', ' + moment(day).format('MMM Do')}</div>
-              <div className={localStyles.mTime}>{startTime + ' - ' + endTime}</div>
+              <div className={localStyles.mTime}>{starttime + ' - ' + endtime}</div>
               <div className={localStyles.mTime}>{moment(day).startOf('hour').fromNow()}</div>
             </Grid.Column>
           </Grid.Row>
@@ -37,7 +37,9 @@ const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl,
           <Header className={localStyles.mHeader}>Who else is going?</Header>
           {Object.keys(users).map((userKey, index) => {
             const friend = users[userKey];
-            if (friend && userKey !== user.uid && friend.agenda[itemKey]) { return friend.label }
+            if (friend && friend.agenda && userKey !== user.uid && friend.agenda[itemKey]) {
+              return friend.label;
+            }
           })}
         </Modal.Description>
       </Modal.Content>
