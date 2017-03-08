@@ -98,5 +98,4 @@ function getArtist(geofence, currentTime) {
   return '';
 }
 
-
 export default GroupRow;
