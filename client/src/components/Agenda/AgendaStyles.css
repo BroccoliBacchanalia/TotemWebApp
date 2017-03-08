@@ -49,6 +49,7 @@
 
 #mContent {
   padding-right: 0px !important;
+  height: 316px !important;
 }
 
 .mImage {
@@ -73,4 +74,9 @@
 
 .mHeader {
   font-size: 20px !important;
+}
+
+.mButton {
+  width: 100% !important;
+  height: 50px !important;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import localStyles from './AgendaStyles.css';
 import { connect } from 'react-redux';
-import { getGeofence, showGroupMemberInfo, getStagesAndDays, updateDay } from '../../redux/actions';
+import { getGeofence, showGroupMemberInfo, getStagesAndDays, updateDay, removeAgenda } from '../../redux/actions';
 import { Grid, Image, Button, Modal, Icon, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
@@ -31,22 +31,23 @@ const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl,
               <div className={localStyles.mDay}>{moment(day).format('dddd') + ', ' + moment(day).format('MMM Do')}</div>
               <div className={localStyles.mTime}>{startTime + ' - ' + endTime}</div>
               <div className={localStyles.mTime}>{moment(day).startOf('hour').fromNow()}</div>
-           </Grid.Column>
-
-
+            </Grid.Column>
           </Grid.Row>
         </Grid>
         <Modal.Description>
           <Header className={localStyles.mHeader}>Who else is going?</Header>
           {Object.keys(users).map((userKey, index) => {
             const friend = users[userKey];
-            if (friend && userKey !== user.uid && Object.keys(friend.agenda).includes(itemKey)) { return friend.label }
+            if (friend && userKey !== user.uid && friend.agenda[itemKey]) { return friend.label }
           })}
 
 
 
         </Modal.Description>
       </Modal.Content>
+      <Button className={localStyles.mButton} color='red' attached='bottom' onClick={removeAgendaItem.bind(null, itemKey)}>
+        Remove from Agenda
+      </Button>
     </Modal>
   )
   

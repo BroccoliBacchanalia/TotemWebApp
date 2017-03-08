@@ -59,4 +59,4 @@ const AgendaRow = ({ itemKey, name, startTime, endTime, geofence, day, imgurl })
 
 export default AgendaRow;
 
-//onClick={removeAgendaItem.bind(null, itemKey)}
+
