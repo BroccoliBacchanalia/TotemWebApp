@@ -56,10 +56,8 @@ const GroupRow = ({ friend, uid }) => (
 
 function timeInRange(starttime, endtime, date, currentTime_ms) {
 
-    //let currentTime_ms = (new Date()).getTime();
     let startTime_ms = getMillisecond(date,starttime )
     let endTime_ms = getMillisecond(date, endtime)
-
     if(currentTime_ms>=startTime_ms && currentTime_ms<=endTime_ms)
       return true;
     return false;
@@ -75,30 +73,26 @@ function getMillisecond(date,time) {
 }
 
 function getArtist(geofence, currentTime) {
-  console.log("currentime in geofence: ", currentTime);
 
   if(!currentTime)
     currentTime = (new Date()).getTime();
 
   if(geofence === null || geofence === undefined || geofence === "")
     return "";
-  console.log("",geofence);
 
   geofence = geofence.toLowerCase();
 
   let result =  mock.filter(function(item){
     let stage = item.geofence.toLowerCase();
-    console.log("geofence and item.geofence", (stage.indexOf(geofence) !== -1 || geofence.indexOf(stage) !== -1))
     if( (stage.indexOf(geofence) !== -1 || geofence.indexOf(stage) !== -1) 
       && timeInRange(item.starttime, item.endtime, item.day, currentTime)) {
       return true
     }
     return false
   })
-  console.log(result);
+
   if(result.length !== 0 )
     return result[0].name
-
   return "";
 }
 
