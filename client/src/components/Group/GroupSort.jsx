@@ -5,9 +5,9 @@ import { sortUsers } from '../../redux/actions/sortActions';
 
 const SortGroup = () => {
   const icons = [
-    { path:'sort alphabet ascending', method: 'sortAZ' },
-    { path: 'map signs', method: 'geofence' },
-    { path: 'street view', method: 'proximity' }
+    { path:'sort alphabet ascending', method: 'sortAZ', color: localStyles.azButton },
+    { path: 'map signs', method: 'geofence', color: localStyles.gfButton },
+    { path: 'street view', method: 'proximity', color: localStyles.pxButton }
   ];
   return (
     <Grid columns={3} divided>
@@ -19,7 +19,7 @@ const SortGroup = () => {
             >
               <Button
                 className={localStyles.gButton}
-                className={localStyles.sort}
+                className={icon.color}
                 key={index}
                 onClick={() => sortUsers(icon.method)}
                 icon={{name:icon.path, size:'big'}}

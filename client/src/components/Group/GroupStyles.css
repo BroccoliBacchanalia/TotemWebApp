@@ -40,7 +40,7 @@
   height: 100%;
   width: 100%;
   border-radius: 0px !important;
-  background: rgba(146, 78, 78, 0.43) !important;
+  background: black !important;
 }
 
 .sortToolbar {
@@ -99,7 +99,7 @@
 }
 
 .mButtonDiv {
-  padding: 5px 0px 5px 0px !important;;
+  padding: 5px 0px 5px 0px !important;
 }
 
 .mCenterDiv {
@@ -112,7 +112,8 @@
 }
 
 .ellipsis {
-  background: rgba(0, 0, 0, 0) !important
+  background: rgba(0, 0, 0, 0) !important;
+  padding-left: 0px !important;
 }
 
 .agenda {
@@ -148,3 +149,46 @@
 #mContent {
   padding-right: 0px !important;
 }
+
+.azButton, .gfButton, .pxButton {
+  height: 100%;
+  width: 100%;
+  border-radius: 0px !important;
+  background: black !important;
+}
+
+.azButton {
+  color: #bffffd !important;
+}
+
+.gfButton {
+  color: #e7bfff !important;
+  border-left-style: solid !important;
+  border-width: 1px !important;
+  border-color: #2d2d2d !important;
+}
+
+
+.pxButton {
+  color: #ffbfbf !important;
+  border-left-style: solid !important;
+  border-width: 1px !important;
+  border-color: #2d2d2d !important;
+}
+
+.azButton:hover, .gfButton:hover, .pxButton:hover {
+  background: #191919 !important;
+}
+
+.azButton:hover {
+  color: #71fdf9 !important;
+}
+
+.gfButton:hover {
+  color: #cc78ff !important;
+}
+
+.pxButton:hover {
+  color: #ff6b6b !important;
+}
+
