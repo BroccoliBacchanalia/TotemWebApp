@@ -1,5 +1,9 @@
 import store from '../../redux/store';
-import { firebaseOnce } from './firebaseActions';
+import {
+  firebaseOnce,
+  firebaseUpdate,
+  firebaseRemove
+} from './firebaseActions';
 import { updateGroup } from './groupActions';
 
 
@@ -37,5 +41,33 @@ export function initialUserData(user) {
   return store.dispatch({
     type: 'INITIAL_USER_DATA',
     userData: user
+  });
+}
+
+export function addAgendaItem(key) {
+  const uid = store.getState().user.uid;
+  const updates = {};
+
+  updates[`users/${ uid }/agenda/${key}`] = true;
+  firebaseUpdate(updates);
+
+  //fetch new agenda
+  firebaseOnce('users/'+ uid +'/agenda/', (agenda) => {
+    agenda = Object.keys(agenda);
+    addAgenda(agenda);
+  });
+}
+
+export function removeAgendaItem(key) {
+  const uid = store.getState().user.uid;
+  const agendaPath = 'users/' + uid + '/agenda/';
+
+  firebaseRemove(agendaPath + key)
+  .then(() => {
+   // fetch data after removing agenda
+    firebaseOnce(agendaPath, (agenda) => {
+      if (agenda) agenda = Object.keys(agenda);
+      removeAgenda(agenda);
+    });
   });
 }
