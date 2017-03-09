@@ -49,7 +49,7 @@ class CreateGroup extends Component {
       					onClick={submit.bind(this, user, group)}
       					disabled={group.groupName.length < 1}
       				>
-      					<Link to='/invite'>
+      					<Link to='/group'>
       						Create
       					</Link>
       			  </Button>
