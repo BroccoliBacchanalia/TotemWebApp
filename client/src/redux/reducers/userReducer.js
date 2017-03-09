@@ -6,7 +6,8 @@ const defaults = {
   pendingInvites: {},
   friendList: [],
   dataRetrieved: false,
-  facebookID: null
+  facebookUsername: null,
+  facebookUID: null
 };
 
 export default function userReducer(state = defaults, action) {
@@ -37,7 +38,7 @@ export default function userReducer(state = defaults, action) {
       return { ...state, groupName: action.payload.name }
     }
     case 'UPDATE_FB_USERNAME': {
-      return { ...state, facebookID: action.payload.name }
+      return { ...state, facebookUsername: action.payload.name }
     }
     case 'INITIAL_USER_DATA': {
       const newState = { ...state }
