@@ -5,7 +5,6 @@ import Avatar from 'material-ui/Avatar';
 import { SpeedDial, BubbleList, BubbleListItem } from 'react-speed-dial';
 
 import {
-  getGeofence,
   toggleTotemModal,
   toggleEmergencyFriends,
   toggleEmergencyServices,

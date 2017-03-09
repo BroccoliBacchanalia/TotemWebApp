@@ -36,11 +36,6 @@ const GroupView = ({ user, users }) => (
         })}
       </Grid>
     </div>
-    <div className="footerContainer">
-      <div className="footerBtn" >
-        <Button className={localStyles.gButton}>Add a Friend</Button>
-      </div>
-    </div>
   </div>
 );
 

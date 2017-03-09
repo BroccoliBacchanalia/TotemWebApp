@@ -16,8 +16,8 @@ export const sortMethods = {
   },
 
   geofence: function sortGeofence(a, b) {
-    const fenceA = getGeofence(a.position);
-    const fenceB = getGeofence(b.position);
+    const fenceA = getGeofence(a.position).name;
+    const fenceB = getGeofence(b.position).name;
 
     if(fenceA < fenceB) return -1;
     if(fenceA > fenceB) return 1;
