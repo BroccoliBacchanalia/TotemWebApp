@@ -43,7 +43,12 @@ const AgendaModal = ({ itemKey, name, starttime, endtime, geofence, day, imgurl,
           })}
         </Modal.Description>
       </Modal.Content>
-      <Button className={localStyles.mButton} color='red' attached='bottom' onClick={removeAgendaItem.bind(null, itemKey)}>
+      <Button
+        className={localStyles.mButton}
+        color='red'
+        attached='bottom'
+        onClick={removeAgendaItem.bind(null, itemKey)}
+      >
         Remove from Agenda
       </Button>
     </Modal>

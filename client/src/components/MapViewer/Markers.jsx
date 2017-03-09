@@ -65,7 +65,7 @@ export class Markers extends Component {
                   <InfoWindow>
                     <div>
                       <div>{user.label}</div>
-                      <div>{getGeofence(user.position)}</div>
+                      <div>{getGeofence(user.position).name}</div>
                       {moment(user.position.timestamp).fromNow()}
                     </div>
                   </InfoWindow>
