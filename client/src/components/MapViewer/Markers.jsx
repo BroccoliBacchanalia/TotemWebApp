@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Marker, InfoWindow } from 'react-google-maps';
 import moment from 'moment'
 import store from '../../redux/store.js';
+import localStyles from './MapStyles.css';
 import { getGeofence, showGroupMemberInfo } from '../../redux/actions';
 import { toggleTotemInfo } from '../../redux/actions/groupActions';
 
@@ -31,13 +32,13 @@ export class Markers extends Component {
             {showTotemInfo && (
               <InfoWindow>
                 <div>
-                  <div>Basecamp</div>
+                  <h4>Basecamp</h4>
                   {totem.meetupTime && !placeTotem &&
                     <div>
                       <div>
-                        {'Meet here at: ' + moment(milliSeconds).format('h:mm A')}
+                        {'Meet at: ' + moment(milliSeconds).format('h:mm A')}
                       </div>
-                      <div>
+                      <div className={localStyles.subtext}>
                         {'...' + moment(milliSeconds).fromNow()}
                       </div>
                     </div>
@@ -70,10 +71,14 @@ export class Markers extends Component {
               >
                 {user.showInfo && (
                   <InfoWindow>
-                    <div>
-                      <div>{user.label}</div>
-                      <div>{getGeofence(user.position).name}</div>
-                      {moment(user.position.timestamp).fromNow()}
+                    <div className={localStyles.friendInfo}>
+                      <h4>{user.label}</h4>
+                      <div>
+                        {getGeofence(user.position).name}
+                      </div>
+                      <span className={localStyles.subtext}>
+                        {moment(user.position.timestamp).fromNow()}
+                      </span>
                     </div>
                   </InfoWindow>
                 )}

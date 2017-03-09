@@ -50,7 +50,7 @@
 }
 
 .totImg {
-  height: 150px;
+  height: 130px;
 }
 
 .optionText {
@@ -69,5 +69,5 @@
 .time select {
   background-color: transparent;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
 }

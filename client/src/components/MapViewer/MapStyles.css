@@ -2,4 +2,16 @@
   border-radius: 15px;
 }
 
-.gm-style-iw + div {display: none !important;}
+.gm-style-iw + div {
+  display: none !important;
+}
+
+.friendInfo h4 {
+  margin-bottom: 0 !important;
+}
+
+.subtext {
+  color: darkgrey;
+  font-style: italic;
+  font-size: 12px;
+}
