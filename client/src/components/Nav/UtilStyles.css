@@ -58,9 +58,13 @@
   font-size: 16px;
 }
 
+.optionText span {
+  font-style: italic;
+}
+
 .optionText input {
   margin-top: 15px;
-  width: 230px;
+  width: 110px;
   background: inherit;
-  font-size: 14px;
+  font-size: 16px;
 }
