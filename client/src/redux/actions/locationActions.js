@@ -15,6 +15,7 @@ export function geolocate() {
   function success(pos) {
     console.log(pos);
     const uid = store.getState().user.uid;
+    // HR: 37.783780, -122.409033
 
     if (uid === 'KrSypCuwkBdEiH2JAJgOGxZN8m52') {
       firebaseSet(`users/${uid}/position`, {
@@ -25,8 +26,8 @@ export function geolocate() {
     } else if (uid === 'rjjbJvO2utOdizeLz6wsjlJSelG2') {
       firebaseSet(`users/${uid}/position`, {
         timestamp: pos.timestamp,
-        lat: pos.coords.latitude - (pos.coords.latitude - 33.681317), // Mojave
-        lng: pos.coords.longitude - (pos.coords.longitude - (-116.236942)) // Mojave
+        lat: pos.coords.latitude - (37.783780 - 33.681317), // Mojave
+        lng: pos.coords.longitude - (-122.409033 - (-116.236942)) // Mojave
       });
     } else if (uid === 'EaO2LdDD1TelYHPc4N4ObbUvkw83') {
       firebaseSet(`users/${uid}/position`, {
