@@ -4,6 +4,7 @@ import { Marker, InfoWindow } from 'react-google-maps';
 import store from '../../redux/store.js';
 import { getGeofence, showGroupMemberInfo } from '../../redux/actions';
 import { toggleTotemInfo } from '../../redux/actions/groupActions';
+import moment from 'moment'
 
 export class Markers extends Component {
   render() {
@@ -65,7 +66,7 @@ export class Markers extends Component {
                     <div>
                       <div>{user.label}</div>
                       <div>{getGeofence(user.position)}</div>
-                      {this.formatDate(user.position.timestamp)}
+                      {moment(user.position.timestamp).fromNow()}
                     </div>
                   </InfoWindow>
                 )}

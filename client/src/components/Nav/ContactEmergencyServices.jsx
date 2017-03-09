@@ -13,7 +13,7 @@ class ContactEmergencyServices extends Component {
       <Modal open={app.emergencyModal} basic size='fullscreen'>
         <Header className='modal-header' icon='emergency' content='Emergency Services?' />
         <Modal.Content>
-          <p className='modal-body'>Are you sure you want to send a distress signal to contact emergency services?</p>
+          <p className='modal-body'>Are you sure you want to contact emergency services?</p>
         </Modal.Content>
         <Modal.Actions>
           <Button 

@@ -1,43 +1,87 @@
-import React from 'react';
+import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
-import { updateGroupName } from '../../redux/actions/groupActions';
-import { updateUserGroupID } from '../../redux/actions/userActions';
-import { firebaseUpdate, firebaseKeyGen } from '../../redux/actions/firebaseActions';
+import { updateGroup, updateGroupName, updateUserGroupID, firebaseUpdate, firebaseKeyGen, firebaseOnce, firebaseSet } from '../../redux/actions';
 import localStyles from './ConfigStyles.css';
 
-const CreateGroup = ({ user, group }) => (
-	<div>
-	  <div className={localStyles.header}>
-			<h3>Create a Group</h3>
-		</div>
-		<div className={localStyles.cgBody}>
-			<div className="ui input focus">
-				<input
-					type="text"
-					placeholder="Group Name"
-					onChange={(e) => updateGroupName(e.target.value)}
-				/>
-			</div>
-		  <div>
-			  <Button
-					onClick={submit.bind(this, user, group)}
-					disabled={group.groupName.length < 1}
-				>
-					<Link to='/invite'>
-						Create
-					</Link>
-			  </Button>
-		  </div>
-		</div>
-	</div>
-);
+class CreateGroup extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      group: {},
+      loading: true
+    }
+  }
+
+  componentWillMount() {
+    firebaseOnce('groups/', (groups) => {
+      this.setState({
+        group: groups,
+        loading: false
+      })
+      console.log('groupState',this.state.group)
+    })
+  }
+
+  render() {
+    const { user, group } = this.props;
+    if (this.state.loading) return (<div></div>)
+    if (!this.state.loading) {
+      return (
+      	<div>
+      	  <div className={localStyles.header}>
+      			<h3>Join or Create a Group</h3>
+      		</div>
+      		<div className={localStyles.cgBody}>
+      			<div className="ui input focus">
+      				<input
+      					type="text"
+      					placeholder="Group Name"
+      					onChange={(e) => { 
+                  updateGroupName(e.target.value)
+                }}
+      				/>
+      			</div>
+      		  <div>
+      			  <Button
+      					onClick={submit.bind(this, user, group)}
+      					disabled={group.groupName.length < 1}
+      				>
+      					<Link to='/invite'>
+      						Create
+      					</Link>
+      			  </Button>
+      		  </div>
+      		</div>
+          {Object.keys(groupFinder(user)).map((groupKey, index) => {
+            return (
+              <Link to='/group'>
+                <div onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
+              </Link>
+            )
+          })}
+      	</div>
+      );
+    }
+  }
+}
+
+
+function groupFinder(user) {
+  const friendsArray = user.friendList.data;
+  const groupKeys = {};
+  for (let i = 0; i < friendsArray.length; i++) {
+    groupKeys[friendsArray[i].groupId] = true;
+  }
+  return groupKeys;
+}
+
 
 function submit(user, group) {
 	const updates = {};
-	const groupKey = firebaseKeyGen('/groups/');
+  const groupKey = firebaseKeyGen('/groups/');
   const groupData = {
     groupName: group.groupName,
     memberKeys: {},
@@ -51,9 +95,23 @@ function submit(user, group) {
 	firebaseUpdate(updates);
 }
 
+function joinGroup(user, groupKey) {
+  const uid = user.uid;
+
+  firebaseSet(`/users/${uid}/groupId`, groupKey);
+  firebaseSet(`/groups/${groupKey}/memberKeys/${uid}/`, user.name)
+    .then(updateUserGroupID(groupKey));
+}
+
 export default connect((store) => {
   return {
     user: store.user,
     group: store.group
   };
 })(CreateGroup);
+
+
+
+
+            
+     
