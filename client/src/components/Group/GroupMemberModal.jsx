@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import localStyles from './GroupStyles.css';
-import { connect } from 'react-redux';
-import { getGeofence, showGroupMemberInfo, getStagesAndDays, updateDay } from '../../redux/actions';
-import { Grid, Image, Button, Modal, Icon, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Grid, Image, Button, Modal, Icon, Header } from 'semantic-ui-react';
 import moment from 'moment';
+
+import styles from '../Styles.css';
+import localStyles from './GroupStyles.css';
+import { getGeofence, showGroupMemberInfo, getStagesAndDays, updateDay } from '../../redux/actions';
 import LeaveGroupModal from './LeaveGroupModal'
 
 
@@ -31,7 +33,7 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
          <nav className={localStyles.mSelector}>
           <select
             id="days-dropdown"
-            className="ui selection fluid dropdown group-modal"
+            className={styles.select + 'ui selection fluid dropdown group-modal'}
             value={selectedDay}
             onChange={updateValue.bind(this, 'days-dropdown')}>
             {Object.keys(days).map((day, i) => (

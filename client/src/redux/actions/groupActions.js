@@ -30,7 +30,6 @@ export function updateGroupName(name) {
 }
 
 export function updateVenueId(id) {
-
   return store.dispatch({
     type: 'UPDATE_VENUE_ID',
     payload: { id }

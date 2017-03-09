@@ -1,5 +1,5 @@
 import React from 'react';
-import localStyles from './AgendaStyles.css';
+import styles from '../Styles.css';
 /* Actions */
 import { updateStage, updateDay } from '../../redux/actions/venueScheduleActions.js';
 
@@ -7,7 +7,7 @@ const AgendaNav = ({ days, selectedDay }) => (
    <nav>
     <select
       id="days-dropdown"
-      className="ui selection fluid dropdown agenda-nav"
+      className={styles.select + ' ui selection fluid dropdown agenda-nav'}
       value={selectedDay}
       onChange={updateValue.bind(this, 'days-dropdown')}>
       {Object.keys(days).map((day, i) => (
