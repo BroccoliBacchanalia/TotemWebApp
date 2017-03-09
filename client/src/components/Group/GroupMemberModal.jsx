@@ -9,7 +9,7 @@ import LeaveGroupModal from './LeaveGroupModal'
 
 
 const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
-  let agenda; 
+  let agenda;
   let pAgenda;
   const { days } = getStagesAndDays(venue.scheduleitems);
   const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
@@ -17,8 +17,8 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
   friend.agenda ? agenda = Object.keys(friend.agenda) : agenda = [];
 
   return (
-    <Modal 
-      className={localStyles.modal} 
+    <Modal
+      className={localStyles.modal}
       closeIcon='close'
       trigger={
         <Button className={localStyles.ellipsis} size='large'>
@@ -49,7 +49,11 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
               <Image className={localStyles.modalImage} wrapped size='tiny' src={friend.img} />
             </Grid.Column>
             <Grid.Column className={localStyles.mCenterDiv}>
-              <div className={localStyles.mGeofence}>{friend.position ? getGeofence(friend.position) : ''}</div>
+              <div className={localStyles.mGeofence}>
+                {friend.position ?
+                getGeofence(friend.position).name :
+                 ''}
+               </div>
               <div className={localStyles.mArtistName}>Place holder for artist</div>
               <div className={localStyles.timestamp}> Last updated: { ' ' + moment(friend.position.timestamp).calendar()}</div>
             </Grid.Column>

@@ -41,7 +41,6 @@ class CreateGroup extends Component {
       					placeholder="Group Name"
       					onChange={(e) => { 
                   updateGroupName(e.target.value)
-                  console.log('user',user)
                 }}
       				/>
       			</div>
@@ -98,8 +97,7 @@ function submit(user, group) {
 
 function joinGroup(user, groupKey) {
   const uid = user.uid;
-  console.log('uid', uid);
-  console.log('groupKey', groupKey);
+
   firebaseSet(`/users/${uid}/groupId`, groupKey);
   firebaseSet(`/groups/${groupKey}/memberKeys/${uid}/`, user.name)
     .then(updateUserGroupID(groupKey));
