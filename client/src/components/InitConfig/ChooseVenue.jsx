@@ -7,6 +7,7 @@ import localStyles from './ConfigStyles.css';
 import { updateVenueId } from '../../redux/actions/groupActions';
 import { firebaseSet } from '../../redux/actions/firebaseActions';
 
+const img = ['img/outsideLands.jpeg','img/coachella.jpg', 'img/burningMan.jpg'];
 export const ChooseVenue = ({ venues }) => (
   <div>
     <div className={localStyles.header}>
@@ -17,14 +18,19 @@ export const ChooseVenue = ({ venues }) => (
       className={styles.scrollView + ' ' + localStyles.cRow}
     >
       {Object.keys(venues).map((key, index) => (
+        
         <Link key={index} to='/creategroup'>
-          <div
-            className={styles.row}
-            id = 'venueItem'
+          <div id = 'venueItem'
             onClick={updateVenueId.bind(this, key)}>
-            {venues[key]}
+            <div id={localStyles.logo}>
+                <div className={localStyles.caption}>
+                  <p className={localStyles.text}>{venues[key]}</p>
+               </div>
+              <img src={img[index]}></img>
+            </div>
           </div>
         </Link>
+        
       ))}
     </div>
     <div className={localStyles.cFooter}>

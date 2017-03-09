@@ -50,12 +50,12 @@
 }
 
 .totImg {
-  height: 180px;
+  height: 150px;
 }
 
 .optionText {
-  padding: 0 15px 15px 15px;
-  font-size: 18px;
+  padding: 0 15px;
+  font-size: 16px;
 }
 
 .optionText input {

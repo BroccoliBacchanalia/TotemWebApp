@@ -44,40 +44,41 @@ export class Markers extends Component {
         {userIds.map((uid, index) => {
           const user = members[uid];
 
-          const icon = {
-            url: user.img,
-            scaledSize: new google.maps.Size(30, 30),
-            origin: new google.maps.Point(0,0),
-            anchor: new google.maps.Point(15, 15),
-            labelOrigin: new google.maps.Point(15, 35)
-          };
+          if (user) {
+            const icon = {
+              url: user.img,
+              scaledSize: new google.maps.Size(30, 30),
+              origin: new google.maps.Point(0,0),
+              anchor: new google.maps.Point(15, 15),
+              labelOrigin: new google.maps.Point(15, 35)
+            };
 
-          return (
-            <Marker
-              key={index}
-              {...user}
-              label=''
-              icon={icon}
-              onClick={() => showGroupMemberInfo(uid)}
-            >
-              {user.showInfo && (
-                <InfoWindow>
-                  <div>
-                    <div>{user.label}</div>
-                    <div>{getGeofence(user.position)}</div>
-                    {moment(user.position.timestamp).fromNow()}
-                  </div>
-                </InfoWindow>
-              )}
-            </Marker>
-          );
+            return (
+              <Marker
+                key={index}
+                {...user}
+                label=''
+                icon={icon}
+                onClick={() => showGroupMemberInfo(uid)}
+              >
+                {user.showInfo && (
+                  <InfoWindow>
+                    <div>
+                      <div>{user.label}</div>
+                      <div>{getGeofence(user.position)}</div>
+                      {moment(user.position.timestamp).fromNow()}
+                    </div>
+                  </InfoWindow>
+                )}
+              </Marker>
+            );
+          }
         })}
       </div>
     );
   }
 
   formatDate(timeStamp) {
-    console.log(timeStamp);
     return (new Date(timeStamp).toString().substring(0, 3) + ' ' +
       new Date(timeStamp).toString().substring(15, 21));
   }

@@ -17,7 +17,7 @@ const PlaceTotem = ({ app, venue }) => {
       </div>
       <Modal.Content>
         <div className={localStyles.optionText}>
-          Click anywhere on the map to set a marker for your group.
+          Click OK and then click anywhere on the map to set a totem for your group.
           <br />
           <br />
           (Optional) Set a meetup time. The totem will expire 30 minutes after your set time.
@@ -43,9 +43,11 @@ const PlaceTotem = ({ app, venue }) => {
           inverted
           onClick={() => {
             const time = document.querySelector('input[name="meetup-time"]').value;
+            console.log(time, 'time in placeTotemOnClick');
             updateMeetupTime(time);
             placeTotemOnClick(true);
             toggleTotemModal(false);
+            
           }}>
           OK
         </Button>

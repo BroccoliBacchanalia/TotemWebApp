@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import ContactFriends from './ContactFriends.jsx'
 import Avatar from 'material-ui/Avatar';
-import { connect } from 'react-redux';
 import { SpeedDial, BubbleList, BubbleListItem } from 'react-speed-dial';
+
 import {
   getGeofence,
   toggleTotemModal,
@@ -11,10 +11,10 @@ import {
   toggleEmergencyServices,
   toggleSpeedDial
 } from '../../redux/actions'
-import { localStyles } from './UtilStyles.css'
 
 class SpeedDialButton extends Component {
   render() {
+    const history = this.context.history;
     const list = {
       items: [
         {
@@ -23,6 +23,7 @@ class SpeedDialButton extends Component {
           onClick: () => {
             toggleTotemModal(true);
             this.refs['speedDial'].handleClickClose();
+            history.push('/map');
           }
         },
         {
@@ -61,6 +62,14 @@ class SpeedDialButton extends Component {
     );
   };
 }
+
+SpeedDialButton.contextTypes = {
+  history: React.PropTypes.shape({
+    push: React.PropTypes.func.isRequired,
+    replace: React.PropTypes.func.isRequired,
+    createHref: React.PropTypes.func.isRequired
+  }).isRequired
+};
 
 SpeedDialButton.displayName = 'SpeedDialButton';
 

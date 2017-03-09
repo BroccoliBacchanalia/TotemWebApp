@@ -1,21 +1,22 @@
 import React from 'react';
-import localStyles from './AgendaStyles.css';
 import { connect } from 'react-redux';
 import { removeAgenda } from '../../redux/actions';
 import { Grid, Image, Button, Modal, Icon, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import moment from 'moment';
+import localStyles from './AgendaStyles.css';
+import { removeAgendaItem } from '../../redux/actions/userActions';
 
-const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl, user, users }) => {
+const AgendaModal = ({ itemKey, name, starttime, endtime, geofence, day, imgurl, user, users }) => {
   return (
-    <Modal 
-       className={localStyles.modal} 
+    <Modal
+       className={localStyles.modal}
        trigger={
          <Button className={localStyles.ellipsis} size='large'>
            <Icon name='vertical ellipsis' size='large'/>
          </Button>
-       } 
+       }
        closeIcon='close'>
       <Modal.Header>{ name }</Modal.Header>
       <Modal.Content id={localStyles.mContent}>
@@ -27,7 +28,7 @@ const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl,
             <Grid.Column width={8} className={localStyles.mInfo}>
               <div className={localStyles.mStage}>{geofence}</div>
               <div className={localStyles.mDay}>{moment(day).format('dddd') + ', ' + moment(day).format('MMM Do')}</div>
-              <div className={localStyles.mTime}>{startTime + ' - ' + endTime}</div>
+              <div className={localStyles.mTime}>{starttime + ' - ' + endtime}</div>
               <div className={localStyles.mTime}>{moment(day).startOf('hour').fromNow()}</div>
             </Grid.Column>
           </Grid.Row>
@@ -36,7 +37,9 @@ const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl,
           <Header className={localStyles.mHeader}>Who else is going?</Header>
           {Object.keys(users).map((userKey, index) => {
             const friend = users[userKey];
-            if (friend && userKey !== user.uid && friend.agenda[itemKey]) { return friend.label }
+            if (friend && friend.agenda && userKey !== user.uid && friend.agenda[itemKey]) {
+              return friend.label;
+            }
           })}
         </Modal.Description>
       </Modal.Content>
@@ -47,33 +50,9 @@ const AgendaModal = ({ itemKey, name, startTime, endTime, geofence, day, imgurl,
   )
 }
 
-function removeAgendaItem(key) {
-
-  const uid = firebase.auth().currentUser.uid;
-  const db = firebase.database();
-  db.ref('users/' + uid + '/agenda/' + key).remove()
-  .then(function(){
-   // fetch data after removing agenda
-    const updateRef = db.ref('users/'+ uid +'/agenda/');
-
-    updateRef.on("value", (snapshot) => {
-      let agenda = snapshot.val();
-      if (agenda) {
-        agenda = Object.keys(agenda);
-      }
-      removeAgenda(agenda)
-    },  (errorObject) => {
-      console.log("The read failed: " + errorObject.code);
-    });
-  });
-}
-
 export default connect((store) => {
   return {
     user: store.user,
     users: store.group.members
   };
 })(AgendaModal);
-
-
-

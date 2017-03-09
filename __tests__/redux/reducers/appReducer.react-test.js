@@ -6,22 +6,22 @@ describe('Application State Reducer', () => {
     test('should return the initial state', () => {
       expect(appReducer(undefined, {}))
       .toEqual({
-        visible: false,
-        active: true,
-        friendsModal: false,
-        emergencyModal: false,
-        speedDial: false,
-        menuItems: 
-        [
-          { path: '/', label: 'Map' },
-          { path: '/group', label: 'Rabble'},
-          { path: '/agenda', label: 'Personal Agenda'},
-          { path: '/schedule', label: 'Schedule/Set List'},
-          { path: '/emergency', label: 'Emergency Info'},
-          { path: '/choosevenue', label: 'Choose Venue'},
-          { path: '/create', label: 'Create Group'},
-          { path: '/invite', label: 'Invite Friends'},
-        ]
+        "active": true,
+        "emergencyModal": false,
+        "friendsModal": false,
+        "menuItems": [
+          {"label": "Map", "path": "/"},
+          {"label": "Rabble", "path": "/group"},
+          {"label": "Personal Agenda", "path": "/agenda"},
+          {"label": "Schedule/Set List", "path": "/schedule"},
+          {"label": "Emergency Info", "path": "/emergency"},
+          {"label": "Choose Venue", "path": "/choosevenue"},
+          {"label": "Create Group", "path": "/create"},
+          {"label": "Invite Friends", "path": "/invite"}
+        ], 
+        "speedDial": false,
+        "totemModal": false,
+        "visible": false
       })
     })
   })
