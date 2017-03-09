@@ -5,7 +5,7 @@ import { Grid, Image, Button, Modal } from 'semantic-ui-react';
 import store from '../../redux/store'
 import localStyles from './GroupStyles.css';
 import { getGeofence, showGroupMemberInfo } from '../../redux/actions';
-import GroupMemberModal from './GroupMemberModal'
+import GroupMemberModal from './GroupMemberModal';
 
 
 var mockScheduleItems =
@@ -47,7 +47,7 @@ const GroupRow = ({ friend, uid }) => {
         <br />
         {geofence ? <div>{geofence + artist}<br /></div> : ''}
         <span className={localStyles.timestamp}> Last updated: 
-          { ' ' + moment(friend.position.timestamp).calendar() }
+          { ' ' + moment(friend.position.timestamp).fromNow() }
         </span>
       </Grid.Column>
       <Grid.Column width={3} className={localStyles.buttonDiv}>

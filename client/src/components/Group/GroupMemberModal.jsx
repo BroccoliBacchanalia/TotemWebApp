@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import localStyles from './GroupStyles.css';
 import { connect } from 'react-redux';
 import { getGeofence, showGroupMemberInfo, getStagesAndDays, updateDay } from '../../redux/actions';
-import { Grid, Image, Button, Modal, Icon } from 'semantic-ui-react';
+import { Grid, Image, Button, Modal, Icon, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import LeaveGroupModal from './LeaveGroupModal'
 
 
 const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
@@ -49,10 +51,7 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
             <Grid.Column className={localStyles.mCenterDiv}>
               <div className={localStyles.mGeofence}>{friend.position ? getGeofence(friend.position) : ''}</div>
               <div className={localStyles.mArtistName}>Place holder for artist</div>
-              <div className={localStyles.timestamp}> Last updated: { ' ' +
-                new Date(friend.position.timestamp).toString().substring(0, 3) + ' ' +
-                new Date(friend.position.timestamp).toString().substring(15, 21)}
-              </div>
+              <div className={localStyles.timestamp}> Last updated: { ' ' + moment(friend.position.timestamp).calendar()}</div>
             </Grid.Column>
             <Grid.Column width={5} className={localStyles.mButtonDiv}>
               <Link to='/map'>
@@ -76,7 +75,7 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
             if (item && (item.day === selectedDay)) {
               return (
                 <Grid.Row className={localStyles.agenda} key={key}>
-                  <Grid.Column width={4} className={pAgenda.includes(key) ? localStyles.includesAgendaCol : localStyles.agendaCol}>{item.starttime}</Grid.Column>
+                  <Grid.Column width={4} className={pAgenda.includes(key) ? localStyles.includesAgendaColTime : localStyles.agendaColTime}>{moment(item.starttime).format('h:mm a')}</Grid.Column>
                   <Grid.Column className={pAgenda.includes(key) ? localStyles.includesAgendaCol : localStyles.agendaCol}>{item.name}</Grid.Column>
                   <Grid.Column width={5} className={pAgenda.includes(key) ? localStyles.includesAgendaCol : localStyles.agendaCol}>{item.geofence}</Grid.Column>
                 </Grid.Row>
@@ -85,10 +84,11 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
           })}
         </Grid>
       </Modal.Content>
-
+      {uid === user.uid && <LeaveGroupModal />}
     </Modal>
   )
 }
+
 
 function updateValue(id, e) {
   return updateDay(document.getElementById(id).value);

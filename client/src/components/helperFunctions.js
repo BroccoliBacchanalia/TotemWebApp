@@ -1,7 +1,5 @@
-export function hourTimeFormat(time) {
-  const milliSeconds = Date.parse(time);
-  const timeOffset = new Date(milliSeconds).getTimezoneOffset();
-  const date = new Date(milliSeconds + (timeOffset * 1000 * 60));
+import moment from 'moment'
 
-  return date.toTimeString().substring(0, 5);
+export function hourTimeFormat(time) {
+  return moment(time).format('h:mm a');
 }
