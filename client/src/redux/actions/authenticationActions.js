@@ -3,7 +3,7 @@ import axios from 'axios';
 import store from '../../redux/store';
 
 /*  Actions */
-import { updateUserGroupID, initialUserData } from './userActions';
+import { updateUserGroupID, initialUserData, updateFacebookUserID } from './userActions';
 import { firebaseOnce, firebaseSet } from './firebaseActions';
 import { updateGroup } from './groupActions';
 import { updateVenueNames } from './venueActions';
@@ -85,10 +85,12 @@ function getFriends() {
 
 export function getUserData(id) {
   firebaseOnce(`users/${id}`, (data) => {
+    console.log('fbid',data.facebookID)
     initialUserData(data);
     if (!!data.groupId) {
       updateUserGroupID(data.groupId);
     }
+    dispatch({ type: 'UPDATE_FB_USERNAME', payload: { name: data.facebookID } });
     getVenueNames(!data.groupId);
   });
 }
