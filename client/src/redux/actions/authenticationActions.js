@@ -45,23 +45,28 @@ function getUsers() {
 }
 
 function getFriends(fireUsers) {
-  // var endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
-  // console.log('fireData', fireUsers)
-  // axios.get(endpoint).then((facebookData) =>{
-  //   let facebookFriends = facebookData.data;
+  const endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
+  axios.get(endpoint).then((facebookData) =>{
+    const facebookFriends = facebookData.data.data;
+    const firebaseDataWithFacebookUidKeys = {};
+    let friendsWithAccounts = { data: [] }
 
-  //   let friendsWithAccounts = {
-  //     data: []
-  //   }
+    for (let key in fireUsers) {
+      firebaseDataWithFacebookUidKeys[fireUsers[key].facebookUID] = key;
+    }
 
+    for (let i = 0; i < facebookFriends.length; i++) {
+      let friendKey = firebaseDataWithFacebookUidKeys[facebookFriends[i].id];
+      delete fireUsers[friendKey].friends;
+      friendsWithAccounts.data.push(fireUsers[friendKey]);
+    }
 
-  //   }
-  //   //saves user friends in the database
-  //   firebaseSet(`users/${currentUserId}/friends`, friendsWithAccounts);
-  //   dispatch({ type: 'UPDATE_FRIENDS', friends: friendsWithAccounts });
-  // }).catch((error) => {
-  //   console.log('Error getting friends from facebook', error);
-  // });
+    //saves user friends in the database
+    firebaseSet(`users/${currentUserId}/friends`, friendsWithAccounts);
+    dispatch({ type: 'UPDATE_FRIENDS', friends: friendsWithAccounts });
+  }).catch((error) => {
+    console.log('Error getting friends from facebook', error);
+  });
 }
 
 export function getUserData(id) {
@@ -92,8 +97,6 @@ export function signIn() {
 
   firebase.auth().signInWithPopup(provider)
   .then((result) => {
-    console.log('signin', result)
-    console.log('providerData', result.user.providerData)
     accessToken = result.credential.accessToken;
     const { user: { uid, displayName, photoURL, email } } = result;
     currentUserId = uid;
