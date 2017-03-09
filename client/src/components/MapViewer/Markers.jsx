@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Marker, InfoWindow } from 'react-google-maps';
+import moment from 'moment'
 import store from '../../redux/store.js';
 import { getGeofence, showGroupMemberInfo } from '../../redux/actions';
 import { toggleTotemInfo } from '../../redux/actions/groupActions';
-import moment from 'moment'
 
 export class Markers extends Component {
   render() {
@@ -17,8 +17,7 @@ export class Markers extends Component {
       anchor: new google.maps.Point(25, 96)
     };
     const basecampExists = Object.keys(totem.coords).length > 0;
-    const offset = new Date().getTimezoneOffset();
-    const milliSeconds = Date.parse(totem.meetupTime) + (offset * 60 * 1000);
+    const milliSeconds = Date.parse(totem.meetupTime);
 
     return (
       <div>
@@ -32,9 +31,17 @@ export class Markers extends Component {
             {showTotemInfo && (
               <InfoWindow>
                 <div>
-                  <div>Bascamp</div>
+                  <div>Basecamp</div>
                   {totem.meetupTime && !placeTotem &&
-                  <div>{this.formatDate(milliSeconds)}</div>}
+                    <div>
+                      <div>
+                        {'Meet here at: ' + moment(milliSeconds).format('h:mm A')}
+                      </div>
+                      <div>
+                        {'...' + moment(milliSeconds).fromNow()}
+                      </div>
+                    </div>
+                  }
                 </div>
               </InfoWindow>
             )}

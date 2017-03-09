@@ -1,7 +1,7 @@
 import React from 'react';
 import { updateStage, updateDay } from '../../redux/actions/venueScheduleActions.js';
 
-const ScheduleNav = ({ days, stages, selectedDay, selectedStage }) => (
+export const ScheduleNav = ({ days, stages, selectedDay, selectedStage }) => (
   <nav>
     <select
       id="days-dropdown"

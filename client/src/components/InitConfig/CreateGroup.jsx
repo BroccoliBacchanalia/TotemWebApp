@@ -49,7 +49,7 @@ class CreateGroup extends Component {
       					onClick={submit.bind(this, user, group)}
       					disabled={group.groupName.length < 1}
       				>
-      					<Link to='/invite'>
+      					<Link to='/group'>
       						Create
       					</Link>
       			  </Button>
@@ -58,7 +58,7 @@ class CreateGroup extends Component {
           {Object.keys(groupFinder(user)).map((groupKey, index) => {
             return (
               <Link to='/group'>
-                <div onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
+                <div key={index} onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
               </Link>
             )
           })}

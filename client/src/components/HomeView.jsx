@@ -5,7 +5,6 @@ import firebase from 'firebase';
 
 /*  Components  */
 import MapViewer from './MapViewer/MapViewer';
-import ChooseGroup from './InitConfig/ChooseGroup.jsx';
 import ChooseVenue from './InitConfig/ChooseVenue.jsx';
 import SignInButton from './Auth/SignInButton';
 import Loading from './Auth/Loading';
