@@ -20,13 +20,15 @@ export const ChooseVenue = ({ venues }) => (
       {Object.keys(venues).map((key, index) => (
         
         <Link key={index} to='/creategroup'>
-          <div id = 'venueItem'
+          <div id = 'venueItem' className = {localStyles.outside}
             onClick={updateVenueId.bind(this, key)}>
-            <div id={localStyles.logo}>
-                <div className={localStyles.caption}>
+
+              <div className={localStyles.oi}>
+                <div className={localStyles.inside}>
                   <p className={localStyles.text}>{venues[key]}</p>
                </div>
-              <img src={img[index]}></img>
+         
+              
             </div>
           </div>
         </Link>

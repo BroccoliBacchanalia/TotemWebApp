@@ -105,27 +105,33 @@
   margin: 0 auto;
 }
 
-#logo {
+.outside {
   padding-top: 2px;
   padding-bottom: 2px;
   width: 100%;
-  height:175px;
- 
+  height:175px; 
 }
-
-#logo img {
+.oi {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  width: 100%;
+  height:173px;
+  background-color: red;
+}
+/*#logo img {
   width: 100%;
   height: 173px;
   z-index: 1;
   position: relative;
-}
+  background:  red;
+}*/
 
-.caption {
+.inside {
   background-color: black;
   opacity: 0.35;
   filter: alpha(opacity=50);
   z-index: 3;
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 50px;
 }
