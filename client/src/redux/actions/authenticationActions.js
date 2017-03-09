@@ -41,6 +41,7 @@ function signInError(errorMessage) {
 
 function getUsers() {
   return firebaseOnce('/users', (data) => {
+    console.log('data', data)
     databaseGroup.push(data);
     getFriends();
   });

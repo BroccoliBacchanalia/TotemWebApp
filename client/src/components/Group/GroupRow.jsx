@@ -46,7 +46,7 @@ const GroupRow = ({ friend, uid }) => {
         <br />
         {geofence ? <div>{geofence + artist}<br /></div> : ''}
         <span className={localStyles.timestamp}> Last updated: 
-          { ' ' + moment(friend.position.timestamp).add(3, 'days').calendar() }
+          { ' ' + moment(friend.position.timestamp).calendar() }
         </span>
       </Grid.Column>
       <Grid.Column width={3} className={localStyles.buttonDiv}>

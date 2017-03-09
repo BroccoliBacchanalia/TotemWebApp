@@ -12,7 +12,7 @@ class ContactFriends extends Component {
       <Modal open={app.friendsModal} basic size='fullscreen'>
         <Header className='modal-header' icon='child' content='Need some help?' />
         <Modal.Content>
-          <p className='modal-body'>Are you sure you want to send an emergency signal to your group?</p>
+          <p className='modal-body'>Are you sure you want to send distress signal to your group?</p>
         </Modal.Content>
         <Modal.Actions>
           <Button 
