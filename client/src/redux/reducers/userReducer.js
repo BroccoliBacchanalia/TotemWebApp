@@ -32,7 +32,7 @@ export default function userReducer(state = defaults, action) {
       return { ...state, groupId: action.payload.id };
     }
     case 'UPDATE_FRIENDS': {
-      return { ...state, friendList: action.friendList };
+      return { ...state, friendList: action.payload };
     }
     case 'UPDATE_GROUP_NAME': {
       return { ...state, groupName: action.payload.name }
