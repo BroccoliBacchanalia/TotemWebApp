@@ -45,10 +45,10 @@ export function initialUserData(user) {
   });
 }
 
-export function updateFacebookUsername(username) {
+export function updateFacebookUsername(name) {
   return store.dispatch({
     type: 'UPDATE_FB_USERNAME',
-    payload: { username } 
+    payload: { name } 
   });
 }
 

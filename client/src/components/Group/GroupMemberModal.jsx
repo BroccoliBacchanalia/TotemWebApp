@@ -75,9 +75,9 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user, artist }) =
                 className={localStyles.button}
                 icon='comment outline'
                 size='large'
-                href={friend.facebookID ? 'https://m.me/' + friend.facebookID : ''}
+                href={friend.facebookUsername ? 'https://m.me/' + friend.facebookUsername : ''}
                 onClick={() => {
-                  !friend.facebookID ? alert('This user has not synched with messenger') : ''
+                  !friend.facebookUsername ? alert('This user has not synched with messenger') : ''
                 }}/>
               }
             </Grid.Column>
