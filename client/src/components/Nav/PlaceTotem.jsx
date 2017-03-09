@@ -7,6 +7,10 @@ import { placeTotemOnClick, updateMeetupTime } from '../../redux/actions/groupAc
 import localStyles from './UtilStyles.css';
 
 const PlaceTotem = ({ app, venue }) => {
+  const minuteOptions = ['00', '05'];
+  for (let i = 10; i < 60; i += 5) {
+    minuteOptions.push(i);
+  }
   return (
     <Modal open={app.totemModal} basic size='fullscreen'>
       <Header
@@ -22,8 +26,22 @@ const PlaceTotem = ({ app, venue }) => {
           <br />
           <br />
           <span>(Optional)</span> Set a meetup time. The totem will expire 30 minutes after your set time.
-          <div className={localStyles.center}>
-            <input type='time' name='meetup-time' />
+          <div className={localStyles.center + ' ' + localStyles.time}>
+            <select>
+              {['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map((num) => (
+                <option key={num} value={num}>{num}</option>
+              ))}
+            </select>
+            :
+            <select>
+              {minuteOptions.map((num) => (
+                <option key={num} value={num}>{num}</option>
+              ))}
+            </select>
+            <select>
+              <option value='AM'>AM</option>
+              <option value='PM'>PM</option>
+            </select>
           </div>
         </div>
       </Modal.Content>
@@ -43,9 +61,9 @@ const PlaceTotem = ({ app, venue }) => {
           size='huge'
           inverted
           onClick={() => {
-            let time = document.querySelector('input[name="meetup-time"]').value;
-            if (time.length > 0) time = convertToDate(time);
-            updateMeetupTime(time);
+            // let time = document.querySelector('input[name="meetup-time"]').value;
+            // if (time.length > 0) time = convertToDate(time);
+            // updateMeetupTime(time);
             placeTotemOnClick(true);
             toggleTotemModal(false);
           }}>
