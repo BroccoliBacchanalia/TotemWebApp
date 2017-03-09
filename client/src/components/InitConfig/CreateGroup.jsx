@@ -41,7 +41,6 @@ class CreateGroup extends Component {
       					placeholder="Group Name"
       					onChange={(e) => { 
                   updateGroupName(e.target.value)
-                  console.log('user',user)
                 }}
       				/>
       			</div>
