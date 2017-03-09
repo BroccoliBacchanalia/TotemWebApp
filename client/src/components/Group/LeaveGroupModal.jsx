@@ -58,8 +58,6 @@ class LeaveGroupModal extends Component {
 }
 
 function removeUserFromGroup(user) {
-  console.log('defaults',defaults)
-
   firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`)
   .then(firebaseRemove(`users/${user.uid}/groupId`))
   .then(updateUserGroupID(''))
