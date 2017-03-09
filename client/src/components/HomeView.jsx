@@ -35,7 +35,6 @@ export class HomeView extends React.Component {
     return (
       !auth.isUserSignedIn ? <SignInButton onSignInClick={signIn} /> :
       !user.dataRetrieved ? <Loading /> :
-      hasPendingInvites && !hasGroup ? <ChooseGroup /> :
       !hasGroup ? <ChooseVenue /> : <MapViewer />
     );
   }

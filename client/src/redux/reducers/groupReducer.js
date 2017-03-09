@@ -1,4 +1,4 @@
-const defaults = {
+export const defaults = {
   groupName: '',
   memberKeys: {},
   members: {},

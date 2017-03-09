@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
-import { updateGroup, updateGroupName, updateUserGroupID, firebaseUpdate, firebaseKeyGen, firebaseOnce, firebaseSet } from '../../redux/actions';
+import { updateGroupName, updateUserGroupID, firebaseUpdate, firebaseKeyGen, firebaseOnce, firebaseSet } from '../../redux/actions';
 import localStyles from './ConfigStyles.css';
 
 class CreateGroup extends Component {
@@ -21,7 +21,6 @@ class CreateGroup extends Component {
         group: groups,
         loading: false
       })
-      console.log('groupState',this.state.group)
     })
   }
 
@@ -57,8 +56,8 @@ class CreateGroup extends Component {
       		</div>
           {Object.keys(groupFinder(user)).map((groupKey, index) => {
             return (
-              <Link to='/group'>
-                <div key={index} onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
+              <Link to='/group' key={index}>
+                <div onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
               </Link>
             )
           })}
@@ -97,10 +96,9 @@ function submit(user, group) {
 
 function joinGroup(user, groupKey) {
   const uid = user.uid;
-
   firebaseSet(`/users/${uid}/groupId`, groupKey);
   firebaseSet(`/groups/${groupKey}/memberKeys/${uid}/`, user.name)
-    .then(updateUserGroupID(groupKey));
+    .then(updateUserGroupID(groupKey))
 }
 
 export default connect((store) => {

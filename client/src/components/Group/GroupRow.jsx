@@ -51,7 +51,7 @@ const GroupRow = ({ friend, uid }) => {
         </span>
       </Grid.Column>
       <Grid.Column width={3} className={localStyles.buttonDiv}>
-        <GroupMemberModal friend={friend} uid={uid} />
+        <GroupMemberModal friend={friend} uid={uid} artist={artist}/>
       </Grid.Column>
     </Grid.Row>
   );
