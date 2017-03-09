@@ -5,7 +5,6 @@ import store from '../../redux/store';
 /*  Actions */
 import { updateUserGroupID, initialUserData, updateFacebookUserID } from './userActions';
 import { firebaseOnce, firebaseSet } from './firebaseActions';
-import { updateGroup } from './groupActions';
 import { updateVenueNames } from './venueActions';
 
 const dispatch = store.dispatch;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, Provider } from 'react-redux';
 import { shallow, mount, render } from 'enzyme';
-import VenueScheduleRow from '../../client/src/components/VenueSchedule/ScheduleRow.jsx';
-import VenueSchedule from '../../client/src/components/VenueSchedule/VenueSchedule.jsx';
+import ScheduleRow from '../../client/src/components/VenueSchedule/ScheduleRow.jsx';
+import { VenueSchedule } from '../../client/src/components/VenueSchedule/VenueSchedule.jsx';
 import store from '../../client/src/redux/store.js'
 
 const mockData = [
@@ -24,24 +24,27 @@ const mockData = [
   }, 
 ]
 const venueDefaults = {
-  selectedDay: null,
-  selectedStage: 'All Stages',
- isToggle: false
+  "selectedDay": "2017-04-14T07:00:00.000Z",
+  "selectedStage": 'All Stages',
+  "isToggle": false,
+  "scheduleitems": mockData
 };
 
 const venueScheduledefaults = {
-  venues: {},
-  venue: {
-    address: {},
-    dates: {},
-    emergency: {
-      operator: 911
+  "venues": {"selectedStage": 'All Stages'},
+  "venue": {
+    "address": {},
+    "dates": {},
+    "emergency": {
+      "operator": 911
     },
-    geofences: {},
-    map: {},
-    name: {},
-    scheduleitems: mockData
+    "geofences": {},
+    "map": {},
+    "name": {},
+    "scheduleitems": mockData,
+    "selectedStage": 'All Stages'
   },  
+  "selectedStage": 'All Stages'
 };
 
 const item = {
@@ -53,6 +56,9 @@ const item = {
   "starttime" : "10:00:00 PM"
 };
 
+const user = {
+  'agenda' : []
+}
 
 describe('Schedule View Component Tests', () => {
 
@@ -69,7 +75,7 @@ describe('Schedule View Component Tests', () => {
     it('ScheduleRow should not explode', () => {
       const wrapper = shallow(
         <Provider store={store}>
-          <VenueScheduleRow />
+          <ScheduleRow />
         </Provider>
       );
       expect(wrapper.length).toEqual(1);
@@ -78,7 +84,9 @@ describe('Schedule View Component Tests', () => {
     it('each schedule item should have a name, geofence, img, start time and end time', () => {
       const wrapper = mount(
         <Provider store={store}>
-         <VenueScheduleRow
+         <ScheduleRow
+            user={ user }
+            item={ item }
             itemKey={1}
             name={item.name}
             startTime = {item.starttime}
@@ -86,7 +94,7 @@ describe('Schedule View Component Tests', () => {
             geofence={item.geofence}
             day={item.day}
             imgurl={item.imgurl}>
-        </VenueScheduleRow>
+        </ScheduleRow>
         </Provider>
       );
       expect(wrapper.find('.h4')).toBeTruthy();

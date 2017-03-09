@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Header, Icon, Modal, Dimmer, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { toggleTotemModal } from '../../redux/actions/appActions';
 import { placeTotemOnClick, updateMeetupTime } from '../../redux/actions/groupActions';
 import localStyles from './UtilStyles.css';

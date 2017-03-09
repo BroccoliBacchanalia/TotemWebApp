@@ -39,13 +39,4 @@ describe('Venue Schedule Reducer', () => {
       }).selectedStage
     ).toBeTruthy()
   })
-  xtest('Should be able remove agenda', () => {
-    expect(venueScheduleReducer(defaults, {
-        type: 'REMOVE_AGENDA',
-        payload: {
-          agenda: [1,5,3]
-        }
-      }).defaults.agenda.length
-    ).toEqual(3)
-  })
 })
