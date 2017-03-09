@@ -37,7 +37,7 @@ class FacebookIDModal extends Component {
           <p className={localStyles.fContent}>http://facebook.com/</p>
           <Input 
             className={localStyles.fContent} 
-            placeholder={user.facebookID ? user.facebookID : 'username'}
+            placeholder={user.facebookUsername ? user.facebookUsername : 'username'}
             onChange={(e) => {
               updateFacebookUsername(e.target.value)
             }}
@@ -62,7 +62,7 @@ class FacebookIDModal extends Component {
 }
 
 function submitFacebookUsername(user) {
-  firebaseSet(`users/${user.uid}/facebookID/`, user.facebookID)
+  firebaseSet(`users/${user.uid}/facebookUsername/`, user.facebookUsername)
 }
 
 export default connect((store) => {
