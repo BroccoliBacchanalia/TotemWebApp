@@ -5,7 +5,7 @@ import { connect, mapStateToProps} from 'react-redux';
 import { InviteFriends } from '../../client/src/components/InitConfig/InviteFriends.jsx';
 import { ChooseGroup } from '../../client/src/components/InitConfig/ChooseGroup.jsx';
 import { ChooseVenue } from '../../client/src/components/InitConfig/ChooseVenue.jsx'
-import mockFBFriends from '../__testConfig__/mock_fb_friend_list';
+import mockFBFriends from '../../__testConfig__/mock_fb_friend_list';
 import * as actions from '../../client/src/redux/actions';
 import * as firebase from 'firebase';
 

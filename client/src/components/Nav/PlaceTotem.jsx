@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Header, Icon, Modal, Dimmer, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { toggleTotemModal } from '../../redux/actions/appActions';
 import { placeTotemOnClick, updateMeetupTime } from '../../redux/actions/groupActions';
 import localStyles from './UtilStyles.css';
@@ -37,19 +38,17 @@ const PlaceTotem = ({ app, venue }) => {
           }}>
           Cancel
         </Button>
-        <Button
-          color='blue'
-          size='huge'
-          inverted
-          onClick={() => {
-            const time = document.querySelector('input[name="meetup-time"]').value;
-            console.log(time, 'time in placeTotemOnClick');
-            updateMeetupTime(time);
-            placeTotemOnClick(true);
-            toggleTotemModal(false);
-            
-          }}>
-          OK
+          <Button
+            color='blue'
+            size='huge'
+            inverted
+            onClick={() => {
+              const time = document.querySelector('input[name="meetup-time"]').value;
+              updateMeetupTime(time);
+              placeTotemOnClick(true);
+              toggleTotemModal(false);  
+            }}>
+            OK
         </Button>
       </Modal.Actions>
     </Modal>

@@ -16,8 +16,8 @@ const ScheduleRow = ({ itemKey, item, user }) => {
 
   starttime = hourTimeFormat(starttime);
   endtime = hourTimeFormat(endtime);
-
   return (
+
     <Grid.Row className={
       hasAgendaItem ?
       localStyles.sRowSelected :

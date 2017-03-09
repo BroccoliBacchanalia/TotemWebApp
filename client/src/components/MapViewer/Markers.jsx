@@ -31,7 +31,7 @@ export class Markers extends Component {
             {showTotemInfo && (
               <InfoWindow>
                 <div>
-                  <div>Bascamp</div>
+                  <div>Basecamp</div>
                   {totem.meetupTime && !placeTotem &&
                   <div>{this.formatDate(milliSeconds)}</div>}
                 </div>
