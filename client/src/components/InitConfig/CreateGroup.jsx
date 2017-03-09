@@ -26,7 +26,9 @@ class CreateGroup extends Component {
 
   render() {
     const { user, group } = this.props;
-    if (this.state.loading) return (<div></div>)
+    const groupKeys = Object.keys(groupFinder(user));
+
+    if (this.state.loading) return <div></div>;
     if (!this.state.loading) {
       return (
       	<div>
@@ -38,7 +40,7 @@ class CreateGroup extends Component {
       				<input
       					type="text"
       					placeholder="Group Name"
-      					onChange={(e) => { 
+      					onChange={(e) => {
                   updateGroupName(e.target.value)
                 }}
       				/>
@@ -54,12 +56,12 @@ class CreateGroup extends Component {
       			  </Button>
       		  </div>
       		</div>
-          {Object.keys(groupFinder(user)).map((groupKey, index) => {
+          {groupKeys.map((groupKey, index) => {
             return (
               <Link to='/group' key={index}>
                 <div onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
               </Link>
-            )
+            );
           })}
       	</div>
       );
@@ -72,7 +74,9 @@ function groupFinder(user) {
   const friendsArray = user.friendList.data;
   const groupKeys = {};
   for (let i = 0; i < friendsArray.length - 1; i++) {
-    groupKeys[friendsArray[i].groupId] = true;
+    if (friendsArray[i].groupId) {
+      groupKeys[friendsArray[i].groupId] = true;
+    }
   }
   return groupKeys;
 }
@@ -107,9 +111,3 @@ export default connect((store) => {
     group: store.group
   };
 })(CreateGroup);
-
-
-
-
-            
-     
