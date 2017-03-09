@@ -14,7 +14,6 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
   const { stages, days } = getStagesAndDays(venue.scheduleitems);
   const { selectedStage } = venueSchedule;
   const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
-
   return (
     <div>
       <ScheduleNav
@@ -22,6 +21,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
         stages={stages}
         selectedDay={selectedDay}
         selectedStage={selectedStage}
+        key='nave'
       />
       <br />
       <Grid className={localStyles.container}>
@@ -29,7 +29,6 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
         <br />
         {Object.keys(venue.scheduleitems).map((key, index) => {
           const item = venue.scheduleitems[key];
-
           if (item) {
             const isSelectedStage = selectedStage === item.geofence || selectedStage === 'All Stages';
             if (item.day === selectedDay && isSelectedStage) {
@@ -38,6 +37,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
                   key={index}
                   itemKey={key}
                   item={item}
+                  id='row'
                 />
               );
             }
