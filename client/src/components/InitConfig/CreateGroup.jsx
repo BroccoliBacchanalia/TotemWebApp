@@ -71,7 +71,7 @@ class CreateGroup extends Component {
 function groupFinder(user) {
   const friendsArray = user.friendList.data;
   const groupKeys = {};
-  for (let i = 0; i < friendsArray.length; i++) {
+  for (let i = 0; i < friendsArray.length-1; i++) {
     groupKeys[friendsArray[i].groupId] = true;
   }
   return groupKeys;
