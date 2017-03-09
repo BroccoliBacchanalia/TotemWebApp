@@ -64,7 +64,7 @@ export class Markers extends Component {
                   <InfoWindow>
                     <div>
                       <div>{user.label}</div>
-                      <div>{getGeofence(user.position)}</div>
+                      <div>{getGeofence(user.position).name}</div>
                       {this.formatDate(user.position.timestamp)}
                     </div>
                   </InfoWindow>

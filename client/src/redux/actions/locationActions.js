@@ -63,19 +63,30 @@ export function geolocate() {
 export function getGeofence(coordinates) {
   const geofences = store.getState().venue.geofences;
   const basecamp = store.getState().group.totem.coords;
-  geofences.basecamp = basecamp;
+
+  if (inFenceRadius(basecamp, coordinates)) return {
+    name: 'Basecamp',
+    key: 'basecamp'
+  };
 
   for (let key in geofences) {
     const fence = geofences[key];
-    const degrees = getDegrees(fence.radius);
-    const latDiff = Math.abs(fence.lat - coordinates.lat);
-    const longDiff = Math.abs(fence.lng - coordinates.lng);
 
-    if (latDiff < degrees && longDiff < degrees) {
-      return fence.name;
+    if (inFenceRadius(fence, coordinates)) {
+      fence.key = key;
+      return { name: fence.name, key };
     }
   }
-  return '';
+
+  return { name: '', key: null };
+}
+
+function inFenceRadius(fence, coordinates) {
+  const degrees = getDegrees(fence.radius);
+  const latDiff = Math.abs(fence.lat - coordinates.lat);
+  const longDiff = Math.abs(fence.lng - coordinates.lng);
+
+  return latDiff < degrees && longDiff < degrees;
 }
 
 function getDegrees(meters) {
