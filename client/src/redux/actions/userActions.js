@@ -1,5 +1,6 @@
 import store from '../../redux/store';
 import {
+  firebaseOn,
   firebaseOnce,
   firebaseUpdate,
   firebaseRemove
@@ -34,7 +35,7 @@ export function updateUserGroupID(id) {
     payload: { id }
   });
 
-  firebaseOnce('/groups/' + id, updateGroup);
+  firebaseOn('/groups/' + id, updateGroup);
 }
 
 export function initialUserData(user) {
