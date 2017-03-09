@@ -15,31 +15,32 @@ export function geolocate() {
   function success(pos) {
     console.log(pos);
     const uid = store.getState().user.uid;
-    // HR: 37.783780, -122.409033
+    const hrLat = 37.7837693;
+    const hrLng = -122.4090728;
 
     if (uid === 'KrSypCuwkBdEiH2JAJgOGxZN8m52') {
       firebaseSet(`users/${uid}/position`, {
         timestamp: pos.timestamp,
-        lat: pos.coords.latitude - (pos.coords.latitude - 33.679914), // Sahara
-        lng: pos.coords.longitude - (pos.coords.longitude - (-116.236626)) // Sahara
+        lat: pos.coords.latitude - (hrLat - 33.679914), // Sahara
+        lng: pos.coords.longitude - (hrLng - (-116.236626)) // Sahara
       });
     } else if (uid === 'rjjbJvO2utOdizeLz6wsjlJSelG2') {
       firebaseSet(`users/${uid}/position`, {
         timestamp: pos.timestamp,
-        lat: pos.coords.latitude - (37.783780 - 33.681317), // Mojave
-        lng: pos.coords.longitude - (-122.409033 - (-116.236942)) // Mojave
+        lat: pos.coords.latitude - (hrLat - 33.681317), // Mojave
+        lng: pos.coords.longitude - (hrLng - (-116.236942)) // Mojave
       });
     } else if (uid === 'EaO2LdDD1TelYHPc4N4ObbUvkw83') {
       firebaseSet(`users/${uid}/position`, {
         timestamp: pos.timestamp,
-        lat: pos.coords.latitude - (pos.coords.latitude - 33.6829),
-        lng: pos.coords.longitude - (pos.coords.longitude - (-116.2383))
+        lat: pos.coords.latitude - (hrLat - 33.6829),
+        lng: pos.coords.longitude - (hrLng - (-116.2383))
       });
     } else {
       firebaseSet(`users/${uid}/position`, {
         timestamp: pos.timestamp,
-        lat: pos.coords.latitude  - (pos.coords.latitude - 33.684409), // Coachella stage
-        lng: pos.coords.longitude - (pos.coords.longitude - (-116.239769)) // Coachella stage
+        lat: pos.coords.latitude  - (hrLat - 33.684409), // Coachella stage
+        lng: pos.coords.longitude - (hrLng - (-116.239769)) // Coachella stage
       });
     }
   }
