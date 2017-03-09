@@ -12,7 +12,6 @@ import Agenda from '../Agenda/Agenda';
 import VenueSchedule from '../VenueSchedule/VenueSchedule';
 import ChooseVenue from '../InitConfig/ChooseVenue';
 import CreateGroup from '../InitConfig/CreateGroup';
-import InviteFriends from '../InitConfig/InviteFriends';
 
 const Nav = ({ app, user }) => {
   const navList = [
@@ -63,7 +62,6 @@ const Nav = ({ app, user }) => {
             <Route path="/schedule" component={VenueSchedule}/>
             <Route path="/choosevenue" component={ChooseVenue}/>
             <Route path="/creategroup" component={CreateGroup}/>
-            <Route path="/invite" component={InviteFriends}/>
           </div>
         </Segment>
       </Sidebar.Pusher>

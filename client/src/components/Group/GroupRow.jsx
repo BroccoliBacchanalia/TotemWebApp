@@ -8,7 +8,6 @@ import GroupMemberModal from './GroupMemberModal'
 import { localTimeMilliseconds } from '../helperFunctions';
 import { getGeofence, showGroupMemberInfo } from '../../redux/actions';
 
-
 var mockScheduleItems =
   [ {
     "day" : "2017-03-08T07:00:00.000Z",
@@ -48,7 +47,7 @@ const GroupRow = ({ friend, uid }) => {
         <br />
         {geofence.name ? <div>{geofence.name + artist}<br /></div> : ''}
         <span className={localStyles.timestamp}> Last updated: 
-          { ' ' + moment(friend.position.timestamp).calendar() }
+          { ' ' + moment(friend.position.timestamp).fromNow() }
         </span>
       </Grid.Column>
       <Grid.Column width={3} className={localStyles.buttonDiv}>
