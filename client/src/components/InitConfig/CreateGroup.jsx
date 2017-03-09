@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import { updateGroupName, updateUserGroupID, firebaseUpdate, firebaseKeyGen, firebaseOnce, firebaseSet } from '../../redux/actions';
+import Loading from '../Auth/Loading';
 import localStyles from './ConfigStyles.css';
 
 class CreateGroup extends Component {
@@ -28,44 +29,41 @@ class CreateGroup extends Component {
     const { user, group } = this.props;
     const groupKeys = Object.keys(groupFinder(user));
 
-    if (this.state.loading) return <div></div>;
-    if (!this.state.loading) {
-      return (
-      	<div>
-      	  <div className={localStyles.header}>
-      			<h3>Join or Create a Group</h3>
-      		</div>
-      		<div className={localStyles.cgBody}>
-      			<div className="ui input focus">
-      				<input
-      					type="text"
-      					placeholder="Group Name"
-      					onChange={(e) => {
-                  updateGroupName(e.target.value)
-                }}
-      				/>
-      			</div>
-      		  <div>
-      			  <Button
-      					onClick={submit.bind(this, user, group)}
-      					disabled={group.groupName.length < 1}
-      				>
-      					<Link to='/group'>
-      						Create
-      					</Link>
-      			  </Button>
-      		  </div>
-      		</div>
-          {groupKeys.map((groupKey, index) => {
-            return (
-              <Link to='/group' key={index}>
-                <div onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
-              </Link>
-            );
-          })}
-      	</div>
-      );
-    }
+    return this.state.loading ? <Loading /> : (
+    	<div>
+    	  <div className={localStyles.header}>
+    			<h3>Join or Create a Group</h3>
+    		</div>
+    		<div className={localStyles.cgBody}>
+    			<div className="ui input focus">
+    				<input
+    					type="text"
+    					placeholder="Group Name"
+    					onChange={(e) => {
+                updateGroupName(e.target.value)
+              }}
+    				/>
+    			</div>
+    		  <div>
+    			  <Button
+    					onClick={submit.bind(this, user, group)}
+    					disabled={group.groupName.length < 1}
+    				>
+    					<Link to='/group'>
+    						Create
+    					</Link>
+    			  </Button>
+    		  </div>
+    		</div>
+        {groupKeys.map((groupKey, index) => {
+          return (
+            <Link to='/group' key={index}>
+              <div onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
+            </Link>
+          );
+        })}
+    	</div>
+    );
   }
 }
 
