@@ -45,6 +45,13 @@ export function initialUserData(user) {
   });
 }
 
+export function updateFacebookUsername(username) {
+  return store.dispatch({
+    type: 'UPDATE_FB_USERNAME',
+    payload: { username } 
+  });
+}
+
 export function addAgendaItem(key) {
   const uid = store.getState().user.uid;
   const updates = {};

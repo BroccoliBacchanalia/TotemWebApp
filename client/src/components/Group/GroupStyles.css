@@ -213,3 +213,22 @@
 .removeButton {
   height: 45px !important;
 }
+
+.fContent {
+  font-size: large;
+  display: inline-block;
+}
+
+.fActions {
+  text-align: center !important;
+}
+
+.fButton {
+  text-align: center !important;
+}
+
+input {
+  width: 109px !important;
+  padding: 0px !important;
+  font-size: large !important;
+}

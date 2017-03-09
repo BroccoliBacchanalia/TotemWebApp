@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Grid, Image, Button, Modal, Icon, Header } from 'semantic-ui-react';
 import moment from 'moment';
-
+import LeaveGroupModal from './LeaveGroupModal';
+import FacebookIDModal from './FacebookIDModal'
 import styles from '../Styles.css';
 import localStyles from './GroupStyles.css';
 import { getGeofence, showGroupMemberInfo, getStagesAndDays, updateDay } from '../../redux/actions';
-import LeaveGroupModal from './LeaveGroupModal'
 
 
-const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
+const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user, artist }) => {
   let agenda;
   let pAgenda;
   const { days } = getStagesAndDays(venue.scheduleitems);
@@ -56,7 +56,7 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
                 getGeofence(friend.position).name :
                  ''}
                </div>
-              <div className={localStyles.mArtistName}>Place holder for artist</div>
+              <div className={localStyles.mArtistName}>{artist}</div>
               <div className={localStyles.timestamp}> Last updated: { ' ' + moment(friend.position.timestamp).calendar()}</div>
             </Grid.Column>
             <Grid.Column width={5} className={localStyles.mButtonDiv}>
@@ -68,12 +68,18 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user }) => {
                   size='large'
                   onClick={() => {showGroupMemberInfo(uid)}}/>{' '}
               </Link>
+              {uid === user.uid && <FacebookIDModal />}
+              {uid !== user.uid &&
               <Button
                 basic
                 className={localStyles.button}
                 icon='comment outline'
                 size='large'
-                href={'https://m.me/' + friend.facebookID}/>
+                href={friend.facebookID ? 'https://m.me/' + friend.facebookID : ''}
+                onClick={() => {
+                  !friend.facebookID ? alert('This user has not synched with messenger') : ''
+                }}/>
+              }
             </Grid.Column>
           </Grid.Row>
           {agenda.map((key) => {
