@@ -16,9 +16,9 @@ var config = {
           presets: ['es2015', 'react', 'stage-2']
         }
       },
-      { 
-        test: /\.json$/, 
-        loader: 'json-loader' 
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       },
       {
         test: /\.css$/,
@@ -30,6 +30,13 @@ var config = {
         query: {
           modules: true,
           localIdentName: '[name]__[local]___[hash:base64:5]'
+        }
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000
         }
       }
     ]
