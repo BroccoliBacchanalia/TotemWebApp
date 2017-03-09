@@ -7,7 +7,7 @@ import localStyles from './ConfigStyles.css';
 import { updateVenueId } from '../../redux/actions/groupActions';
 import { firebaseSet } from '../../redux/actions/firebaseActions';
 
-const img = ['img/outsideLands.jpeg','img/coachella.jpg', 'img/burningMan.jpg'];
+const img = ['img/outsideLands.jpg','img/coachella.jpg', 'img/burningMan.jpg'];
 export const ChooseVenue = ({ venues }) => (
   <div>
     <div className={localStyles.header}>
@@ -22,14 +22,10 @@ export const ChooseVenue = ({ venues }) => (
         <Link key={index} to='/creategroup'>
           <div id = 'venueItem' className = {localStyles.outside}
             onClick={updateVenueId.bind(this, key)}>
-
-              <div className={localStyles.oi}>
-                <div className={localStyles.inside}>
-                  <p className={localStyles.text}>{venues[key]}</p>
-               </div>
-         
-              
-            </div>
+              <img className={localStyles.oi} src={img[index]}></img>
+              <div className={localStyles.inside}>
+                <p className={localStyles.text}>{venues[key]}</p>
+              </div>
           </div>
         </Link>
         
