@@ -9,7 +9,7 @@ import { updateVenueNames } from './venueActions';
 
 const dispatch = store.dispatch;
 let accessToken;
-let databaseGroup =[];
+let databaseGroup = {};
 let currentUserId;
 const authConfig = {
   facebookPermissions: ['public_profile', 'email', 'user_friends']
@@ -39,41 +39,28 @@ function signInError(errorMessage) {
 }
 
 function getUsers() {
-  return firebaseOnce('/users', (data) => {
-    console.log('data', data)
-    databaseGroup.push(data);
-    getFriends();
+  return firebaseOnce('/users', (fireUsers) => {
+    getFriends(fireUsers);
   });
 }
 
-function getFriends() {
-  var endpoint = "https://graph.facebook.com/me/taggable_friends?access_token=" + accessToken;
+function getFriends(fireUsers) {
+  const endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
+  axios.get(endpoint).then((facebookData) =>{
+    const facebookFriends = facebookData.data.data;
+    const firebaseDataWithFacebookUidKeys = {};
+    let friendsWithAccounts = { data: [] }
 
-  axios.get(endpoint).then((data) =>{
-    let faceBookFriends = data.data;
-    let firebaseArray = [];
-    let firebaseData = {};
-    let temp = {};
-    let friendObject = {};
+    for (let key in fireUsers) {
+      firebaseDataWithFacebookUidKeys[fireUsers[key].facebookUID] = key;
+    }
 
-    for(let key in databaseGroup[0]) {
-      databaseGroup[0][key]['firebaseId'] = key
-      firebaseArray.push(databaseGroup[0][key])
+    for (let i = 0; i < facebookFriends.length; i++) {
+      let friendKey = firebaseDataWithFacebookUidKeys[facebookFriends[i].id];
+      delete fireUsers[friendKey].friends;
+      friendsWithAccounts.data.push(fireUsers[friendKey]);
     }
-    firebaseData['data'] = firebaseArray;
-    let friendsWithAccounts = {
-      data: []
-    }
-    //fills out friendsWithAccounts to have facebook friends that are also totem users
-    for (let i = 0; i < firebaseData.data.length-1; i++) {
-      for (let x = 0; x < faceBookFriends.data.length-1; x++) {
-        if (firebaseData.data[i].label === faceBookFriends.data[x].name) {
-          //filters out their friend list so not to create an infinite loop
-          delete firebaseData.data[i].friends;
-          friendsWithAccounts.data.push(firebaseData.data[i]);
-        }
-      }
-    }
+
     //saves user friends in the database
     firebaseSet(`users/${currentUserId}/friends`, friendsWithAccounts);
     dispatch({ type: 'UPDATE_FRIENDS', friends: friendsWithAccounts });
@@ -84,12 +71,11 @@ function getFriends() {
 
 export function getUserData(id) {
   firebaseOnce(`users/${id}`, (data) => {
-    console.log('fbid',data.facebookID)
     initialUserData(data);
     if (!!data.groupId) {
       updateUserGroupID(data.groupId);
     }
-    dispatch({ type: 'UPDATE_FB_USERNAME', payload: { name: data.facebookID } });
+    dispatch({ type: 'UPDATE_FB_USERNAME', payload: { name: data.facebookUsername} });
     getVenueNames(!data.groupId);
   });
 }
@@ -116,6 +102,7 @@ export function signIn() {
     currentUserId = uid;
 
     firebaseSet(`users/${uid}/label`, displayName);
+    firebaseSet(`users/${uid}/facebookUID`, result.user.providerData[0].uid);
     firebaseSet(`users/${uid}/img`, photoURL);
     firebaseSet(`users/${uid}/email`, email);
     firebaseSet(`users/${uid}/lastTimeLoggedIn`, firebase.database.ServerValue.TIMESTAMP);

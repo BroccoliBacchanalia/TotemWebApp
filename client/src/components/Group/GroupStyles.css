@@ -162,11 +162,9 @@
 
 #mContent {
   padding-right: 0px !important;
-  height: 300px !important;
+  height: 310px !important;
   width: 100% !important;
 }
-
-
 
 .azButton, .gfButton, .pxButton {
   height: 100%;
