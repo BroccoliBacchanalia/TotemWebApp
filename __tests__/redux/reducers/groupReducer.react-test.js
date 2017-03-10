@@ -8,7 +8,7 @@ import * as firebaseActions from '../../../client/src/redux/actions/firebaseActi
 
 describe('Group Reducer', () => {
 
-	test('Should have set defaults', () => {
+	it('Should have set defaults', () => {
 		expect(groupReducer(undefined, {})).toEqual({
       "groupName": "",
       "memberKeys": {},
@@ -24,7 +24,7 @@ describe('Group Reducer', () => {
 		});
 	});
 
-	test('Should be able to handle UPDATING_GROUP_MEMBER', () => {
+	it('Should be able to handle UPDATING_GROUP_MEMBER', () => {
 		let uid = 123123;
 		expect(
 			groupReducer(undefined, {
@@ -37,7 +37,7 @@ describe('Group Reducer', () => {
 			).toEqual({'123123': 'John'})
 	});
 
-	test('Should add user listener to each user in group', () => {
+	it('Should add user listener to each user in group', () => {
 
 		const group = {
 			memberKeys : {
@@ -52,7 +52,7 @@ describe('Group Reducer', () => {
     expect(locationActions.addUserListener).toHaveBeenCalledTimes(3);
 	})
 
-	test('Should be able to handle USERS_SORT sortAZ', () => {
+	it('Should be able to handle USERS_SORT sortAZ', () => {
 		expect(
 		groupReducer({users: {'Y3241asss': {'label': 'mitch'}, '21341234': {'label':'hedberg'}}}, {
 			type: 'USERS_SORT',
