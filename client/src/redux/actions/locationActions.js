@@ -1,7 +1,8 @@
 import firebase from 'firebase';
-import { updateGroupMember } from './groupActions';
-import { firebaseOn, firebaseSet } from './firebaseActions';
 import store from '../store';
+import { updateGroupMember } from './groupActions';
+import { setGeofence } from './userActions';
+import { firebaseOn, firebaseSet } from './firebaseActions';
 
 //Listens to firebase for any changes in your group and returns the entire group
 export function addUserListener(userId) {
@@ -15,8 +16,11 @@ export function geolocate() {
   function success(pos) {
     console.log(pos);
     const uid = store.getState().user.uid;
+    const geofence = getGeofence(pos.coords);
     const hrLat = 37.7837693;
     const hrLng = -122.4090728;
+
+    firebaseSet(`users/${uid}/geofence`, geofence);
 
     if (uid === 'KrSypCuwkBdEiH2JAJgOGxZN8m52') {
       firebaseSet(`users/${uid}/position`, {
@@ -59,7 +63,7 @@ export function geolocate() {
 
   setInterval(() => {
     navigator.geolocation.getCurrentPosition(success, error, options);
-  }, 20000);
+  }, 4000);
 }
 
 export function getGeofence(coordinates) {
