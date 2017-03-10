@@ -74,7 +74,7 @@ export function geolocate() {
 
   setInterval(() => {
     navigator.geolocation.getCurrentPosition(success, error, options);
-  }, 4000);
+  }, 10000);
 }
 
 export function getGeofence(coordinates) {
