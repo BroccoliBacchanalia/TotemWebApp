@@ -33,7 +33,7 @@ export const ChooseVenue = ({ venues }) => (
     </div>
     <div className={localStyles.cFooter}>
       <div>
-        <Link to="/creategroup">
+        <Link to="/creategroup" className={localStyles.skipFont}>
           Skip
         </Link>
       </div>

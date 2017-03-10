@@ -24,6 +24,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
         selectedStage={selectedStage}
         key='nav'
       />
+
       <div style={{ height: window.innerHeight - 124 }} className={styles.scrollView}>
         <Grid className={localStyles.container}>
           {Object.keys(venue.scheduleitems).map((key, index) => {

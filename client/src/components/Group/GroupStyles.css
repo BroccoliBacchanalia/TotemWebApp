@@ -226,7 +226,7 @@
   text-align: center !important;
 }
 
-input {
+.fInput input {
   width: 109px !important;
   padding: 0px !important;
   font-size: large !important;
