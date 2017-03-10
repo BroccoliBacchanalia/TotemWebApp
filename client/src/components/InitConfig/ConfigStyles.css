@@ -1,3 +1,5 @@
+
+
 .header {
   background-color: #222;
   height: 90px;
@@ -105,29 +107,27 @@
   margin: 0 auto;
 }
 
-#logo {
+.outside {
   padding-top: 2px;
   padding-bottom: 2px;
   width: 100%;
-  height:175px;
- 
+  height:175px; 
 }
-
-#logo img {
+.oi {
+  padding-top: 2px;
+  padding-bottom: 2px;
   width: 100%;
-  height: 173px;
-  z-index: 1;
-  position: relative;
+  height:173px;
+   opacity: 0.90;
 }
 
-.caption {
-  background-color: black;
-  opacity: 0.35;
-  filter: alpha(opacity=50);
+.inside {
+  background-color: rgba(0,0,0,0.36);
   z-index: 3;
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 50px;
+  margin-top: -167px;
 }
 
 .text {
@@ -135,7 +135,97 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 4;
+  z-index: 6;
   height: 100%;
   color: white;
+
 }
+.line {
+  height: 0.5px;
+  width: 100%;
+  background-color: black;
+}
+.createButton {
+  
+}
+.othergroups {
+
+    width: 300px;
+    height: 165px;
+    background-color: rgba(100, 150, 150, 0.3);
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    display: inline-block;
+ 
+}
+.groupText {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+  height: 100%;
+  color: black;
+  align-self: center;
+}
+.groupHolder{
+
+  text-align: center;
+    vertical-align: middle;
+ 
+  height:175px; 
+  width: 100%;
+
+
+}
+
+/*
+.box{
+
+  width:40%;
+  height:170px;
+  float:left;
+  background-color:white; 
+  margin:25px 15px;
+  border-radius:5px;
+  background-color: rgba(146, 78, 78, 0.43);
+  position:relative;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+}
+.box h3{
+  font-family: 'Didact Gothic', sans-serif;
+  font-weight:normal;
+  text-align:center;
+  padding-top:60px;
+  color:#fff;
+  width:87%;
+  height:100px;
+  margin-left:6%;
+  border:2px dashed #F7EEEE;
+  border-radius:5px;
+}
+
+.box:before, .box:after{
+  position:absolute;
+  content:"";
+  bottom:12px;left:15px;top:80%;
+  width:45%;
+  background:#9B7468;
+  z-index:-1;
+  -webkit-box-shadow: 0 20px 15px #9B7468;
+  -moz-box-shadow: 0 20px 15px #9B7468;
+  box-shadow: 0 20px 15px #9B7468;
+  -webkit-transform: rotate(-6deg);
+  -moz-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+}
+.box:after{
+  -webkit-transform: rotate(6deg);
+  -moz-transform: rotate(6deg);
+  transform: rotate(6deg);
+  right: 15px;left: auto;
+}
+*/

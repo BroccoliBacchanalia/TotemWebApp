@@ -10,6 +10,7 @@
   border-bottom-style: solid;
   border-bottom-width: 2px;
   background-color: rgba(163, 216, 204, 0.2);
+  min-height: 100px;
   box-shadow: none !important;
   padding: 10px 0px 0px 0px !important;
 }
@@ -86,7 +87,7 @@
 }
 
 .modal {
-  height: 400px !important;
+  height: 460px !important;
 }
 
 .modalImage {
@@ -162,7 +163,7 @@
 
 #mContent {
   padding-right: 0px !important;
-  height: 310px !important;
+  height: 372px !important;
   width: 100% !important;
 }
 
