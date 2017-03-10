@@ -1,4 +1,4 @@
-#Rabble
+#Totem
 
 App that allows you to see where your friends are at a current music festival
 
