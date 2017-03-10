@@ -6,7 +6,7 @@ import { Button } from 'semantic-ui-react';
 import { updateGroupName, updateUserGroupID, firebaseUpdate, firebaseKeyGen, firebaseOnce, firebaseSet } from '../../redux/actions';
 import Loading from '../Auth/Loading';
 import localStyles from './ConfigStyles.css';
-
+const gp=['group1','group2'];
 class CreateGroup extends Component {
   constructor(props) {
     super(props)
@@ -34,8 +34,10 @@ class CreateGroup extends Component {
     	  <div className={localStyles.header}>
     			<h3>Join or Create a Group</h3>
     		</div>
+
     		<div className={localStyles.cgBody}>
-    			<div className="ui input focus">
+    			
+          <div className="ui input focus">
     				<input
     					type="text"
     					placeholder="Group Name"
@@ -44,22 +46,32 @@ class CreateGroup extends Component {
               }}
     				/>
     			</div>
-    		  <div>
+
+    		  <div className={localStyles.createButton}>
     			  <Button
     					onClick={submit.bind(this, user, group)}
-    					disabled={group.groupName.length < 1}
-    				>
+    					disabled={group.groupName.length < 1}>
     					<Link to='/group'>
     						Create
     					</Link>
     			  </Button>
     		  </div>
+
     		</div>
-        {groupKeys.map((groupKey, index) => {
+     
+        
+        {gp.map((groupKey, index) => {
           return (
-            <Link to='/group' key={index}>
-              <div onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
-            </Link>
+            <div className={localStyles.groupHolder}>
+              <Link to='/group' key={index}>
+               <div  className={localStyles.othergroups}
+                     onClick={() => { joinGroup(user, groupKey) }}>
+                <h3 className={localStyles.groupText}>{this.state.group[groupKey].groupName}</h3>
+               </div>
+              </Link>
+            
+            </div>
+         
           );
         })}
     	</div>
