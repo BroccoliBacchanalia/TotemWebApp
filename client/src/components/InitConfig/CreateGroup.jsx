@@ -6,7 +6,7 @@ import { Button } from 'semantic-ui-react';
 import { updateGroupName, updateUserGroupID, firebaseUpdate, firebaseKeyGen, firebaseOnce, firebaseSet } from '../../redux/actions';
 import Loading from '../Auth/Loading';
 import localStyles from './ConfigStyles.css';
-const gp=['group1','group2'];
+
 class CreateGroup extends Component {
   constructor(props) {
     super(props)
@@ -56,22 +56,14 @@ class CreateGroup extends Component {
     					</Link>
     			  </Button>
     		  </div>
-
     		</div>
-     
-        
-        {gp.map((groupKey, index) => {
-          return (
-            <div className={localStyles.groupHolder}>
-              <Link to='/group' key={index}>
-               <div  className={localStyles.othergroups}
-                     onClick={() => { joinGroup(user, groupKey) }}>
-                <h3 className={localStyles.groupText}>{this.state.group[groupKey].groupName}</h3>
-               </div>
-              </Link>
-            
-            </div>
-         
+        {groupKeys.map((groupKey, index) => {
+          return !this.state.group[groupKey] ? '' : (
+            <Link to='/group' key={index}>
+              <div onClick={() => { joinGroup(user, groupKey)}}>
+                {this.state.group[groupKey].groupName}
+              </div>
+            </Link>
           );
         })}
     	</div>
