@@ -8,6 +8,7 @@ import AgendaRow from './AgendaRow.jsx';
 import AgendaNav from './AgendaNav.jsx';
 /* Actions */
 import { getStagesAndDays, generateDay } from '../../redux/actions/venueScheduleActions';
+
 import { Grid } from 'semantic-ui-react'
 
 export const Agenda = ({ venueSchedule, venue, user }) => {
@@ -34,7 +35,7 @@ export const Agenda = ({ venueSchedule, venue, user }) => {
             }
           })}
         </Grid>
-        <br/><br/><br/><br/><br/> {/* Spacing for final artist */}
+        <br/><br/><br/><br/> {/* Spacing for final artist */}
       </div>
     </div>
   );

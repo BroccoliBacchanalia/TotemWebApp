@@ -15,7 +15,7 @@ export const ScheduleNav = ({ days, stages, selectedDay, selectedStage }) => (
     </select>
     <select
       id="stages-dropdown"
-      className={styles.select + ' ui selection fluid dropdown spacing-dropdown sched-nav'}
+      className={styles.select + ' ui selection fluid dropdown sched-nav'}
       value={selectedStage}
       onChange={updateValue.bind(this, 'stages-dropdown')}>
       <option value="All Stages">All Stages</option>
