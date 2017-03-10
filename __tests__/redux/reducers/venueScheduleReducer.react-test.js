@@ -19,6 +19,7 @@ describe('Venue Schedule Reducer', () => {
       selectedStage: 'All Stages'
     })
   })
+
   it('Should be able change day', () => {
     expect(
       venueScheduleReducer(undefined, {
@@ -29,6 +30,7 @@ describe('Venue Schedule Reducer', () => {
       }).selectedDay
     ).toBeTruthy()
   })
+  
    it('Should be able change stage', () => {
     expect(
       venueScheduleReducer(undefined, {

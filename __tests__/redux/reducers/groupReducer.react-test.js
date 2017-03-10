@@ -38,7 +38,6 @@ describe('Group Reducer', () => {
 	});
 
 	it('Should add user listener to each user in group', () => {
-
 		const group = {
 			memberKeys : {
         '1232321' : 'Derek',
@@ -61,5 +60,16 @@ describe('Group Reducer', () => {
 			}
 		}).users
 		).toEqual({"21341234": {"label": "hedberg"}, "Y3241asss": {"label": "mitch"}});
+	})
+
+	it('Should be able to handle USERS_SORT sortGeofence', () => {
+		expect(
+		groupReducer({users: {'Y3241asss': {'geofence': {'name': 'Sahara Tent'}}, '21341234': {'geofence': {'name': 'Coachella Stage'}}}}, {
+			type: 'USERS_SORT',
+			payload: {
+				method: sortMethods.sortGeofence
+			}
+		}).users
+		).toEqual({"21341234": {"geofence": {"name": "Coachella Stage"}}, "Y3241asss": {"geofence": {"name": "Sahara Tent"}}});
 	})
 })
