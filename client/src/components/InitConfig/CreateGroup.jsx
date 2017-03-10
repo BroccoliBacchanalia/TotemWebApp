@@ -70,14 +70,12 @@ class CreateGroup extends Component {
 
 function groupFinder(user) {
   const friendsArray = user.friendList.data;
-  console.log('LLLLL', friendsArray)
   const groupKeys = {};
   for (let i = 0; i < friendsArray.length - 1; i++) {
     if (friendsArray[i].groupId) {
       groupKeys[friendsArray[i].groupId] = true;
     }
   }
-  console.log('=====', groupKeys)
   return groupKeys;
 }
 
