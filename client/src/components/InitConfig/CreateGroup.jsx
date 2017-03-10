@@ -56,9 +56,11 @@ class CreateGroup extends Component {
     		  </div>
     		</div>
         {groupKeys.map((groupKey, index) => {
-          return (
+          return !this.state.group[groupKey] ? '' : (
             <Link to='/group' key={index}>
-              <div onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
+              <div onClick={() => { joinGroup(user, groupKey)}}>
+                {this.state.group[groupKey].groupName}
+              </div>
             </Link>
           );
         })}
