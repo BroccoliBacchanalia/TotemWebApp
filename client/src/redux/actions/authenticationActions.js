@@ -60,7 +60,6 @@ function getFriends(fireUsers) {
       delete fireUsers[friendKey].friends;
       friendsWithAccounts.data.push(fireUsers[friendKey]);
     }
-
     //saves user friends in the database
     firebaseSet(`users/${currentUserId}/friends`, friendsWithAccounts);
   }).catch((error) => {

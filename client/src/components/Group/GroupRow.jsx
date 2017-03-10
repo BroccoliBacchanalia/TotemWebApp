@@ -33,8 +33,8 @@ var mockScheduleItems =
   }];
 
 const GroupRow = ({ friend, uid }) => {
-  const geofence = friend.position ? getGeofence(friend.position) : false;
-  let artist = geofence.key ? getArtist(geofence.key) : '';
+  const geofence = friend.geofence;
+  let artist = geofence && geofence.key ? getArtist(geofence.key) : '';
   artist = artist ? ' - ' + artist : '';
 
   return (
@@ -45,8 +45,8 @@ const GroupRow = ({ friend, uid }) => {
       <Grid.Column className={localStyles.centerDiv}>
         <span className="h4">{friend.label}</span>
         <br />
-        {geofence.name ? <div>{geofence.name + artist}<br /></div> : ''}
-        <span className={localStyles.timestamp}> Last updated: 
+        {geofence && geofence.name ? <div>{geofence.name + artist}<br /></div> : ''}
+        <span className={localStyles.timestamp}> Last updated:
           { ' ' + moment(friend.position.timestamp).fromNow() }
         </span>
       </Grid.Column>

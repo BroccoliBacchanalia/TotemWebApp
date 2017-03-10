@@ -52,9 +52,7 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user, artist }) =
             </Grid.Column>
             <Grid.Column className={localStyles.mCenterDiv}>
               <div className={localStyles.mGeofence}>
-                {friend.position ?
-                getGeofence(friend.position).name :
-                 ''}
+                {friend.geofence ? friend.geofence.name : ''}
                </div>
               <div className={localStyles.mArtistName}>{artist}</div>
               <div className={localStyles.timestamp}> Last updated: { ' ' + moment(friend.position.timestamp).calendar()}</div>
