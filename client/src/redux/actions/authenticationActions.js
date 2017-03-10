@@ -62,7 +62,6 @@ function getFriends(fireUsers) {
     }
 
     //saves user friends in the database
-    console.log('%%%%%%%', friendsWithAccounts)
     firebaseSet(`users/${currentUserId}/friends`, friendsWithAccounts);
     dispatch({ type: 'UPDATE_FRIENDS', friends: friendsWithAccounts });
   }).catch((error) => {

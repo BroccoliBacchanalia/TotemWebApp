@@ -55,6 +55,7 @@ class CreateGroup extends Component {
       		  </div>
       		</div>
           {Object.keys(groupFinder(user)).map((groupKey, index) => {
+            {console.log('+++++', groupKey)}
             return (
               <Link to='/group' key={index}>
                 <div onClick={() => { joinGroup(user, groupKey) }}>{this.state.group[groupKey].groupName}</div>
@@ -70,10 +71,12 @@ class CreateGroup extends Component {
 
 function groupFinder(user) {
   const friendsArray = user.friendList.data;
+  console.log('LLLLL', friendsArray)
   const groupKeys = {};
-  for (let i = 0; i < friendsArray.length - 1; i++) {
+  for (let i = 0; i < friendsArray.length-1; i++) {
     groupKeys[friendsArray[i].groupId] = true;
   }
+  console.log('=====', groupKeys)
   return groupKeys;
 }
 
