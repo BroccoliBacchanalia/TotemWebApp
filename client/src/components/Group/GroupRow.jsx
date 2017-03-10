@@ -25,11 +25,11 @@ var mockScheduleItems =
     "starttime" : "2017-03-08T16:00:00"
   }, {
     "day" : "2017-03-08T07:00:00.000Z",
-    "endtime" : "2017-03-08T18:00:00",
+    "endtime" : "2017-03-08T20:00:00",
     "geofence" : "Mojave Tent",
     "imgurl" : "https://s3.amazonaws.com/gv-account-assets/artist-images/20172/586ad6d8a04f6/586ad6d8a0579.jpg",
     "name" : "KING GIZZARD AND THE LIZARD WIZARD",
-    "starttime" : "2017-03-08T17:00:00"
+    "starttime" : "2017-03-08T19:10:00"
   }];
 
 const GroupRow = ({ friend, uid }) => {
