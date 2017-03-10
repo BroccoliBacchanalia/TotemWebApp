@@ -48,7 +48,7 @@ class AgendaModal extends Component {
             <p className={localStyles.mAttendingFriends}>
               {Object.keys(users).map((userKey, index) => {
                 const friend = users[userKey];
-                if (friend.agenda[itemKey] && userKey !== user.uid)  {
+                if (friend.agenda && friend.agenda[itemKey] && userKey !== user.uid)  {
                   return friend.label + ' ' + index + ' '+ Object.keys(users).length + ', ';
                 }
               })}

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import store from '../../redux/store';
 import { connect } from 'react-redux';
+import styles from '../Styles.css';
 import localStyles from './AgendaStyles.css';
 /* Components */
 import AgendaRow from './AgendaRow.jsx';
@@ -13,26 +14,28 @@ export const Agenda = ({ venueSchedule, venue, user }) => {
   const { days } = getStagesAndDays(venue.scheduleitems);
   const agenda = user.agenda;
   const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
+
   return (
     <div>
       <AgendaNav days={days} selectedDay={selectedDay} />
-      <br/>
-      <Grid className={localStyles.container}>
-        {agenda.map((key, index) => {
-          const item = venue.scheduleitems[key];
-          if (item && (item.day === selectedDay)) {
-            return (
-              <AgendaRow
-                id='agenda'
-                key={index}
-                itemKey={key}
-                item={item}
-              />
-            );
-          }
-        })}
-      </Grid>
-      <br/><br/><br/><br/>
+      <div style={{ height: window.innerHeight - 124 }} className={styles.scrollView}>
+        <Grid className={localStyles.container}>
+          {agenda.map((key, index) => {
+            const item = venue.scheduleitems[key];
+            if (item && (item.day === selectedDay)) {
+              return (
+                <AgendaRow
+                  id='agenda'
+                  key={index}
+                  itemKey={key}
+                  item={item}
+                />
+              );
+            }
+          })}
+        </Grid>
+        <br/><br/><br/><br/><br/> {/* Spacing for final artist */}
+      </div>
     </div>
   );
 }

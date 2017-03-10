@@ -30,10 +30,10 @@ export function geolocate() {
         break;
       }
       case 'BSxDfzp6vwdLEP0g5xqjXpL6zDF3': {
-        lat -= (hrLat - 33.6798); // Sahara
-        lng -= (hrLng - (-116.236626)); // Sahara
-        // lat -= (hrLat - 33.6809343); // Heineken House
-        // lng -= (hrLng - (-116.238377)); // Heineken House
+        // lat -= (hrLat - 33.6798); // Sahara
+        // lng -= (hrLng - (-116.236626)); // Sahara
+        lat -= (hrLat - 33.6809343); // Heineken House
+        lng -= (hrLng - (-116.238377)); // Heineken House
         break;
       }
       case 'nJU5dy4GSjgirgWMENAYeCQYMcG2': {

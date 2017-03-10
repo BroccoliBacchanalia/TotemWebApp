@@ -12,7 +12,7 @@ const GroupView = ({ user, users }) => (
     <div className={localStyles.sortToolbar} >
       <GroupSort />
     </div>
-    <div style={{ height: window.innerHeight - 197 }} className={styles.scrollView}>
+    <div style={{ height: window.innerHeight - 130 }} className={styles.scrollView}>
       <Grid
         celled
         className={localStyles.grid}
