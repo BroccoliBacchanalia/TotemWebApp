@@ -23,8 +23,8 @@ export const ChooseVenue = ({ venues }) => (
           <div id = 'venueItem'
             onClick={updateVenueId.bind(this, key)}>
             <div id={localStyles.logo}>
-                <div className={localStyles.caption}>
-                  <p className={localStyles.text}>{venues[key]}</p>
+              <div className={localStyles.caption}>
+                <p className={localStyles.text}>{venues[key]}</p>
                </div>
               <img src={img[index]}></img>
             </div>
