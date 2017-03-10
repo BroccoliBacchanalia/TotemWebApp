@@ -22,7 +22,6 @@ class SpeedDialButton extends Component {
           onClick: () => {
             toggleTotemModal(true);
             this.refs['speedDial'].handleClickClose();
-            history.push('/map');
           }
         },
         {
@@ -61,14 +60,6 @@ class SpeedDialButton extends Component {
     );
   };
 }
-
-SpeedDialButton.contextTypes = {
-  history: React.PropTypes.shape({
-    push: React.PropTypes.func.isRequired,
-    replace: React.PropTypes.func.isRequired,
-    createHref: React.PropTypes.func.isRequired
-  }).isRequired
-};
 
 SpeedDialButton.displayName = 'SpeedDialButton';
 
