@@ -75,7 +75,7 @@ const GroupMemberModal = ({ friend, uid, venueSchedule, venue, user, artist }) =
                 size='large'
                 href={friend.facebookUsername ? 'https://m.me/' + friend.facebookUsername : ''}
                 onClick={() => {
-                  !friend.facebookUsername ? alert('This user has not synched with messenger') : ''
+                  !friend.facebookUsername ? alert(friend.label + " has not sync'd with messenger") : ''
                 }}/>
               }
             </Grid.Column>

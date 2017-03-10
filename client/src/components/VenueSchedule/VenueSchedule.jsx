@@ -7,8 +7,9 @@ import ScheduleNav from './ScheduleNav.jsx';
 
 import { getStagesAndDays } from '../../redux/actions/venueScheduleActions';
 import { Grid } from 'semantic-ui-react'
-import localStyles from './VenueStyles.css';
 
+import styles from '../Styles.css';
+import localStyles from './VenueStyles.css';
 
 const VenueSchedule = ({ venue, venueSchedule }) => {
   const { stages, days } = getStagesAndDays(venue.scheduleitems);
@@ -23,28 +24,28 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
         selectedStage={selectedStage}
         key='nav'
       />
-      <br />
-      <Grid className={localStyles.container}>
-        <br />
-        <br />
-        {Object.keys(venue.scheduleitems).map((key, index) => {
-          const item = venue.scheduleitems[key];
-          if (item) {
-            const isSelectedStage = selectedStage === item.geofence || selectedStage === 'All Stages';
-            if (item.day === selectedDay && isSelectedStage) {
-              return (
-                <ScheduleRow
-                  key={index}
-                  itemKey={key}
-                  item={item}
-                  id='row'
-                />
-              );
+
+      <div style={{ height: window.innerHeight - 124 }} className={styles.scrollView}>
+        <Grid className={localStyles.container}>
+          {Object.keys(venue.scheduleitems).map((key, index) => {
+            const item = venue.scheduleitems[key];
+            if (item) {
+              const isSelectedStage = selectedStage === item.geofence || selectedStage === 'All Stages';
+              if (item.day === selectedDay && isSelectedStage) {
+                return (
+                  <ScheduleRow
+                    key={index}
+                    itemKey={key}
+                    item={item}
+                    id='row'
+                  />
+                );
+              }
             }
-          }
-        })}
-      </Grid>
-      <br/><br/><br/><br/><br/>
+          })}
+        </Grid>
+        <br/><br/><br/><br/><br/> {/* Spacing for final artist */}
+      </div>
     </div>
   );
 }

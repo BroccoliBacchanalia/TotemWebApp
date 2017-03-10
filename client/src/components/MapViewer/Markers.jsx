@@ -36,10 +36,10 @@ export class Markers extends Component {
                   {totem.meetupTime && !placeTotem &&
                     <div>
                       <div>
-                        {'Meet at: ' + moment(milliSeconds).format('h:mm A')}
+                        {'Meet ' + moment(milliSeconds).fromNow()}
                       </div>
                       <div className={localStyles.subtext}>
-                        {'...' + moment(milliSeconds).fromNow()}
+                        {' at ' + moment(milliSeconds).format('h:mm A')}
                       </div>
                     </div>
                   }

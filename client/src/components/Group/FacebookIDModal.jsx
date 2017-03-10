@@ -37,6 +37,7 @@ class FacebookIDModal extends Component {
           <p className={localStyles.fContent}>http://facebook.com/</p>
           <Input 
             className={localStyles.fContent} 
+            className={localStyles.fInput} 
             placeholder={user.facebookUsername ? user.facebookUsername : 'username'}
             onChange={(e) => {
               updateFacebookUsername(e.target.value)
@@ -45,14 +46,14 @@ class FacebookIDModal extends Component {
           <br />
         </Modal.Actions>
         <Modal.Content className={localStyles.fButton}>
-          <br /><br />
+          <br /><br /><br />
           <Button 
             onClick={() => {
               this.close();
               submitFacebookUsername(user);
             }}
             color='facebook'
-            size='large' >
+            size='huge' >
             <Icon name='facebook f'/> Submit
           </Button>
         </Modal.Content>
