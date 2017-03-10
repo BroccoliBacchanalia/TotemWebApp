@@ -48,11 +48,16 @@ export function initialUserData(user) {
 export function updateFacebookUsername(name) {
   return store.dispatch({
     type: 'UPDATE_FB_USERNAME',
-    payload: { name } 
+    payload: { name }
   });
 }
 
 export function addAgendaItem(key) {
+  store.dispatch({
+    type: 'ADD_AGENDA_ITEM',
+    payload: { key }
+  });
+
   const uid = store.getState().user.uid;
   const updates = {};
 
@@ -67,6 +72,11 @@ export function addAgendaItem(key) {
 }
 
 export function removeAgendaItem(key) {
+  store.dispatch({
+    type: 'REMOVE_AGENDA_ITEM',
+    payload: { key }
+  });
+
   const uid = store.getState().user.uid;
   const agendaPath = 'users/' + uid + '/agenda/';
 
