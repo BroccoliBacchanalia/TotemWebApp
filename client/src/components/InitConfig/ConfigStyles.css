@@ -28,7 +28,7 @@
 }
 
 .cFooter {
-  background: rgba(146, 78, 78, 0.43) !important;
+  background: #222 !important;
   width: 100%;
   height: 50px;
   line-height: 50px;
@@ -39,6 +39,10 @@
 .cFooter div {
   width: 40px;
   margin: 0 auto;
+}
+
+.skipFont {
+  font-size: large;
 }
 
 .cFooter a:hover {
@@ -108,7 +112,7 @@
 }
 
 .outside {
-  padding-top: 2px;
+  padding-top: 4px;
   padding-bottom: 2px;
   width: 100%;
   height:175px; 
@@ -177,9 +181,34 @@
     vertical-align: middle;
  
   height:175px; 
+
+
   width: 100%;
+}
 
+.gCardContainer {
+  display: flex;
+  justify-content: center;
+}
 
+.gCard {
+  background: rgba(0, 0, 0, 0.72) !important;
+}
+
+.gCardHeader { 
+  border-bottom-color: #8c8c8c !important;
+  border-bottom-style: solid !important;
+  border-width: 1px !important;
+  padding-bottom: 5px !important;
+}
+
+.gCard div {
+  color: white !important;
+}
+
+.coachellaBG {
+  z-index: -1;
+  position: fixed;
 }
 
 /*

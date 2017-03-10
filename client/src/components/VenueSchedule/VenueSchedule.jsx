@@ -23,7 +23,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
         selectedStage={selectedStage}
         key='nav'
       />
-      <br />
+      <div className={localStyles.spacer}/>
       <Grid className={localStyles.container}>
         <br />
         <br />
