@@ -74,7 +74,7 @@ export class Markers extends Component {
                     <div className={localStyles.friendInfo}>
                       <h4>{user.label}</h4>
                       <div>
-                        {getGeofence(user.position).name}
+                        {user.geofence ? user.geofence.name : ''}
                       </div>
                       <span className={localStyles.subtext}>
                         {moment(user.position.timestamp).fromNow()}

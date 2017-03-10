@@ -59,7 +59,7 @@ export class MapViewer extends Component {
   }
 
   setBasecamp(coords) {
-    coords.radius = 10;
+    coords.radius = 20;
     placeTotemOnClick(false);
     updateTotem(coords, store.getState().user.groupId);
   }
