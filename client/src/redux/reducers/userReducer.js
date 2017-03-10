@@ -3,7 +3,6 @@ const defaults = {
   uid: null,
   name: null,
   groupId: null,
-  pendingInvites: {},
   friendList: [],
   dataRetrieved: false,
   facebookUsername: null,
@@ -17,6 +16,35 @@ export default function userReducer(state = defaults, action) {
     }
     case 'ADD_AGENDA': {
       return { ...state, agenda: action.payload.agenda };
+    }
+    case 'REMOVE_AGENDA_ITEM': {
+      const newState = {
+        agenda: [...state.agenda],
+        uid: state.uid,
+        name: state.name,
+        groupId: state.groupId,
+        friendList: [...state.friendList],
+        dataRetrieved: state.dataRetrieved,
+        facebookUsername: state.facebookUsername,
+        facebookUID: state.facebookUID
+      }
+      const index = newState.agenda.indexOf(action.payload.key);
+      newState.agenda.splice(index, 1);
+      return newState;
+    }
+    case 'ADD_AGENDA_ITEM': {
+      const newState = {
+        agenda: [...state.agenda],
+        uid: state.uid,
+        name: state.name,
+        groupId: state.groupId,
+        friendList: [...state.friendList],
+        dataRetrieved: state.dataRetrieved,
+        facebookUsername: state.facebookUsername,
+        facebookUID: state.facebookUID
+      }
+      newState.agenda.push(action.payload.key);
+      return newState;
     }
     case 'SIGNIN_SUCCESS':
       return {
@@ -42,9 +70,6 @@ export default function userReducer(state = defaults, action) {
     }
     case 'INITIAL_USER_DATA': {
       const newState = { ...state }
-      if (action.userData.pendingInvites) {
-        newState.pendingInvites = action.userData.pendingInvites
-      }
       if (action.userData.friends) {
         newState.friendList = action.userData.friends
       }

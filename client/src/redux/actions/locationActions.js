@@ -24,13 +24,13 @@ export function geolocate() {
         lat: pos.coords.latitude - (hrLat - 33.679914), // Sahara
         lng: pos.coords.longitude - (hrLng - (-116.236626)) // Sahara
       });
-    } else if (uid === 'rjjbJvO2utOdizeLz6wsjlJSelG2') {
+    } else if (uid === 'BSxDfzp6vwdLEP0g5xqjXpL6zDF3') {
       firebaseSet(`users/${uid}/position`, {
         timestamp: pos.timestamp,
-        lat: pos.coords.latitude - (hrLat - 33.681317), // Mojave
-        lng: pos.coords.longitude - (hrLng - (-116.236942)) // Mojave
+        lat: pos.coords.latitude - (hrLat - 33.6809343), // Heineken House
+        lng: pos.coords.longitude - (hrLng - (-116.238377)) // Heineken House
       });
-    } else if (uid === 'EaO2LdDD1TelYHPc4N4ObbUvkw83') {
+    } else if (uid === 'nJU5dy4GSjgirgWMENAYeCQYMcG2') {
       firebaseSet(`users/${uid}/position`, {
         timestamp: pos.timestamp,
         lat: pos.coords.latitude - (hrLat - 33.6829),
