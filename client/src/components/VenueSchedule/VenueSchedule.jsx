@@ -21,7 +21,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
         stages={stages}
         selectedDay={selectedDay}
         selectedStage={selectedStage}
-        key='nave'
+        key='nav'
       />
       <br />
       <Grid className={localStyles.container}>
