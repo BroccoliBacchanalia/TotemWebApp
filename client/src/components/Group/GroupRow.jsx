@@ -61,17 +61,19 @@ function getArtist(key) {
   const currentTime = new Date().getTime();
   const scheduleItems = mockScheduleItems; //store.getState().venue.venue.scheduleitems;
   const geoFences = store.getState().venue.geofences;
-  const userGeoFence = geoFences[key];
+  const userGeofence = geoFences[key];
 
   for (var i = 0; i < scheduleItems.length; i++) {
     const item = scheduleItems[i];
-    if (userGeoFence.name === item.geofence) {
-      const startTime = localTimeMilliseconds(Date.parse(item.starttime));
-      const endTime = localTimeMilliseconds(Date.parse(item.endtime));
-      const timeInRange = startTime <= currentTime && currentTime < endTime;
+    if (userGeofence && item) {
+      if (userGeofence.name === item.geofence) {
+        const startTime = localTimeMilliseconds(Date.parse(item.starttime));
+        const endTime = localTimeMilliseconds(Date.parse(item.endtime));
+        const timeInRange = startTime <= currentTime && currentTime < endTime;
 
-      if (timeInRange) {
-        return item.name.toProperCase();
+        if (timeInRange) {
+          return item.name.toProperCase();
+        }
       }
     }
   }
