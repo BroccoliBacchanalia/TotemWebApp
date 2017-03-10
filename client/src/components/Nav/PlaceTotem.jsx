@@ -57,26 +57,28 @@ const PlaceTotem = ({ app, venue }) => {
           }}>
           Cancel
         </Button>
-        <Button
-          color='blue'
-          size='huge'
-          inverted
-          onClick={() => {
-            const meridiem = document.querySelector('select[name="meridiem"]').value;
-            const mins = document.querySelector('select[name="meetup-minutes"]').value;
-            let hours = document.querySelector('select[name="meetup-hours"]').value;
-            let time = '';
+        <Link to='/map'>
+          <Button
+            color='blue'
+            size='huge'
+            inverted
+            onClick={() => {
+              const meridiem = document.querySelector('select[name="meridiem"]').value;
+              const mins = document.querySelector('select[name="meetup-minutes"]').value;
+              let hours = document.querySelector('select[name="meetup-hours"]').value;
+              let time = '';
 
-            if (hours.length > 0 && mins.length > 0) {
-              hours = Number(meridiem) + Number(hours);
-              time = convertToDate(hours, Number(mins));
-            }
-            updateMeetupTime(time);
-            placeTotemOnClick(true);
-            toggleTotemModal(false);
-          }}>
-          OK
-        </Button>
+              if (hours.length > 0 && mins.length > 0) {
+                hours = Number(meridiem) + Number(hours);
+                time = convertToDate(hours, Number(mins));
+              }
+              updateMeetupTime(time);
+              placeTotemOnClick(true);
+              toggleTotemModal(false);
+            }}>
+            OK
+          </Button>
+        </Link>
       </Modal.Actions>
     </Modal>
   );

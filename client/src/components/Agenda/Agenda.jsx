@@ -13,6 +13,7 @@ export const Agenda = ({ venueSchedule, venue, user }) => {
   const { days } = getStagesAndDays(venue.scheduleitems);
   const agenda = user.agenda;
   const selectedDay = venueSchedule.selectedDay || days[Object.keys(days)[0]];
+
   return (
     <div>
       <AgendaNav days={days} selectedDay={selectedDay} />
