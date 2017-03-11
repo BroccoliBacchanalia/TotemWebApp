@@ -11,7 +11,7 @@ const defaults = {
     name: {},
     scheduleitems: []
   },
-  
+  geofences: {}
 };
 
 export default function configReducer(state = defaults, action) {
