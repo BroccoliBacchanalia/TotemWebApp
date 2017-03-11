@@ -15,12 +15,12 @@ class LeaveGroupModal extends Component {
     const { user } = this.props;
     const { open } = this.state;
     return (
-      <Modal 
+      <Modal
         basic
         open={open}
         onOpen={this.open}
         onClose={this.close}
-        className={localStyles.modal} 
+        className={localStyles.modal}
         closeIcon='close'
         trigger={
           <Button className={localStyles.removeButton} color='orange' attached='bottom' >
@@ -32,21 +32,21 @@ class LeaveGroupModal extends Component {
           <p className='modal-body'>Are you sure you want to leave this group?</p>
         </Modal.Content>
         <Modal.Actions>
-          <Button 
+          <Button
             onClick={this.close}
-            size='huge' 
-            color='red' 
+            size='huge'
+            color='red'
             inverted >
             <Icon name='remove' /> No
           </Button>
           <Link to='/'>
-            <Button 
+            <Button
               onClick={() => {
                 this.close();
                 removeUserFromGroup(user);
               }}
-              color='green' 
-              size='huge' 
+              color='green'
+              size='huge'
               inverted >
               <Icon name='checkmark' /> Yes
             </Button>
@@ -58,10 +58,10 @@ class LeaveGroupModal extends Component {
 }
 
 function removeUserFromGroup(user) {
-  firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`)
-  .then(firebaseRemove(`users/${user.uid}/groupId`))
-  .then(updateUserGroupID(''))
-  .then(updateGroup(defaults));
+  updateUserGroupID('');
+  updateGroup(defaults);
+  firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`);
+  firebaseRemove(`users/${user.uid}/groupId`);
 }
 
 export default connect((store) => {

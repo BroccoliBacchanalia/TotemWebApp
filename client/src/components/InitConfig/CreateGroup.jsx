@@ -12,7 +12,7 @@ class CreateGroup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      group: {},
+      groups: {},
       loading: true
     }
   }
@@ -20,26 +20,25 @@ class CreateGroup extends Component {
   componentWillMount() {
     firebaseOnce('groups/', (groups) => {
       this.setState({
-        group: groups,
+        groups: groups,
         loading: false
       })
     })
   }
 
   render() {
+    console.log(this.props);
     const { user, group } = this.props;
     const groupKeys = Object.keys(groupFinder(user));
     let friends = [];
 
-
     return this.state.loading ? <Loading /> : (
     	<div>
-      <img src='img/coachellaGroup.jpg' className={localStyles.coachellaBG}/>
+        <img src='img/coachellaGroup.jpg' className={localStyles.coachellaBG} />
         <div className={localStyles.header}>
           <h3>Join or Create a Group</h3>
         </div>
     		<div className={localStyles.cgBody}>
-    			
           <div className="ui input focus">
     				<input
     					type="text"
@@ -52,7 +51,7 @@ class CreateGroup extends Component {
 
     		  <div className={localStyles.createButton}>
     			  <Button
-    					onClick={submit.bind(this, user, group)}
+    					onClick={onCreateGroup.bind(this, user, group)}
     					disabled={group.groupName.length < 1}>
     					<Link to='/group'>
     						Create
@@ -61,18 +60,22 @@ class CreateGroup extends Component {
     		  </div>
     		</div>
         {groupKeys.map((groupKey, index) => {
-          return !this.state.group[groupKey] ? '' : (
+          const firebaseGroup = this.state.groups[groupKey];
+          return !firebaseGroup ? '' : (
             <Link to='/group' key={index}>
-            {console.log(this.state.group[groupKey])}
-              <div className={localStyles.gCardContainer} onClick={() => { joinGroup(user, groupKey)}}>
-                <JoinGroup 
-                  groupName={this.state.group[groupKey].groupName}
+            {console.log(firebaseGroup)}
+              <div
+                className={localStyles.gCardContainer}
+                onClick={() => joinGroup(user, groupKey)}
+              >
+                <JoinGroup
+                  groupName={firebaseGroup.groupName}
                   friendsInGroup={
-                    Object.values(this.state.group[groupKey].memberKeys).map((friend, index) => {
-                      return friend + ', '
+                    Object.values(firebaseGroup.memberKeys).map((friend, index, collection) => {
+                      return index === collection.length ? friend : friend + ', ';
                     })
                   }
-                  membersInGroup={Object.keys(this.state.group[groupKey].memberKeys).length} 
+                  membersInGroup={Object.keys(firebaseGroup.memberKeys).length}
                 />
               </div>
             </Link>
@@ -82,7 +85,6 @@ class CreateGroup extends Component {
     );
   }
 }
-
 
 function groupFinder(user) {
   const friendsArray = user.friendList.data;
@@ -96,7 +98,7 @@ function groupFinder(user) {
 }
 
 
-function submit(user, group) {
+function onCreateGroup(user, group) {
 	const updates = {};
   const groupKey = firebaseKeyGen('/groups/');
   const groupData = {
@@ -108,16 +110,16 @@ function submit(user, group) {
   groupData.memberKeys[user.uid] = user.name;
 	updates['/groups/' + groupKey] = groupData;
 
-  updateUserGroupID(groupKey);
-  firebaseSet(`/users/${uid}/groupId`, groupKey);
-	firebaseUpdate(updates);
+  firebaseSet(`/users/${user.uid}/groupId`, groupKey);
+	firebaseUpdate(updates).then(() => updateUserGroupID(groupKey));
 }
 
 function joinGroup(user, groupKey) {
   const uid = user.uid;
+
   firebaseSet(`/users/${uid}/groupId`, groupKey);
   firebaseSet(`/groups/${groupKey}/memberKeys/${uid}/`, user.name)
-    .then(updateUserGroupID(groupKey))
+    .then(() => updateUserGroupID(groupKey));
 }
 
 export default connect((store) => {

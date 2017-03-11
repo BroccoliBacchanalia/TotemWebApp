@@ -44,7 +44,7 @@ const VenueSchedule = ({ venue, venueSchedule }) => {
             }
           })}
         </Grid>
-        <br/><br/><br/><br/><br/> {/* Spacing for final artist */}
+        <br/><br/><br/><br/> {/* Spacing for final artist */}
       </div>
     </div>
   );
