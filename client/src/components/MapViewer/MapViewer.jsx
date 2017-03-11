@@ -18,22 +18,24 @@ export class MapViewer extends Component {
 
   render() {
     const handleClick = this.handleClick.bind(this);
-    const { map } = this.props;
+    const { map, members, uid } = this.props;
     const LoadMap = withGoogleMap(() => (
       <GoogleMap
         defaultZoom={17}
-        defaultCenter={map.center}
+        defaultCenter={map ? map.center : members[uid].position}
         mapTypeId= 'terrain'
         onClick={handleClick}
         options={{ streetViewControl: false, mapTypeControl: false, zoomControl: false }}
         >
         <Markers />
-        <GroundOverlay
-          clickable={true}
-          image={map.url}
-          opacity={map.opacity}
-          imageBounds={map.bounds}
-        />
+        {map &&
+          <GroundOverlay
+            clickable={true}
+            image={map.url}
+            opacity={map.opacity}
+            imageBounds={map.bounds}
+          />
+        }
       </GoogleMap>
     ));
 
@@ -73,6 +75,7 @@ export class MapViewer extends Component {
 export default connect((store) => {
   return {
     members: store.group.members,
-    map: store.venue.venue.map
+    map: store.venue.venue.map,
+    uid: store.user.uid
   };
 })(MapViewer);

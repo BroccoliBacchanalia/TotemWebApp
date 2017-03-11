@@ -51,7 +51,7 @@ class CreateGroup extends Component {
 
     		  <div className={localStyles.createButton}>
     			  <Button
-    					onClick={submit.bind(this, user, group)}
+    					onClick={onCreateGroup.bind(this, user, group)}
     					disabled={group.groupName.length < 1}>
     					<Link to='/group'>
     						Create
@@ -98,7 +98,7 @@ function groupFinder(user) {
 }
 
 
-function submit(user, group) {
+function onCreateGroup(user, group) {
 	const updates = {};
   const groupKey = firebaseKeyGen('/groups/');
   const groupData = {
