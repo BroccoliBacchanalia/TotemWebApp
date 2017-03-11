@@ -109,6 +109,7 @@ function submit(user, group) {
 	updates['/groups/' + groupKey] = groupData;
 
   updateUserGroupID(groupKey);
+  firebaseSet(`/users/${uid}/groupId`, groupKey);
 	firebaseUpdate(updates);
 }
 
