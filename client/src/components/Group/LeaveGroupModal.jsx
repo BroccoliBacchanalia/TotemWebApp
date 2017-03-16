@@ -4,6 +4,7 @@ import { defaults } from '../../redux/reducers/groupReducer'
 import { connect } from 'react-redux';
 import { Grid, Image, Button, Modal, Icon, Header } from 'semantic-ui-react';
 import { firebaseRemove, updateUserGroupID, updateGroup} from '../../redux/actions';
+import store from '../../redux/store'
 import { Link } from 'react-router-dom'
 
 class LeaveGroupModal extends Component {
@@ -58,10 +59,13 @@ class LeaveGroupModal extends Component {
 }
 
 function removeUserFromGroup(user) {
+  firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`);
+  if (Object.keys(store.getState().group.memberKeys).length === 1) {
+    firebaseRemove(`groups/${user.groupId}`)
+  }
+  firebaseRemove(`users/${user.uid}/groupId`);
   updateUserGroupID('');
   updateGroup(defaults);
-  firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`);
-  firebaseRemove(`users/${user.uid}/groupId`);
 }
 
 export default connect((store) => {
