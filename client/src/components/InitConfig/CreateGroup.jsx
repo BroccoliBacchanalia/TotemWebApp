@@ -90,10 +90,14 @@ function groupFinder(user) {
   const friendsArray = user.friendList.data;
   const groupKeys = {};
   for (let i = 0; i < friendsArray.length - 1; i++) {
+    console.log('friend name', friendsArray[i].label)
+    console.log('group id', friendsArray[i].groupId)
+    console.log('------------------------')
     if (friendsArray[i].groupId) {
       groupKeys[friendsArray[i].groupId] = true;
     }
   }
+  console.log('groupKeys found', groupKeys)
   return groupKeys;
 }
 
