@@ -42,6 +42,7 @@
   flex-direction: row-reverse !important;
   display: table-cell;
   margin-top: 2px !important;
+  width: 100% !important;
 }
 
 .clickingDiv {
