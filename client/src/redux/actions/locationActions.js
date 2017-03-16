@@ -22,13 +22,30 @@ export function geolocate() {
     let lng = pos.coords.longitude;
     const hrLat = 37.7837693;
     const hrLng = -122.4090728;
+    const coachellaBoundaries = {
+      north: 33.684839,
+      south: 33.678870,
+      east: -116.236513,
+      west: -116.240086
+    }
+
+    const range = {
+      lat: coachellaBoundaries.north - coachellaBoundaries.south,
+      lng: coachellaBoundaries.east - coachellaBoundaries.west
+    };
+
+    let latMultiplier = Number('.' + lat.toString().split('.')[1].substring(3));
+    let lngMultiplier = Number('.' + lng.toString().split('.')[1].substring(3));
+
+    let demoLat = latMultiplier * range.lat + coachellaBoundaries.south;
+    let demoLng = lngMultiplier * range.lng + coachellaBoundaries.west;
 
     switch(uid) {
-      case 'KrSypCuwkBdEiH2JAJgOGxZN8m52': {
-        lat -= (hrLat - 33.679914); // Sahara
-        lng -= (hrLng - (-116.236626)); // Sahara
-        break;
-      }
+      // case 'KrSypCuwkBdEiH2JAJgOGxZN8m52': {
+      //   lat -= (hrLat - 33.679914); // Sahara
+      //   lng -= (hrLng - (-116.236626)); // Sahara
+      //   break;
+      // }
       case 'BSxDfzp6vwdLEP0g5xqjXpL6zDF3': {
         // lat -= (hrLat - 33.6798); // Sahara
         // lng -= (hrLng - (-116.236626)); // Sahara
@@ -42,8 +59,8 @@ export function geolocate() {
         break;
       }
       default : {
-        lat  -= (hrLat - 33.684409); // Coachella stage
-        lng -= (hrLng - (-116.239769)); // Coachella stage
+        lat = demoLat; // Coachella stage
+        lng = demoLng; // Coachella stage
       }
     }
     /*****************************************************/
