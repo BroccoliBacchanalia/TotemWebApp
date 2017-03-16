@@ -16,7 +16,7 @@ export const ChooseVenue = ({ venues }) => (
     <div
       style={{ height: window.innerHeight - 140 }}
       className={styles.scrollView + ' ' + localStyles.cRow}
-    >   <Link to = 'createGroup'>
+    >   <Link to = '/createGroup'>
           <div id = 'venueItem' key = '3' className = {localStyles.outside}
             onClick = {updateVenueId.bind(this, '-KdqnkqC4Sz0L4yh9-Jb')}>
               <img className = {localStyles.oi} src = 'img/coachella.jpg'></img>
@@ -28,14 +28,12 @@ export const ChooseVenue = ({ venues }) => (
       {delete venues['-KdqnkqC4Sz0L4yh9-Jb']}  
 
       {Object.keys(venues).map((key, index) => (
-          <div id = 'venueItem' key = {index} className = {localStyles.outside}
-            onClick = {updateVenueId.bind(this, key)}>
-              <img className ={localStyles.oi} src = {img[index]}></img>
-              <div className = {localStyles.inside}>
-                <p className = {localStyles.text}>{venues[key]}</p>
-              </div>
-          </div>
-        
+        <div id = 'venueItem' key = {index} className = {localStyles.outside}>
+            <img className ={localStyles.oi} src = {img[index]}></img>
+            <div className = {localStyles.inside}>
+              <p className = {localStyles.text}>{venues[key]}</p>
+            </div>
+        </div>
       ))}
     </div>
     <div className={localStyles.cFooter}>
