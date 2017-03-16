@@ -1,6 +1,6 @@
 {
-  "name": "rabble",
-  "version": "1.0.0",
+  "name": "totem",
+  "version": "0.4.5",
   "description": "All-inclusive festival app",
   "main": "index.js",
   "jest": {
