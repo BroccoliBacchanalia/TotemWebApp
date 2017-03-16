@@ -25,8 +25,7 @@ export const ChooseVenue = ({ venues }) => (
               </div>
           </div>
         </Link>
-      {delete venues['-KdqnkqC4Sz0L4yh9-Jb']}
-      
+      {delete venues['-KdqnkqC4Sz0L4yh9-Jb']}  
 
       {Object.keys(venues).map((key, index) => (
           <div id = 'venueItem' key = {index} className = {localStyles.outside}
