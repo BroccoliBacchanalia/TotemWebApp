@@ -34,7 +34,9 @@ class CreateGroup extends Component {
 
     return this.state.loading ? <Loading /> : (
     	<div>
-        <img src='img/coachellaGroup.jpg' className={localStyles.coachellaBG} />
+        <div className={localStyles.coachellaBG}>
+          <img src='img/coachellaGroup.jpg' />
+        </div>
         <div className={localStyles.header}>
           <h3>Join or Create a Group</h3>
         </div>

@@ -18,7 +18,6 @@ export const ChooseVenue = ({ venues }) => (
       className={styles.scrollView + ' ' + localStyles.cRow}
     >
       {Object.keys(venues).map((key, index) => (
-        
         <Link key={index} to='/creategroup'>
           <div id = 'venueItem' className = {localStyles.outside}
             onClick={updateVenueId.bind(this, key)}>
@@ -28,7 +27,6 @@ export const ChooseVenue = ({ venues }) => (
               </div>
           </div>
         </Link>
-        
       ))}
     </div>
     <div className={localStyles.cFooter}>
