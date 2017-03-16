@@ -35,6 +35,7 @@ const GroupView = ({ user, users }) => (
           }
         })}
       </Grid>
+      <br/><br/><br/><br/> {/* Spacing for final artist */}
     </div>
   </div>
 );

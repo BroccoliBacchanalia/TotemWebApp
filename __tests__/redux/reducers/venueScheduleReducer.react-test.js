@@ -12,14 +12,15 @@ const defaults = {
 
 describe('Venue Schedule Reducer', () => {
 
-   test('Should have set defaults', () => {
+  it('Should have set defaults', () => {
     expect(venueScheduleReducer(undefined, {})).toEqual({
       isToggle: false,
       selectedDay: null,
       selectedStage: 'All Stages'
     })
   })
-  test('Should be able change day', () => {
+
+  it('Should be able change day', () => {
     expect(
       venueScheduleReducer(undefined, {
         type: 'UPDATE_DAY',
@@ -29,7 +30,8 @@ describe('Venue Schedule Reducer', () => {
       }).selectedDay
     ).toBeTruthy()
   })
-   test('Should be able change stage', () => {
+  
+   it('Should be able change stage', () => {
     expect(
       venueScheduleReducer(undefined, {
         type: 'UPDATE_STAGE',
