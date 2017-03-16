@@ -8,13 +8,13 @@ import mockVenue from '../../__testConfig__/mock_venue_data'
 import mockUser from '../../__testConfig__/mock_user_data'
 import * as actions from '../../client/src/redux/actions'
 
-xdescribe('MapViewer Component Tests', () => {
+describe('MapViewer Component Tests', () => {
   const mapWrapper = shallow(<MapViewer store={store} />);
   const markersWrapper = shallow(<Markers store={store}/>);
   mapWrapper.props().store.getState().group.members = mockUser;
-
-  describe('Initialize Testing Suite', () => {
-    xtest('the map should render without exploding', () => {
+  console.log(mapWapper.debug())
+  xdescribe('Initialize Testing Suite', () => {
+    test('the map should render without exploding', () => {
       expect(mapWrapper.props().store.getState().venue.venue).toBeAnObject;
     });
     xtest('the markers should render without exploding', () => {
@@ -22,19 +22,15 @@ xdescribe('MapViewer Component Tests', () => {
     });
   });
 
-  describe('Toggling Friend Info', () => {
-    xtest('should show an InfoWindow module when a user is clicked', () => {
-      // console.log('before click', mapWrapper.props().store.getState().group.members.GqwU5Rrp8BOh5TJmW252Thsf0VC2.showInfo)
-      expect(mapWrapper.props().store.getState().group.members.GqwU5Rrp8BOh5TJmW252Thsf0VC2.showInfo).toBeFalsy()
-      // console.log(mapWrapper.find('div'))
-      mapWrapper.find({'z-index': 618}).simulate('click')
-      // console.log('after click', mapWrapper.props().store.getState().group.members.GqwU5Rrp8BOh5TJmW252Thsf0VC2.showInfo)
-      expect(mapWrapper.props().store.getState().group.members.GqwU5Rrp8BOh5TJmW252Thsf0VC2.showInfo).toBeTruthy()
-    });
-    
-    xtest('should close an InfoWindow module when a user is clicked again', () => {
-      const wrapper = shallow(<Markers store={store}/>);
-      expect(wrapper.length).toBeTruthy()
-    });
-  });
+  // describe('Toggling Friend Info', () => {
+  //   test('should show an InfoWindow module when a user is clicked', () => {
+  //     // console.log('before click', mapWrapper.props().store.getState().group.members.GqwU5Rrp8BOh5TJmW252Thsf0VC2.showInfo)
+  //     expect(mapWrapper.props().store.getState().group.members.GqwU5Rrp8BOh5TJmW252Thsf0VC2.showInfo).toBeFalsy()
+  //     // console.log(mapWrapper.find('div'))
+  //     mapWrapper.find({'z-index': 618}).simulate('click')
+  //     // console.log('after click', mapWrapper.props().store.getState().group.members.GqwU5Rrp8BOh5TJmW252Thsf0VC2.showInfo)
+  //     expect(mapWrapper.props().store.getState().group.members.GqwU5Rrp8BOh5TJmW252Thsf0VC2.showInfo).toBeTruthy()
+  //   });
+  
+  // });
 });

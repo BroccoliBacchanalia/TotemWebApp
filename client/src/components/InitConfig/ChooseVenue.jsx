@@ -7,7 +7,7 @@ import localStyles from './ConfigStyles.css';
 import { updateVenueId } from '../../redux/actions/groupActions';
 import { firebaseSet } from '../../redux/actions/firebaseActions';
 
-const img = ['img/outsideLands.jpg','img/coachella.jpg', 'img/burningMan.jpg'];
+const img = ['img/outsideLands.jpg', 'img/burningMan.jpg'];
 export const ChooseVenue = ({ venues }) => (
   <div>
     <div className={localStyles.header}>
@@ -16,17 +16,24 @@ export const ChooseVenue = ({ venues }) => (
     <div
       style={{ height: window.innerHeight - 140 }}
       className={styles.scrollView + ' ' + localStyles.cRow}
-    >
-      {Object.keys(venues).map((key, index) => (
-        <Link key={index} to='/creategroup'>
-          <div id = 'venueItem' className = {localStyles.outside}
-            onClick={updateVenueId.bind(this, key)}>
-              <img className={localStyles.oi} src={img[index]}></img>
-              <div className={localStyles.inside}>
-                <p className={localStyles.text}>{venues[key]}</p>
+    >   <Link to = '/createGroup'>
+          <div id = 'venueItem' key = '3' className = {localStyles.outside}
+            onClick = {updateVenueId.bind(this, '-KdqnkqC4Sz0L4yh9-Jb')}>
+              <img className = {localStyles.oi} src = 'img/coachella.jpg'></img>
+              <div className = {localStyles.inside}>
+                <p className = {localStyles.text}>{venues['-KdqnkqC4Sz0L4yh9-Jb']}</p>
               </div>
           </div>
         </Link>
+      {delete venues['-KdqnkqC4Sz0L4yh9-Jb']}  
+
+      {Object.keys(venues).map((key, index) => (
+        <div id = 'venueItem' key = {index} className = {localStyles.outside}>
+            <img className ={localStyles.oi} src = {img[index]}></img>
+            <div className = {localStyles.inside}>
+              <p className = {localStyles.text}>{venues[key]}</p>
+            </div>
+        </div>
       ))}
     </div>
     <div className={localStyles.cFooter}>
@@ -44,3 +51,4 @@ export default connect((store) => {
 		venues: store.venue.venues
 	}
 })(ChooseVenue)
+// -KdqnkqC4Sz0L4yh9-Jb
