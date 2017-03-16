@@ -52,7 +52,6 @@ export default function groupReducer(state = defaults, action) {
       return newState;
     }
     case 'UPDATE_GROUP': {
-      console.log('payload', action.payload)
       return { ...state, ...action.payload.group }
     }
     case 'UPDATE_GROUP_NAME': {
