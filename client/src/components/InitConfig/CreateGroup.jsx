@@ -12,8 +12,8 @@ class CreateGroup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      groups: {},
-      loading: true
+      groups: false,
+      hasLoaded: false
     }
   }
 
@@ -21,7 +21,7 @@ class CreateGroup extends Component {
     firebaseOnce('groups/', (groups) => {
       this.setState({
         groups: groups,
-        loading: false
+        hasLoaded: true
       })
     })
   }
@@ -32,7 +32,7 @@ class CreateGroup extends Component {
     const groupKeys = Object.keys(groupFinder(user));
     let friends = [];
 
-    return this.state.loading ? <Loading /> : (
+    return (!this.state.hasLoaded || !this.state.groups) ? <Loading /> : (
     	<div>
         <div className={localStyles.coachellaBG}>
           <img src='img/coachellaGroup.jpg' />
