@@ -39,6 +39,7 @@ function signInError(errorMessage) {
 }
 
 function getUsers() {
+  console.log('getting users')
   return firebaseOnce('/users', (fireUsers) => {
     getFriends(fireUsers);
   });
@@ -50,7 +51,7 @@ function getFriends(fireUsers) {
     const facebookFriends = facebookData.data.data;
     const firebaseDataWithFacebookUidKeys = {};
     let friendsWithAccounts = { data: [] }
-
+    console.log('comparing users to friends')
     for (let key in fireUsers) {
       firebaseDataWithFacebookUidKeys[fireUsers[key].facebookUID] = key;
     }
