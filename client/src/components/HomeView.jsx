@@ -10,8 +10,9 @@ import SignInButton from './Auth/SignInButton';
 import Loading from './Auth/Loading';
 
 /* Actions */
-import { signIn, signInSuccess, getUserData } from '../redux/actions/authenticationActions';
+import { signIn, signInSuccess, getUserData, getFriends } from '../redux/actions/authenticationActions';
 import { geolocate } from '../redux/actions';
+import { firebaseOnce } from '../redux/actions/firebaseActions';
 
 export class HomeView extends React.Component {
 
@@ -22,6 +23,10 @@ export class HomeView extends React.Component {
         geolocate();
         signInSuccess(user.uid, user.displayName);
         getUserData(user.uid);
+
+        firebaseOnce('/users', (fireUsers) => {
+          getFriends(fireUsers);
+        });
       }
     });
   }

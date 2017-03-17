@@ -45,7 +45,7 @@ function getUsers() {
   });
 }
 
-function getFriends(fireUsers) {
+export function getFriends(fireUsers) {
   const endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
   axios.get(endpoint).then((facebookData) =>{
     const facebookFriends = facebookData.data.data;
@@ -70,19 +70,20 @@ function getFriends(fireUsers) {
 
 export function getUserData(id) {
   firebaseOnce(`users/${id}`, (data) => {
+    const hasGroup = !!data.groupId;
     initialUserData(data);
-    if (!!data.groupId) {
+    if (hasGroup) {
       updateUserGroupID(data.groupId);
     }
-    dispatch({ type: 'UPDATE_FB_USERNAME', payload: { name: data.facebookUsername} });
-    getVenueNames(!data.groupId);
+    dispatch({ type: 'UPDATE_FB_USERNAME', payload: { name: data.facebookUsername }});
+    getVenueNames(hasGroup);
   });
 }
 
-function getVenueNames(finished) {
+function getVenueNames(hasGroup) {
   firebaseOnce('venues/names', (venues) => {
     updateVenueNames(venues);
-    if (finished) {
+    if (!hasGroup) {
       dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
     }
   });
