@@ -97,15 +97,16 @@ export function signIn() {
   firebase.auth().signInWithPopup(provider)
   .then((result) => {
     accessToken = result.credential.accessToken;
-    const { user: { uid, displayName, photoURL, email } } = result;
+    const { user: { uid, displayName, photoURL, email }} = result;
     currentUserId = uid;
 
-    firebaseSet(`users/${uid}/label`, displayName);
-    firebaseSet(`users/${uid}/facebookUID`, result.user.providerData[0].uid);
-    firebaseSet(`users/${uid}/img`, photoURL);
-    firebaseSet(`users/${uid}/email`, email);
-    firebaseSet(`users/${uid}/lastTimeLoggedIn`, firebase.database.ServerValue.TIMESTAMP);
+    firebaseSet(`users/${uid}/label`, displayName)
+    .then(() => firebaseSet(`users/${uid}/facebookUID`, result.user.providerData[0].uid))
+    .then(() => firebaseSet(`users/${uid}/img`, photoURL))
+    .then(() => firebaseSet(`users/${uid}/email`, email))
+    .then(() => firebaseSet(`users/${uid}/lastTimeLoggedIn`, firebase.database.ServerValue.TIMESTAMP))
+    .then(getUsers)
+    .catch(error => console.log('error setting props'));
   })
-  .then(getUsers)
   .catch(error => signInError(error.message));
 }
