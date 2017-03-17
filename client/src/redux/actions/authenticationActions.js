@@ -38,7 +38,7 @@ function signInError(errorMessage) {
   });
 }
 
-export function getUsers() {
+function getUsers() {
   return firebaseOnce('/users', (fireUsers) => {
     getFriends(fireUsers);
   });
