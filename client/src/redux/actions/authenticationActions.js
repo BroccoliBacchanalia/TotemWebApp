@@ -38,13 +38,13 @@ function signInError(errorMessage) {
   });
 }
 
-function getUsers() {
+export function getUsers() {
   return firebaseOnce('/users', (fireUsers) => {
     getFriends(fireUsers);
   });
 }
 
-function getFriends(fireUsers) {
+export function getFriends(fireUsers) {
   const endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
   axios.get(endpoint).then((facebookData) =>{
     const facebookFriends = facebookData.data.data;
