@@ -48,18 +48,20 @@ export function getFriends(fireUsers) {
   const endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
   axios.get(endpoint).then((facebookData) =>{
     const facebookFriends = facebookData.data.data;
-    const firebaseDataWithFacebookUidKeys = {};
-    let friendsWithAccounts = { data: [] }
+    const facebookUIDandFirebaseKey = {};
+    const friendsWithAccounts = {};
 
+    // FacebookUID: FirebaseKey
     for (let key in fireUsers) {
-      firebaseDataWithFacebookUidKeys[fireUsers[key].facebookUID] = key;
+      facebookUIDandFirebaseKey[fireUsers[key].facebookUID] = key;
     }
 
     for (let i = 0; i < facebookFriends.length; i++) {
-      let friendKey = firebaseDataWithFacebookUidKeys[facebookFriends[i].id];
-      delete fireUsers[friendKey].friends;
-      friendsWithAccounts.data.push(fireUsers[friendKey]);
+      if (facebookUIDandFirebaseKey[facebookFriends[i].id]) {
+        friendsWithAccounts[facebookUIDandFirebaseKey[facebookFriends[i].id]] = true;
+      }
     }
+
     //saves user friends in the database
     firebaseSet(`users/${currentUserId}/friends`, friendsWithAccounts);
   }).catch((error) => {
