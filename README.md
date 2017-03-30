@@ -1,4 +1,4 @@
-#Totem
+# Totem
 
 An app that allows you and your friends to keep track of each other at a music festival, add festival schedule items to an agenda, and see where you are relative to the various stages and tents.
 
