@@ -27,7 +27,6 @@ class CreateGroup extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { user, group } = this.props;
     const groupKeys = Object.keys(groupFinder(user));
     let friends = [];
@@ -74,7 +73,7 @@ class CreateGroup extends Component {
                   groupName={firebaseGroup.groupName}
                   friendsInGroup={
                     Object.values(firebaseGroup.memberKeys).map((friend, index, collection) => {
-                      return index === collection.length ? friend : friend + ', ';
+                      return index === collection.length - 1 ? friend : friend + ', ';
                     })
                   }
                   membersInGroup={Object.keys(firebaseGroup.memberKeys).length}
