@@ -81,7 +81,7 @@ class CreateGroup extends Component {
                   groupName={firebaseGroup.groupName}
                   friendsInGroup={
                     Object.values(firebaseGroup.memberKeys).map((friend, index, collection) => {
-                      return index === collection.length ? friend : friend + ', ';
+                      return index === collection.length - 1 ? friend : friend + ', ';
                     })
                   }
                   membersInGroup={Object.keys(firebaseGroup.memberKeys).length}

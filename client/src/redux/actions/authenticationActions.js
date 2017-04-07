@@ -49,6 +49,7 @@ export function getFriends(firebaseUsers) {
   const endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
   axios.get(endpoint).then((facebookData) =>{
     const facebookFriends = facebookData.data.data;
+    // console.log('FBF', facebookFriends)
     const firebaseDataWithFacebookUidKeys = {};
     let friendsWithAccounts = {}
     console.log('comparing users to friends')
@@ -57,15 +58,15 @@ export function getFriends(firebaseUsers) {
     for (let key in firebaseUsers) {
       firebaseDataWithFacebookUidKeys[firebaseUsers[key].facebookUID] = key;
     }
-    console.log('FBDWFBK', firebaseDataWithFacebookUidKeys)
+    // console.log('FBDWFBK', firebaseDataWithFacebookUidKeys)
 
     for (let i = 0; i < facebookFriends.length; i++) {
       let friendKey = firebaseDataWithFacebookUidKeys[facebookFriends[i].id];
-      console.log('friendKey', friendKey)
-      if (friendKey) friendsWithAccounts[friendKey] = true;
+      // console.log('friendKey', friendKey)
+      if (friendKey) friendsWithAccounts[friendKey] = facebookFriends[i].name;
       else continue;
     }
-    console.log('FWA', friendsWithAccounts)
+    // console.log('FWA', friendsWithAccounts)
     //saves user friends in the database
     firebaseSet(`users/${currentUserId}/friends`, friendsWithAccounts);
   }).catch((error) => {

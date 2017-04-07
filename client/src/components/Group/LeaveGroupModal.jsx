@@ -59,14 +59,13 @@ class LeaveGroupModal extends Component {
 }
 
 function removeUserFromGroup(user) {
-  firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`)
-    .then(() => {
-      firebaseOnce(`groups/${user.groupId}/memberKeys`, (result) => {
-        console.log('firebase memberkeys', result)
-        //firebaseRemove(`groups/${user.groupId}`)
-      })
-    })
-  
+  const memberCount = Object.keys(store.getState().group.memberKeys).length;
+  firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`);
+
+  if (memberCount === 1) {
+    firebaseRemove(`groups/${user.groupId}`)
+  }
+
   firebaseRemove(`users/${user.uid}/groupId`);
   updateUserGroupID('');
   updateGroup(defaults);
