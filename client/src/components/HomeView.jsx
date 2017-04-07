@@ -22,11 +22,10 @@ export class HomeView extends React.Component {
       if (user) {
         geolocate();
         signInSuccess(user.uid, user.displayName);
-        getUserData(user.uid);
 
         firebaseOnce('/users', (fireUsers) => {
           console.log('running get friends')
-          getFriends(fireUsers);
+          getFriends(fireUsers, user.uid)
         });
       }
     });

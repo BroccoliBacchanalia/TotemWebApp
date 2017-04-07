@@ -38,14 +38,14 @@ function signInError(errorMessage) {
   });
 }
 
-function getUsers() {
+function getUsers(uid) {
   console.log('getting users')
   return firebaseOnce('/users', (firebaseUsers) => {
-    getFriends(firebaseUsers);
+    getFriends(firebaseUsers, uid);
   });
 }
 
-export function getFriends(firebaseUsers) {
+export function getFriends(firebaseUsers, uid) {
   const endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
   axios.get(endpoint).then((facebookData) =>{
     const facebookFriends = facebookData.data.data;
@@ -69,12 +69,15 @@ export function getFriends(firebaseUsers) {
     // console.log('FWA', friendsWithAccounts)
     //saves user friends in the database
     firebaseSet(`users/${currentUserId}/friends`, friendsWithAccounts);
-  }).catch((error) => {
+  })
+  .then(getUserData(uid))
+  .catch((error) => {
     console.log('Error getting friends from facebook', error);
   });
 }
 
 export function getUserData(id) {
+  console.log('we in there', id)
   firebaseOnce(`users/${id}`, (data) => {
     const hasGroup = !!data.groupId;
     initialUserData(data);
@@ -112,7 +115,7 @@ export function signIn() {
     .then(() => firebaseSet(`users/${uid}/img`, photoURL))
     .then(() => firebaseSet(`users/${uid}/email`, email))
     .then(() => firebaseSet(`users/${uid}/lastTimeLoggedIn`, firebase.database.ServerValue.TIMESTAMP))
-    .then(getUsers)
+    .then(() => getUsers(uid))
     .catch(error => console.log('error setting props'));
   })
   .catch(error => signInError(error.message));
