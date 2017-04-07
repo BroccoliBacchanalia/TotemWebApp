@@ -21,19 +21,26 @@ class CreateGroup extends Component {
   componentWillMount() {
     const { user } = this.props;
     const friendKeys = Object.keys(user.friendList);
-    firebaseOnce('groups/', (groups) => {
-      for (let i = 0; i < friendKeys.length; i++) {
-        firebaseOnce(`users/${friendKeys[i]}`, (data) => {
-          if (data.groupId) groupKeys[data.groupId] = true;
-          if (i === friendKeys.length - 1) {
-            this.setState({
-              groups: groups,
-              hasLoaded: true
-            })
-          }
-        })
-      }  
-    })
+    if (friendKeys) {
+      firebaseOnce('groups/', (groups) => {
+        for (let i = 0; i < friendKeys.length; i++) {
+          firebaseOnce(`users/${friendKeys[i]}`, (data) => {
+            if (data.groupId) groupKeys[data.groupId] = true;
+            if (i === friendKeys.length - 1) {
+              this.setState({
+                groups: groups,
+                hasLoaded: true
+              })
+            }
+          })
+        }  
+      })
+    } else {
+      this.setState({
+        groups: groups,
+        hasLoaded: true
+      })
+    }
   }
 
   render() {
