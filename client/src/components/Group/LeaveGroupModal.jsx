@@ -3,7 +3,7 @@ import localStyles from './GroupStyles.css';
 import { defaults } from '../../redux/reducers/groupReducer'
 import { connect } from 'react-redux';
 import { Grid, Image, Button, Modal, Icon, Header } from 'semantic-ui-react';
-import { firebaseRemove, updateUserGroupID, updateGroup} from '../../redux/actions';
+import { firebaseRemove, firebaseOnce, updateUserGroupID, updateGroup} from '../../redux/actions';
 import store from '../../redux/store'
 import { Link } from 'react-router-dom'
 

@@ -8,6 +8,7 @@ import { updateGroupName, updateUserGroupID, firebaseUpdate, firebaseKeyGen, fir
 import Loading from '../Auth/Loading';
 import localStyles from './ConfigStyles.css';
 
+const groupKeys = {};
 class CreateGroup extends Component {
   constructor(props) {
     super(props)
@@ -18,18 +19,25 @@ class CreateGroup extends Component {
   }
 
   componentWillMount() {
+    const { user } = this.props;
+    const friendKeys = Object.keys(user.friendList);
     firebaseOnce('groups/', (groups) => {
-      this.setState({
-        groups: groups,
-        hasLoaded: true
-      })
+      for (let i = 0; i < friendKeys.length; i++) {
+        firebaseOnce(`users/${friendKeys[i]}`, (data) => {
+          if (data.groupId) groupKeys[data.groupId] = true;
+          if (i === friendKeys.length - 1) {
+            this.setState({
+              groups: groups,
+              hasLoaded: true
+            })
+          }
+        })
+      }  
     })
   }
 
   render() {
     const { user, group } = this.props;
-    const groupKeys = Object.keys(groupFinder(user));
-    let friends = [];
 
     return (!this.state.hasLoaded || !this.state.groups) ? <Loading /> : (
     	<div>
@@ -60,7 +68,7 @@ class CreateGroup extends Component {
     			  </Button>
     		  </div>
     		</div>
-        {groupKeys.map((groupKey, index) => {
+        {Object.keys(groupKeys).map((groupKey, index) => {
           const firebaseGroup = this.state.groups[groupKey];
           return !firebaseGroup ? '' : (
             <Link to='/group' key={index}>
@@ -86,22 +94,6 @@ class CreateGroup extends Component {
     );
   }
 }
-
-function groupFinder(user) {
-  const friendsArray = user.friendList.data;
-  const groupKeys = {};
-  for (let i = 0; i < friendsArray.length - 1; i++) {
-    console.log('friend name', friendsArray[i].label)
-    console.log('group id', friendsArray[i].groupId)
-    console.log('------------------------')
-    if (friendsArray[i].groupId) {
-      groupKeys[friendsArray[i].groupId] = true;
-    }
-  }
-  console.log('groupKeys found', groupKeys)
-  return groupKeys;
-}
-
 
 function onCreateGroup(user, group) {
 	const updates = {};

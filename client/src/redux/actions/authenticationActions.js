@@ -39,29 +39,34 @@ function signInError(errorMessage) {
 }
 
 function getUsers() {
-  return firebaseOnce('/users', (fireUsers) => {
-    getFriends(fireUsers);
+  console.log('getting users')
+  return firebaseOnce('/users', (firebaseUsers) => {
+    getFriends(firebaseUsers);
   });
 }
 
-export function getFriends(fireUsers) {
+export function getFriends(firebaseUsers) {
   const endpoint = "https://graph.facebook.com/me/friends?access_token=" + accessToken;
   axios.get(endpoint).then((facebookData) =>{
     const facebookFriends = facebookData.data.data;
-    const facebookUIDandFirebaseKey = {};
-    const friendsWithAccounts = {};
+    // console.log('FBF', facebookFriends)
+    const firebaseDataWithFacebookUidKeys = {};
+    let friendsWithAccounts = {}
+    console.log('comparing users to friends')
 
-    // FacebookUID: FirebaseKey
-    for (let key in fireUsers) {
-      facebookUIDandFirebaseKey[fireUsers[key].facebookUID] = key;
+    //Gets the facebook UID for all firebase users
+    for (let key in firebaseUsers) {
+      firebaseDataWithFacebookUidKeys[firebaseUsers[key].facebookUID] = key;
     }
+    // console.log('FBDWFBK', firebaseDataWithFacebookUidKeys)
 
     for (let i = 0; i < facebookFriends.length; i++) {
-      if (facebookUIDandFirebaseKey[facebookFriends[i].id]) {
-        friendsWithAccounts[facebookUIDandFirebaseKey[facebookFriends[i].id]] = true;
-      }
+      let friendKey = firebaseDataWithFacebookUidKeys[facebookFriends[i].id];
+      // console.log('friendKey', friendKey)
+      if (friendKey) friendsWithAccounts[friendKey] = facebookFriends[i].name;
+      else continue;
     }
-
+    // console.log('FWA', friendsWithAccounts)
     //saves user friends in the database
     firebaseSet(`users/${currentUserId}/friends`, friendsWithAccounts);
   }).catch((error) => {

@@ -25,6 +25,7 @@ export class HomeView extends React.Component {
         getUserData(user.uid);
 
         firebaseOnce('/users', (fireUsers) => {
+          console.log('running get friends')
           getFriends(fireUsers);
         });
       }
