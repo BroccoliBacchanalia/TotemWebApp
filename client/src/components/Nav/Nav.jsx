@@ -49,7 +49,7 @@ const Nav = ({ app, user }) => {
           className={ chat.className }>
           <Icon name={ chat.iconName } /> { chat.displayName }
         </Menu.Item>
-        <p><span style={{ color: 'white' }}>Test v0.5.1</span></p>
+        <p><span style={{ color: 'white' }}>Test v0.5.2</span></p>
       </Sidebar>
       <Sidebar.Pusher>
         {!!user.groupId ? <HeaderBlock /> : ''}
