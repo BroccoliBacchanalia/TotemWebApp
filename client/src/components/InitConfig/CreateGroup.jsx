@@ -89,17 +89,19 @@ class CreateGroup extends Component {
 }
 
 function groupFinder(user) {
-  const friendsArray = user.friendList.data;
+  const friendKeys = user.friendList;
   const groupKeys = {};
-  for (let i = 0; i < friendsArray.length - 1; i++) {
-    console.log('friend name', friendsArray[i].label)
-    console.log('group id', friendsArray[i].groupId)
+  for (let key in friendKeys) {
+    console.log('friendKey', key)
     console.log('------------------------')
-    if (friendsArray[i].groupId) {
-      groupKeys[friendsArray[i].groupId] = true;
-    }
+
+
+    firebaseOnce(`users/${key}`, (data) => {
+      if (data.groupId) groupKeys[data.groupId] = true;
+      console.log(key, data)
+      console.log('groupKeys found', groupKeys)
+    })
   }
-  console.log('groupKeys found', groupKeys)
   return groupKeys;
 }
 

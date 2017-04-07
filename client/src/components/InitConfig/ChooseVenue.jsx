@@ -29,7 +29,7 @@ export const ChooseVenue = ({ venues }) => (
 
       {Object.keys(venues).map((key, index) => (
         <div id = 'venueItem' key = {index} className = {localStyles.outside}>
-            <img className ={localStyles.unfinished} src = {img[index]}></img>
+            <img className = {localStyles.unfinished} src = {img[index]}></img>
             <div className = {localStyles.inside}>
               <p className = {localStyles.text}>{venues[key]}</p>
             </div>
