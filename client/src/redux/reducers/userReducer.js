@@ -6,7 +6,12 @@ const defaults = {
   friendList: [],
   dataRetrieved: false,
   facebookUsername: null,
-  facebookUID: null
+  facebookUID: null,
+  position: {
+    lat: 33.6823,
+    lng: -116.2389165,
+    timestamp: 'Needs to enable location'
+  }
 };
 
 export default function userReducer(state = defaults, action) {

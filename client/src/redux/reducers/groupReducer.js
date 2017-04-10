@@ -5,7 +5,7 @@ export const defaults = {
   venueId: '',
   totem: {
     coords: {},
-    name: 'Basecamp',
+    name: 'Totem Meetup Spot',
     meetupTime: null
   },
   showTotemInfo: false,
