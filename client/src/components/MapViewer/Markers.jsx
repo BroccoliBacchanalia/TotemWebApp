@@ -32,7 +32,7 @@ export class Markers extends Component {
             {showTotemInfo && (
               <InfoWindow>
                 <div>
-                  <h4>Basecamp</h4>
+                  <h4>Totem Meetup</h4>
                   {totem.meetupTime && !placeTotem &&
                     <div>
                       <div>
