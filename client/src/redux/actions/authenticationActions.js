@@ -115,6 +115,11 @@ export function signIn() {
     .then(() => firebaseSet(`users/${uid}/img`, photoURL))
     .then(() => firebaseSet(`users/${uid}/email`, email))
     .then(() => firebaseSet(`users/${uid}/lastTimeLoggedIn`, firebase.database.ServerValue.TIMESTAMP))
+    .then(() => firebaseSet(`users/${uid}/position`, {
+      lat: 33.6823,
+      lng: -116.2389165,
+      timestamp: 1479294170307
+    }))
     .then(() => getUsers(uid))
     .catch(error => console.log('error setting props'));
   })
