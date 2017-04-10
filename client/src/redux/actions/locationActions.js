@@ -99,7 +99,7 @@ export function getGeofence(coordinates) {
   const basecamp = store.getState().group.totem.coords;
 
   if (inFenceRadius(basecamp, coordinates)) return {
-    name: 'Basecamp',
+    name: 'Totem Meetup Spot',
     key: 'basecamp'
   };
 
