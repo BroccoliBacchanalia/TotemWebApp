@@ -23,10 +23,10 @@ export function geolocate() {
     const hrLat = 37.7837693;
     const hrLng = -122.4090728;
     const coachellaBoundaries = {
-      north: 33.684839,
-      south: 33.678870,
-      east: -116.236513,
-      west: -116.240086
+      north: 33.684505,
+      south: 33.678965,
+      east: -116.23557,
+      west: -116.241610
     }
 
     const range = {
