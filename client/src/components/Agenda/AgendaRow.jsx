@@ -3,14 +3,13 @@ import { Grid, Image, Icon } from 'semantic-ui-react';
 
 import localStyles from './AgendaStyles.css';
 import AgendaModal from './AgendaModal'
+import moment from 'moment';
 import { hourTimeFormat } from '../helperFunctions';
 import { removeAgenda } from '../../redux/actions/userActions';
 
 const AgendaRow = ({ itemKey, item }) => {
   let { starttime, endtime } = item;
   const { name, geofence, day, imgurl } = item;
-  starttime = hourTimeFormat(starttime);
-  endtime = hourTimeFormat(endtime);
 
   return (
     <Grid.Row className={localStyles.aRow}>
@@ -22,7 +21,7 @@ const AgendaRow = ({ itemKey, item }) => {
         <br/>
         <span className='h5'>{geofence}</span>
         <br/>
-        {starttime + ' - ' + endtime}
+        {moment(starttime).format('LT') + ' - ' + moment(endtime).format('LT')}
       </Grid.Column>
       <Grid.Column
         className={localStyles.clickingDiv}

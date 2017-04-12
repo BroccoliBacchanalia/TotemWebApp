@@ -38,8 +38,8 @@ class AgendaModal extends Component {
               <Grid.Column width={8} className={localStyles.mInfo}>
                 <div className={localStyles.mStage}>{geofence}</div>
                 <div className={localStyles.mDay}>{moment(day).format('dddd') + ', ' + moment(day).format('MMM Do')}</div>
-                <div className={localStyles.mTime}>{starttime + ' - ' + endtime}</div>
-                <div className={localStyles.mTime}>{moment(day).startOf('hour').fromNow()}</div>
+                <div className={localStyles.mTime}>{moment(starttime).format('LT') + ' - ' + moment(endtime).format('LT')}</div>
+                <div className={localStyles.mTime}>{moment(starttime).startOf('hour').fromNow()}</div>
               </Grid.Column>
             </Grid.Row>
           </Grid>
