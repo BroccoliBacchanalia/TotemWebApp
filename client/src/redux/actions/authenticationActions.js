@@ -118,7 +118,7 @@ export function signIn() {
     .then(() => firebaseSet(`users/${uid}/position`, {
       lat: 33.679322,
       lng: -116.234856,
-      timestamp: 1479294170307
+      timestamp: new Date().getTime()
     }))
     .then(() => getUsers(uid))
     .catch(error => console.log('error setting props'));
