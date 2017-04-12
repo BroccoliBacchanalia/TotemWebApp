@@ -79,6 +79,13 @@ export function geolocate() {
 
   function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
+    if (store.getState().user.position.timestamp === 'Not defined' && err.code === 1) {
+      store.dispatch({
+        type: 'LOCATION_DATA_ERROR',
+        payload: 'Location Disabled'
+      })
+      alert('Geolocation is disabled for this device. Please enable location services for your browser');
+    }
   }
 
   const options = {

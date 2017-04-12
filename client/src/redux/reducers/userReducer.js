@@ -10,7 +10,7 @@ const defaults = {
   position: {
     lat: 33.6823,
     lng: -116.2389165,
-    timestamp: 'Needs to enable location'
+    timestamp: 'Not defined'
   }
 };
 
@@ -81,6 +81,11 @@ export default function userReducer(state = defaults, action) {
       if (action.userData.agenda) {
         newState.agenda = Object.keys(action.userData.agenda)
       }
+      return newState;
+    }
+    case 'LOCATION_DATA_ERROR': {
+      const newState = { ...state };
+      newState.position.timestamp = action.payload;
       return newState;
     }
   }
